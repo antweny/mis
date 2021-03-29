@@ -2,9 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Vinkla\Hashids\Facades\Hashids;
-
 class Employee extends BaseModel
 {
     /** --------
@@ -17,21 +14,8 @@ class Employee extends BaseModel
     /**
      * The attributes that are mass assignable.
      */
-    protected $fillable = [
-        'employee_no',
-        'name',
-        'email',
-        'mobile',
-        'job_type_id',
-        'department_id',
-        'user_id',
-        'designation_id',
-        'location_id',
-        'sex',
-        'marital_status',
-        'children',
-        'dob',
-        'active',
+    protected $fillable = ['employee_no','name','email','mobile','job_type_id','department_id','user_id',
+        'designation_id','location_id','sex','marital_status','children','dob','active',
     ];
 
 
@@ -62,13 +46,13 @@ class Employee extends BaseModel
         return $this->select('id','name')->where('active',1)->get();
     }
 
-    // Pluck model name and id
-    public function getActiveNameId()
+    // Pluck model name and id on active employee
+    public function getActiveNameID()
     {
         return $this->where('active',1)->pluck('name','id');
     }
 
-    //Get only employee Email
+    //Get only active employee details
     public function employeeDetails($id)
     {
         $employee = $this->select('email','name')->where('id',$id)->where('active',1)->first();

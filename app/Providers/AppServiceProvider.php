@@ -2,9 +2,8 @@
 
 namespace App\Providers;
 
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
-use Maatwebsite\Excel\Events\AfterImport;
-use Maatwebsite\Excel\Sheet;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -28,6 +27,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Paginator::useBootstrap();
     }
 }

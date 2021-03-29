@@ -2,14 +2,10 @@
 
 namespace App\View\Components\Button;
 
+use Illuminate\View\Component;
 
-class Back extends Button
+class Back extends Component
 {
-
-    public function __construct($label = null, $icon = null, $class = 'btn-dark', $modal = null)
-    {
-        parent::__construct($label, $icon, $class, $modal);
-    }
 
     /**
      * Get the view / contents that represent the component.
@@ -18,4 +14,5 @@ class Back extends Button
     {
         return view('components.button.back');
     }
+
 }

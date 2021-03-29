@@ -2,15 +2,15 @@
 
 namespace App\View\Composers;
 
-use App\Repositories\BaseRepository;
+use Illuminate\Database\Eloquent\Model;
 
 class BaseComposer
 {
-    protected $repo;
+    protected $model;
 
-    public function __construct(BaseRepository $repo)
+    public function __construct(Model $model)
     {
-        $this->repo = $repo;
+        $this->model = $model;
     }
 
 }

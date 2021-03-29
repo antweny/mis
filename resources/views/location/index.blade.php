@@ -4,14 +4,14 @@
 
     <x-row>
         <x-slot name="left">
-            <x-button.create label="Add Location" modal="modal"> #new </x-button.create>
+            @can('location_create')<x-button.create label="Add Location" modal="modal"> #new </x-button.create>@endcan
         </x-slot>
     </x-row>
 
     <!-- Start Card -->
     <x-card title="Locations List">
         <!-- Table Start -->
-        <x-table.listing>
+        <x-table.listing :collection="$locations">
             <!-- table headers -->
             <x-slot name="thead" >
                 <th scope="col">Name</th>
@@ -50,27 +50,32 @@
     </x-card>
 
 
-    <!-- Start Modal -->
-    <x-modal id="new" title="New Location">
-        <!-- Start form -->
-        <x-form.post action="locations.store">
-            <div class="form-group">
-                <x-form.elements.input label="Model Name: <span class='star'>*</span>" name="name" id="name" for="name" req="required"   />
-            </div>
-            <div class="form-group">
-                <x-form.elements.label name="Parent" />
-                <x-dropdown.location name="parent_id" />
-            </div>
-            <div class="form-group">
-                <x-form.elements.textarea label="Descriptions" name="desc" id="desc" />
-            </div>
-            <div class="form-group text-right">
-                <x-button />
-            </div>
-        </x-form.post>
-        <!-- end form -->
-    </x-modal>
-    <!-- end modal -->
+    @can('location_create')
+        <!-- Start Modal -->
+        <x-modal id="new" title="New Location">
+            <!-- Start form -->
+            <x-form.post action="locations.store">
+                <div class="form-group">
+                    <x-form.label name="Name <span class='star'>*</span>" for="name" />
+                    <x-form.input name="name" id="name" for="name" req="required" />
+                </div>
+                <div class="form-group">
+                    <x-form.label name="Parent" />
+                    <x-dropdown.location name="parent_id" />
+                </div>
+                <div class="form-group">
+                    <x-form.label name="Description" />
+                    <textarea name="desc" id="desc" class="form-control @error('desc') is-invalid @enderror">{{old('desc')}}</textarea>
+                    @error('desc') <span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong> </span> @enderror
+                </div>
+                <div class="form-group text-right">
+                    <x-button.submit />
+                </div>
+            </x-form.post>
+            <!-- end form -->
+        </x-modal>
+        <!-- end modal -->
+    @endcan
 
 
 @endsection

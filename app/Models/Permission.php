@@ -17,11 +17,7 @@ class Permission extends SpatiePermission
     /**
      * The attributes that are mass assignable.
      */
-    protected $fillable = [
-        'name',
-        'guard_name',
-        'desc'
-    ];
+    protected $fillable = [ 'name', 'guard_name','desc'];
 
     /**
      * Change Route Key
@@ -46,20 +42,21 @@ class Permission extends SpatiePermission
      *  MODEL FUNCTIONS
      * ---------------------
      */
-    /**
-     * function to encode ID
-     */
+
+    //function to encode primary id
     public function encode($val)
     {
         return Hashids::encode($val,1993,1994,2020);
     }
 
-    /**
-     * Select name and id of resources
-     */
-    public function selectNameAndId()
+    // Select name and id of resources
+    public function selectNameID()
     {
         return $this->select('name','id')->get()->sortBy('name');
     }
+
+
+
+
 
 }

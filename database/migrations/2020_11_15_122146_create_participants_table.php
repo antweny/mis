@@ -21,7 +21,7 @@ class CreateParticipantsTable extends Migration
             $table->date('date');
 
             $table->unsignedBigInteger('individual_id');
-            $table->foreign('individual_id')->references('id')->on('individual')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('individual_id')->references('id')->on('individuals')->onDelete('cascade')->onUpdate('cascade');
 
             $table->enum('level',['L','I'])->default('L');
 

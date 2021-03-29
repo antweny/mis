@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\AuthController;
 use App\Http\Requests\LocationRequest;
-use App\Services\LocationService;
+use App\Repository\Interfaces\LocationRepositoryInterface;
 use Exception;
 
 class LocationController extends AuthController
@@ -12,15 +11,15 @@ class LocationController extends AuthController
     /**
      * @var
      */
-    private $location;
+    private $interface;
 
     /**
      * LocationController constructor.
      */
-    public function __construct(LocationService $locationService)
+    public function __construct(LocationRepositoryInterface $interface)
     {
         parent::__construct();
-        $this->location = $locationService;
+        $this->interface = $interface;
     }
 
     /**
@@ -28,10 +27,10 @@ class LocationController extends AuthController
      */
     public function index()
     {
-        $this->canView($this->location->model());
+        $this->canView($this->interface->model());
 
         try {
-            $locations = $this->location->get();
+            $locations = $this->interface->paginate();
             return view('location.index',compact('locations'));
         }
         catch (Exception $e) {
@@ -44,10 +43,10 @@ class LocationController extends AuthController
      */
     public function store(LocationRequest $request)
     {
-        $this->canCreate($this->location->model());
+        $this->canCreate($this->interface->model());
 
         try {
-            $this->location->create($request->validated());
+            $this->interface->create($request->validated());
             return $this->success('Location created');
         }
         catch (Exception $e) {
@@ -61,10 +60,10 @@ class LocationController extends AuthController
      */
     public function edit($id)
     {
-        $this->canUpdate($this->location->model());
+        $this->canUpdate($this->interface->model());
 
         try {
-            $location = $this->location->find($id);
+            $location = $this->interface->find($id);
             return view('location.edit', compact('location'));
         }
         catch (Exception $e) {
@@ -77,10 +76,10 @@ class LocationController extends AuthController
      */
     public function update(LocationRequest $request,$id)
     {
-        $this->canUpdate($this->location->model());
+        $this->canUpdate($this->interface->model());
 
         try {
-            $this->location->update($id,$request->validated());
+            $this->interface->update($id,$request->validated());
             return $this->successRoute('locations.index','Location updated');
         }
         catch (Exception $e) {
@@ -93,10 +92,10 @@ class LocationController extends AuthController
      */
     public function destroy($id)
     {
-        $this->canDelete($this->location->model());
+        $this->canDelete($this->interface->model());
 
         try {
-            $this->location->delete($id);
+            $this->interface->delete($id);
             return $this->success('Location deleted');
         }
         catch (Exception $e) {

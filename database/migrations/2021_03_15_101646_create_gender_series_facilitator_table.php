@@ -17,7 +17,7 @@ class CreateGenderSeriesFacilitatorTable extends Migration
             $table->unsignedBigInteger('gender_series_id');
             $table->foreign('gender_series_id')->references('id')->on('gender_series')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('individual_id');
-            $table->foreign('individual_id')->references('id')->on('individual')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('individual_id')->references('id')->on('individuals')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

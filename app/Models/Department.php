@@ -13,12 +13,7 @@ class Department extends BaseModel
     /**
      * The attributes that are mass assignable.
      */
-    protected $fillable = [
-        'name',
-        'acronym',
-        'desc',
-        'manager'
-    ];
+    protected $fillable = ['name','acronym','desc','manager'];
 
     /**
      * --------------------
@@ -29,6 +24,7 @@ class Department extends BaseModel
     {
         return $this->belongsTo(Employee::class,'manager')->select('name','id')->withDefault();
     }
+
 
 
 }

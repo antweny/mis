@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\AuthController;
 use App\Http\Requests\User\UserRequest;
-use App\Services\UserService;
+use App\Repository\Interfaces\UserRepositoryInterface;
 use Exception;
 
 class UserController extends AuthController
@@ -12,15 +11,15 @@ class UserController extends AuthController
     /**
      * @var
      */
-    protected $userService;
+    protected $interface;
 
     /**
      * UserController constructor.
      */
-    public function __construct(UserService $userService)
+    public function __construct(UserRepositoryInterface $interface)
     {
         parent::__construct();
-        $this->userService = $userService;
+        $this->interface = $interface;
     }
 
     /**
@@ -28,10 +27,10 @@ class UserController extends AuthController
      */
     public function index()
     {
-        $this->canView($this->userService->model()); //Check user permission
+        $this->canView($this->interface->model()); //Check user permission
 
         try {
-            $users = $this->userService->get();
+            $users = $this->interface->get();
             return view('users.index',compact('users'));
         }
         catch (Exception $e) {
@@ -44,10 +43,10 @@ class UserController extends AuthController
      */
     public function store(UserRequest $request)
     {
-        $this->canCreate($this->userService->model()); //Check user permission
+        $this->canCreate($this->interface->model()); //Check user permission
 
         try {
-            $this->userService->create($request->validated());
+            $this->interface->create($request->validated());
             return $this->success('User created');
         }
         catch (Exception $e) {
@@ -60,10 +59,10 @@ class UserController extends AuthController
      */
     public function edit($id)
     {
-        $this->canUpdate($this->userService->model()); //Check user permission
+        $this->canUpdate($this->interface->model()); //Check user permission
 
         try {
-            $user = $this->userService->find($id);
+            $user = $this->interface->find($id);
             return view('users.edit',compact('user'));
         }
         catch (Exception $e) {
@@ -76,10 +75,10 @@ class UserController extends AuthController
      */
     public function update(UserRequest $request,$id)
     {
-        $this->canUpdate($this->userService->model()); //Check user permission
+        $this->canUpdate($this->interface->model()); //Check user permission
 
         try {
-            $this->userService->update($id, $request->validated());
+            $this->interface->update($id, $request->validated());
             return $this->successRoute('users.index','User updated!');
         }
         catch (Exception $e) {
@@ -92,10 +91,10 @@ class UserController extends AuthController
      */
     public function destroy($id)
     {
-        $this->canView($this->userService->model());  //Check user permission
+        $this->canView($this->interface->model());  //Check user permission
 
         try {
-            $this->userService->delete($id);
+            $this->interface->delete($id);
             return $this->success('User has been deleted!');
         }
         catch (Exception $e) {
@@ -108,10 +107,10 @@ class UserController extends AuthController
      */
     public function sendCredential($id)
     {
-        $this->canUpdate($this->userService->model()); //Check user permission
+        $this->canUpdate($this->interface->model()); //Check user permission
 
         try {
-            $this->userService->sendLoginCredential($id);
+            $this->interface->sendLoginCredential($id);
             return $this->success('User credentials has been sent successful');
         }
         catch (Exception $e) {

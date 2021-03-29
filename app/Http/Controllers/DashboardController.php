@@ -7,12 +7,11 @@ use Illuminate\Http\Request;
 
 class DashboardController extends AuthController
 {
-    protected $dash;
 
-    public function __construct(DashboardService $dashboardService)
+    public function __construct()
     {
         parent::__construct();
-        $this->dash = $dashboardService;
+//        $this->dash = $dashboardService;
     }
 
     /**
@@ -20,10 +19,11 @@ class DashboardController extends AuthController
      */
     public function index()
     {
-        $individual = $this->dash->individual();
-        $organization = $this->dash->organization();
-        $kc = $this->dash->kc();
-        return view('dashboards.home',compact('individual','organization','kc'));
+//        $individual = $this->dash->individual();
+//        $organization = $this->dash->organization();
+//        $kc = $this->dash->kc();
+//        return view('dashboards.home',compact('individual','organization','kc'));
+        return view('dashboards.home');
     }
 
     /**

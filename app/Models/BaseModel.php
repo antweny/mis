@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Vinkla\Hashids\Facades\Hashids;
 
-
 class BaseModel extends Model
 {
     use Hashidable;
@@ -65,6 +64,7 @@ class BaseModel extends Model
     {
         return $this->end_date;
     }
+
     //Convert Date into human readable
     public function getStartAttribute()
     {
@@ -83,6 +83,13 @@ class BaseModel extends Model
         return date('d F, Y',strtotime($this->created_at));
     }
 
+    /**
+     * Decode the primary id
+     */
+    public function encode($id)
+    {
+        return Hashids::encode($this->getKey(),20,15,1,3);
+    }
 
     /**
      * --------------------
@@ -90,11 +97,6 @@ class BaseModel extends Model
      * ---------------------
      */
 
-    //encode the IDs
-    public function encode($id)
-    {
-        return Hashids::encode($this->getKey(),20,15,1,3);
-    }
 
     /**
      * Get Specified resource ID by name
@@ -115,52 +117,58 @@ class BaseModel extends Model
         }
     }
 
+
     /**
      * Select name and id of resources
      */
-    public function selectNameAndId()
+    public function selectNameID()
     {
         return $this->select('name','id')->get()->sortBy('name');
     }
 
-    /**
-     * Select name,id and mobile of resources
-     */
-    public function selectNameIdMobile()
-    {
-        return $this->select('name','id','mobile')->get()->sortBy('name');
-    }
 
     /**
-     * Pluck name and id of resources
+     * Pluck name and id for
      */
-    public function pluckNameId()
+    public function pluckNameID()
     {
         return $this->pluck('name','id');
     }
 
-    // Order by Sort Column Ascending
+
+    /**
+     * Sort Order Asc
+     */
     public function orderBySortAsc()
     {
         return $this->orderBy('sort','asc')->get();
     }
 
-    // Order by Sort Column Descending
+
+    /**
+     * Sort Order Desc
+     */
     public function orderBySortDesc()
     {
         return $this->orderBy('sort','desc')->get();
     }
 
-    //Get Model by name
-    public function searchByName($name)
+
+    /**
+     * Dynamic Search of records into a database and return Collection
+     */
+    public function searchReturnCollection($column = 'name', $val)
     {
-        return $this->where('name',$name)->first();
+        return $this->where($column,$val)->first();
     }
 
-    //Serach model by name then return ID
-    public function searchByNameReturnId($name)
+
+    /**
+     * Dynamic Search of records into a database and return Collection
+     */
+    public function searchReturnId($column = 'name', $name)
     {
-        $result =  $this->where('name',$name)->first();
+        $result =  $this->where($column,$name)->first();
 
         return isset($result) ? $result->id : null;
     }

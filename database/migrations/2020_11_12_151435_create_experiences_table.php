@@ -17,7 +17,7 @@ class CreateExperiencesTable extends Migration
             $table->id();
 
             $table->unsignedBigInteger('individual_id');
-            $table->foreign('individual_id')->references('id')->on('individual')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('individual_id')->references('id')->on('individuals')->onDelete('cascade')->onUpdate('cascade');
 
             $table->unsignedBigInteger('organization_id');
             $table->foreign('organization_id')->references('id')->on('organizations')->onDelete('cascade')->onUpdate('cascade');

@@ -13,7 +13,7 @@ class CreateIndividualsTable extends Migration
      */
     public function up()
     {
-        Schema::create('individual', function (Blueprint $table) {
+        Schema::create('individuals', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->enum('sex', ['Male','Female'])->nullable();
@@ -35,6 +35,6 @@ class CreateIndividualsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('individual');
+        Schema::dropIfExists('individuals');
     }
 }

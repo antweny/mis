@@ -36,7 +36,7 @@ class CreateEventsTable extends Migration
             $table->unsignedBigInteger('event_id');
             $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('individual_id');
-            $table->foreign('individual_id')->references('id')->on('individual')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('individual_id')->references('id')->on('individuals')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

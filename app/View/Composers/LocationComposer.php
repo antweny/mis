@@ -2,20 +2,21 @@
 
 namespace App\View\Composers;
 
-use App\Repositories\LocationRepository;
+use App\Models\Location;
 use Illuminate\View\View;
 
-class LocationComposer extends BaseComposer
+class LocationComposer
 {
+    protected $model;
 
-    public function __construct(LocationRepository $repo)
+    public function __construct(Location $model)
     {
-        parent::__construct($repo);
+        $this->model = $model;
     }
 
     public function compose(View $view)
     {
-        $view->with('locations',$this->repo->selectNameAndId());
+        $view->with('locations',$this->model->selectNameID());
     }
 
 }

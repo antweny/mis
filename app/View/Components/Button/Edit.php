@@ -4,7 +4,7 @@ namespace App\View\Components\Button;
 
 use Illuminate\View\Component;
 
-class Edit extends Button
+class Edit extends Component
 {
     /**
      * Get the view / contents that represent the component.

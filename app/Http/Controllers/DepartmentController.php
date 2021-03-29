@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\DepartmentRequest;
-use App\Services\DepartmentService;
+use App\Repository\Interfaces\DepartmentRepositoryInterface;
 use Exception;
 
 class DepartmentController extends AuthController
@@ -11,15 +11,15 @@ class DepartmentController extends AuthController
     /**
      * @var
      */
-    private $departmentService;
+    private $interface;
 
     /**
      * DepartmentController constructor.
      */
-    public function __construct(DepartmentService $departmentService)
+    public function __construct(DepartmentRepositoryInterface $interface)
     {
         parent::__construct();
-        $this->departmentService = $departmentService;
+        $this->interface = $interface;
     }
 
     /**
@@ -27,10 +27,10 @@ class DepartmentController extends AuthController
      */
     public function index()
     {
-        $this->canView($this->departmentService->model());
+        $this->canView($this->interface->model());
 
         try {
-            $departments = $this->departmentService->get();  //Get all departments
+            $departments = $this->interface->get();  //Get all departments
             return view('departments.index',compact('departments'));
         }
         catch (Exception $e) {
@@ -43,10 +43,10 @@ class DepartmentController extends AuthController
      */
     public function store(DepartmentRequest $request)
     {
-        $this->canCreate($this->departmentService->model());
+        $this->canCreate($this->interface->model());
 
         try {
-            $this->departmentService->create($request->validated());
+            $this->interface->create($request->validated());
             return $this->success('Department created');
         }
         catch (Exception $e) {
@@ -59,10 +59,10 @@ class DepartmentController extends AuthController
      */
     public function edit($id)
     {
-        $this->canUpdate($this->departmentService->model());
+        $this->canUpdate($this->interface->model());
 
         try {
-            $department = $this->departmentService->find($id);
+            $department = $this->interface->find($id);
             return view('departments.edit',compact('department'));
         }
         catch (Exception $e) {
@@ -75,10 +75,10 @@ class DepartmentController extends AuthController
      */
     public function update(DepartmentRequest $request, $id)
     {
-        $this->canUpdate($this->departmentService->model());
+        $this->canUpdate($this->interface->model());
 
         try {
-            $this->departmentService->update($id,$request->validated());
+            $this->interface->update($id,$request->validated());
             return $this->successRoute('departments.index','Department updated');
         }
         catch (Exception $e) {
@@ -91,10 +91,10 @@ class DepartmentController extends AuthController
      */
     public function destroy($id)
     {
-        $this->canDelete($this->departmentService->model());
+        $this->canDelete($this->interface->model());
 
         try {
-            $this->departmentService->delete($id);
+            $this->interface->delete($id);
             return $this->success('Department deleted');
         }
         catch (Exception $e) {

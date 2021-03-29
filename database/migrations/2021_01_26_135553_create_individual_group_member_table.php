@@ -15,7 +15,7 @@ class CreateIndividualGroupMemberTable extends Migration
     {
         Schema::create('individual_group_member', function (Blueprint $table) {
             $table->unsignedBigInteger('individual_id');
-            $table->foreign('individual_id')->references('id')->on('individual')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('individual_id')->references('id')->on('individuals')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('individual_group_id');
             $table->foreign('individual_group_id')->references('id')->on('individual_groups')->onDelete('cascade')->onUpdate('cascade');
         });

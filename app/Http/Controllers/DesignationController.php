@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\DesignationRequest;
-use App\Services\DesignationService;
-use Exception;
+use App\Repository\Interfaces\DesignationRepositoryInterface;use Exception;
 
 class DesignationController extends AuthController
 {
@@ -12,15 +11,15 @@ class DesignationController extends AuthController
     /**
      * @var
      */
-    protected $designationService;
+    protected $interface;
 
     /**
      * DesignationController constructor.
      */
-    public function __construct(DesignationService $designationService)
+    public function __construct(DesignationRepositoryInterface $interface)
     {
         parent::__construct();
-        $this->designationService = $designationService;
+        $this->interface = $interface;
     }
 
     /**
@@ -28,10 +27,10 @@ class DesignationController extends AuthController
      */
     public function index()
     {
-        $this->canView($this->designationService->model());
+        $this->canView($this->interface->model());
 
         try {
-            $designations = $this->designationService->get();  //Get all designations
+            $designations = $this->interface->get();  //Get all designations
             return view('designations.index',compact('designations'));
         }
         catch (Exception $e) {
@@ -44,10 +43,10 @@ class DesignationController extends AuthController
      */
     public function store(DesignationRequest $request)
     {
-        $this->canCreate($this->designationService->model());
+        $this->canCreate($this->interface->model());
 
         try {
-            $this->designationService->create($request->validated());
+            $this->interface->create($request->validated());
             return $this->success('Designation created');
         }
         catch (Exception $e) {
@@ -60,10 +59,10 @@ class DesignationController extends AuthController
      */
     public function edit($id)
     {
-        $this->canUpdate($this->designationService->model());
+        $this->canUpdate($this->interface->model());
 
         try {
-            $designation = $this->designationService->find($id);
+            $designation = $this->interface->find($id);
             return view('designations.edit',compact('designation'));
         }
         catch (Exception $e) {
@@ -76,10 +75,10 @@ class DesignationController extends AuthController
      */
     public function update(DesignationRequest $request, $id)
     {
-        $this->canUpdate($this->designationService->model());
+        $this->canUpdate($this->interface->model());
 
         try {
-            $this->designationService->update($id,$request->validated());
+            $this->interface->update($id,$request->validated());
             return $this->successRoute('designations.index','Designation updated');
         }
         catch (Exception $e) {
@@ -92,10 +91,10 @@ class DesignationController extends AuthController
      */
     public function destroy($id)
     {
-        $this->canDelete($this->designationService->model());
+        $this->canDelete($this->interface->model());
 
         try {
-            $this->designationService->delete($id);
+            $this->interface->delete($id);
             return $this->success('Designation deleted');
         }
         catch (\Exception $e) {

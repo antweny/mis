@@ -17,34 +17,21 @@ class User extends Authenticatable
     /**
      * Log all activities performed on the model
      */
-
     protected static $ignoreChangedAttributes = ['password','updated_at'];
-
     protected static $logName = 'user';
-
     protected static $logAttributes = ['name','email','active'];
-
     protected static $logOnlyDirty = true;
-
-
 
 
     /**
      * The attributes that are mass assignable.
      */
-    protected $fillable = [
-        'name',
-        'active',
-        'email',
-        'password',
-    ];
+    protected $fillable = ['name', 'active', 'email','password'];
 
     /**
      * The attributes that should be hidden for arrays.
      */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+    protected $hidden = ['password', 'remember_token'];
 
     /**
      * The attributes that should be cast to native types.
@@ -62,9 +49,9 @@ class User extends Authenticatable
     }
 
     /**
-     * ------------------
+     * -----------------------
      *  MODEL RELATIONSHIP
-     * ------------------
+     * -----------------------
      */
     public function employee()
     {
@@ -82,17 +69,19 @@ class User extends Authenticatable
      * ---------------------
      */
 
-    // Encode USer ID
+    // Encode USer primary ID
     public function encode($val)
     {
         return Hashids::encode($val,1993,1994,2020);
     }
 
     //Select name and id of resources
-    public function selectNameAndId()
+    public function selectNameID()
     {
         return $this->select('name','id')->get()->sortBy('name');
     }
+
+
 
     public function canAll(array $permissions)
     {
@@ -102,4 +91,9 @@ class User extends Authenticatable
 
         return true;
     }
+
+
+
+
+
 }

@@ -13,20 +13,8 @@ class Location extends BaseModel
     /**
      * The attributes that are mass assignable.
      */
-    protected $fillable = [
-        'name',
-        'desc',
-        'parent_id'
-    ];
+    protected $fillable = ['name','desc','parent_id'];
 
-    /* --------------------
-     * Mutator Functions
-     * --------------------
-     */
-    public function setNameAttribute($value)
-    {
-        $this->attributes['name'] = ucwords(strtolower($value));
-    }
 
     /* --------------
      * Relationship
@@ -41,11 +29,6 @@ class Location extends BaseModel
         return $this->hasMany(Location::class, 'parent_id','id');
     }
 
-
-    /* --------------
-     * MODEL ACCESSOR
-     * ---------------
-     */
 
     /**
      * --------------------

@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-
 class Designation extends BaseModel
 {
     /** --------
@@ -15,10 +14,6 @@ class Designation extends BaseModel
     /**
      * The attributes that are mass assignable.
      */
-    protected $fillable = [
-        'name',
-        'acronym',
-        'desc'
-    ];
+    protected $fillable = ['name','acronym','desc'];
 
 }

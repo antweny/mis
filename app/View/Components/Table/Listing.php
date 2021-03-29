@@ -6,17 +6,17 @@ use Illuminate\View\Component;
 
 class Listing extends Component
 {
-    public $class;
     public $id;
     public $thead;
+    public $collection;
     /**
      * Create a new component instance.
      */
-    public function __construct($class = null, $id = 'table',$thead =null)
+    public function __construct($id = 'table',$thead =null, $collection = null)
     {
-        $this->class = $class;
         $this->id = $id;
         $this->thead = $thead;
+        $this->collection= $collection;
     }
 
     /**

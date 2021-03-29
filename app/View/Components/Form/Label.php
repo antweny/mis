@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\Form\Elements;
+namespace App\View\Components\Form;
 
 use Illuminate\View\Component;
 
@@ -20,11 +20,9 @@ class Label extends Component
 
     /**
      * Get the view / contents that represent the component.
-     *
-     * @return \Illuminate\View\View|string
      */
     public function render()
     {
-        return view('components.form.elements.label');
+        return view('components.form.label');
     }
 }

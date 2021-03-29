@@ -1,31 +1,29 @@
 <?php
 
+
 namespace App\View\Components\Button;
 
 use Illuminate\View\Component;
 
-class Create extends Component
+class Submit extends Component
 {
-    public $class;
     public $label;
-    public $icon;
-    public $modal;
+    public $id;
 
     /**
      * Create a new component instance.
      */
-    public function __construct($label = null, $icon = null, $class = null,$modal = null)
+    public function __construct($label = 'Submit',$id = null)
     {
         $this->label = $label;
-        $this->icon = $icon;
-        $this->class = $class;
-        $this->modal = $modal;
+        $this->id= $id;
     }
     /**
      * Get the view / contents that represent the component.
      */
     public function render()
     {
-        return view('components.button.create');
+        return view('components.button.submit');
     }
+
 }

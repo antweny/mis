@@ -30,18 +30,10 @@
                     <td  class="text-center">
                         <div class="btn-group btn-group-sm">
                             @can('designation_update')
-                                <a href="{{route('designations.edit',$designation)}}" class="btn btn-success mr-2 btn-edit" data-toggle="tooltip" data-placement="top" title="Edit item" >
-                                    <i class="fa fa-edit"></i>
-                                </a>
+                                <x-button.edit>{{route('designations.edit',$designation)}}</x-button.edit>
                             @endcan
                             @can('designation_delete')
-                                <form method="POST" action="{{route('designations.destroy',$designation)}}" class="form-horizontal" role="form" autocomplete="off">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-sm btn-danger btn-delete" onclick="return confirm('Confirm to delete?')" data-toggle="tooltip" data-placement="top" title="Delete">
-                                        <i class="fa fa-times"></i>
-                                    </button>
-                                </form>
+                                <x-button.delete>{{route('designations.destroy',$designation)}}</x-button.delete>
                             @endcan
                         </div>
                     </td>
@@ -59,16 +51,20 @@
             <!-- Start form -->
             <x-form.post action="designations.store">
                 <div class="form-group">
-                    <x-form.elements.input label="Name: <span class='star'>*</span>" name="name" id="name" for="name" req="required"  />
+                    <x-form.label name="Name <span class='star'>*</span>" for="name" />
+                    <x-form.input name="name" id="name" for="name" req="required" />
                 </div>
                 <div class="form-group">
-                    <x-form.elements.input label="Acronym" name="acronym" id="acronym" for="acronym"  />
+                    <x-form.label name="Acronym" for="name" />
+                    <x-form.input name="acronym" id="acronym" />
                 </div>
                 <div class="form-group">
-                    <x-form.elements.textarea label="Descriptions" name="desc" id="desc" />
+                    <x-form.label name="Description" />
+                    <textarea name="desc" id="desc" class="form-control @error('desc') is-invalid @enderror">{{old('desc')}}</textarea>
+                    @error('desc') <span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong> </span> @enderror
                 </div>
                 <div class="form-group text-right">
-                    <x-button />
+                    <x-button.submit />
                 </div>
             </x-form.post>
             <!-- end form -->
