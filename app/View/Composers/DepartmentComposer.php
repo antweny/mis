@@ -2,20 +2,20 @@
 
 namespace App\View\Composers;
 
-use App\Repositories\DepartmentRepository;
+use App\Models\Department;
 use Illuminate\View\View;
 
 class DepartmentComposer extends BaseComposer
 {
 
-    public function __construct(DepartmentRepository $repo)
+    public function __construct(Department $model)
     {
-        parent::__construct($repo);
+        parent::__construct($model);
     }
 
     public function compose(View $view)
     {
-        $view->with('departments',$this->repo->selectNameAndId());
+        $view->with('departments',$this->model->selectNameID());
     }
 
 

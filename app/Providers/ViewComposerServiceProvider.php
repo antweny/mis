@@ -160,7 +160,7 @@ class ViewComposerServiceProvider extends ServiceProvider
          * USER COMPOSERS
          * -------------------------
          */
-        View::composer(['components.user.user'],UserComposer::class);
+        View::composer(['components.dropdown.user'],UserComposer::class);
 
 
         /**

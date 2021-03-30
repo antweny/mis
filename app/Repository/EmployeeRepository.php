@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Models\Employee;
 use App\Repository\Interfaces\EmployeeRepositoryInterface;
+use Exception;
 
 class EmployeeRepository extends BaseRepository implements EmployeeRepositoryInterface
 {
@@ -30,6 +31,22 @@ class EmployeeRepository extends BaseRepository implements EmployeeRepositoryInt
             'user',
             'location'
         ]);
+    }
+
+
+    /**
+     * Create New employee
+     */
+    public function create(array $attributes)
+    {
+        try {
+            $request['roles'] = array('employee');
+
+
+        }
+        catch (Exception $e){
+
+        }
     }
 
 }
