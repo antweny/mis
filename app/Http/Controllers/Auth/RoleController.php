@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\AuthController;
-use App\Http\Requests\Auth\RoleRequest;
-use App\Services\Auth\RoleService;
+use App\Http\Requests\RoleRequest;
+use App\Repository\Interfaces\RoleRepositoryInterface;
 use Exception;
 
 class RoleController extends AuthController
@@ -12,15 +12,15 @@ class RoleController extends AuthController
     /**
      * @var
      */
-    private $roleService;
+    private $interface;
 
     /**
      * RoleController constructor.
      */
-    public function __construct(RoleService $roleService)
+    public function __construct(RoleRepositoryInterface $interface)
     {
         parent::__construct();
-        $this->roleService = $roleService;
+        $this->interface = $interface;
     }
 
     /**
@@ -28,10 +28,10 @@ class RoleController extends AuthController
      */
     public function index()
     {
-        $this->canView($this->roleService->model());
+        $this->canView($this->interface->model());
 
         try {
-            $roles = $this->roleService->get();
+            $roles = $this->interface->get();
             return view('auth.roles.index', compact('roles'));
         }
         catch (Exception $e) {
@@ -44,10 +44,10 @@ class RoleController extends AuthController
      */
     public function store(RoleRequest $request)
     {
-        $this->canCreate($this->roleService->model());
+        $this->canCreate($this->interface->model());
 
         try {
-            $this->roleService->create($request->validated());
+            $this->interface->create($request->validated());
             return $this->success('Role created');
         }
         catch (Exception $e) {
@@ -60,10 +60,10 @@ class RoleController extends AuthController
      */
     public function edit($id )
     {
-        $this->canUpdate($this->roleService->model());
+        $this->canUpdate($this->interface->model());
 
         try {
-            $role = $this->roleService->find($id);
+            $role = $this->interface->find($id);
             return view('auth.roles.edit',compact('role'));
         }
         catch (Exception $e) {
@@ -76,10 +76,10 @@ class RoleController extends AuthController
      */
     public function update(RoleRequest $request,$id)
     {
-        $this->canUpdate($this->roleService->model());
+        $this->canUpdate($this->interface->model());
 
         try {
-            $this->roleService->update($id,$request->validated());
+            $this->interface->updating($id,$request->validated());
             return $this->successRoute('roles.index','Role updated!');
         }
         catch (Exception $e) {
@@ -92,10 +92,10 @@ class RoleController extends AuthController
      */
     public function destroy($id)
     {
-        $this->canDelete($this->roleService->model());
+        $this->canDelete($this->interface->model());
 
         try {
-            $this->roleService->delete($id);
+            $this->interface->delete($id);
             return $this->success('Role deleted!');
         }
         catch (Exception $e) {

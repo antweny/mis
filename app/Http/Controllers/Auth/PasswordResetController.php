@@ -4,14 +4,14 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\AuthController;
 use App\Http\Requests\PasswordChangeRequest;
-use App\Services\UserService;
+use App\Repository\Interfaces\UserRepositoryInterface;
 use Exception;
 
 class PasswordResetController extends AuthController
 {
     private $user;
 
-    public function __construct(UserService $user)
+    public function __construct(UserRepositoryInterface $user)
     {
         parent::__construct();
         $this->user = $user;
@@ -40,7 +40,7 @@ class PasswordResetController extends AuthController
     {
         $this->canUpdate($this->user->model()); //Check user permission
         try {
-            $this->user->passwordReset($id, $request->validated());
+            $this->user->resetPassword($id, $request->validated());
             return $this->successRoute('users.index','Password Reset Successful');
         }
         catch (Exception $e) {

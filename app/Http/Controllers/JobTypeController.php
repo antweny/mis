@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\JobTypeRequest;
-use App\Services\JobTypeService;
+use App\Repository\Interfaces\JobTypeRepositoryInterface;
 use Exception;
 
 class JobTypeController extends AuthController
@@ -17,10 +17,10 @@ class JobTypeController extends AuthController
     /**
      * JobTypeController constructor.
      */
-    public function __construct(JobTypeService $jobTypeService)
+    public function __construct(JobTypeRepositoryInterface $interface)
     {
         parent::__construct();
-        $this->jobType= $jobTypeService;
+        $this->jobType= $interface;
     }
 
     /**
@@ -31,7 +31,7 @@ class JobTypeController extends AuthController
         $this->canView($this->jobType->model());
 
         try {
-            $jobTypes = $this->jobType->get();  //Get all jobTypes
+            $jobTypes = $this->jobType->paginate();  //Get all jobTypes
             return view('job-types.index',compact('jobTypes'));
         }
         catch (Exception $e) {

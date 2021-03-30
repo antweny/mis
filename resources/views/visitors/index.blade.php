@@ -11,7 +11,8 @@
     <!-- Start Card -->
     <x-card title="Visitors">
         <!-- Table Start -->
-        <x-table.listing>
+        <x-table.listing :collection="$visitors">
+
             <!-- table headers -->
             <x-slot name="thead" >
                 <th scope="col">Fullname</th>
@@ -23,6 +24,7 @@
                 <th scope="col">Check Out</th>
             </x-slot>
             <!-- end table head -->
+
             <!-- table body -->
             @foreach ($visitors as $visitor)
                 <tr>

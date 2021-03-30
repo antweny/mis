@@ -2,7 +2,10 @@
 
 namespace App\Repository\Interfaces;
 
-interface PermissionRepositoryInterface
+interface PermissionRepositoryInterface extends BaseRepositoryInterface
 {
+
+    public function updating($id, array $attributes);
+
 
 }

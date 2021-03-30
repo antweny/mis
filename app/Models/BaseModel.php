@@ -126,6 +126,14 @@ class BaseModel extends Model
         return $this->select('name','id')->get()->sortBy('name');
     }
 
+    /**
+     * Select name and id of resources
+     */
+    public function selectNameIDAcronym()
+    {
+        return $this->select('id','name','acronym')->get();
+    }
+
 
     /**
      * Pluck name and id for

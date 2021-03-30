@@ -19,12 +19,7 @@ class Holiday extends BaseModel
     /**
      * The attributes that are mass assignable.
      */
-    protected $fillable = [
-        'name',
-        'date',
-        'repeat',
-        'desc'
-    ];
+    protected $fillable = [ 'name','date','repeat','desc' ];
 
     /**
      * --------------------

@@ -11,7 +11,7 @@
     <!-- Start Card -->
     <x-card title="Roles Permissions List">
         <!-- Table Start -->
-        <x-table.listing>
+        <x-table.listing :collection="$permissions">
             <!-- table headers -->
             <x-slot name="thead" >
                 <th>Name</th>
@@ -30,7 +30,7 @@
                         @foreach($permission->role as $role)
                             {{$role->name}}
                         @endforeach
-                    </td>{{-- Retrieve array of permissions associated to a role and convert to string --}}
+                    </td>
                     <td  class="text-center">
                         <div class="btn-group btn-group-sm">
                             @can('permission_update')
@@ -51,9 +51,7 @@
                     </td>
                 </tr>
             @endforeach
-
         </x-table.listing>
-
     </x-card>
 
     @can('permission_create')
@@ -62,18 +60,22 @@
             <!-- Start form -->
             <x-form.post action="permissions.store">
                 <div class="form-group">
-                    <x-form.elements.label name="Name: <span class='star'>*</span>" for="name" />
-                    <x-form.elements.input name="name" id="name" required="required"/>
+                    <x-form.label name="Name: <span class='star'>*</span>" for="name" />
+                    <x-form.input name="name" id="name" required="required"/>
                 </div>
                 <div class="form-group">
-                    <x-form.elements.label name="Description" for="desc" />
-                    <x-form.elements.textarea name="desc" id="desc"/>
+                    <x-form.label name="Description" for="desc" />
+                    <textarea name="desc" id="desc" class="form-control @error('desc') is-invalid @enderror">{{old('desc')}}</textarea>
+                    @error('desc') <span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong> </span> @enderror
                 </div>
                 <div class="form-group row">
-                    <x-auth.role />
+                    <div class="col-md-12">
+                        <x-form.label name="Assign Roles" />
+                    </div>
+                    <x-dropdown.role />
                 </div>
                 <div class="form-group text-right">
-                    <x-button />
+                    <x-button.submit />
                 </div>
             </x-form.post>
             <!-- end form -->

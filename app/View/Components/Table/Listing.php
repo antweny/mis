@@ -12,11 +12,12 @@ class Listing extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct($id = 'table',$thead =null, $collection = null)
+    public function __construct($id = null,$thead =null, $collection = null)
     {
         $this->id = $id;
         $this->thead = $thead;
         $this->collection= $collection;
+
     }
 
     /**

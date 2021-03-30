@@ -1,6 +1,6 @@
 <div class="table-responsive">
 {{--    <table class="table table-striped {{$class}} btn-sm" id="{{$id}}">--}}
-    <table class="table table-striped">
+    <table class="table table-striped" id="{{$id}}">
         <thead class="text-center">
             <tr>
                 <th class="numCol">#</th>
@@ -20,7 +20,9 @@
 
             </div>
             <div class="float-right">
-                {{$collection->links()}}
+                @if(!is_null($collection))
+                    {{$collection->links()}}
+                @endif
             </div>
         </div>
     </div>

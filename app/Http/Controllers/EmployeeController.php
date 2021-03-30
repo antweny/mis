@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Employee;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\AuthController;
 use App\Http\Requests\EmployeeRequest;
-use App\Services\EmployeeService;
+use App\Repository\Interfaces\EmployeeRepositoryInterface;
 use Exception;
 
 class EmployeeController extends AuthController
@@ -17,7 +16,7 @@ class EmployeeController extends AuthController
     /**
      * EmployeeController constructor.
      */
-    public function __construct(EmployeeService $employeeService)
+    public function __construct(EmployeeRepositoryInterface $employeeService)
     {
         parent::__construct();
         $this->employeeService = $employeeService;

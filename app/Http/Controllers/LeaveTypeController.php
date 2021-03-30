@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LeaveTypeRequest;
-use App\Services\LeaveTypeService;
+use App\Repository\Interfaces\LeaveTypeRepositoryInterface;
 use Exception;
 
 class LeaveTypeController extends AuthController
@@ -16,7 +16,7 @@ class LeaveTypeController extends AuthController
     /**
      * LeaveTypeController constructor.
      */
-    public function __construct(LeaveTypeService $leaveTypeService)
+    public function __construct(LeaveTypeRepositoryInterface $leaveTypeService)
     {
         parent::__construct();
         $this->leaveTypeService = $leaveTypeService;
@@ -30,7 +30,7 @@ class LeaveTypeController extends AuthController
         $this->canView($this->leaveTypeService->model());
 
         try {
-            $leaveTypes = $this->leaveTypeService->get();  //Get all leaveTypes
+            $leaveTypes = $this->leaveTypeService->paginate();  //Get all leaveTypes
             return view('leave-types.index',compact('leaveTypes'));
         }
         catch (Exception $e) {
@@ -101,5 +101,6 @@ class LeaveTypeController extends AuthController
             return $this->error();
         }
     }
+
 
 }

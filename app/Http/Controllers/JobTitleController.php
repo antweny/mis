@@ -1,9 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Http\Requests\JobTitleRequest;
-use App\Services\JobTitleService;
+use App\Repository\Interfaces\JobTitleRepositoryInterface;
 use Exception;
 
 class JobTitleController extends AuthController
@@ -12,15 +11,15 @@ class JobTitleController extends AuthController
     /**
      * @var
      */
-    protected $jobTitleService;
+    protected $interface;
 
     /**
      * TitleController constructor.
      */
-    public function __construct(JobTitleService $jobTitleService)
+    public function __construct(JobTitleRepositoryInterface $interface)
     {
         parent::__construct();
-        $this->jobTitleService = $jobTitleService;
+        $this->interface = $interface;
     }
 
     /**
@@ -28,10 +27,10 @@ class JobTitleController extends AuthController
      */
     public function index()
     {
-        $this->canView($this->jobTitleService->model());
+        $this->canView($this->interface->model());
 
         try {
-            $jobTitles = $this->jobTitleService->get();  //Get all jobTitles
+            $jobTitles = $this->interface->paginate();  //Get all jobTitles
             return view('job-titles.index',compact('jobTitles'));
         }
         catch (Exception $e) {
@@ -44,10 +43,10 @@ class JobTitleController extends AuthController
      */
     public function store(JobTitleRequest $request)
     {
-        $this->canCreate($this->jobTitleService->model());
+        $this->canCreate($this->interface->model());
 
         try {
-            $this->jobTitleService->create($request->validated());
+            $this->interface->create($request->validated());
             return $this->success('Job Title created');
         }
         catch (\Exception $e) {
@@ -60,10 +59,10 @@ class JobTitleController extends AuthController
      */
     public function edit($id)
     {
-        $this->canUpdate($this->jobTitleService->model());
+        $this->canUpdate($this->interface->model());
 
         try {
-            $jobTitle = $this->jobTitleService->find($id);
+            $jobTitle = $this->interface->find($id);
             return view('job-titles.edit',compact('jobTitle'));
         }
         catch (\Exception $e) {
@@ -76,10 +75,10 @@ class JobTitleController extends AuthController
      */
     public function update(JobTitleRequest $request, $id)
     {
-        $this->canUpdate($this->jobTitleService->model());
+        $this->canUpdate($this->interface->model());
 
         try {
-            $this->jobTitleService->update($id,$request->validated());
+            $this->interface->update($id,$request->validated());
             return $this->successRoute('jobTitles.index','Job Title updated');
         }
         catch (\Exception $e) {
@@ -92,10 +91,10 @@ class JobTitleController extends AuthController
      */
     public function destroy($id)
     {
-        $this->canDelete($this->jobTitleService->model());
+        $this->canDelete($this->interface->model());
 
         try {
-            $this->jobTitleService->delete($id);
+            $this->interface->delete($id);
             return $this->success('Job Title deleted');
         }
         catch (\Exception $e) {

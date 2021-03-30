@@ -13,20 +13,8 @@ class JobTitle extends BaseModel
     /**
      * The attributes that are mass assignable.
      */
-    protected $fillable = [
-        'name',
-        'acronym',
-        'type',
-        'desc'
-    ];
+    protected $fillable = ['name','acronym','type','desc'];
 
-    /**
-     *  Mutator Model functions
-     */
-    protected function setNameAttribute($value)
-    {
-        $this->attributes['name'] = ucwords(strtolower($value));
-    }
 
     /**
      * --------------------
@@ -58,15 +46,5 @@ class JobTitle extends BaseModel
         }
     }
 
-    /**
-     * --------------------
-     *  MODEL FUNCTIONS
-     * ---------------------
-     */
-    //Get ID, Name and Acronym of data
-    public function selectNameIdAcronym()
-    {
-        return $this->select('id','name','acronym')->get();
-    }
 
 }

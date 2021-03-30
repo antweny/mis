@@ -9,9 +9,9 @@
     </x-row>
 
     <!-- Start Card -->
-    <x-card title="Departments List">
+    <x-card title="Departments List" >
         <!-- Table Start -->
-        <x-table.listing>
+        <x-table.listing :collection="$departments">
             <!-- table headers -->
             <x-slot name="thead" >
                 <th scope="col">Name</th>
@@ -35,7 +35,7 @@
                                 <x-button.edit>{{route('departments.edit',$department)}}</x-button.edit>
                             @endcan
                             @can('department_delete')
-                                <x-button.edit>{{route('departments.destroy',$department)}}</x-button.edit>
+                                <x-button.delete>{{route('departments.destroy',$department)}}</x-button.delete>
                             @endcan
                         </div>
                     </td>
@@ -58,7 +58,7 @@
                 </div>
                 <div class="form-group row">
                     <div class="col-md-6">
-                        <x-form.label name="Acronym" for="name" />
+                        <x-form.label name="Acronym" for="acronym" />
                         <x-form.input name="acronym" id="acronym" />
                     </div>
                     <div class="col-md-6">

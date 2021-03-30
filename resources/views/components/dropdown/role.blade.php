@@ -1,5 +1,3 @@
-
-<label class="col-md-12 form-label pl-3">Assign Roles</label>
 @foreach ($roles as $role)
     <div class="col-md-4">
         <label class="label">

@@ -11,7 +11,7 @@
     <!-- Start Card -->
     <x-card title="Leave Types List">
         <!-- Table Start -->
-        <x-table.listing>
+        <x-table.listing :collection="$leaveTypes">
             <!-- table headers -->
             <x-slot name="thead" >
                 <th>Name</th>
@@ -59,16 +59,20 @@
             <!-- Start form -->
             <x-form.post action="leaveTypes.store">
                 <div class="form-group">
-                    <x-form.elements.input label="Name: <span class='star'>*</span>" name="name" id="name" for="name" req="required"  />
+                    <x-form.label name="Name <span class='star'>*</span>" for="name" />
+                    <x-form.input name="name" id="name" for="name" req="required" />
                 </div>
                 <div class="form-group">
-                    <x-form.elements.input type="number" label="Days: <span class='star'>*</span>" name="days" id="days" for="days" req="required"  />
+                    <x-form.label name="Days: <span class='star'>*</span>" />
+                    <x-form.input type="number" name="days" id="days" for="days" req="required" />
                 </div>
                 <div class="form-group">
-                    <x-form.elements.textarea label="Descriptions" name="desc" id="desc" />
+                    <x-form.label name="Description" />
+                    <textarea name="desc" id="desc" class="form-control @error('desc') is-invalid @enderror">{{old('desc')}}</textarea>
+                    @error('desc') <span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong> </span> @enderror
                 </div>
                 <div class="form-group text-right">
-                    <x-button />
+                    <x-button.submit />
                 </div>
             </x-form.post>
             <!-- end form -->

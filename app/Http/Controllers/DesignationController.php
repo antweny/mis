@@ -30,7 +30,7 @@ class DesignationController extends AuthController
         $this->canView($this->interface->model());
 
         try {
-            $designations = $this->interface->get();  //Get all designations
+            $designations = $this->interface->paginate();  //Get all designations
             return view('designations.index',compact('designations'));
         }
         catch (Exception $e) {

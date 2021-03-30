@@ -2,9 +2,7 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
-class JobType extends BaseModel
+class LeaveType extends BaseModel
 {
     /** --------
      * Log name
@@ -16,10 +14,5 @@ class JobType extends BaseModel
     /**
      * The attributes that are mass assignable.
      */
-    protected $fillable = [
-        'name',
-        'desc'
-    ];
-
-
+    protected $fillable = [ 'name','days','desc' ];
 }

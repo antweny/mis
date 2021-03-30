@@ -11,7 +11,7 @@
     <!-- Start Card -->
     <x-card title="Roles List">
         <!-- Table Start -->
-        <x-table.listing>
+        <x-table.listing :collection="$roles">
             <!-- table headers -->
             <x-slot name="thead" >
                 <th>Name</th>
@@ -27,25 +27,20 @@
                     <td  class="text-center">{{$role->guard_name}}</td>
                     <td  class="text-left">{{$role->desc}}</td>
                     <td class="text-center">
-                        @foreach($role->permission as $permission)
-                            {{$permission->name.' | '}}
-                        @endforeach
+                        <ul class="list list-inline">
+                            @foreach($role->permission as $permission)
+                                <li class="list-inline-item">{{$permission->name.' |'}} </li>
+                            @endforeach
+                        </ul>
+
                     </td>{{-- Retrieve array of roles associated to a role and convert to string --}}
                     <td  class="text-center">
                         <div class="btn-group btn-group-sm">
                             @can('role_update')
-                                <a href="{{route('roles.edit',$role)}}" class="btn mr-2 btn-edit" data-toggle="tooltip" data-placement="top" title="Edit item" >
-                                    <i class="fa fa-edit"></i>
-                                </a>
+                                <x-button.edit>{{route('roles.edit',$role)}}</x-button.edit>
                             @endcan
                             @can('role_delete')
-                                <form method="POST" action="{{route('roles.destroy',$role)}}" class="form-horizontal" role="form" autocomplete="off">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-sm btn-delete" onclick="return confirm('Confirm to delete?')" data-toggle="tooltip" data-placement="top" title="Delete">
-                                        <i class="fa fa-times"></i>
-                                    </button>
-                                </form>
+                                <x-button.delete>{{route('roles.destroy',$role)}}</x-button.delete>
                             @endcan
                         </div>
                     </td>
@@ -60,18 +55,22 @@
             <!-- Start form -->
             <x-form.post action="roles.store">
                 <div class="form-group">
-                    <x-form.elements.label name="Name: <span class='star'>*</span>" for="name" />
-                    <x-form.elements.input name="name" id="name" required="required"/>
+                    <x-form.label name="Name: <span class='star'>*</span>" for="name" />
+                    <x-form.input name="name" id="name" required="required"/>
                 </div>
                 <div class="form-group">
-                    <x-form.elements.label name="Description" for="desc" />
-                    <x-form.elements.textarea name="desc" id="desc"/>
+                    <x-form.label name="Description" />
+                    <textarea name="desc" id="desc" class="form-control @error('desc') is-invalid @enderror">{{old('desc')}}</textarea>
+                    @error('desc') <span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong> </span> @enderror
                 </div>
                 <div class="form-group row">
-                    <x-auth.permission />
+                    <div class="col-md-12">
+                        <x-form.label name="AssignPermission" />
+                    </div>
+                    <x-dropdown.permission />
                 </div>
                 <div class="form-group text-right">
-                    <x-button />
+                    <x-button.submit />
                 </div>
             </x-form.post>
             <!-- end form -->

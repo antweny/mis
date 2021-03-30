@@ -4,8 +4,8 @@ namespace App\Providers;
 
 use App\View\Composers\ActivityComposer;
 use App\View\Composers\AssetTypeComposer;
-use App\View\Composers\Auth\PermissionComposer;
-use App\View\Composers\Auth\RoleComposer;
+use App\View\Composers\PermissionComposer;
+use App\View\Composers\RoleComposer;
 use App\View\Composers\BankAccountComposer;
 use App\View\Composers\BankComposer;
 use App\View\Composers\BrandComposer;
@@ -68,8 +68,8 @@ class ViewComposerServiceProvider extends ServiceProvider
          * AUTH COMPOSERS
          * -------------------------
          */
-        View::composer(['components.auth.role'],RoleComposer::class);
-        View::composer(['components.auth.permission'],PermissionComposer::class);
+        View::composer(['components.dropdown.role'],RoleComposer::class);
+        View::composer(['components.dropdown.permission'],PermissionComposer::class);
 
 
         /**

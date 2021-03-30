@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\AuthController;
 use App\Http\Requests\Auth\PermissionRequest;
-use App\Services\Auth\PermissionService;
+use App\Repository\Interfaces\PermissionRepositoryInterface;
 use Exception;
 
 class PermissionController extends AuthController
@@ -12,15 +12,15 @@ class PermissionController extends AuthController
     /**
      * @var
      */
-    private $permissionService;
+    private $interface;
 
     /**
      * PermissionController constructor.
      */
-    public function __construct(PermissionService $permissionService)
+    public function __construct(PermissionRepositoryInterface $interface)
     {
         parent::__construct();
-        $this->permissionService = $permissionService;
+        $this->interface = $interface;
     }
 
     /**
@@ -28,10 +28,10 @@ class PermissionController extends AuthController
      */
     public function index()
     {
-        $this->canView($this->permissionService->model());
+        $this->canView($this->interface->model());
 
         try {
-            $permissions = $this->permissionService->get();
+            $permissions = $this->interface->get();
             return view('auth.permissions.index',compact('permissions'));
         }
         catch (Exception $e) {
@@ -44,10 +44,10 @@ class PermissionController extends AuthController
      */
     public function store(PermissionRequest $request)
     {
-        $this->canCreate($this->permissionService->model());
+        $this->canCreate($this->interface->model());
 
         try {
-            $this->permissionService->create($request->validated());
+            $this->interface->create($request->validated());
             return $this->success('Permission created');
         }
         catch (Exception $e) {
@@ -60,10 +60,10 @@ class PermissionController extends AuthController
      */
     public function edit($id )
     {
-        $this->canUpdate($this->permissionService->model());
+        $this->canUpdate($this->interface->model());
 
         try {
-            $permission = $this->permissionService->find($id);
+            $permission = $this->interface->find($id);
             return view('auth.permissions.edit',compact('permission'));
         }
         catch (Exception $e) {
@@ -76,10 +76,10 @@ class PermissionController extends AuthController
      */
     public function update(PermissionRequest $request,$id)
     {
-        $this->canUpdate($this->permissionService->model());
+        $this->canUpdate($this->interface->model());
 
         try {
-            $this->permissionService->update($id,$request->validated());
+            $this->interface->updating($id,$request->validated());
             return $this->successRoute('permissions.index','Permission updated!');
         }
         catch (Exception $e) {
@@ -92,10 +92,10 @@ class PermissionController extends AuthController
      */
     public function destroy($id)
     {
-        $this->canDelete($this->permissionService->model());
+        $this->canDelete($this->interface->model());
 
         try {
-            $this->permissionService->delete($id);
+            $this->interface->delete($id);
             return $this->success('Permission deleted!');
         }
         catch (Exception $e) {

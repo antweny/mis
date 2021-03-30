@@ -8,11 +8,11 @@
                 @csrf
                     <div class="form-group row">
                         <div class="col-md-8">
-                            <x-form.elements.label name="Name: <span class='star'>*</span>" for="name" />
-                            <x-form.elements.input name="name" id="name" required="required" :model="$user"/>
+                            <x-form.label name="Name: <span class='star'>*</span>" for="name" />
+                            <x-form.input name="name" id="name" required="required" :model="$user"/>
                         </div>
                         <div class="col-md-4">
-                            <x-form.elements.label name="Active: <span class='star'>*</span>" for="active" />
+                            <x-form.label name="Active: <span class='star'>*</span>" for="active" />
                             <select class="form-control @error('active') is-invalid @enderror single-select" name="active" required>
                                 <option value="1" {{old('active',$user->active) == '1' ? 'selected' : ''}}>Yes</option>
                                 <option value="0" {{old('active',$user->active) == '0' ? 'selected' : ''}}>No</option>
@@ -20,19 +20,22 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <x-form.elements.label name="Email: <span class='star'>*</span>" for="email" />
-                        <x-form.elements.input name="email" id="email" required="required" :model="$user"/>
+                        <x-form.label name="Email: <span class='star'>*</span>" for="email" />
+                        <x-form.input name="email" id="email" required="required" :model="$user"/>
                     </div>
                     <div class="form-group row">
-                        <x-auth.role />
+                        <div class="col-md-12">
+                            <x-form.label name="Assign Roles" />
+                        </div>
+                        <x-dropdown.role />
                     </div>
                     <div class="form-group row">
                         <div class="col">
                             <div class="float-left">
-                                <x-button.back>  {{route('users.index')}} </x-button.back>
+                                <x-button.back />
                             </div>
                             <div class="float-right">
-                                <x-button label="Update"/>
+                                <x-button.submit label="Update"/>
                             </div>
                         </div>
                     </div>

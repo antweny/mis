@@ -11,7 +11,7 @@
     <!-- Start Card -->
     <x-card title="Public Holidays List">
         <!-- Table Start -->
-        <x-table.listing>
+        <x-table.listing :collection="$holidays">
             <!-- table headers -->
             <x-slot name="thead" >
                 <th scope="col">Name</th>
@@ -33,18 +33,10 @@
                     <td  class="text-center">
                         <div class="btn-group btn-group-sm">
                             @can('holiday_update')
-                                <a href="{{route('holidays.edit',$holiday)}}" class="btn mr-2 btn-edit" data-toggle="tooltip" data-placement="top" title="Edit item" >
-                                    <i class="fa fa-edit"></i>
-                                </a>
+                                <x-button.edit>{{route('holidays.edit',$holiday)}}</x-button.edit>
                             @endcan
                             @can('holiday_delete')
-                                <form method="POST" action="{{route('holidays.destroy',$holiday)}}" class="form-horizontal" role="form" autocomplete="off">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-sm btn-delete" onclick="return confirm('Confirm to delete?')" data-toggle="tooltip" data-placement="top" title="Delete">
-                                        <i class="fa fa-times"></i>
-                                    </button>
-                                </form>
+                                <x-button.delete>{{route('holidays.destroy',$holiday)}}</x-button.delete>
                             @endcan
                         </div>
                     </td>
@@ -61,14 +53,16 @@
             <!-- Start form -->
             <x-form.post action="holidays.store">
                 <div class="form-group">
-                    <x-form.elements.input label="Name: <span class='star'>*</span>" name="name" id="name" for="name" req="required"   />
+                    <x-form.label name="Name <span class='star'>*</span>" for="name" />
+                    <x-form.input name="name" id="name" for="name" req="required" />
                 </div>
                 <div class="form-group row">
                     <div class="col-md-6">
-                        <x-form.elements.input label="Date <span class='star'>*</span>" type="date" name="date" id="date" req="required"  />
+                        <x-form.label name="Date <span class='star'>*</span>" for="date" />
+                        <x-form.input type="date" name="date" id="date" req="required" />
                     </div>
                     <div class="col-md-6">
-                        <x-form.elements.label name="Repeat Yearly" />
+                        <x-form.label name="Repeat Yearly" />
                         <select class="form-control @error('repeat') is-invalid @enderror single-select" name="repeat" required>
                             <option value="0" {{old('repeat') == '0' ? 'selected' : ''}}>No</option>
                             <option value="1" {{old('repeat') == '1' ? 'selected' : ''}}>Yes</option>
@@ -76,10 +70,12 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <x-form.elements.textarea label="Descriptions" name="desc" id="desc" />
+                    <x-form.label name="Description" />
+                    <textarea name="desc" id="desc" class="form-control @error('desc') is-invalid @enderror">{{old('desc')}}</textarea>
+                    @error('desc') <span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong> </span> @enderror
                 </div>
                 <div class="form-group text-right">
-                    <x-button />
+                    <x-button.submit />
                 </div>
             </x-form.post>
             <!-- end form -->

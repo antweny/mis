@@ -97,13 +97,13 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
  | USER MANAGEMENT
  |---------------------------------
  */
-Route::namespace('User')->prefix('user')->name('users.')->group(function () {
+Route::prefix('user')->name('users.')->group(function () {
     Route::get('/', 'UserController@index')->name('index');
     Route::post('store', 'UserController@store')->name('store');
     Route::get('edit/{user}', 'UserController@edit')->name('edit');
     Route::put('update/{user}', 'UserController@update')->name('update');
     Route::delete('delete/{user}', 'UserController@destroy')->name('destroy');
-    Route::get('send/credentials/{user}', 'UserController@sendCredential')->name('credentials');
+    Route::get('send/login/{user}', 'UserController@sendLogin')->name('sendLogin');
 });
 
 //Change Password
@@ -409,15 +409,6 @@ Route::prefix('hr/')->group(function () {
         Route::delete('delete/{visitor}', 'VisitorController@destroy')->name('destroy');
     });
 
-    //Employee timesheets
-    Route::prefix('employee/timesheets')->name('timesheets.')->group(function () {
-        Route::get('/', 'TimesheetController@index')->name('index');
-        Route::post('store', 'TimesheetController@store')->name('store');
-        Route::get('edit/{timesheet}', 'TimesheetController@edit')->name('edit');
-        Route::put('update/{timesheet}', 'TimesheetController@update')->name('update');
-        Route::delete('delete/{timesheet}', 'TimesheetController@destroy')->name('destroy');
-    });
-
     //Office Rooms Management
     Route::prefix('office')->group(function () {
 
@@ -479,26 +470,30 @@ Route::prefix('hr/')->group(function () {
         });
     });
 
+    Route::prefix('employee/')->group(function () {
 
-});
+        //Employee timesheets
+        Route::prefix('timesheets')->name('timesheets.')->group(function () {
+            Route::get('index', 'TimesheetController@index')->name('index');
+            Route::post('store', 'TimesheetController@store')->name('store');
+            Route::get('edit/{timesheet}', 'TimesheetController@edit')->name('edit');
+            Route::put('update/{timesheet}', 'TimesheetController@update')->name('update');
+            Route::delete('delete/{timesheet}', 'TimesheetController@destroy')->name('destroy');
+        });
 
-
-/* ------------------------
- * EMPLOYEE MANAGEMENT ROUTES
- * ------------------------
- */
-Route::namespace('Employee')->prefix('employee/')->group(function () {
-    //Employees
-    Route::name('employees.')->group(function () {
-        Route::get('/', 'EmployeeController@index')->name('index');
-        Route::get('create', 'EmployeeController@create')->name('create');
-        Route::post('store', 'EmployeeController@store')->name('store');
-        Route::get('show/{employee}', 'EmployeeController@show')->name('show');
-        Route::get('edit/{employee}', 'EmployeeController@edit')->name('edit');
-        Route::put('update/{employee}', 'EmployeeController@update')->name('update');
-        Route::delete('delete/{employee}', 'EmployeeController@destroy')->name('destroy');
-        Route::post('import', 'EmployeeController@import')->name('import');
+        Route::name('employees.')->group(function () {
+            Route::get('index', 'EmployeeController@index')->name('index');
+            Route::get('create', 'EmployeeController@create')->name('create');
+            Route::post('store', 'EmployeeController@store')->name('store');
+            Route::get('show/{employee}', 'EmployeeController@show')->name('show');
+            Route::get('edit/{employee}', 'EmployeeController@edit')->name('edit');
+            Route::put('update/{employee}', 'EmployeeController@update')->name('update');
+            Route::delete('delete/{employee}', 'EmployeeController@destroy')->name('destroy');
+            Route::post('import', 'EmployeeController@import')->name('import');
+        });
     });
+
+
 });
 
 

@@ -11,7 +11,7 @@
     <!-- Start Card -->
     <x-card title="Job Titles List">
         <!-- Table Start -->
-        <x-table.listing>
+        <x-table.listing :collection="$jobTitles">
             <!-- table headers -->
             <x-slot name="thead" >
                 <th scope="col">Name</th>
@@ -32,18 +32,10 @@
                     <td  class="text-center">
                         <div class="btn-group btn-group-sm">
                             @can('job-title_update')
-                                <a href="{{route('jobTitles.edit',$JobTitle)}}" class="btn mr-2 btn-edit" data-toggle="tooltip" data-placement="top" title="Edit item" >
-                                    <i class="fa fa-edit"></i>
-                                </a>
+                                <x-button.edit>{{route('jobTitles.edit',$JobTitle)}}</x-button.edit>
                             @endcan
                             @can('job-title_delete')
-                                <form method="POST" action="{{route('jobTitles.destroy',$JobTitle)}}" class="form-horizontal" role="form" autocomplete="off">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-sm btn-delete" onclick="return confirm('Confirm to delete?')" data-toggle="tooltip" data-placement="top" title="Delete">
-                                        <i class="fa fa-times"></i>
-                                    </button>
-                                </form>
+                                <x-button.delete>{{route('jobTitles.destroy',$JobTitle)}}</x-button.delete>
                             @endcan
                         </div>
                     </td>
@@ -61,13 +53,15 @@
             <!-- Start form -->
             <x-form.post action="jobTitles.store">
                 <div class="form-group">
-                    <x-form.elements.input label="Name: <span class='star'>*</span>" name="name" id="name" for="name" req="required"  />
+                    <x-form.label name="Name <span class='star'>*</span>" for="name" />
+                    <x-form.input name="name" id="name" for="name" req="required" />
                 </div>
                 <div class="form-group">
-                    <x-form.elements.input label="Acronym" name="acronym" id="acronym" for="acronym"  />
+                    <x-form.label name="Acronym" for="acronym" />
+                    <x-form.input name="acronym" id="acronym" />
                 </div>
                 <div class="form-group">
-                    <x-form.elements.label name="Type" for="type" />
+                    <x-form.label name="Type" for="type" />
                     <select class="form-control @error('type') is-invalid @enderror" name="type">
                         <option value="">--</option>
                         <option value="P" {{old('type') == 'P' ? 'selected' : ''}}> Professional </option>
@@ -75,10 +69,12 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <x-form.elements.textarea label="Descriptions" name="desc" id="desc" />
+                    <x-form.label name="Description" />
+                    <textarea name="desc" id="desc" class="form-control @error('desc') is-invalid @enderror">{{old('desc')}}</textarea>
+                    @error('desc') <span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong> </span> @enderror
                 </div>
                 <div class="form-group text-right">
-                    <x-button />
+                    <x-button.submit />
                 </div>
             </x-form.post>
             <!-- end form -->

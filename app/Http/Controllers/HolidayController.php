@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\HolidayRequest;
+use App\Repository\Interfaces\HolidayRepositoryInterface;
 use App\Services\HolidayService;
 use Exception;
 
@@ -13,7 +14,7 @@ class HolidayController extends AuthController
     /**
      * PublicHolidayController constructor.
      */
-    public function __construct(HolidayService $holidayService)
+    public function __construct(HolidayRepositoryInterface $holidayService)
     {
         parent::__construct();
         $this->holidayService = $holidayService;
@@ -27,7 +28,7 @@ class HolidayController extends AuthController
         $this->canView($this->holidayService->model());
 
         try {
-            $holidays = $this->holidayService->get();  //Get all holidays
+            $holidays = $this->holidayService->paginate();  //Get all holidays
             return view('holidays.index',compact('holidays'));
         }
         catch (Exception $e) {

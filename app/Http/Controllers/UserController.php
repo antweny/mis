@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\User\UserRequest;
+use App\Http\Requests\UserRequest;
 use App\Repository\Interfaces\UserRepositoryInterface;
 use Exception;
 
@@ -78,7 +78,7 @@ class UserController extends AuthController
         $this->canUpdate($this->interface->model()); //Check user permission
 
         try {
-            $this->interface->update($id, $request->validated());
+            $this->interface->updating($id, $request->validated());
             return $this->successRoute('users.index','User updated!');
         }
         catch (Exception $e) {
@@ -103,14 +103,14 @@ class UserController extends AuthController
     }
 
     /**
-     *
+     * Send logins to user
      */
-    public function sendCredential($id)
+    public function sendLogin($id)
     {
         $this->canUpdate($this->interface->model()); //Check user permission
 
         try {
-            $this->interface->sendLoginCredential($id);
+            $this->interface->sendlogin($id);
             return $this->success('User credentials has been sent successful');
         }
         catch (Exception $e) {

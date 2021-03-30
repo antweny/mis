@@ -13,15 +13,7 @@ class Visitor extends BaseModel
     /**
      * The attributes that are mass assignable.
      */
-    protected $fillable = [
-        'individual_id',
-        'location_id',
-        'organization_id',
-        'employee_id',
-        'check_in',
-        'check_out',
-        'desc',
-    ];
+    protected $fillable = [ 'individual_id','location_id','organization_id','employee_id','check_in','check_out','desc' ];
 
     /**
      * --------------------
@@ -62,5 +54,9 @@ class Visitor extends BaseModel
     {
         return$this->belongsTo(Employee::class)->withDefault();
     }
+
+
+
+
 
 }

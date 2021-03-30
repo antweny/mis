@@ -69,14 +69,6 @@ class BaseRepository implements BaseRepositoryInterface
         return $object;
     }
 
-    /**
-     * Call the Update Function
-     */
-    public function updating($id, array $attributes)
-    {
-       return $this->update($id, $attributes);
-    }
-
 
     /**
      * Delete Record

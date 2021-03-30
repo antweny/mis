@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\VisitorRequest;
+use App\Repository\Interfaces\VisitorRepositoryInterface;
 use App\Services\VisitorService;
 use Exception;
 
@@ -16,7 +17,7 @@ class VisitorController extends AuthController
     /**
      * VisitorController constructor.
      */
-    public function __construct(VisitorService $visitorService)
+    public function __construct(VisitorRepositoryInterface $visitorService)
     {
         parent::__construct();
         $this->visitorService = $visitorService;

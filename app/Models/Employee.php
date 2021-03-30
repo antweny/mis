@@ -15,8 +15,7 @@ class Employee extends BaseModel
      * The attributes that are mass assignable.
      */
     protected $fillable = ['employee_no','name','email','mobile','job_type_id','department_id','user_id',
-        'designation_id','location_id','sex','marital_status','children','dob','active',
-    ];
+        'designation_id','location_id','sex','marital_status','children','dob','active' ];
 
 
     /**
@@ -55,8 +54,7 @@ class Employee extends BaseModel
     //Get only active employee details
     public function employeeDetails($id)
     {
-        $employee = $this->select('email','name')->where('id',$id)->where('active',1)->first();
-        return $employee;
+        return $this->select('email','name')->where('id',$id)->where('active',1)->first();
     }
 
 

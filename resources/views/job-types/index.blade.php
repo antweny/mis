@@ -11,7 +11,7 @@
     <!-- Start Card -->
     <x-card title="Job Types List">
         <!-- Table Start -->
-        <x-table.listing>
+        <x-table.listing :collection="$jobTypes">
             <!-- table headers -->
             <x-slot name="thead" >
                 <th scope="col">Name</th>
@@ -28,18 +28,10 @@
                     <td  class="text-center">
                         <div class="btn-group btn-group-sm">
                             @can('job-type_update')
-                                <a href="{{route('jobTypes.edit',$jobType)}}" class="btn mr-2 btn-edit" data-toggle="tooltip" data-placement="top" title="Edit item" >
-                                    <i class="fa fa-edit"></i>
-                                </a>
+                                <x-button.edit>{{route('jobTypes.edit',$jobType)}}</x-button.edit>
                             @endcan
                             @can('job-type_delete')
-                                <form method="POST" action="{{route('jobTypes.destroy',$jobType)}}" class="form-horizontal" role="form" autocomplete="off">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-sm btn-delete" onclick="return confirm('Confirm to delete?')" data-toggle="tooltip" data-placement="top" title="Delete">
-                                        <i class="fa fa-times"></i>
-                                    </button>
-                                </form>
+                                <x-button.delete>{{route('jobTypes.destroy',$jobType)}}</x-button.delete>
                             @endcan
                         </div>
                     </td>
@@ -58,13 +50,16 @@
             <!-- Start form -->
             <x-form.post action="jobTypes.store">
                 <div class="form-group">
-                    <x-form.elements.input label="Name: <span class='star'>*</span>" name="name" id="name" for="name" req="required"  />
+                    <x-form.label name="Name <span class='star'>*</span>" for="name" />
+                    <x-form.input name="name" id="name" for="name" req="required" />
                 </div>
                 <div class="form-group">
-                    <x-form.elements.textarea label="Descriptions" name="desc" id="desc" />
+                    <x-form.label name="Description" />
+                    <textarea name="desc" id="desc" class="form-control @error('desc') is-invalid @enderror">{{old('desc')}}</textarea>
+                    @error('desc') <span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong> </span> @enderror
                 </div>
                 <div class="form-group text-right">
-                    <x-button />
+                    <x-button.submit />
                 </div>
             </x-form.post>
             <!-- end form -->
