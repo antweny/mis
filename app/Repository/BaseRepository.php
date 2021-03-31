@@ -68,6 +68,7 @@ class BaseRepository implements BaseRepositoryInterface
         $object->save();
         return $object;
     }
+    public function updating($id, array $attributes) {}
 
 
     /**
@@ -157,6 +158,7 @@ class BaseRepository implements BaseRepositoryInterface
     {
         return $this->model->paginate($int);
     }
+
 
 
 }

@@ -31,6 +31,10 @@ interface BaseRepositoryInterface
      */
     public function update($id, array $attributes);
 
+    /**
+     *
+     */
+    public function updating($id, array $attributes);
 
     /**
      * Delete Record

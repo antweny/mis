@@ -74,14 +74,16 @@ class User extends Authenticatable
     {
         return Hashids::encode($val,1993,1994,2020);
     }
-
     //Select name and id of resources
     public function selectNameID()
     {
         return $this->select('name','id')->get()->sortBy('name');
     }
-
-
+    //check unique email address if exists
+    public function uniqueEmail($email)
+    {
+        return $this->where('email',$email)->first();
+    }
 
     public function canAll(array $permissions)
     {

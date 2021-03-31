@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-md-4">
                 <x-form.label name="Employee No <span class='star'>*</span>" />
-                <x-form.input id="employee_no" for="employee_no" req="required" :model="$employee"  />
+                <x-form.input name="employee_no" id="employee_no" req="required" :model="$employee"  />
             </div>
             <div class="col-md-8">
                 <x-form.label name="Full Name: <span class='star'>*</span>" />

@@ -1,41 +1,37 @@
-@extends('layouts.templates.hr')
-@section('title','Departments List')
+@extends('layouts.templates.op')
+@section('title','Indicators List')
 @section('content')
 
     <x-row>
         <x-slot name="left">
-            @can('department_create') <x-button.create label="Add Department" modal="modal"> #new </x-button.create> @endcan
+            @can('indicator_create') <x-button.create label="Add Indicator" modal="modal"> #new </x-button.create> @endcan
         </x-slot>
     </x-row>
 
     <!-- Start Card -->
-    <x-card title="Departments List" >
+    <x-card title="Indicators List">
         <!-- Table Start -->
-        <x-table.listing :collection="$departments">
+        <x-table.listing id="table">
             <!-- table headers -->
             <x-slot name="thead" >
                 <th scope="col">Name</th>
-                <th scope="col">Acronym</th>
-                <th scope="col">Manager</th>
                 <th scope="col">Descriptions</th>
             </x-slot>
             <!-- end table head -->
 
             <!-- table body -->
-            @foreach ($departments as $department)
+            @foreach ($indicators as $indicator)
                 <tr>
                     <td class="text-center">{{$loop->iteration}}</td>
-                    <td class="text-left">{{$department->name}}</td>
-                    <td class="text-center">{{$department->acronym}}</td>
-                    <td class="text-center">{{ $department->employee->name }}</td>
-                    <td  class="text-left">{{$department->desc}}</td>
+                    <td class="text-left">{{$indicator->name}}</td>
+                    <td  class="text-left">{{$indicator->desc}}</td>
                     <td  class="text-center">
                         <div class="btn-group btn-group-sm">
-                            @can('department_update')
-                                <x-button.edit>{{route('departments.edit',$department)}}</x-button.edit>
+                            @can('indicator_update')
+                                <x-button.edit>{{route('indicators.edit',$indicator)}}</x-button.edit>
                             @endcan
-                            @can('department_delete')
-                                <x-button.delete>{{route('departments.destroy',$department)}}</x-button.delete>
+                            @can('indicator_delete')
+                                <x-button.delete>{{route('indicators.destroy',$indicator)}}</x-button.delete>
                             @endcan
                         </div>
                     </td>
@@ -47,24 +43,14 @@
     </x-card>
     <!-- end card area -->
 
-    @can('department_create')
+    @can('indicator_create')
         <!-- Start Modal -->
-        <x-modal id="new" title="New Department">
+        <x-modal id="new" title="New Indicator">
             <!-- Start form -->
-            <x-form.post action="departments.store">
+            <x-form.post action="indicators.store">
                 <div class="form-group">
                     <x-form.label name="Name <span class='star'>*</span>" for="name" />
                     <x-form.input name="name" id="name" for="name" req="required" />
-                </div>
-                <div class="form-group row">
-                    <div class="col-md-6">
-                        <x-form.label name="Acronym" for="acronym" />
-                        <x-form.input name="acronym" id="acronym" />
-                    </div>
-                    <div class="col-md-6">
-                        <x-form.label name="Manager" />
-                        <x-dropdown.manager />
-                    </div>
                 </div>
                 <div class="form-group">
                     <x-form.label name="Description" />

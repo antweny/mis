@@ -11,7 +11,7 @@
     <!-- Start Card -->
     <x-card title="Employees">
         <!-- Table Start -->
-        <x-table.listing :collection="$employees">
+        <x-table.listing id="table">
             <!-- table headers -->
             <x-slot name="thead" >
                 <th scope="col">Name</th>

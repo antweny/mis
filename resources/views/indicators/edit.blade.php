@@ -1,30 +1,20 @@
-@extends('layouts.templates.hr')
-@section('title','Edit Departments')
+@extends('layouts.templates.op')
+@section('title','Edit Indicators')
 @section('content')
 
     <div class="row justify-content-center">
         <div class="col-md-5">
-            <x-card title="Edit Department">
+            <x-card title="Edit Indicator">
 
-                {{ Form::model($department, array('route' => array('departments.update',$department), 'method' => 'PUT')) }}
+                {{ Form::model($indicator, array('route' => array('indicators.update',$indicator), 'method' => 'PUT')) }}
                     @csrf
                     <div class="form-group">
                         <x-form.label name="Name <span class='star'>*</span>" for="name" />
-                        <x-form.input name="name" id="name" for="name" req="required" :model="$department" />
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-md-6">
-                            <x-form.label name="Acronym" for="name" />
-                            <x-form.input name="acronym" id="acronym" :model="$department" />
-                        </div>
-                        <div class="col-md-6">
-                            <x-form.label name="Manager" />
-                            <x-dropdown.manager :model="$department" />
-                        </div>
+                        <x-form.input name="name" id="name" for="name" req="required" :model="$indicator"  />
                     </div>
                     <div class="form-group">
                         <x-form.label name="Description" />
-                        <textarea name="desc" id="desc" class="form-control @error('desc') is-invalid @enderror">{{$department->desc}}</textarea>
+                        <textarea name="desc" id="desc" class="form-control @error('desc') is-invalid @enderror">{{$indicator->desc}}</textarea>
                         @error('desc') <span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong> </span> @enderror
                     </div>
                     <div class="form-group row">

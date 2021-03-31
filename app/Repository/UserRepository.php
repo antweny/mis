@@ -44,7 +44,7 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
             DB::commit();
             //Event to be called
             event(new NewUserEvent($request));
-            return true;
+            return $user;
         }
         catch (Exception $e) {
             DB::rollBack();
@@ -88,8 +88,6 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
         return Hash::make($password);
     }
 
-
-
     /*
      * Assign Roles to New User
      */
@@ -98,20 +96,12 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
     /**
      * Update Roles to existing user
      */
-    public function updateRoles($user, $roles) : void  { $user->roles()->sync($roles); }
+    private function updateRoles($user, $roles) : void  { $user->roles()->sync($roles); }
 
     /**
      * Remove all roles from an existing user user
      */
-    public function removeRoles($user) : void  { $user->roles()->detach(); }
-
-    /*
-     * Check if the email registered already existed
-     */
-    private function uniqueEmail($email)
-    {
-        return $this->model->where('email',$email)->count();
-    }
+    private function removeRoles($user) : void  { $user->roles()->detach(); }
 
     /*
      * Send login credentials
@@ -134,7 +124,6 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
         catch (Exception $e) {
             throw $e;
         }
-
     }
 
     /**
@@ -143,7 +132,29 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
     public function resetPassword($id, $request)
     {
         $request['password'] = $this->encryption($request['password']);
-
         return $this->update($id,$request);
     }
+
+    /*
+     * Create user when employee created
+     */
+    public function createEmployeeUser ($request)
+    {
+        //Default role of employee
+        $request['roles'] = array('employee');
+        //Check if user email already exists
+        $user = $this->model->uniqueEmail($request['email']);
+
+        if(is_null($user)) {
+            return $this->create($request);
+        }
+        else {
+            $this->sendLogin($user->id);
+            return $user;
+        }
+
+    }
+
+
+
 }

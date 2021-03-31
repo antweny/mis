@@ -117,7 +117,6 @@ class BaseModel extends Model
         }
     }
 
-
     /**
      * Select name and id of resources
      */
@@ -134,7 +133,6 @@ class BaseModel extends Model
         return $this->select('id','name','acronym')->get();
     }
 
-
     /**
      * Pluck name and id for
      */
@@ -143,6 +141,11 @@ class BaseModel extends Model
         return $this->pluck('name','id');
     }
 
+    //Get list of Current Year records with name, description and id (Outcome, Output, Activity )
+    public function currentYearNameDescList ()
+    {
+        return $this->select('id','name','desc')->where('year',date('Y'))->get();
+    }
 
     /**
      * Sort Order Asc

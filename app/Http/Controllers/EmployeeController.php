@@ -30,7 +30,7 @@ class EmployeeController extends AuthController
         $this->canView($this->employeeService->model());
 
         try {
-            $employees = $this->employeeService->get();  //Get all employees
+            $employees = $this->employeeService->getWith();  //Get all employees
             return view('employee.index',compact('employees'));
         }
         catch (Exception $e) {
@@ -66,7 +66,6 @@ class EmployeeController extends AuthController
             return $this->success('New employee created');
         }
         catch (Exception $e) {
-            dd($e->getMessage());
             return $this->errorWithInput($request);
         }
     }
