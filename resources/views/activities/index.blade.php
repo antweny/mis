@@ -16,8 +16,7 @@
             <x-slot name="thead" >
                 <th scope="col">Name</th>
                 <th scope="col">Description</th>
-                <th scope="col">Parent</th>
-                <th scope="col">Outcome</th>
+                <th scope="col">Donor</th>
                 <th scope="col">Staff</th>
                 <th scope="col">Start Date</th>
                 <th scope="col">Due Date</th>
@@ -29,8 +28,7 @@
                     <td class="text-center">{{$loop->iteration}}</td>
                     <td class="text-left">{{$activity->name}}</td>
                     <td  class="text-left">{{$activity->desc}}</td>
-                    <td  class="text-center">{{$activity->parent->name}}</td>
-                    <td  class="text-center">{!! $activity->output->name !!}</td>
+                    <td  class="text-center"></td>
                     <td  class="text-center">{{ $activity->employee->name }}</td>
                     <td  class="text-center">{{humanDate($activity->start_date )}}</td>
                     <td  class="text-center">{{humanDate($activity->due_date )}}</td>

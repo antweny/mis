@@ -35,9 +35,9 @@ class OrganizationRequest extends FormRequest
                 return [
                     'name' => ['required','string','max:191','unique:organizations,name'],
                     'acronym' => ['nullable','string','max:15'],
-                    'org_category'=>['nullable','string'],
+                    'organization_category_id'=>['nullable','string'],
                     'founded'=>['nullable','numeric'],
-                    'location'=>['nullable'],
+                    'location_id'=>['nullable'],
                     'mobile' => ['nullable'],
                     'telephone' => ['nullable'],
                     'website' => ['nullable','url'],
@@ -52,9 +52,9 @@ class OrganizationRequest extends FormRequest
                 return [
                     'name' => ['required','string','max:191','unique:organizations,id,'.$this->id],
                     'acronym' => ['nullable','string','max:15'],
-                    'org_category'=>['nullable','string'],
+                    'organization_category_id'=>['nullable','string'],
                     'founded'=>['nullable','numeric'],
-                    'location'=>['nullable'],
+                    'location_id'=>['nullable'],
                     'mobile' => ['nullable'],
                     'telephone' => ['nullable'],
                     'website' => ['nullable','url'],

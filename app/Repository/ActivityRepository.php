@@ -4,6 +4,9 @@ namespace App\Repository;
 
 use App\Models\Activity;
 use App\Repository\Interfaces\ActivityRepositoryInterface;
+use Exception;
+use Illuminate\Support\Facades\DB;
+
 
 class ActivityRepository extends BaseRepository implements ActivityRepositoryInterface
 {
@@ -18,17 +21,71 @@ class ActivityRepository extends BaseRepository implements ActivityRepositoryInt
      */
     public function get()
     {
-        return $this->relationshipWith(['employee','output']);
+        return $this->relationshipWith([
+            'employee',
+            'output',
+            'project' =>function ($query) {
+                $query->with('stakeholder')->get();
+            }
+        ]);
     }
 
-    public function dropdown()
+//=> function($query) {
+//    $query->with([
+//        'stakeholder' => function ($query2) {
+//            $query2->with('organization')->get();
+//        }
+//    ])->get();
+//}
+    /*
+    * Create new Outcome
+    */
+    public function create($request)
     {
-        return $this->model->getIdNameDesc();
+        DB::beginTransaction();
+        try {
+            $activity = $this->model->create($request);
+            $this->addProject($activity, $request['projects']);
+            DB::commit();
+            return true;
+        }
+        catch (Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
     }
 
-    public function activityComposer()
+    /**
+     * Updating the Outcome
+     */
+    public function updating($id, $request)
     {
-        return $this->model->currentYearActivityDropdown();
+        DB::beginTransaction();
+        try {
+            $activity = $this->update($id,$request);
+            //Check if permission request has data
+            $this->updateproject($activity, $request['projects']);
+            DB::commit();
+            return true;
+        }
+        catch (Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
+    }
+
+
+    /**
+     * Manage activity project
+     */
+    private function addProject($activity, $request) : void
+    {
+        $activity->project()->attach($request);
+    }
+
+    private function updateProject($activity, $request) : void
+    {
+        $activity->project()->sync($request);
     }
 
 }

@@ -187,9 +187,9 @@ class BaseModel extends Model
     /**
      * Dynamic Search of records into a database and return Collection
      */
-    public function searchReturnId($column = 'name', $name)
+    public function searchReturnId($column, $value)
     {
-        $result =  $this->where($column,$name)->first();
+        $result =  $this->where($column,$value)->first();
 
         return isset($result) ? $result->id : null;
     }

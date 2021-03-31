@@ -19,7 +19,7 @@ class OutcomeRepository extends BaseRepository implements OutcomeRepositoryInter
      */
     public function get()
     {
-        return $this->relationshipWith(['indicator']);
+        return $this->relationshipWith(['indicator','department']);
     }
 
     /*
@@ -75,4 +75,7 @@ class OutcomeRepository extends BaseRepository implements OutcomeRepositoryInter
     {
         return $outcome->indicator()->sync($indicators);
     }
+
+
+    
 }

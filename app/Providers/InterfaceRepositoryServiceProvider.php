@@ -32,6 +32,17 @@ class InterfaceRepositoryServiceProvider extends ServiceProvider
         $this->app->bind('App\Repository\Interfaces\OutcomeRepositoryInterface','App\Repository\OutcomeRepository');
         $this->app->bind('App\Repository\Interfaces\OutputRepositoryInterface','App\Repository\OutputRepository');
         $this->app->bind('App\Repository\Interfaces\ActivityRepositoryInterface','App\Repository\ActivityRepository');
+
+
+        //Organizations Bindings
+        $this->app->bind('App\Repository\Interfaces\OrganizationCategoryRepositoryInterface','App\Repository\OrganizationCategoryRepository');
+        $this->app->bind('App\Repository\Interfaces\OrganizationGroupRepositoryInterface','App\Repository\OrganizationGroupRepository');
+        $this->app->bind('App\Repository\Interfaces\OrganizationRepositoryInterface','App\Repository\OrganizationRepository');
+        $this->app->bind('App\Repository\Interfaces\StakeholderRepositoryInterface','App\Repository\StakeholderRepository');
+        $this->app->bind('App\Repository\Interfaces\DonorRepositoryInterface','App\Repository\DonorRepository');
+
+        //Project Bindings
+        $this->app->bind('App\Repository\Interfaces\ProjectRepositoryInterface','App\Repository\ProjectRepository');
     }
 
     /**

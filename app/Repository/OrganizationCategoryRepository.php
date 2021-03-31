@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repository;
 
 use App\Models\OrganizationCategory;
+use App\Repository\Interfaces\OrganizationCategoryRepositoryInterface;
 
-class OrganizationCategoryRepository extends BaseRepository
+class OrganizationCategoryRepository extends BaseRepository implements OrganizationCategoryRepositoryInterface
 {
 
     public function __construct(OrganizationCategory $model)
@@ -12,19 +13,4 @@ class OrganizationCategoryRepository extends BaseRepository
         parent::__construct($model);
     }
 
-    /**
-     * Order by Sort Column Ascending
-     */
-    public function orderBySortAsc()
-    {
-        return $this->model->orderBySortAsc();
-    }
-
-    /**
-     * Order by Sort Column Descending
-     */
-    public function orderBySortDesc()
-    {
-        return $this->model->orderBySortDesc();
-    }
 }

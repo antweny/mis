@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\View\Composers\ActivityComposer;
 use App\View\Composers\AssetTypeComposer;
+use App\View\Composers\DonorComposer;
 use App\View\Composers\PermissionComposer;
 use App\View\Composers\ProjectMultipleComposer;
 use App\View\Composers\RoleComposer;
@@ -146,6 +147,7 @@ class ViewComposerServiceProvider extends ServiceProvider
         View::composer(['components.dropdown.organization-group'],OrganizationGroupComposer::class);
         View::composer(['components.dropdown.stakeholder'],StakeholderComposer::class);
         View::composer(['components.dropdown.bank'],BankComposer::class);
+        View::composer(['components.dropdown.donor'],DonorComposer::class);
 
 
         /**

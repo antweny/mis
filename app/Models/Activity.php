@@ -62,7 +62,7 @@ class Activity extends BaseModel
 
     public function currentYearActivity()
     {
-        return $this->select('id','name','desc')->where('status',1)->get();
+        return $this->select('id','name','desc')->get();
     }
 
 

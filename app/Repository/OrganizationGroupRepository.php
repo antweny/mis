@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repository;
 
 use App\Models\OrganizationGroup;
+use App\Repository\Interfaces\OrganizationGroupRepositoryInterface;
 
-class OrganizationGroupRepository extends BaseRepository
+class OrganizationGroupRepository extends BaseRepository implements OrganizationGroupRepositoryInterface
 {
 
     public function __construct(OrganizationGroup $model)

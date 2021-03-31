@@ -14,7 +14,7 @@
                 </div>
                 <div class="form-group">
                     <x-form.label name="Activity" />
-{{--                    <x-dropdown.activity :model="$timesheet"/>--}}
+                    <x-dropdown.activity :model="$timesheet"/>
                 </div>
                 <div class="row">
                     <div class="col-md-6 form-group ">

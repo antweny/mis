@@ -73,7 +73,7 @@
                 </div>
                 <div class="form-group">
                     <x-form.label name="Activity" />
-{{--                    <x-dropdown.activity />--}}
+                    <x-dropdown.activity />
                 </div>
 
                 <div class="row">

@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repository;
 
 use App\Models\OrganizationGroup;
 use App\Models\Stakeholder;
+use App\Repository\Interfaces\StakeholderRepositoryInterface;
 
-class StakeholderRepository extends BaseRepository
+class StakeholderRepository extends BaseRepository implements StakeholderRepositoryInterface
 {
     protected $organizationGroup;
 
@@ -18,17 +19,17 @@ class StakeholderRepository extends BaseRepository
     /**
      * Get Model Collection with relationship
      */
-    public function relationWith()
+    public function get()
     {
-        return $this->getWithRelation([
+        return $this->relationshipWith([
             'organization',
             'organization_group'
         ]);
     }
 
-    public function getBank()
+    public function getStakeholderByGroup($group)
     {
-       return $this->model->where('organization_group_id',$this->organizationGroup->searchByNameReturnId('Bank'))
+       return $this->model->where('organization_group_id',$this->organizationGroup->searchByNameReturnId($group))
             ->with('organization')
             ->get();
     }
