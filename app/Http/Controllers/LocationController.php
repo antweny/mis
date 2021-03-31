@@ -30,7 +30,7 @@ class LocationController extends AuthController
         $this->canView($this->interface->model());
 
         try {
-            $locations = $this->interface->paginate();
+            $locations = $this->interface->get();
             return view('location.index',compact('locations'));
         }
         catch (Exception $e) {

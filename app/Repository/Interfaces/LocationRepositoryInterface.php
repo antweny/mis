@@ -1,10 +1,8 @@
 <?php
 
-
 namespace App\Repository\Interfaces;
 
-
-interface LocationRepositoryInterface
+interface LocationRepositoryInterface extends BaseRepositoryInterface
 {
 
 }

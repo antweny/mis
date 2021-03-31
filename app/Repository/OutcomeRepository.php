@@ -77,5 +77,5 @@ class OutcomeRepository extends BaseRepository implements OutcomeRepositoryInter
     }
 
 
-    
+
 }

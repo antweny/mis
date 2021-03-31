@@ -18,10 +18,18 @@ class LocationRepository extends BaseRepository implements LocationRepositoryInt
     /**
      *
      */
-    public function selectNameID()
+    public function get()
     {
-       return $this->model->selectNameID();
+        return $this->relationshipWithPagination(['parent']);
     }
+
+//    /**
+//     *
+//     */
+//    public function selectNameID()
+//    {
+//       return $this->model->selectNameID();
+//    }
 
 
 }
