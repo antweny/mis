@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repository;
 
 use App\Models\Activity;
+use App\Repository\Interfaces\ActivityRepositoryInterface;
 
-class ActivityRepository extends BaseRepository
+class ActivityRepository extends BaseRepository implements ActivityRepositoryInterface
 {
 
     public function __construct(Activity $model)
@@ -12,10 +13,12 @@ class ActivityRepository extends BaseRepository
         parent::__construct($model);
     }
 
-
-    public function withRelation()
+    /*
+     * Get list of Activities
+     */
+    public function get()
     {
-        return $this->getWithRelation(['employee','output']);
+        return $this->relationshipWith(['employee','output']);
     }
 
     public function dropdown()

@@ -24,11 +24,11 @@ class ActivityRequest extends FormRequest
             'output_id' => ['integer','required'],
             'status' => ['string','required'],
             'desc' => ['string','required'],
-            'budget' => ['numeric','required'],
             'employee_id' => ['integer','required'],
             'start_date' => ['date','required'],
             'due_date' => ['date','required','after_or_equal:start_date'],
             'parent_id' => ['integer','nullable'],
+            'projects' => ['required','array'],
         ];
     }
 }

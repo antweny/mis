@@ -1,10 +1,8 @@
 <?php
 
-
 namespace App\Repository\Interfaces;
 
-
-interface OutputRepositoryInterface
+interface OutputRepositoryInterface extends BaseRepositoryInterface
 {
 
 }

@@ -60,11 +60,10 @@ class Activity extends BaseModel
      * ---------------------
      */
 
-    public function getIdNameDesc()
+    public function currentYearActivity()
     {
-        return $this->select('id','name','desc')->get();
+        return $this->select('id','name','desc')->where('status',1)->get();
     }
-
 
 
 }

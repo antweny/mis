@@ -1,33 +1,76 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repository;
 
 use App\Models\Output;
+use App\Repository\Interfaces\OutputRepositoryInterface;
+use Exception;
+use Illuminate\Support\Facades\DB;
 
-class OutputRepository extends BaseRepository
+class OutputRepository extends BaseRepository implements OutputRepositoryInterface
 {
 
+    /**
+     * Output Repository constructor.
+     */
     public function __construct(Output $model)
     {
         parent::__construct($model);
     }
 
-    public function withRelation()
+    /*
+     * Get Output with Outcomes and Indicators
+     */
+    public function get()
     {
-        return $this->getWithRelation(['outcome']);
+        return $this->relationshipWith(['outcome','indicator']);
     }
 
-    public function getCurrentYearOutput()
+    public function create($request)
     {
-        return $this->model->getCurrentYearOutput();
+        DB::beginTransaction();
+        try {
+            $output = $this->model->create($request);
+            $this->addIndicator($output, $request['indicators']);
+            DB::commit();
+            return true;
+        }
+        catch (Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
     }
 
-    public function addIndicator($output, $indicators)
+    /**
+     * Updating the Output
+     */
+    public function updating($id, $request)
+    {
+        DB::beginTransaction();
+        try {
+            $output = $this->update($id,$request);
+            $this->updateIndicator($output, $request['indicators']);
+            DB::commit();
+            return true;
+        }
+        catch (Exception $e) {
+            DB::rollBack();
+            return $e;
+        }
+    }
+
+    /*
+     * Add Indicators
+     */
+    private function addIndicator($output, $indicators)
     {
         return $output->indicator()->attach($indicators);
     }
 
-    public function updateIndicator($output, $indicators)
+    /*
+     * Update Indicators
+     */
+    private function updateIndicator($output, $indicators)
     {
         return $output->indicator()->sync($indicators);
     }

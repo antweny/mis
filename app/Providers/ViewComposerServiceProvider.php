@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\View\Composers\ActivityComposer;
 use App\View\Composers\AssetTypeComposer;
 use App\View\Composers\PermissionComposer;
+use App\View\Composers\ProjectMultipleComposer;
 use App\View\Composers\RoleComposer;
 use App\View\Composers\BankAccountComposer;
 use App\View\Composers\BankComposer;
@@ -86,7 +87,7 @@ class ViewComposerServiceProvider extends ServiceProvider
          * -------------------------
          */
         View::composer(['components.dropdown.coordinator'], CoordinatorComposer::class);
-        View::composer(['components.dropdown.manager'],ManagerComposer::class);
+        View::composer(['components.dropdown.manager'],EmployeeComposer::class);
         View::composer(['components.dropdown.employee'],EmployeeComposer::class);
 
         /**
@@ -206,6 +207,12 @@ class ViewComposerServiceProvider extends ServiceProvider
 
 
         View::composer(['components.dropdown.gender-series'],GenderSeriesComposer::class);
+
+
+        /**
+         *
+         */
+        View::composer(['components.dropdown.project-multiple'],ProjectMultipleComposer::class);
 
 
 

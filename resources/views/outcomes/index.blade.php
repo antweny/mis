@@ -32,14 +32,14 @@
                             @can('outcome_update')
                                 <x-button.edit>{{route('outcomes.edit',$outcome)}}</x-button.edit>
                             @endcan
-                            @can('outcome_delete')
-                                <x-button.delete>{{route('outcomes.destroy',$outcome)}}</x-button.delete>
-                            @endcan
 {{--                            @can('outcome_read')--}}
 {{--                                <a href="{{route('outcomes.destroy',$outcome)}}" class="btn btn-secondary btn-sm" data-toggle="tooltip" data-placement="top" title="View" >--}}
 {{--                                    <i class="fa fa-eye"></i>--}}
 {{--                                </a>--}}
 {{--                            @endcan--}}
+                            @can('outcome_delete')
+                                <x-button.delete>{{route('outcomes.destroy',$outcome)}}</x-button.delete>
+                            @endcan
                         </div>
                     </td>
                 </tr>

@@ -2,9 +2,7 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
-class Output extends Model
+class Output extends BaseModel
 {
     /** --------
      * Log name

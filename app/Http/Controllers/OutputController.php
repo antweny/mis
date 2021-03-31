@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\OutputRequest;
-use App\Services\OutputService;
+use App\Repository\Interfaces\OutputRepositoryInterface;
 use Exception;
 
 class OutputController extends AuthController
@@ -11,15 +11,15 @@ class OutputController extends AuthController
     /**
      * @var
      */
-    private $outputService;
+    private $interface;
 
     /**
      * OutputController constructor.
      */
-    public function __construct(OutputService $outputService)
+    public function __construct(OutputRepositoryInterface $interface)
     {
         parent::__construct();
-        $this->outputService = $outputService;
+        $this->interface = $interface;
     }
 
     /**
@@ -27,10 +27,10 @@ class OutputController extends AuthController
      */
     public function index()
     {
-        $this->canView($this->outputService->model());
+        $this->canView($this->interface->model());
 
         try {
-            $outputs = $this->outputService->withRelation();  //Get all outputs
+            $outputs = $this->interface->get();  //Get all outputs
             return view('outputs.index',compact('outputs'));
         }
         catch (Exception $e) {
@@ -43,10 +43,10 @@ class OutputController extends AuthController
      */
     public function create()
     {
-        $this->canCreate($this->outputService->model());
+        $this->canCreate($this->interface->model());
 
         try {
-            $output = $this->outputService->model();  //Get all employees
+            $output = $this->interface->model();  //Get all employees
             return view('outputs.create',compact('output'));
         }
         catch (Exception $e) {
@@ -59,10 +59,10 @@ class OutputController extends AuthController
      */
     public function store(OutputRequest $request)
     {
-        $this->canCreate($this->outputService->model());
+        $this->canCreate($this->interface->model());
 
         try {
-            $this->outputService->create($request->validated());
+            $this->interface->create($request->validated());
             return $this->success('Output created');
         }
         catch (Exception $e) {
@@ -75,10 +75,10 @@ class OutputController extends AuthController
      */
     public function edit($id)
     {
-        $this->canUpdate($this->outputService->model());
+        $this->canUpdate($this->interface->model());
 
         try {
-            $output = $this->outputService->find($id);
+            $output = $this->interface->find($id);
             return view('outputs.edit',compact('output'));
         }
         catch (Exception $e) {
@@ -91,10 +91,10 @@ class OutputController extends AuthController
      */
     public function update(OutputRequest $request, $id)
     {
-        $this->canUpdate($this->outputService->model());
+        $this->canUpdate($this->interface->model());
 
         try {
-            $this->outputService->update($id,$request->validated());
+            $this->interface->update($id,$request->validated());
             return $this->successRoute('outputs.index','Output updated');
         }
         catch (Exception $e) {
@@ -107,10 +107,10 @@ class OutputController extends AuthController
      */
     public function destroy($id)
     {
-        $this->canDelete($this->outputService->model());
+        $this->canDelete($this->interface->model());
 
         try {
-            $this->outputService->delete($id);
+            $this->interface->delete($id);
             return $this->success('Output deleted');
         }
         catch (Exception $e) {

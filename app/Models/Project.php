@@ -15,15 +15,7 @@ class Project extends BaseModel
     /**
      * The attributes that are mass assignable.
      */
-    protected $fillable = [
-        'name',
-        'isActive',
-        'desc',
-        'stakeholder_id',
-        'start_date',
-        'end_date',
-        'reporting_period',
-    ];
+    protected $fillable = ['name', 'isActive', 'desc', 'stakeholder_id', 'start_date', 'end_date', 'reporting_period',];
 
     /**
      * --------------------
@@ -59,6 +51,19 @@ class Project extends BaseModel
     public function stakeholder()
     {
         return$this->belongsTo(Stakeholder::class)->withDefault();
+    }
+
+    /**
+     * --------------------
+     *  MODEL FUNCTIONS
+     * ---------------------
+     */
+    /**
+     * Pluck name and id for
+     */
+    public function activePluckNameID()
+    {
+        return $this->where('isActive',true)->pluck('name','id');
     }
 
 }

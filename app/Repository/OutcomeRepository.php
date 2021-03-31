@@ -42,7 +42,7 @@ class OutcomeRepository extends BaseRepository implements OutcomeRepositoryInter
     }
 
     /**
-     * Updating the Indicator
+     * Updating the Outcome
      */
     public function updating($id, $request)
     {

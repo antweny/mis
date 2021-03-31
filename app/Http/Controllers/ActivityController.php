@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ActivityRequest;
-use App\Services\ActivityService;
+use App\Repository\Interfaces\ActivityRepositoryInterface;
 use Exception;
 
 class ActivityController extends AuthController
@@ -11,15 +11,15 @@ class ActivityController extends AuthController
     /**
      * @var
      */
-    private $activityService;
+    private $interface;
 
     /**
      * ActivityController constructor.
      */
-    public function __construct(ActivityService $activityService)
+    public function __construct(ActivityRepositoryInterface $interface)
     {
         parent::__construct();
-        $this->activityService = $activityService;
+        $this->interface = $interface;
     }
 
     /**
@@ -27,10 +27,10 @@ class ActivityController extends AuthController
      */
     public function index()
     {
-        $this->canView($this->activityService->model());
+        $this->canView($this->interface->model());
 
         try {
-            $activities = $this->activityService->withRelation();  //Get all activities
+            $activities = $this->interface->get();  //Get all activities
             return view('activities.index',compact('activities'));
         }
         catch (Exception $e) {
@@ -43,10 +43,10 @@ class ActivityController extends AuthController
      */
     public function create()
     {
-        $this->canCreate($this->activityService->model());
+        $this->canCreate($this->interface->model());
 
         try {
-            $activity = $this->activityService->model();  //Get all employees
+            $activity = $this->interface->model();  //Get all employees
             return view('activities.create',compact('activity'));
         }
         catch (Exception $e) {
@@ -59,10 +59,10 @@ class ActivityController extends AuthController
      */
     public function store(ActivityRequest $request)
     {
-        $this->canCreate($this->activityService->model());
+        $this->canCreate($this->interface->model());
 
         try {
-            $this->activityService->create($request->validated());
+            $this->interface->create($request->validated());
             return $this->success('Activity created');
         }
         catch (Exception $e) {
@@ -75,10 +75,10 @@ class ActivityController extends AuthController
      */
     public function edit($id)
     {
-        $this->canUpdate($this->activityService->model());
+        $this->canUpdate($this->interface->model());
 
         try {
-            $activity = $this->activityService->find($id);
+            $activity = $this->interface->find($id);
             return view('activities.edit',compact('activity'));
         }
         catch (Exception $e) {
@@ -91,10 +91,10 @@ class ActivityController extends AuthController
      */
     public function update(ActivityRequest $request, $id)
     {
-        $this->canUpdate($this->activityService->model());
+        $this->canUpdate($this->interface->model());
 
         try {
-            $this->activityService->update($id,$request->validated());
+            $this->interface->updating($id,$request->validated());
             return $this->successRoute('activities.index','Activity updated');
         }
         catch (Exception $e) {
@@ -107,10 +107,10 @@ class ActivityController extends AuthController
      */
     public function destroy($id)
     {
-        $this->canDelete($this->activityService->model());
+        $this->canDelete($this->interface->model());
 
         try {
-            $this->activityService->delete($id);
+            $this->interface->delete($id);
             return $this->success('Activity deleted');
         }
         catch (Exception $e) {

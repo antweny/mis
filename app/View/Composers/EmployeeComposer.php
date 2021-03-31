@@ -5,7 +5,7 @@ namespace App\View\Composers;
 use App\Models\Employee;
 use Illuminate\View\View;
 
-class ManagerComposer extends BaseComposer
+class EmployeeComposer extends BaseComposer
 {
     public function __construct(Employee $model)
     {
@@ -14,7 +14,7 @@ class ManagerComposer extends BaseComposer
 
     public function compose(View $view)
     {
-        $view->with('managers',$this->model->isActive());
+        $view->with('employees',$this->model->isActive());
     }
 
 }

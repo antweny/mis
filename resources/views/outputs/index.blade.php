@@ -11,7 +11,7 @@
     <!-- Start Card -->
     <x-card title="Outputs List">
         <!-- Table Start -->
-        <x-table.listing>
+        <x-table.listing id="table">
             <!-- table headers -->
             <x-slot name="thead" >
                 <th scope="col">Name</th>
@@ -30,23 +30,15 @@
                     <td  class="text-center">
                         <div class="btn-group btn-group-sm">
                             @can('output_update')
-                                <a href="{{route('outputs.edit',$output)}}" class="btn btn-edit btn-sm mr-1" data-toggle="tooltip" data-placement="top" title="Edit" >
-                                    <i class="fa fa-edit"></i>
-                                </a>
+                                <x-button.edit>{{route('outputs.edit',$output)}}</x-button.edit>
                             @endcan
                             @can('output_read')
-                                <a href="{{route('outputs.destroy',$output)}}" class="btn btn-secondary btn-sm mr-1" data-toggle="tooltip" data-placement="top" title="View" >
-                                    <i class="fa fa-eye"></i>
-                                </a>
+{{--                                <a href="{{route('outputs.destroy',$output)}}" class="btn btn-secondary btn-sm mr-1" data-toggle="tooltip" data-placement="top" title="View" >--}}
+{{--                                    <i class="fa fa-eye"></i>--}}
+{{--                                </a>--}}
                             @endcan
                             @can('output_delete')
-                                <form method="POST" action="{{route('outputs.destroy',$output)}}" class="form-horizontal" role="form" autocomplete="off">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-sm btn-delete " onclick="return confirm('Confirm to delete?')" data-toggle="tooltip" data-placement="top" title="Delete">
-                                        <i class="fa fa-times"></i>
-                                    </button>
-                                </form>
+                                <x-button.delete>{{route('outputs.destroy',$output)}}</x-button.delete>
                             @endcan
                         </div>
                     </td>
