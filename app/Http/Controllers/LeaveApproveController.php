@@ -101,7 +101,6 @@ class LeaveApproveController extends AuthController
             }
         }
         catch (Exception $e) {
-            dd($e->getMessage());
             return $this->errorWithInput($request);
         }
     }

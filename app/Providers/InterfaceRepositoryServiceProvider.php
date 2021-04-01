@@ -28,6 +28,14 @@ class InterfaceRepositoryServiceProvider extends ServiceProvider
         $this->app->bind('App\Repository\Interfaces\LeaveApplicationRepositoryInterface','App\Repository\LeaveApplicationRepository');
         $this->app->bind('App\Repository\Interfaces\LeaveApproveRepositoryInterface','App\Repository\LeaveApproveRepository');
 
+        /*
+        * Asset Bindings
+        */
+        $this->app->bind('App\Repository\Interfaces\AssetTypeRepositoryInterface','App\Repository\AssetTypeRepository');
+        $this->app->bind('App\Repository\Interfaces\BrandRepositoryInterface','App\Repository\BrandRepository');
+        $this->app->bind('App\Repository\Interfaces\EquipmentRepositoryInterface','App\Repository\EquipmentRepository');
+        $this->app->bind('App\Repository\Interfaces\AssetRepositoryInterface','App\Repository\AssetRepository');
+
         $this->app->bind('App\Repository\Interfaces\LocationRepositoryInterface','App\Repository\LocationRepository');
         $this->app->bind('App\Repository\Interfaces\JobTypeRepositoryInterface','App\Repository\JobTypeRepository');
         $this->app->bind('App\Repository\Interfaces\JobTitleRepositoryInterface','App\Repository\JobTitleRepository');
