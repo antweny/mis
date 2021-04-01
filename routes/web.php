@@ -461,12 +461,12 @@ Route::prefix('hr/')->group(function () {
         });
 
         //Leave Applications
-        Route::prefix('request/approval')->name('approveLeaves.')->group(function () {
-            Route::get('list', 'ApproveLeaveController@index')->name('index');
-            Route::get('show/{approveLeave}', 'ApproveLeaveController@show')->name('show');
-            Route::get('edit/{approveLeave}/{state}', 'ApproveLeaveController@edit')->name('edit');
-            Route::get('approve/{approveLeave}/{state}', 'ApproveLeaveController@approve')->name('approve');
-            Route::put('update/{approveLeave}', 'ApproveLeaveController@update')->name('update');
+        Route::prefix('request/approval')->name('leaveApproves.')->group(function () {
+            Route::get('list', 'LeaveApproveController@index')->name('index');
+            Route::get('show/{leaveApprove}', 'LeaveApproveController@show')->name('show');
+            Route::get('edit/{leaveApprove}/{state}', 'LeaveApproveController@edit')->name('edit');
+            Route::get('approve/{leaveApprove}/{state}', 'LeaveApproveController@approve')->name('approve');
+            Route::put('update/{leaveApprove}', 'LeaveApproveController@update')->name('update');
         });
     });
 

@@ -1,6 +1,6 @@
 <?php
 use Vinkla\Hashids\Facades\Hashids;
-use Illuminate\Support\Carbon;
+use Carbon\Carbon;
 
 function encodeId($id) {
     return Hashids::encode($id,20,15,1,3);
@@ -136,6 +136,15 @@ function humanFilesize($size, $decimals = 2){
         $i++;
     }
     return round($size, $decimals).' '.$units[$i];
+}
+
+
+/**
+ *
+ */
+function formatDate ($date)
+{
+    return Carbon::createFromFormat('Y-m-d',$date);
 }
 
 

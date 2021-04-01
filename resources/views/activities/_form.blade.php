@@ -21,7 +21,7 @@
     </div>
     <div class="col-md-6">
         <x-form.label name="Project <span class='star'>*</span>" for="sex" />
-        <x-dropdown.project-multiple/>
+        <x-dropdown.project-multiple :model="$activity"/>
     </div>
 
 {{--    <x-dropdown.project name="parent_id" :model="$activity"/>--}}

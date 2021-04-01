@@ -52,9 +52,9 @@ class Employee extends BaseModel
     }
 
     //Get only active employee details
-    public function employeeDetails($id)
+    public function employeeNameEmail($id)
     {
-        return $this->select('email','name')->where('id',$id)->where('active',1)->first();
+        return $this->select('email','name')->where('id',$id)->first();
     }
 
 

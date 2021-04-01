@@ -16,14 +16,7 @@ class LeaveApplication extends BaseModel
     /**
      * The attributes that are mass assignable.
      */
-    protected $fillable = [
-        'send_to',
-        'leave_type_id',
-        'start_date',
-        'end_date',
-        'days',
-        'desc'
-    ];
+    protected $fillable = [ 'send_to', 'leave_type_id', 'start_date', 'end_date', 'days', 'desc' ];
 
     /**
      * --------------------
@@ -80,6 +73,17 @@ class LeaveApplication extends BaseModel
     public function approver()
     {
         return $this->belongsTo(Employee::class,'send_to')->withDefault();
+    }
+
+    /**
+     * ---------------
+     * MODEL FUNCTION
+     * ---------------
+     */
+    //get leave request
+    public function leaveRequest($id)
+    {
+        return $this->where('send_to',$id);
     }
 
 

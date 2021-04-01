@@ -15,13 +15,15 @@ class ApproveLeaveRepository extends BaseRepository
         $this->employee = $employee;
     }
 
-    /**
-     * Get all leave to approve for a user
-     */
-    public function leaveToApprove($id)
-    {
-        return $this->model->where('send_to',$id)->with(['leave_type','employee'])->get();
-    }
+
+
+//    /**
+//     * Get all leave to approve for a user
+//     */
+//    public function leaveRequest($id)
+//    {
+//        return $this->model->leaveRequest($id)->with(['leave_type','employee'])->get();
+//    }
 
     /**
      * View Leave Application

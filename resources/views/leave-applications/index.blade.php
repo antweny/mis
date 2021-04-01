@@ -11,7 +11,7 @@
     <!-- Start Card -->
     <x-card title="My Leave Applications">
         <!-- Table Start -->
-        <x-table.listing>
+        <x-table.listing id="table">
             <!-- table headers -->
             <x-slot name="thead" >
                 <th>Send To</th>

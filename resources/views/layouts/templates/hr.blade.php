@@ -44,7 +44,7 @@
                                 <a class="nav-link" href="{{route('leaveApplications.index')}}">Applications</a>
 
                                 @can('approve-leave')
-                                    <a class="nav-link" href="{{route('approveLeaves.index')}}">Request To Approve</a>
+                                    <a class="nav-link" href="{{route('leaveApproves.index')}}">Request To Approve</a>
                                 @endcan
                             </nav>
                         </div>

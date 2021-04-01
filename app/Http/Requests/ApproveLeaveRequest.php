@@ -21,7 +21,7 @@ class ApproveLeaveRequest extends FormRequest
     {
         return [
             'remarks' => ['required','string'],
-            'state' => ['required','string'],
+            'status' => ['required','string'],
         ];
     }
 }

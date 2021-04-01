@@ -15,4 +15,14 @@ class LeaveType extends BaseModel
      * The attributes that are mass assignable.
      */
     protected $fillable = [ 'name','days','desc' ];
+
+    /**
+     * -----------------
+     * MODEL FUNCTIONS
+     * -----------------
+     */
+    public function leaveTypeName($id)
+    {
+        return $this->select('name')->where('id',$id)->first();
+    }
 }

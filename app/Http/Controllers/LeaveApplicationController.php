@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LeaveApplicationRequest;
-use App\Services\LeaveApplicationService;
+use App\Repository\Interfaces\LeaveApplicationRepositoryInterface;
 use Exception;
 
 class LeaveApplicationController extends AuthController
@@ -13,7 +13,7 @@ class LeaveApplicationController extends AuthController
     /**
      * LeaveApplicationsController constructor.
      */
-    public function __construct(LeaveApplicationService $leaveApplicationService)
+    public function __construct(LeaveApplicationRepositoryInterface $leaveApplicationService)
     {
         parent::__construct();
         $this->middleware('employee');
@@ -26,7 +26,7 @@ class LeaveApplicationController extends AuthController
     public function index()
     {
         try {
-            $leaveApplications = $this->leaveApplicationService->getLeave($this->userEmployeeId());
+            $leaveApplications = $this->leaveApplicationService->employeeLeaves($this->userEmployeeId());
             return view('leave-applications.index',compact('leaveApplications'));
         }
         catch (Exception $e) {
@@ -85,7 +85,7 @@ class LeaveApplicationController extends AuthController
     {
         $this->canUpdate($this->leaveApplicationService->find($id));
         try {
-            $this->leaveApplicationService->update($id,$request->validated());
+            $this->leaveApplicationService->updating($id,$request->validated());
             return $this->successRoute('leaveApplications.index','Leave Application updated');
         }
         catch (Exception $e) {
