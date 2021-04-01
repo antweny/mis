@@ -22,7 +22,7 @@ class BankAccountRequest extends FormRequest
         return [
             'name' => ['required','string'],
             'stakeholder_id' => ['required','integer'],
-            'number' => ['required','numeric'],
+            'number' => ['required','string'],
             'balance' => ['nullable','numeric'],
             'currency_id' => ['required','integer'],
             'op' => ['nullable','date'],

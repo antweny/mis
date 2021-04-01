@@ -36,13 +36,35 @@ class InterfaceRepositoryServiceProvider extends ServiceProvider
         $this->app->bind('App\Repository\Interfaces\EquipmentRepositoryInterface','App\Repository\EquipmentRepository');
         $this->app->bind('App\Repository\Interfaces\AssetRepositoryInterface','App\Repository\AssetRepository');
 
+        /*
+        * Financial Bindings
+        */
+        $this->app->bind('App\Repository\Interfaces\PayeeRepositoryInterface','App\Repository\PayeeRepository');
+        $this->app->bind('App\Repository\Interfaces\CurrencyRepositoryInterface','App\Repository\CurrencyRepository');
+        $this->app->bind('App\Repository\Interfaces\BankRepositoryInterface','App\Repository\BankRepository');
+        $this->app->bind('App\Repository\Interfaces\BankAccountRepositoryInterface','App\Repository\BankAccountRepository');
+
+        /*
+        * Location Bindings
+        */
         $this->app->bind('App\Repository\Interfaces\LocationRepositoryInterface','App\Repository\LocationRepository');
+
+        /*
+        * Job Bindings
+        */
         $this->app->bind('App\Repository\Interfaces\JobTypeRepositoryInterface','App\Repository\JobTypeRepository');
         $this->app->bind('App\Repository\Interfaces\JobTitleRepositoryInterface','App\Repository\JobTitleRepository');
+
+        /*
+        * Authorization and Authentication Bindings
+        */
         $this->app->bind('App\Repository\Interfaces\RoleRepositoryInterface','App\Repository\RoleRepository');
         $this->app->bind('App\Repository\Interfaces\PermissionRepositoryInterface','App\Repository\PermissionRepository');
         $this->app->bind('App\Repository\Interfaces\UserRepositoryInterface','App\Repository\UserRepository');
 
+        /*
+        * Operational Plan Bindings
+        */
         $this->app->bind('App\Repository\Interfaces\ThematicAreaRepositoryInterface','App\Repository\ThematicAreaRepository');
         $this->app->bind('App\Repository\Interfaces\IndicatorRepositoryInterface','App\Repository\IndicatorRepository');
         $this->app->bind('App\Repository\Interfaces\OutcomeRepositoryInterface','App\Repository\OutcomeRepository');

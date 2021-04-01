@@ -14,6 +14,27 @@
                             Dashboard
                         </a>
 
+                        @can('currency_view')
+                            <a class="nav-link" href="{{route('currencies.index')}}">
+                                <div class="nav-link-icon"><i class="fa fa-money-bill-alt"></i></div>
+                                Currency
+                            </a>
+                        @endcan
+
+                        @can('bank_view')
+                            <a class="nav-link" href="{{route('banks.index')}}">
+                                <div class="nav-link-icon"><i class="fa fa-university"></i></div>
+                                Banks
+                            </a>
+                        @endcan
+
+                        @can('bank-account_view')
+                            <a class="nav-link" href="{{route('bankAccounts.index')}}">
+                                <div class="nav-link-icon"><i class="fa fa-coins"></i></div>
+                                Bank Accounts
+                            </a>
+                        @endcan
+
                         @can('payee_view')
                             <a class="nav-link" href="{{route('payees.index')}}">
                                 <div class="nav-link-icon"><i class="fa fa-users"></i></div>
@@ -27,6 +48,7 @@
                                 Payments
                             </a>
                         @endcan
+
                         @can('voucher_view')
                             <a class="nav-link" href="{{route('vouchers.index')}}">
                                 <div class="nav-link-icon"><i class="fa fa-file-invoice"></i></div>
@@ -34,24 +56,6 @@
                             </a>
                         @endcan
 
-                        @can('bank_view')
-                            <a class="nav-link" href="{{route('banks.index')}}">
-                                <div class="nav-link-icon"><i class="fa fa-university"></i></div>
-                                Banks
-                            </a>
-                        @endcan
-                        @can('bank-account_view')
-                            <a class="nav-link" href="{{route('bankAccounts.index')}}">
-                                <div class="nav-link-icon"><i class="fa fa-coins"></i></div>
-                                Bank Accounts
-                            </a>
-                        @endcan
-                        @can('currency_view')
-                            <a class="nav-link" href="{{route('currencies.index')}}">
-                                <div class="nav-link-icon"><i class="fa fa-money-bill-alt"></i></div>
-                                Currency
-                            </a>
-                        @endcan
                     </div>
                 </div>
             </nav>

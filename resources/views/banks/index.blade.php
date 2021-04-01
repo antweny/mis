@@ -1,20 +1,20 @@
-@extends('layouts.templates.project')
-@section('title','Donors List')
+@extends('layouts.templates.finance')
+@section('title','Banks List')
 @section('content')
 
     <x-row>
         <x-slot name="left">
-            @can('donor_create') <x-button.create label="Add Donor" modal="modal"> #new </x-button.create> @endcan
+            @can('bank_create') <x-button.create label="Add Bank" modal="modal"> #new </x-button.create> @endcan
         </x-slot>
     </x-row>
 
     <!-- Start Card -->
-    <x-card title="Donors List">
+    <x-card title="Banks List">
         <!-- Table Start -->
         <x-table.listing id="table">
             <!-- table headers -->
             <x-slot name="thead" >
-                <th>Donor</th>
+                <th>Bank</th>
                 <th>From</th>
                 <th>To</th>
                 <th>Status</th>
@@ -23,21 +23,21 @@
             <!-- end table head -->
 
             <!-- table body -->
-            @foreach ($donors as $donor)
+            @foreach ($banks as $bank)
                 <tr>
                     <td class="text-center">{{$loop->iteration}}</td>
-                    <td class="text-left">{!! $donor->organization->name_click  !!} </td>
-                    <td class="text-center">{{$donor->start}}</td>
-                    <td class="text-center">{{$donor->end}}</td>
-                    <td class="text-center">{{$donor->end}}</td>
-                    <td class="text-center">{{$donor->desc}}</td>
+                    <td class="text-left">{!! $bank->organization->name_click  !!} </td>
+                    <td class="text-center">{{$bank->start}}</td>
+                    <td class="text-center">{{$bank->end}}</td>
+                    <td class="text-center">{{$bank->end}}</td>
+                    <td class="text-center">{{$bank->desc}}</td>
                     <td  class="text-center">
                         <div class="btn-group btn-group-sm">
-                            @can('donor_update')
-                                <x-button.edit>{{route('donors.edit',$donor)}}</x-button.edit>
+                            @can('bank_update')
+                                <x-button.edit>{{route('banks.edit',$bank)}}</x-button.edit>
                             @endcan
-                            @can('donor_delete')
-                                <x-button.delete>{{route('donors.destroy',$donor)}}</x-button.delete>
+                            @can('bank_delete')
+                                <x-button.delete>{{route('banks.destroy',$bank)}}</x-button.delete>
                             @endcan
                         </div>
                     </td>
@@ -49,18 +49,18 @@
     </x-card>
     <!-- end card area -->
 
-    @can('donor_create')
+    @can('bank_create')
         <!-- Start Modal -->
-        <x-modal id="new" title="New Donor">
+        <x-modal id="new" title="New Bank">
             <!-- Start form -->
-            <x-form.post action="donors.store">
+            <x-form.post action="banks.store">
                 <div class="form-group">
                     <x-form.label name="Organization: <span class='star'>*</span>" />
                     <x-dropdown.organization req="required"/>
                 </div>
                 <div class="form-group">
                     <x-form.label name="Organization Group: <span class='star'>*</span>" />
-                    <x-dropdown.organization-group req="required" filter="Donor"/>
+                    <x-dropdown.organization-group req="required" filter="Bank"/>
                 </div>
                 <div class="row form-group">
                     <div class="col">
