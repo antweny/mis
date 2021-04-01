@@ -27,13 +27,13 @@
             <!-- table body -->
             @foreach ($payments as $payment)
                 <tr>
-                    <td class="text-center">{{$loop->iteration}}</td>
-                    <td class="text-left">{{$payment->payee->name}}</td>
-                    <td  class="text-center">{{$payment->payment_format.$payment->payment_no}}</td>
+                    <td class="text-center">{{ $loop->iteration }}</td>
+                    <td class="text-left">{{ $payment->payee->name }}</td>
+                    <td  class="text-center">{{ $payment->payment_format.$payment->payment_no }}</td>
                     <td  class="text-center">{{ $payment->payment_type }}</td>
                     <td  class="text-center">{{ $payment->bank_account->name }}</td>
                     <td  class="text-center">{{ $payment->bank_account->currency->acronym }}</td>
-                    <td  class="text-center">{{$payment->amount}}</td>
+                    <td  class="text-center">{{ $payment->amount }}</td>
                     <td  class="text-center">{{ $payment->status }}</td>
                     <td  class="text-center">{{ $payment->employee->name }}</td>
                     <td  class="text-center">{!! humanDate($payment->date) !!}</td>
@@ -43,7 +43,7 @@
                                 <x-button.edit>{{route('payments.edit',$payment)}}</x-button.edit>
                             @endcan
                             @can('payment_delete')
-                                <x-button.edit>{{route('payments.destroy',$payment)}}</x-button.edit>
+                                <x-button.delete>{{route('payments.destroy',$payment)}}</x-button.delete>
                             @endcan
                         </div>
                     </td>

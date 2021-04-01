@@ -27,31 +27,4 @@ class BankAccountRepository extends BaseRepository implements BankAccountReposit
             ])->get();
     }
 
-    /**
-     * Get Bank Account Number
-     */
-    public function bankNumber()
-    {
-        return $this->model->select('id','stakeholder_id','name')->with([
-            'stakeholder'=>function($query) {
-                return $query->with('organization');
-            }
-        ])->get();
-    }
-
-    /**
-     * Get Bank Account Number and Currency
-     */
-    public function bankNumberCurrency()
-    {
-        return $this->model->select('id','currency_id','stakeholder_id','name')->with([
-            'currency',
-            'stakeholder'=>function($query) {
-                return $query->with('organization');
-            }
-        ])->get();
-    }
-
-
-
 }

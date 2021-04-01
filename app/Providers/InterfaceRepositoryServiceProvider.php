@@ -43,6 +43,7 @@ class InterfaceRepositoryServiceProvider extends ServiceProvider
         $this->app->bind('App\Repository\Interfaces\CurrencyRepositoryInterface','App\Repository\CurrencyRepository');
         $this->app->bind('App\Repository\Interfaces\BankRepositoryInterface','App\Repository\BankRepository');
         $this->app->bind('App\Repository\Interfaces\BankAccountRepositoryInterface','App\Repository\BankAccountRepository');
+        $this->app->bind('App\Repository\Interfaces\PaymentRepositoryInterface','App\Repository\PaymentRepository');
 
         /*
         * Location Bindings

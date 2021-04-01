@@ -16,18 +16,7 @@ class Payment extends BaseModel
     /**
      * The attributes that are mass assignable.
      */
-    protected $fillable = [
-        'payment_no',
-        'payment_format',
-        'date',
-        'payment_type',
-        'payee_id',
-        'bank_account_id',
-        'amount',
-        'amount_words',
-        'status',
-        'employee_id'
-    ];
+    protected $fillable = ['payment_no', 'payment_format', 'date', 'payment_type', 'payee_id', 'bank_account_id', 'amount', 'amount_words', 'status', 'employee_id'];
 
     /**
      * --------------------

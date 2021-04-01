@@ -45,5 +45,35 @@ class BankAccount extends BaseModel
         return $this->belongsTo(Stakeholder::class)->withDefault();
     }
 
+    /**
+     * --------------------
+     *  MODEL FUNCTIONS
+     * ---------------------
+     */
+    // Get Bank Account Number
+    public function accountNumber()
+    {
+        return $this->select('id','stakeholder_id','name')->with([
+            'stakeholder'=>function($query) {
+                return $query->with('organization');
+            }
+        ])->get();
+    }
+
+    //Get Bank Account Currency
+    public function accountCurrency()
+    {
+        return $this->select('id','currency_id','stakeholder_id','name')->with([
+            'currency',
+            'stakeholder'=>function($query) {
+                return $query->with('organization');
+            }
+        ])->get();
+    }
+
+
+
+
+
 
 }

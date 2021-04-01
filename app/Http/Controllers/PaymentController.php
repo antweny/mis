@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PaymentRequest;
-use App\Services\PaymentService;
+use App\Repository\Interfaces\PaymentRepositoryInterface;
 use Exception;
 
 class PaymentController extends AuthController
@@ -16,7 +16,7 @@ class PaymentController extends AuthController
     /**
      * Organization Group Controller constructor.
      */
-    public function __construct(PaymentService $payment)
+    public function __construct(PaymentRepositoryInterface $payment)
     {
         parent::__construct();
         $this->payment = $payment;

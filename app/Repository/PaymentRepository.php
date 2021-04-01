@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repository;
 
-use App\Interfaces\PaymentInterface;
 use App\Models\Payment;
+use App\Repository\Interfaces\PaymentRepositoryInterface;
 
-class PaymentRepository extends BaseRepository implements PaymentInterface
+class PaymentRepository extends BaseRepository implements PaymentRepositoryInterface
 {
     public function __construct(Payment $model)
     {
@@ -21,7 +21,7 @@ class PaymentRepository extends BaseRepository implements PaymentInterface
             'employee',
             'payee',
             'bank_account'=>function($query) {
-                $query->with(['currency'])->get();
+                return $query->with(['currency'])->get();
             }
         ])->get();
     }
@@ -35,7 +35,7 @@ class PaymentRepository extends BaseRepository implements PaymentInterface
         return $this->model->create($request);
     }
 
-    public function updateData($id, $request)
+    public function updating($id, $request)
     {
         $request['payment_format'] = $this->paymentFormat($request['payment_type'],$request['date']);
         return $this->update($id,$request);
@@ -44,7 +44,7 @@ class PaymentRepository extends BaseRepository implements PaymentInterface
     /**
      * Create custom payment number based on payment type
      */
-    protected function paymentFormat($val,$date)
+    private function paymentFormat($val,$date)
     {
         if($val == 'TT') {
             return date('y',strtotime($date)).'/'.date('m',strtotime($date)).'/TT';
