@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\EmployeeId;
+use Facade\Ignition\SolutionProviders\DefaultDbNameSolutionProvider;
 
 class Payment extends BaseModel
 {
@@ -45,6 +46,44 @@ class Payment extends BaseModel
     {
         return $this->belongsTo(Employee::class)->withDefault();
     }
+
+    /**
+     * -------------------
+     *  MODEL FUNCTIONS
+     * -------------------
+     */
+    public function statusCreated()
+    {
+        return $this->where('status',0)
+            ->with(['payee',
+                'bank_account'=>function($query) {
+                    return $query->with(['currency'])->get();
+                }
+            ])->get();
+    }
+
+    /**
+     * Manage payment status based action
+     */
+    public function statusManage($string = null, $id = null): void
+    {
+        $payment = $this->find($id); //Find the object
+
+        if ($string == 'voucher') {
+            $payment->status = 1;
+        }
+        elseif ($string == 'approved') {
+            $payment->status = 2;
+        }
+        elseif($string == 'collected') {
+            $payment->status = 3;
+        }
+        else {
+            $payment->status = 0;
+        }
+        $payment->save();
+    }
+
 
 
 

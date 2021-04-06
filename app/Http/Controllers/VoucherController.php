@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\VoucherRequest;
-use App\Services\VoucherService;
+use App\Repository\Interfaces\VoucherRepositoryInterface;
 use Exception;
 
 class VoucherController extends AuthController
@@ -16,7 +16,7 @@ class VoucherController extends AuthController
     /**
      * Organization Group Controller constructor.
      */
-    public function __construct(VoucherService $voucher)
+    public function __construct(VoucherRepositoryInterface $voucher)
     {
         parent::__construct();
         $this->voucher = $voucher;
@@ -129,6 +129,7 @@ class VoucherController extends AuthController
             return $this->success('Voucher deleted');
         }
         catch (\Exception $e) {
+            dd($e->getMessage());
             return $this->error();
         }
     }

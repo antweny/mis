@@ -17,11 +17,7 @@ class Voucher extends BaseModel
     /**
      * The attributes that are mass assignable.
      */
-    protected $fillable = [
-        'payment_id',
-        'particulars',
-        'desc',
-    ];
+    protected $fillable = ['payment_id', 'particulars', 'desc',];
 
     /**
      * ------------------
@@ -36,6 +32,7 @@ class Voucher extends BaseModel
     {
         return $this->belongsTo(Employee::class)->withDefault();
     }
+
 
 
 
