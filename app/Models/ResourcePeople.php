@@ -10,14 +10,7 @@ class ResourcePeople extends BaseModel
      */
     protected static $logName = 'resource people';
 
-
-    protected $fillable = [
-        'individual_id',
-        'individual_group_id',
-        'start_date',
-        'end_date',
-        'desc',
-    ];
+    protected $fillable = ['individual_id', 'individual_group_id', 'start_date', 'end_date', 'desc',];
 
     /**
      * --------------------

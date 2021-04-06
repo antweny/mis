@@ -25,12 +25,13 @@ class VisitorRequest extends FormRequest
     {
         return [
             'individual_id' => ['required','integer'],
-            'place' => ['required','string'],
-            'company' => ['nullable','string'],
+            'location_id' => ['nullable','integer'],
+            'organization_id' => ['nullable','integer'],
             'employee_id' => ['required','integer'],
-            'check_in' => ['required','date'],
-            'check_out' => ['nullable','date','after:check_in'],
+            'check_in' => ['required','date_format:H:i'],
+            'check_out' => ['nullable','date_format:H:i','after_or_equal:check_in'],
             'desc' => ['required','string'],
+            'date' => ['required','date']
         ];
     }
 }

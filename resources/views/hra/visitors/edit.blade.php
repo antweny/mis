@@ -3,12 +3,12 @@
 @section('content')
 
     <div class="row justify-content-center">
-        <div class="col-md-6">
+        <div class="col-md-7">
             <x-card title="Edit Visitor">
                 <!-- Start form -->
                 {{ Form::model($visitor, array('route' => array('visitors.update',$visitor), 'method' => 'PUT')) }}
                     @csrf
-                    @include('visitors._form',['buttonText'=>'Update'])
+                    @include('hra.visitors._form',['buttonText'=>'Update'])
                 {{ Form::close() }}
             </x-card>
         </div>

@@ -15,13 +15,13 @@ class VisitorRepository extends BaseRepository implements VisitorRepositoryInter
         parent::__construct($model);
     }
 
-
-
-
-
-
-
-
+    /*
+     * Get all visitors
+     */
+    public function get()
+    {
+        return $this->relationshipWithPagination(['individual','location','organization','employee']);
+    }
 
 
 }

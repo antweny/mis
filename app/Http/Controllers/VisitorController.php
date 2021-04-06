@@ -31,8 +31,8 @@ class VisitorController extends AuthController
         $this->canView($this->visitorService->model());
 
         try {
-            $visitors = $this->visitorService->withRelation();  //Get all visitors
-            return view('visitors.index',compact('visitors'));
+            $visitors = $this->visitorService->get();  //Get all visitors
+            return view('hra.visitors.index',compact('visitors'));
         }
         catch (Exception $e) {
             return $this->error();
@@ -48,7 +48,7 @@ class VisitorController extends AuthController
 
         try {
             $visitor = $this->visitorService->model();  //Get all employees
-            return view('visitors.create',compact('visitor'));
+            return view('hra.visitors.create',compact('visitor'));
         }
         catch (Exception $e) {
             return $this->error();
@@ -67,7 +67,6 @@ class VisitorController extends AuthController
             return $this->success('Visitor created');
         }
         catch (Exception $e) {
-            dd($e->getMessage());
             return $this->errorWithInput($request);
         }
 
@@ -82,7 +81,7 @@ class VisitorController extends AuthController
 
         try {
             $visitor = $this->visitorService->find($id);
-            return view('visitors.edit',compact('visitor'));
+            return view('hra.visitors.edit',compact('visitor'));
         }
         catch (Exception $e) {
             return $this->error();

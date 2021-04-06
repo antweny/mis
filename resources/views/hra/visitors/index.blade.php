@@ -15,6 +15,7 @@
 
             <!-- table headers -->
             <x-slot name="thead" >
+                <th scope="col">Date</th>
                 <th scope="col">Fullname</th>
                 <th scope="col">Organization</th>
                 <th scope="col">From</th>
@@ -29,13 +30,14 @@
             @foreach ($visitors as $visitor)
                 <tr>
                     <td class="text-center">{{$loop->iteration}}</td>
+                    <td class="text-center">{{humanDate($visitor->date)}}</td>
                     <td class="text-left">{{$visitor->individual->name}}</td>
                     <td  class="text-center">{{$visitor->organization->name}}</td>
                     <td  class="text-left">{{$visitor->location->name}}</td>
                     <td  class="text-center">{{$visitor->employee->name}}</td>
                     <td  class="text-center">{{$visitor->desc}}</td>
-                    <td  class="text-center">{{humanDateTime($visitor->check_in)}}</td>
-                    <td  class="text-center">{{humanDateTime($visitor->check_out)}}</td>
+                    <td  class="text-center">{{$visitor->check_in}}</td>
+                    <td  class="text-center">{{$visitor->check_out}}</td>
                     <td  class="text-center">
                         <div class="btn-group btn-group-sm">
                             @can('visitor_update')

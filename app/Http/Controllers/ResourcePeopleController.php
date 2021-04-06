@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ResourcePeopleRequest;
-use App\Services\ResourcePeopleService;
+use App\Repository\Interfaces\ResourcePeopleRepositoryInterface;
 use Exception;
 
 class ResourcePeopleController extends AuthController
@@ -16,7 +16,7 @@ class ResourcePeopleController extends AuthController
     /**
      * ResourcePeople Controller constructor.
      */
-    public function __construct(ResourcePeopleService $resourcePeople)
+    public function __construct(ResourcePeopleRepositoryInterface $resourcePeople)
     {
         parent::__construct();
         $this->resourcePeople = $resourcePeople;
@@ -30,8 +30,8 @@ class ResourcePeopleController extends AuthController
         $this->canView($this->resourcePeople->model());
 
         try {
-            $resourcePeople = $this->resourcePeople->withRelation();  //Get all resourcePeoples
-            return view('resource-people.index',compact('resourcePeople'));
+            $resourcePeople = $this->resourcePeople->get();  //Get all resourcePeoples
+            return view('individual.resource-people.index',compact('resourcePeople'));
         }
         catch (Exception $e) {
             return $this->error();
@@ -47,7 +47,7 @@ class ResourcePeopleController extends AuthController
 
         try {
             $resourcePeople = $this->resourcePeople->model();
-            return view('resource-people.create',compact('resourcePeople'));
+            return view('individual.resource-people.create',compact('resourcePeople'));
         }
         catch (Exception $e) {
             return $this->error();
@@ -79,7 +79,7 @@ class ResourcePeopleController extends AuthController
 
         try {
             $resourcePeople = $this->resourcePeople->find($id);
-            return view('resource-people.edit',compact('resourcePeople'));
+            return view('individual.resource-people.edit',compact('resourcePeople'));
         }
         catch (Exception $e) {
             return $this->error();

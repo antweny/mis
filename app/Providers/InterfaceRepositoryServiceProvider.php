@@ -28,6 +28,7 @@ class InterfaceRepositoryServiceProvider extends ServiceProvider
         //Leave Bindings
         $this->app->bind('App\Repository\Interfaces\LeaveApplicationRepositoryInterface','App\Repository\LeaveApplicationRepository');
         $this->app->bind('App\Repository\Interfaces\LeaveApproveRepositoryInterface','App\Repository\LeaveApproveRepository');
+        $this->app->bind('App\Repository\Interfaces\VisitorRepositoryInterface','App\Repository\VisitorRepository');
 
         /*
         * Asset Bindings
@@ -48,11 +49,12 @@ class InterfaceRepositoryServiceProvider extends ServiceProvider
         $this->app->bind('App\Repository\Interfaces\VoucherRepositoryInterface','App\Repository\VoucherRepository');
 
         /*
-        * Financial Bindings
+        * Individual Bindings
         */
         $this->app->bind('App\Repository\Interfaces\IndividualGroupRepositoryInterface','App\Repository\IndividualGroupRepository');
         $this->app->bind('App\Repository\Interfaces\IndividualRepositoryInterface','App\Repository\IndividualRepository');
         $this->app->bind('App\Repository\Interfaces\IndividualExperienceRepositoryInterface','App\Repository\IndividualExperienceRepository');
+        $this->app->bind('App\Repository\Interfaces\ResourcePeopleRepositoryInterface','App\Repository\ResourcePeopleRepository');
 
 
         /*

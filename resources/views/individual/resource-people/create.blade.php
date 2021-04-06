@@ -8,7 +8,7 @@
             <x-card title="New Resource Person">
                 <!-- Start form -->
                 <x-form.post action="resourcePeople.store">
-                    @include('resource-people._form',['buttonText'=>'Create'])
+                    @include('individual.resource-people._form',['buttonText'=>'Create'])
                 </x-form.post>
                 <!-- end form -->
             </x-card>

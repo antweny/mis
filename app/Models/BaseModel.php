@@ -68,11 +68,15 @@ class BaseModel extends Model
     //Convert Date into human readable
     public function getStartAttribute()
     {
+
         return date('d M, Y',strtotime($this->start_date));
     }
     public function getEndAttribute()
     {
-        return date('d M, Y',strtotime($this->end_date));
+        if (!is_null($this->end_date)) {
+            return date('d M, Y',strtotime($this->end_date));
+        }
+        return '<span class="status bg-primary text-white">Active</span>';
     }
     public function getTareheAttribute()
     {

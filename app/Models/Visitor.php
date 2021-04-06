@@ -13,23 +13,24 @@ class Visitor extends BaseModel
     /**
      * The attributes that are mass assignable.
      */
-    protected $fillable = [ 'individual_id','location_id','organization_id','employee_id','check_in','check_out','desc' ];
+    protected $fillable = [ 'date','individual_id','location_id','organization_id','employee_id','check_in','check_out','desc' ];
 
     /**
-     * --------------------
-     *  MODEL MUTATOR
-     * ---------------------
+     * ----------------------
+     * MODEL ACCESSOR
+     * ----------------------
      */
-    protected function setCheckInAttribute($value)
+    public function getCheckInAttribute($value)
     {
-        $this->attributes['check_in'] = date_to_mysql($value);
+        return date("H:i", strtotime( $value ));
     }
-    protected function setCheckOutAttribute($value)
+
+    public function getCheckOutAttribute($value)
     {
         if(!is_null($value)) {
-            $this->attributes['check_out'] = date_to_mysql($value);
+            return date("H:i", strtotime( $value ));
         }
-
+        return null;
     }
 
 

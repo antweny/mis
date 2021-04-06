@@ -7,8 +7,8 @@
             <x-card title="Edit Resource Person">
                 <!-- Start form -->
                 {{ Form::model($resourcePeople, array('route' => array('resourcePeople.update',$resourcePeople), 'method' => 'PUT')) }}
-                @csrf
-                @include('resource-people._form',['buttonText'=>'Update'])
+                    @csrf
+                    @include('individual.resource-people._form',['buttonText'=>'Update'])
                 {{ Form::close() }}
             </x-card>
         </div>
