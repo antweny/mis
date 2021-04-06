@@ -155,17 +155,17 @@ Route::prefix('individual/')->group(function () {
 
     //Experiences
     Route::prefix('experience')->name('experiences.')->group(function () {
-        Route::get('/', 'ExperienceController@index')->name('index');
-        Route::get('create', 'ExperienceController@create')->name('create');
-        Route::post('store', 'ExperienceController@store')->name('store');
-        Route::get('edit/{experience}', 'ExperienceController@edit')->name('edit');
-        Route::put('update/{experience}', 'ExperienceController@update')->name('update');
-        Route::delete('delete/{experience}', 'ExperienceController@destroy')->name('destroy');
-        Route::post('import', 'ExperienceController@import')->name('import');
-        Route::get('organization/member/{organization}', 'ExperienceController@organization')->name('organization');
+        Route::get('index', 'IndividualExperienceController@index')->name('index');
+        Route::get('create', 'IndividualExperienceController@create')->name('create');
+        Route::post('store', 'IndividualExperienceController@store')->name('store');
+        Route::get('edit/{experience}', 'IndividualExperienceController@edit')->name('edit');
+        Route::put('update/{experience}', 'IndividualExperienceController@update')->name('update');
+        Route::delete('delete/{experience}', 'IndividualExperienceController@destroy')->name('destroy');
+        Route::post('import', 'IndividualExperienceController@import')->name('import');
+        Route::get('organization/member/{organization}', 'IndividualExperienceController@organization')->name('organization');
     });
 
-    //ResourcePeoples
+    //Resource Peoples
     Route::prefix('resource')->name('resourcePeople.')->group(function () {
         Route::get('/', 'ResourcePeopleController@index')->name('index');
         Route::get('create', 'ResourcePeopleController@create')->name('create');

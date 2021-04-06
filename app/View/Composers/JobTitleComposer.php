@@ -2,19 +2,19 @@
 
 namespace App\View\Composers;
 
-use App\Repositories\JobTitleRepository;
+use App\Models\JobTitle;
 use Illuminate\View\View;
 
 class JobTitleComposer extends BaseComposer
 {
-    public function __construct(JobTitleRepository $repo)
+    public function __construct(JobTitle $model)
     {
-        parent::__construct($repo);
+        parent::__construct($model);
     }
 
     public function compose(View $view)
     {
-        $view->with('jobTitles',$this->repo->selectNameAndId());
+        $view->with('jobTitles',$this->model->selectNameID());
     }
 
 }

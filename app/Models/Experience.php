@@ -10,19 +10,10 @@ class Experience extends BaseModel
      */
     protected static $logName = 'individual experience';
 
-
     /**
      * The attributes that are mass assignable.
      */
-    protected $fillable = [
-        'individual_id',
-        'organization_id',
-        'job_title_id',
-        'location_id',
-        'start_date',
-        'end_date',
-        'desc',
-    ];
+    protected $fillable = ['individual_id', 'organization_id', 'job_title_id', 'location_id', 'start_date', 'end_date', 'desc',];
 
     /**
      * --------------------

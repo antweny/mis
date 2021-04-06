@@ -24,7 +24,7 @@ use App\View\Composers\EventComposer;
 use App\View\Composers\FacilitatorComposer;
 use App\View\Composers\IndividualComposer;
 use App\View\Composers\IndividualGroupComposer;
-use App\View\Composers\MemberComposer;
+use App\View\Composers\IndividualMemberComposer;
 use App\View\Composers\ItemCategoryComposer;
 use App\View\Composers\ItemComposer;
 use App\View\Composers\ItemRequestListComposer;
@@ -108,7 +108,7 @@ class ViewComposerServiceProvider extends ServiceProvider
         View::composer(['components.dropdown.individual'],IndividualComposer::class);
         View::composer(['components.dropdown.facilitator'],FacilitatorComposer::class);
         View::composer(['components.dropdown.individual-group'],IndividualGroupComposer::class);
-        View::composer(['components.dropdown.member'],MemberComposer::class);
+        View::composer(['components.dropdown.individual-member'],IndividualMemberComposer::class);
 
         /**
          * -------------------------

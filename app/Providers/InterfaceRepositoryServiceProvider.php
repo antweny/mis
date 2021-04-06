@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Repository\Interfaces\IndividualGroupRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 class InterfaceRepositoryServiceProvider extends ServiceProvider
@@ -45,6 +46,14 @@ class InterfaceRepositoryServiceProvider extends ServiceProvider
         $this->app->bind('App\Repository\Interfaces\BankAccountRepositoryInterface','App\Repository\BankAccountRepository');
         $this->app->bind('App\Repository\Interfaces\PaymentRepositoryInterface','App\Repository\PaymentRepository');
         $this->app->bind('App\Repository\Interfaces\VoucherRepositoryInterface','App\Repository\VoucherRepository');
+
+        /*
+        * Financial Bindings
+        */
+        $this->app->bind('App\Repository\Interfaces\IndividualGroupRepositoryInterface','App\Repository\IndividualGroupRepository');
+        $this->app->bind('App\Repository\Interfaces\IndividualRepositoryInterface','App\Repository\IndividualRepository');
+        $this->app->bind('App\Repository\Interfaces\IndividualExperienceRepositoryInterface','App\Repository\IndividualExperienceRepository');
+
 
         /*
         * Location Bindings
