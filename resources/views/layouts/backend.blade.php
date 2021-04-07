@@ -31,7 +31,7 @@
     <body>
         <!-- Top Navigation -->
         <nav class="topnav navbar navbar-expand bg-blue p-0">
-            <a class="navbar-brand" href="{{url('dashboard')}}"><i class="fa fa-home"></i></a>
+            <a class="navbar-brand" href="{{url('/')}}" title="Visit Site"><i class="fa fa-globe"></i></a>
             <!-- include top navigation -->
             @include('layouts.includes.backend.topNav')
         </nav>

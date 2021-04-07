@@ -14,7 +14,6 @@
         <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{auth()->user()->name}}<i class="fas fa-user fa-fw"></i></a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
             @auth
-                <a class="dropdown-item" href="{{url('/')}}"> <i class="fa fa-globe"></i> Home Site</a>
                 <a class="dropdown-item" href="#"> <i class="fa fa-cogs"></i> Settings</a>
                 <a class="dropdown-item" href="{{route('changePassword.form')}}"> <i class="fa fa-key"></i> Change Password</a>
                 <div class="dropdown-divider"></div>
