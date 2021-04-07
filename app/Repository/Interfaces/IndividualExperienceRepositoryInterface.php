@@ -10,4 +10,10 @@ interface IndividualExperienceRepositoryInterface extends BaseRepositoryInterfac
     public function organizationMembersList($data);
 
 
+    /*
+     * Get members by organization
+     */
+    public function membersByOrganization($data);
+
+
 }

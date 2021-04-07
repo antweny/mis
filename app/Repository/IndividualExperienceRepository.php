@@ -5,7 +5,6 @@ namespace App\Repository;
 use App\Models\Experience;
 use App\Models\Organization;
 use App\Models\OrganizationCategory;
-use App\Models\OrganizationGroup;
 use App\Repository\Interfaces\IndividualExperienceRepositoryInterface;
 
 class IndividualExperienceRepository extends BaseRepository implements IndividualExperienceRepositoryInterface
@@ -14,13 +13,14 @@ class IndividualExperienceRepository extends BaseRepository implements Individua
     protected $organizationCategory;
     protected $organization;
 
-
+    /**
+     * Individual Experience Repository constructor.
+     */
     public function __construct(Experience $model,OrganizationCategory $organizationCategory, Organization $organization)
     {
         parent::__construct($model);
         $this->organization = $organization;
         $this->organizationCategory = $organizationCategory;
-
     }
 
     /*
@@ -28,12 +28,7 @@ class IndividualExperienceRepository extends BaseRepository implements Individua
      */
     public function get()
     {
-        return $this->model->with([
-                'individual',
-                'organization',
-                'job_title',
-                'location'])
-            ->get();
+        return $this->model->with([ 'individual', 'organization', 'job_title', 'location'])->get();
     }
 
     /**
@@ -43,14 +38,8 @@ class IndividualExperienceRepository extends BaseRepository implements Individua
     {
         return $this->model
             ->whereIn('organization_id',$this->getAllOrganizationBelongsToCategory($this->getOrganizationCategoryID($catValue)))
-            ->with([
-                'individual',
-                'organization',
-                'job_title',
-                'location'])
-            ->get();
+            ->with([ 'individual', 'organization', 'job_title', 'location'])->get();
     }
-
 
     /*
      * Get category ID
@@ -68,9 +57,12 @@ class IndividualExperienceRepository extends BaseRepository implements Individua
         return $this->organization->searchReturnArrayId('organization_category_id',$categoryID);
     }
 
-
-
-
-
-
+    /*
+     * Get members by organizations
+     */
+    public function membersByOrganization($data)
+    {
+        $organization = $this->organization->find($this->decode($data));
+        return $this->model->where('organization_id',$organization->id)->with([ 'individual', 'organization', 'job_title', 'location'])->get();
+    }
 }

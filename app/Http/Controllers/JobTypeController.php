@@ -32,7 +32,7 @@ class JobTypeController extends AuthController
 
         try {
             $jobTypes = $this->jobType->paginate();  //Get all jobTypes
-            return view('job-types.index',compact('jobTypes'));
+            return view('job.types.index',compact('jobTypes'));
         }
         catch (Exception $e) {
             return $this->error();
@@ -64,7 +64,7 @@ class JobTypeController extends AuthController
 
         try {
             $jobType = $this->jobType->find($id);
-            return view('job-types.edit',compact('jobType'));
+            return view('job.types.edit',compact('jobType'));
         }
         catch (\Exception $e) {
             return $this->error();

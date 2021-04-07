@@ -31,7 +31,7 @@ class JobTitleController extends AuthController
 
         try {
             $jobTitles = $this->interface->paginate();  //Get all jobTitles
-            return view('job-titles.index',compact('jobTitles'));
+            return view('job.titles.index',compact('jobTitles'));
         }
         catch (Exception $e) {
             return $this->error();
@@ -63,7 +63,7 @@ class JobTitleController extends AuthController
 
         try {
             $jobTitle = $this->interface->find($id);
-            return view('job-titles.edit',compact('jobTitle'));
+            return view('job.titles.edit',compact('jobTitle'));
         }
         catch (\Exception $e) {
             return $this->error();

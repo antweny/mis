@@ -137,11 +137,11 @@ class IndividualExperienceController extends AuthController
     /**
      * Get all the members from the specific organization
      */
-    public function organization($organization)
+    public function membersByOrganization($organization)
     {
         $this->canView($this->experience->model());
         try {
-            $experiences = $this->experience->organization($organization);
+            $experiences = $this->experience->membersByOrganization($organization);
             return view('individual.experiences.index',compact('experiences'));
         }
         catch (\Exception $e) {

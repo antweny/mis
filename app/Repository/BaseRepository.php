@@ -132,6 +132,9 @@ class BaseRepository implements BaseRepositoryInterface
     }
 
 
+    /*
+     *  Decode the primary ID
+     */
     public function decode($id)
     {
         try {
