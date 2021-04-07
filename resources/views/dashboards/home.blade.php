@@ -1,6 +1,6 @@
 @extends('layouts.backend')
 @section('title','Dashboard')
-@section('body')
+@section('content')
 
     <div class="row " style="padding: 80px 30px 0 30px;">
         <div class="col-md-12">

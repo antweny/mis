@@ -104,7 +104,10 @@
     color: #f8f9fa;
     width: 100%;
     font-size: 16px;
-    border-top:1px solid #a6a6a6;
+    border-bottom:1px solid #a6a6a6;
+}
+.sidenav-menu-nested .nav-link {
+    border-bottom:0;
 }
 .sidenav .collapsed {
     border-top:0;
@@ -130,12 +133,13 @@
 
 /* Sub navigation */
 .sidenav-menu-nested {
-    padding-left: 25px;
+    padding-left: 45px;
     background: #1c1f22;
 }
 .sidenav-menu-nested a {
     border-left: 1px solid rgba(59, 70, 72, 0.5);
-    padding-left: 20px;
+    padding-left: 35px;
+    line-height: 20px;
     color: #a6a6a6;
 }
 .sidenav-menu-nested a::before {
