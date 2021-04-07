@@ -2,21 +2,25 @@
 
 namespace App\Repository;
 
+use App\Models\Experience;
 use App\Models\Organization;
+use App\Models\OrganizationCategory;
 use App\Models\OrganizationGroup;
 use App\Repository\Interfaces\OrganizationRepositoryInterface;
 
 class OrganizationRepository extends BaseRepository implements OrganizationRepositoryInterface
 {
-    protected $organizationGroup;
+    protected $organizationCategory;
+    protected $experience;
 
     /**
      * OrganizationRepository constructor.
      */
-    public function __construct(Organization $model,OrganizationGroup $organizationGroup )
+    public function __construct(Organization $model,OrganizationCategory $organizationCategory )
     {
         parent::__construct($model);
-        $this->organizationGroup = $organizationGroup;
+        $this->organizationCategory = $organizationCategory;
+        $this->experience = new Experience;
     }
 
     /**
@@ -31,16 +35,13 @@ class OrganizationRepository extends BaseRepository implements OrganizationRepos
     /**
      * Get all Organization with Collection with relationship
      */
-    public function getKCList()
+    public function getOrganisationListByCategory($name)
     {
-        return $this->model->where('organization_category_id',$this->organizationGroup->searchReturnId('name',self::KC_CATEGORY))
+        return $this->model->where('organization_category_id',$this->organizationCategory->searchReturnId('name',$name))
             ->with(['location','organization_category'])
             ->withCount('experience')
             ->get();
     }
-
-
-
 
 
 }

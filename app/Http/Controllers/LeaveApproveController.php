@@ -28,7 +28,7 @@ class LeaveApproveController extends AuthController
         $this->authorize('leaveApprove',$this->leaveApproveService->model());
         try {
             $leaveApproves = $this->leaveApproveService->leaveRequest($this->userEmployeeId());
-            return view('leave-approve.index',compact('leaveApproves'));
+            return view('leave.approve.index',compact('leaveApproves'));
         }
         catch (Exception $e) {
             return $this->error();
@@ -44,7 +44,7 @@ class LeaveApproveController extends AuthController
 
         try {
             $leaveApprove = $this->leaveApproveService->viewLeaveDetails($id);
-            return view('leave-approve.show',compact('leaveApprove'));
+            return view('leave.approve.show',compact('leaveApprove'));
         }
         catch (Exception $e) {
             return $this->error();
@@ -61,7 +61,7 @@ class LeaveApproveController extends AuthController
 //        dd($string);
 //        try {
 //            $leaveApprove = $this->leaveApproveService->find($id);
-//            return view('leave-approve.edit',compact('leaveApprove'));
+//            return view('leave.approve.edit',compact('leaveApprove'));
 //        }
 //        catch (Exception $e) {
 //            return $this->error();
@@ -77,7 +77,7 @@ class LeaveApproveController extends AuthController
         $this->authorize('approve',$this->leaveApproveService->find($id));
         try {
             $leaveApprove = $this->leaveApproveService->find($id);
-            return view('leave-approve.edit',compact('leaveApprove','state'));
+            return view('leave.approve.edit',compact('leaveApprove','state'));
         }
         catch (Exception $e) {
             return $this->error();

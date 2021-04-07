@@ -31,7 +31,7 @@ class OrganizationGroupController extends AuthController
 
         try {
             $organizationGroups = $this->interface->get();  //Get all titles
-            return view('organization-groups.index',compact('organizationGroups'));
+            return view('organization.groups.index',compact('organizationGroups'));
         }
         catch (Exception $e) {
             return $this->error();
@@ -63,7 +63,7 @@ class OrganizationGroupController extends AuthController
 
         try {
             $organizationGroup = $this->interface->find($id);
-            return view('organization-groups.edit',compact('organizationGroup'));
+            return view('organization.groups.edit',compact('organizationGroup'));
         }
         catch (Exception $e) {
             return $this->error();

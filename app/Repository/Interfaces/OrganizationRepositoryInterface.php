@@ -4,6 +4,9 @@ namespace App\Repository\Interfaces;
 
 interface OrganizationRepositoryInterface extends BaseRepositoryInterface
 {
-    const KC_CATEGORY = 'Knowledge Center';
 
+    /*
+     * Get Organization List By Organization Category
+     */
+    public function getOrganisationListByCategory($name);
 }

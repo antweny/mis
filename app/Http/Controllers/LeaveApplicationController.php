@@ -27,7 +27,7 @@ class LeaveApplicationController extends AuthController
     {
         try {
             $leaveApplications = $this->leaveApplicationService->employeeLeaves($this->userEmployeeId());
-            return view('leave-applications.index',compact('leaveApplications'));
+            return view('leave.applications.index',compact('leaveApplications'));
         }
         catch (Exception $e) {
             return $this->error();
@@ -41,7 +41,7 @@ class LeaveApplicationController extends AuthController
     {
         try {
             $leaveApplication = $this->leaveApplicationService->model();  //Get all employees
-            return view('leave-applications.create',compact('leaveApplication'));
+            return view('leave.applications.create',compact('leaveApplication'));
         }
         catch (Exception $e) {
             return $this->error();
@@ -71,7 +71,7 @@ class LeaveApplicationController extends AuthController
 
         try {
             $leaveApplication = $this->leaveApplicationService->find($id);
-            return view('leave-applications.edit',compact('leaveApplication'));
+            return view('leave.applications.edit',compact('leaveApplication'));
         }
         catch (Exception $e) {
             return $this->error();

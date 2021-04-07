@@ -8,7 +8,7 @@
             <x-card title="Apply Leave">
                 <!-- Start form -->
                 <x-form.post action="leaveApplications.store">
-                    @include('leave-applications._form',['buttonText'=>'Apply'])
+                    @include('leave.applications._form',['buttonText'=>'Apply'])
                 </x-form.post>
                 <!-- end form -->
             </x-card>

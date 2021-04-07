@@ -32,7 +32,7 @@ class StakeholderController extends AuthController
 
         try {
             $stakeholders = $this->stakeholder->get();  //Get all titles
-            return view('organization-stakeholders.index',compact('stakeholders'));
+            return view('organization.stakeholders.index',compact('stakeholders'));
         }
         catch (Exception $e) {
             return $this->error();
@@ -64,7 +64,7 @@ class StakeholderController extends AuthController
 
         try {
             $stakeholder = $this->stakeholder->find($id);
-            return view('organization-stakeholders.edit',compact('stakeholder'));
+            return view('organization.stakeholders.edit',compact('stakeholder'));
         }
         catch (Exception $e) {
             return $this->error();

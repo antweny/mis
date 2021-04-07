@@ -8,7 +8,7 @@
                 <!-- Start form -->
                 {{ Form::model($leaveApplication, array('route' => array('leaveApplications.update',$leaveApplication), 'method' => 'PUT')) }}
                     @csrf
-                    @include('leave-applications._form',['buttonText'=>'Update'])
+                    @include('leave.applications._form',['buttonText'=>'Update'])
                 {{ Form::close() }}
             </x-card>
         </div>

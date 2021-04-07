@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Repository\Interfaces\IndividualExperienceRepositoryInterface;
 use App\Repository\Interfaces\OrganizationRepositoryInterface;
-use App\Services\ExperienceService;
-use App\Services\OrganizationService;
 use Exception;
 
 class KnowledgeCenterController extends AuthController
@@ -18,11 +17,11 @@ class KnowledgeCenterController extends AuthController
     /**
      * OrganizationController constructor.
      */
-    public function __construct(OrganizationRepositoryInterface $organization)
+    public function __construct(OrganizationRepositoryInterface $organization, IndividualExperienceRepositoryInterface $experience)
     {
         parent::__construct();
         $this->organization = $organization;
-        //$this->experience = $experienceService;
+        $this->experience = $experience;
     }
 
     /**
@@ -32,7 +31,7 @@ class KnowledgeCenterController extends AuthController
     {
         $this->canView($this->organization->model());
         try {
-            $organizations = $this->organization->getKCList();  //Get all organizations
+            $organizations = $this->organization->getOrganisationListByCategory('Knowledge Center');  //Get all organizations
             return view('organization.kc.index',compact('organizations'));
         }
         catch (Exception $e) {
@@ -45,12 +44,13 @@ class KnowledgeCenterController extends AuthController
      */
     public function member()
     {
-        $this->canView($this->experience->model());
+        $this->canView($this->organization->model());
         try {
-            $experiences = $this->experience->getKCMembersList();  //Get all experiences
-            return view('kc.member',compact('experiences'));
+            $experiences = $this->experience->organizationMembersList('Knowledge Center');  //Get all experiences
+            return view('organization.kc.member',compact('experiences'));
         }
         catch (Exception $e) {
+            dd($e->getMessage());
             return $this->error();
         }
     }

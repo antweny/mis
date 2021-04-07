@@ -6,12 +6,12 @@
         <x-slot name="left">
             @can('experience_create')
                 <x-button.create label="Add Experience"> {{route('experiences.create')}} </x-button.create>
-                <x-button.general label="Import" icon="fas fa-file-upload" modal="modal" class="btn btn-dark"> #import </x-button.general>
+{{--                <x-button.general label="Import" icon="fas fa-file-upload" modal="modal" class="btn btn-dark"> #import </x-button.general>--}}
             @endcan
         </x-slot>
         <x-slot name="right">
             @can('organization_view')
-                <x-button.general label="KC List" class="btn btn-primary"> {{route('knowledgeCenters.index')}} </x-button.general>
+{{--                <x-button.general label="KC List" class="btn btn-primary"> {{route('knowledgeCenters.index')}} </x-button.general>--}}
             @endcan
         </x-slot>
     </x-row>
@@ -19,7 +19,7 @@
     <!-- Start Card -->
     <x-card title="KC Members List">
         <!-- Table Start -->
-        <x-table.listing>
+        <x-table.listing id="table">
             <!-- table headers -->
             <x-slot name="thead" >
                 <th scope="col">Full Name</th>
@@ -42,12 +42,12 @@
                     <td class="text-center">{!! $experience->organization->name_click !!} </td>
                     <td  class="text-center">
                         <div class="btn-group btn-group-sm">
-                            @permission('experience_create')
+                            @can('experience_create')
                                 <a href="{{route('experiences.edit',$experience)}} " class="btn btn-edit mr-2" data-toggle="tooltip" data-placement="top" title="Edit item" >
                                     <i class="fa fa-edit"></i>
                                 </a>
-                            @endpermission
-                            @permission('experience_create')
+                            @endcan
+                            @can('experience_create')
                                 <form method="POST" action="{{route('experiences.destroy',$experience)}}" class="form-horizontal" role="form" autocomplete="off">
                                     @csrf
                                     @method('DELETE')
@@ -55,8 +55,7 @@
                                         <i class="fa fa-times"></i>
                                     </button>
                                 </form>
-                            @endpermission
-
+                            @endcan
                         </div>
                     </td>
                 </tr>

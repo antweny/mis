@@ -198,5 +198,14 @@ class BaseModel extends Model
         return isset($result) ? $result->id : null;
     }
 
+    /**
+     * Dynamic Search of records into a database and return array of ID
+     */
+    public function searchReturnArrayId($column, $value)
+    {
+        return $this->where($column,$value)->pluck('id');
+        //return isset($result) ? $result : null;
+    }
+
 
 }

@@ -31,7 +31,7 @@ class LeaveTypeController extends AuthController
 
         try {
             $leaveTypes = $this->leaveTypeService->paginate();  //Get all leaveTypes
-            return view('leave-types.index',compact('leaveTypes'));
+            return view('leave.types.index',compact('leaveTypes'));
         }
         catch (Exception $e) {
             return $this->error();
@@ -63,7 +63,7 @@ class LeaveTypeController extends AuthController
 
         try {
             $leaveType = $this->leaveTypeService->find($id);
-            return view('leave-types.edit',compact('leaveType'));
+            return view('leave.types.edit',compact('leaveType'));
         }
         catch (Exception $e) {
             return $this->error();

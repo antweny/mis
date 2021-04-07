@@ -13,19 +13,7 @@ class Organization extends BaseModel
     /**
      * The attributes that are mass assignable.
      */
-    protected $fillable = [
-        'name',
-        'acronym',
-        'organization_category_id',
-        'founded',
-        'address',
-        'location_id',
-        'website',
-        'email',
-        'mobile',
-        'fax',
-        'desc',
-    ];
+    protected $fillable = ['name', 'acronym', 'organization_category_id', 'founded', 'address', 'location_id', 'website', 'email', 'mobile', 'fax', 'desc',];
 
     /**
      * --------------------
