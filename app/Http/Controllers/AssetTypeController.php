@@ -30,7 +30,7 @@ class AssetTypeController extends AuthController
     {
         try {
             $assetTypes = $this->assetTypeService->get();  //Get all assetTypes
-            return view('asset-types.index',compact('assetTypes'));
+            return view('asset.types.index',compact('assetTypes'));
         }
         catch (Exception $e) {
             return $this->error();
@@ -58,7 +58,7 @@ class AssetTypeController extends AuthController
     {
         try {
             $assetType = $this->assetTypeService->find($id);
-            return view('asset-types.edit',compact('assetType'));
+            return view('asset.types.edit',compact('assetType'));
         }
         catch (Exception $e) {
             return $this->error();

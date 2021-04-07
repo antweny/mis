@@ -15,19 +15,7 @@
                             Dashboard
                         </a>
 
-                        @can('donor_view')
-                            <a class="nav-link" href="{{route('donors.index')}}">
-                                <div class="nav-link-icon"><i class="fas fa-donate"></i></div>
-                                Donors
-                            </a>
-                        @endcan
 
-                        @can('project_view')
-                            <a class="nav-link" href="{{route('projects.index')}}">
-                                <div class="nav-link-icon"><i class="fas fa-project-diagram"></i></div>
-                                Projects
-                            </a>
-                        @endcan
 
                     </div>
                 </div>

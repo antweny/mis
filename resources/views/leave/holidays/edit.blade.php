@@ -1,4 +1,4 @@
-@extends('layouts.templates.hr')
+@extends('layouts.backend')
 @section('title','Edit Holidays')
 @section('content')
     <div class="row justify-content-center">

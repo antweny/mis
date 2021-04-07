@@ -31,7 +31,7 @@ class EquipmentController extends AuthController
     {
         try {
             $equipments = $this->equipment->get();  //Get all equipments
-            return view('equipments.index',compact('equipments'));
+            return view('asset.equipments.index',compact('equipments'));
         }
         catch (Exception $e) {
             return $this->error();
@@ -59,7 +59,7 @@ class EquipmentController extends AuthController
     {
         $equipment = $this->equipment->find($id);
         if (!is_null($equipment)){
-            return view('equipments.edit',compact('equipment'));
+            return view('asset.equipments.edit',compact('equipment'));
         }
         else {
             return $this->error();

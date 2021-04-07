@@ -11,28 +11,6 @@
             <div class="row">
 
                 @hasanyrole('Employee|superAdmin')
-                    <div class="col-md-2 mb-4">
-                        <a href="{{route('dashboard.hr')}}" class="shortcut-icon">
-                            <div>
-                                <i class="fa fa-user-circle"></i>
-                                <span>Human Resource</span>
-                            </div>
-                        </a>
-                    </div>
-                @endhasanyrole
-
-                @hasanyrole('Finance Manager|superAdmin')
-                <div class="col-md-2 mb-4">
-                    <a href="{{route('dashboard.asset')}}" class="shortcut-icon">
-                        <div>
-                            <i class="fa fa-gem"></i>
-                            <span>Asset Manage</span>
-                        </div>
-                    </a>
-                </div>
-                @endhasanyrole
-
-                @hasanyrole('Employee|superAdmin')
                 <div class="col-md-2 mb-4">
                     <a href="{{route('dashboard.op')}}" class="shortcut-icon">
                         <div>

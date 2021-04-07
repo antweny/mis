@@ -1,4 +1,4 @@
-@extends('layouts.templates.hr')
+@extends('layouts.backend')
 @section('title','Holidays List')
 @section('content')
 

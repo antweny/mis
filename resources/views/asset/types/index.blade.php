@@ -1,4 +1,4 @@
-@extends('layouts.templates.asset')
+@extends('layouts.backend')
 @section('title','Asset Types List')
 @section('content')
 

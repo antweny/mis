@@ -32,7 +32,7 @@ class BrandController extends AuthController
 
         try {
             $brands = $this->brandService->get();  //Get all brands
-            return view('brands.index',compact('brands'));
+            return view('asset.brands.index',compact('brands'));
         }
         catch (Exception $e) {
             return $this->error();
@@ -64,7 +64,7 @@ class BrandController extends AuthController
 
         try {
             $brand = $this->brandService->find($id);
-            return view('brands.edit',compact('brand'));
+            return view('asset.brands.edit',compact('brand'));
         }
         catch (Exception $e) {
             return $this->error();

@@ -1,4 +1,4 @@
-@extends('layouts.templates.hr')
+@extends('layouts.backend')
 @section('title','Edit Leave Types')
 @section('content')
 
