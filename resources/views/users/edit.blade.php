@@ -1,4 +1,4 @@
-@extends('layouts.templates.auth')
+@extends('layouts.backend')
 @section('title','Edit Users')
 @section('content')
     <div class="row justify-content-center">

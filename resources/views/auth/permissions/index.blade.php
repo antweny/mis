@@ -1,4 +1,4 @@
-@extends('layouts.templates.auth')
+@extends('layouts.backend')
 @section('title','Roles Permissions')
 @section('content')
 

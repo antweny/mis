@@ -98,6 +98,26 @@
             </div>
             <!-- /.ASSET MANAGEMENT -->
 
+            <!-- ASSET MANAGEMENT -->
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAuth" aria-expanded="false" aria-controls="collapseHR">
+                <div class="nav-link-icon"><i class="fa fa-user-shield"></i></div>Auth
+                <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse bg-dark" id="collapseAuth" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                <nav class="sidenav-menu-nested nav">
+                    @can('user_view')
+                        <a class="nav-link" href="{{route('users.index')}}">Users</a>
+                    @endcan
+                    @can('role_view')
+                        <a class="nav-link" href="{{route('roles.index')}}">Roles</a>
+                    @endcan
+                    @can('permission_view')
+                        <a class="nav-link" href="{{route('permissions.index')}}">Permissions</a>
+                    @endcan
+                </nav>
+            </div>
+            <!-- /.ASSET MANAGEMENT -->
+
 
 
 
