@@ -97,13 +97,13 @@
 .sidenav .nav-link {
     display: flex;
     align-items: center;
-    padding-top: 1rem;
+    padding-top: .8rem;
     padding-left: 15px;
-    padding-bottom: 1rem;
+    padding-bottom: .8rem;
     position: relative;
     color: #f8f9fa;
     width: 100%;
-    font-size: 16px;
+    font-size: 14px;
     border-bottom:1px solid #a6a6a6;
 }
 .sidenav-menu-nested .nav-link {

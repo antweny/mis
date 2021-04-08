@@ -31,7 +31,7 @@ class CurrencyController extends AuthController
 
         try {
             $currencies = $this->currency->get();  //Get all titles
-            return view('currencies.index',compact('currencies'));
+            return view('finance.currencies.index',compact('currencies'));
         }
         catch (Exception $e) {
             return $this->error();
@@ -62,7 +62,7 @@ class CurrencyController extends AuthController
 
         try {
             $currency = $this->currency->find($id);
-            return view('currencies.edit',compact('currency'));
+            return view('finance.currencies.edit',compact('currency'));
         }
         catch (Exception $e) {
             return $this->error();

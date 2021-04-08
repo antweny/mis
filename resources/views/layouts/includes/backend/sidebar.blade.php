@@ -58,6 +58,34 @@
             </div>
             <!-- /.LEAVE MANAGEMENT -->
 
+
+            <!-- OPERATION PLAN -->
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOP" aria-expanded="false" aria-controls="collapseHR">
+                <div class="nav-link-icon"><i class="fa fa-clipboard-list"></i></div>Operation Plane (OP)
+                <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse bg-dark" id="collapseOP" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                <nav class="sidenav-menu-nested nav">
+                    @can('thematic-area_view')
+                        <a class="nav-link" href="{{route('thematicAreas.index')}}">Thematic Areas</a>
+                    @endcan
+                    @can('indicator_view')
+                        <a class="nav-link" href="{{route('indicators.index')}}">Indicators</a>
+                    @endcan
+                    @can('outcome_view')
+                        <a class="nav-link" href="{{route('outcomes.index')}}">Outcomes</a>
+                    @endcan
+                    @can('output_view')
+                        <a class="nav-link" href="{{route('outputs.index')}}">Output</a>
+                    @endcan
+                    @can('activity_view')
+                        <a class="nav-link" href="{{route('activities.index')}}">Activities</a>
+                    @endcan
+                </nav>
+            </div>
+            <!-- /.OPERATION PLAN -->
+
+
             <!-- ASSET MANAGEMENT -->
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAsset" aria-expanded="false" aria-controls="collapseHR">
                 <div class="nav-link-icon"><i class="fa fa-gem"></i></div>Asset
@@ -81,6 +109,7 @@
             </div>
             <!-- /.ASSET MANAGEMENT -->
 
+
             <!-- ASSET MANAGEMENT -->
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProject" aria-expanded="false" aria-controls="collapseHR">
                 <div class="nav-link-icon"><i class="fas fa-project-diagram"></i></div>Project Manage
@@ -98,7 +127,73 @@
             </div>
             <!-- /.ASSET MANAGEMENT -->
 
-            <!-- ASSET MANAGEMENT -->
+
+            <!-- FINANCE -->
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFinance" aria-expanded="false" aria-controls="collapseHR">
+                <div class="nav-link-icon"><i class="fas fa-file-invoice-dollar"></i></div>Finance
+                <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse bg-dark" id="collapseFinance" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                <nav class="sidenav-menu-nested nav">
+                    @can('currency_view')
+                        <a class="nav-link" href="{{route('currencies.index')}}">Currency</a>
+                    @endcan
+                    @can('bank_view')
+                        <a class="nav-link" href="{{route('banks.index')}}">Banks</a>
+                    @endcan
+                    @can('bank-account_view')
+                        <a class="nav-link" href="{{route('bankAccounts.index')}}">Bank Accounts</a>
+                    @endcan
+                    @can('payee_view')
+                        <a class="nav-link" href="{{route('payees.index')}}">Payees</a>
+                    @endcan
+                    @can('payment_view')
+                        <a class="nav-link" href="{{route('payments.index')}}">Payments</a>
+                    @endcan
+                    @can('voucher_view')
+                        <a class="nav-link" href="{{route('vouchers.index')}}">Vouchers</a>
+                    @endcan
+                </nav>
+            </div>
+            <!-- /.FINANCE -->
+
+            <!-- JOB MANAGE -->
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseJob" aria-expanded="false" aria-controls="collapseHR">
+                <div class="nav-link-icon"><i class="fa fa-briefcase"></i></div>Job
+                <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse bg-dark" id="collapseJob" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                <nav class="sidenav-menu-nested nav">
+                    @can('job-type_view')
+                        <a class="nav-link" href="{{route('jobTypes.index')}}">Job Type</a>
+                    @endcan
+                    @can('job-title_view')
+                        <a class="nav-link" href="{{route('jobTitles.index')}}">Job Titles</a>
+                    @endcan
+                </nav>
+            </div>
+            <!-- /.JOB MANAGE -->
+
+
+            <!-- JOB MANAGE -->
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseJob" aria-expanded="false" aria-controls="collapseHR">
+                <div class="nav-link-icon"><i class="fa fa-briefcase"></i></div>Job
+                <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse bg-dark" id="collapseJob" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                <nav class="sidenav-menu-nested nav">
+                    @can('job-type_view')
+                        <a class="nav-link" href="{{route('jobTypes.index')}}">Job Type</a>
+                    @endcan
+                    @can('job-title_view')
+                        <a class="nav-link" href="{{route('jobTitles.index')}}">Job Titles</a>
+                    @endcan
+                </nav>
+            </div>
+            <!-- /.JOB MANAGE -->
+
+
+            <!-- AUTHENTICATION AND AUTHORIZATION -->
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAuth" aria-expanded="false" aria-controls="collapseHR">
                 <div class="nav-link-icon"><i class="fa fa-user-shield"></i></div>Auth
                 <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
@@ -116,7 +211,7 @@
                     @endcan
                 </nav>
             </div>
-            <!-- /.ASSET MANAGEMENT -->
+            <!-- /.AUTHENTICATION AND AUTHORIZATION -->
 
 
 

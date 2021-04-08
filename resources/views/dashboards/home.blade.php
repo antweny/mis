@@ -22,28 +22,6 @@
                 @endhasanyrole
 
                 @hasanyrole('Employee|superAdmin')
-                <div class="col-md-2 mb-4">
-                    <a href="{{route('dashboard.project')}}" class="shortcut-icon">
-                        <div>
-                            <i class="fas fa-project-diagram"></i>
-                            <span>Project Management</span>
-                        </div>
-                    </a>
-                </div>
-                @endhasanyrole
-
-                @hasanyrole('Accountant|superAdmin|Finance Manager')
-                <div class="col-md-2 mb-4">
-                    <a href="{{route('dashboard.finance')}}" class="shortcut-icon">
-                        <div>
-                            <i class="fas fa-file-invoice-dollar"></i>
-                            <span>Financial Management</span>
-                        </div>
-                    </a>
-                </div>
-                @endhasanyrole
-
-                @hasanyrole('Employee|superAdmin')
                     <div class="col-md-2 mb-4">
                         <a href="{{route('dashboard.kc')}}" class="shortcut-icon">
                             <div>
@@ -54,16 +32,6 @@
                     </div>
                 @endhasanyrole
 
-                @hasanyrole('Employee|superAdmin')
-                    <div class="col-md-2 mb-4">
-                        <a href="{{route('dashboard.job')}}" class="shortcut-icon">
-                            <div>
-                                <i class="fa fa-briefcase"></i>
-                                <span>Job</span>
-                            </div>
-                        </a>
-                    </div>
-                @endhasanyrole
 
                 @hasanyrole('Employee|superAdmin')
                     <div class="col-md-2 mb-4">
@@ -131,16 +99,6 @@
                     </div>
                 @endhasanyrole
 
-                @hasanyrole('superAdmin')
-                    <div class="col-md-2 mb-4">
-                        <a href="{{route('dashboard.auth')}}" class="shortcut-icon">
-                            <div>
-                                <i class="fa fa-user-shield"></i>
-                                <span>Authentication</span>
-                            </div>
-                        </a>
-                    </div>
-                @endhasanyrole
 
                 @hasanyrole('superAdmin')
                 <div class="col-md-2 mb-4">

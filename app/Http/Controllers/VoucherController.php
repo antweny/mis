@@ -31,7 +31,7 @@ class VoucherController extends AuthController
 
         try {
             $vouchers = $this->voucher->get();  //Get all titles
-            return view('vouchers.index',compact('vouchers'));
+            return view('finance.vouchers.index',compact('vouchers'));
         }
         catch (Exception $e) {
             return $this->error();
@@ -47,7 +47,7 @@ class VoucherController extends AuthController
 
         try {
             $voucher = $this->voucher->model();  //Get all employees
-            return view('vouchers.create',compact('voucher'));
+            return view('finance.vouchers.create',compact('voucher'));
         }
         catch (Exception $e) {
             return $this->error();
@@ -78,7 +78,7 @@ class VoucherController extends AuthController
 
         try {
             $voucher = $this->voucher->find($id);
-            return view('vouchers.edit',compact('voucher'));
+            return view('finance.vouchers.edit',compact('voucher'));
         }
         catch (Exception $e) {
             return $this->error();
@@ -94,7 +94,7 @@ class VoucherController extends AuthController
 
         try {
             $voucher = $this->voucher->find($id);
-            return view('vouchers.show',compact('voucher'));
+            return view('finance.vouchers.show',compact('voucher'));
         }
         catch (Exception $e) {
             return $this->error();
@@ -129,7 +129,6 @@ class VoucherController extends AuthController
             return $this->success('Voucher deleted');
         }
         catch (\Exception $e) {
-            dd($e->getMessage());
             return $this->error();
         }
     }

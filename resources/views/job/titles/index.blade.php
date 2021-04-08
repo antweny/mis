@@ -1,4 +1,4 @@
-@extends('layouts.templates.job')
+@extends('layouts.backend')
 @section('title','Job Titles List')
 @section('content')
 

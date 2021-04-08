@@ -32,7 +32,7 @@ class PayeeController extends AuthController
 
         try {
             $payees = $this->payee->get();  //Get all titles
-            return view('payees.index',compact('payees'));
+            return view('finance.payees.index',compact('payees'));
         }
         catch (Exception $e) {
             return $this->error();
@@ -64,7 +64,7 @@ class PayeeController extends AuthController
 
         try {
             $payee = $this->payee->find($id);
-            return view('payees.edit',compact('payee'));
+            return view('finance.payees.edit',compact('payee'));
         }
         catch (Exception $e) {
             return $this->error();

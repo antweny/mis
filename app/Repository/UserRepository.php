@@ -35,15 +35,20 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
     {
         DB::beginTransaction();
         try {
+            $details  = [
+                'name' => $request['name'],
+                'email' => $request['email'],
+                'password' => $this->passwordGenerator()
+            ];
             //Generate Random Password and send to a user
-            $request['password'] = $this->encryption($this->passwordGenerator());
+            $request['password'] = $this->encryption($details['password']);
             //user creation
             $user = $this->model->create($request);
             //Assign roles to user
             isset($request['roles']) && $this->assignRoles($user, $request['roles']);
             DB::commit();
-            //Event to be called
-            event(new NewUserEvent($request));
+            //Send email notification
+            event(new NewUserEvent($details));
             return $user;
         }
         catch (Exception $e) {

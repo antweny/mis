@@ -33,10 +33,9 @@ class DonorController extends AuthController
 
         try {
             $donors = $this->donor->get();  //Get all titles
-            return view('donors.index',compact('donors'));
+            return view('project.donors.index',compact('donors'));
         }
         catch (Exception $e) {
-            dd($e->getMessage());
             return $this->error();
         }
     }
@@ -66,7 +65,7 @@ class DonorController extends AuthController
 
         try {
             $donor = $this->donor->find($id);
-            return view('donors.edit',compact('donor'));
+            return view('project.donors.edit',compact('donor'));
         }
         catch (Exception $e) {
             return $this->error();

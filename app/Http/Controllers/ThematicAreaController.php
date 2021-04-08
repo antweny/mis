@@ -31,7 +31,7 @@ class ThematicAreaController extends AuthController
 
         try {
             $thematicAreas = $this->thematicArea->get();
-            return view('thematic-areas.index',compact('thematicAreas'));
+            return view('op.thematic-areas.index',compact('thematicAreas'));
         }
         catch (Exception $e) {
             return $this->error();
@@ -64,7 +64,7 @@ class ThematicAreaController extends AuthController
 
         try {
             $thematicArea = $this->thematicArea->find($id);
-            return view('thematic-areas.edit', compact('thematicArea'));
+            return view('op.thematic-areas.edit', compact('thematicArea'));
         }
         catch (Exception $e) {
             return $this->error();

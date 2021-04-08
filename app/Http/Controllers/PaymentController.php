@@ -31,7 +31,7 @@ class PaymentController extends AuthController
 
         try {
             $payments = $this->payment->get();  //Get all titles
-            return view('payments.index',compact('payments'));
+            return view('finance.payments.index',compact('payments'));
         }
         catch (Exception $e) {
             return $this->error();
@@ -47,7 +47,7 @@ class PaymentController extends AuthController
 
         try {
             $payment = $this->payment->model();  //Get all employees
-            return view('payments.create',compact('payment'));
+            return view('finance.payments.create',compact('payment'));
         }
         catch (Exception $e) {
             return $this->error();
@@ -80,7 +80,7 @@ class PaymentController extends AuthController
 
         try {
             $payment = $this->payment->find($id);
-            return view('payments.edit',compact('payment'));
+            return view('finance.payments.edit',compact('payment'));
         }
         catch (Exception $e) {
             return $this->error();

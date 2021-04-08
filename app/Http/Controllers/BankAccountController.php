@@ -31,7 +31,7 @@ class BankAccountController extends AuthController
 
         try {
             $bankAccounts = $this->bankAccount->get();  //Get all titles
-            return view('bank-accounts.index',compact('bankAccounts'));
+            return view('finance.banks.accounts.index',compact('bankAccounts'));
         }
         catch (Exception $e) {
             return $this->error();
@@ -62,7 +62,7 @@ class BankAccountController extends AuthController
 
         try {
             $bankAccount = $this->bankAccount->find($id);
-            return view('bank-accounts.edit',compact('bankAccount'));
+            return view('finance.banks.accounts.edit',compact('bankAccount'));
         }
         catch (Exception $e) {
             return $this->error();

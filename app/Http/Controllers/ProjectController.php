@@ -31,7 +31,7 @@ class ProjectController extends AuthController
 
         try {
             $projects = $this->projectService->get();  //Get all projects
-            return view('projects.index',compact('projects'));
+            return view('project.index',compact('projects'));
         }
         catch (Exception $e) {
             return $this->error();
@@ -46,7 +46,7 @@ class ProjectController extends AuthController
         $this->canCreate($this->projectService->model());
         try {
             $project = $this->projectService->model();  //Get all employees
-            return view('projects.create',compact('project'));
+            return view('project.create',compact('project'));
         }
         catch (Exception $e) {
             return $this->error();
@@ -78,7 +78,7 @@ class ProjectController extends AuthController
 
         try {
             $project = $this->projectService->find($id);
-            return view('projects.edit',compact('project'));
+            return view('project.edit',compact('project'));
         }
         catch (Exception $e) {
             return $this->error();
