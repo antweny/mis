@@ -97,9 +97,9 @@
 .sidenav .nav-link {
     display: flex;
     align-items: center;
-    padding-top: .8rem;
+    padding-top: .7rem;
     padding-left: 15px;
-    padding-bottom: .8rem;
+    padding-bottom: .7rem;
     position: relative;
     color: #f8f9fa;
     width: 100%;
@@ -133,13 +133,13 @@
 
 /* Sub navigation */
 .sidenav-menu-nested {
-    padding-left: 45px;
+    padding-left: 30px;
     background: #1c1f22;
 }
 .sidenav-menu-nested a {
     border-left: 1px solid rgba(59, 70, 72, 0.5);
-    padding-left: 35px;
-    line-height: 20px;
+    padding-left: 20px;
+    line-height: 35px;
     color: #a6a6a6;
 }
 .sidenav-menu-nested a::before {

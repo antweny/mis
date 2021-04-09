@@ -7,7 +7,7 @@
     <x-card title="User Activity Logs">
 
         <!-- Table Start -->
-        <x-table.listing>
+        <x-table.listing :collection="$activities">
 
             <!-- table headers -->
             <x-slot name="thead" >

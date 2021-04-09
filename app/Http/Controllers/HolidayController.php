@@ -29,7 +29,7 @@ class HolidayController extends AuthController
 
         try {
             $holidays = $this->holidayService->paginate();  //Get all holidays
-            return view('holidays.index',compact('holidays'));
+            return view('leave.holidays.index',compact('holidays'));
         }
         catch (Exception $e) {
             return $this->error();
@@ -61,7 +61,7 @@ class HolidayController extends AuthController
 
         try {
             $holiday = $this->holidayService->find($id);
-            return view('holidays.edit',compact('holiday'));
+            return view('leave.holidays.edit',compact('holiday'));
         }
         catch (Exception $e) {
             return $this->error();

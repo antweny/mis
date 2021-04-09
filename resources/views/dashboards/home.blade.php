@@ -55,16 +55,6 @@
                 </div>
                 @endhasanyrole
 
-                @role('superAdmin')
-                <div class="col-md-2 mb-4">
-                    <a href="{{route('dashboard.settings')}}" class="shortcut-icon">
-                        <div>
-
-                            <span>Settings</span>
-                        </div>
-                    </a>
-                </div>
-                @endrole
 
             </div>
 

@@ -2,7 +2,7 @@ html,body {
     position: relative; /* Allows the footer to notice content height */
     min-height: 100vh;
     margin: 0;
-    font-size: 1.0625rem;
+    font-size: 14px;
     font-weight: 400;
     line-height: 1.6;
     color: #161c2d;

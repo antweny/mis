@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\ActivityLogService;
+use App\Repository\Interfaces\ActivityLogRepositoryInterface;
 
 class ActivityLogController extends AuthController
 {
     private $activity;
 
-    public function __construct(ActivityLogService $activity)
+    public function __construct(ActivityLogRepositoryInterface $activity)
     {
         parent::__construct();
         $this->middleware('role:superAdmin');
@@ -22,7 +22,7 @@ class ActivityLogController extends AuthController
     {
         try {
             $activities = $this->activity->get();
-            return view('activity-logs.index',compact('activities'));
+            return view('settings.activity-logs.index',compact('activities'));
         }
         catch (\Exception $e){
             return $this->error();
@@ -36,7 +36,7 @@ class ActivityLogController extends AuthController
     {
         try {
             $activity = $this->activity->find($id);
-            return view('activity-logs.show',compact('activity'));
+            return view('settings.activity-logs.show',compact('activity'));
         }
         catch (\Exception $e) {
             return $this->error();

@@ -1,5 +1,5 @@
-<nav class="sidenav accordion" id="sidenavAccordion">
-    <div class="sidenav-menu sb-sidenav-menu">
+<nav class="sidenav accordion" id="sidenavAccordion" style="padding-bottom: 100px;">
+    <div class="sidenav-menu sb-sidenav-menu" >
         <div class="nav">
 
             <a class="nav-link" href="{{route('dashboard.index')}}">
@@ -36,6 +36,8 @@
                 </nav>
             </div>
             <!-- /.HUMAN RESOURCE -->
+
+
 
             <!-- LEAVE MANAGEMENT -->
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLeave" aria-expanded="false" aria-controls="collapseHR">
@@ -77,6 +79,31 @@
             <!-- /.PROJECT MANAGE -->
 
 
+
+            <!-- ASSET MANAGEMENT -->
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAsset" aria-expanded="false" aria-controls="collapseHR">
+                <div class="nav-link-icon"><i class="fa fa-gem"></i></div>Asset
+                <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse bg-dark" id="collapseAsset" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                <nav class="sidenav-menu-nested nav">
+                    @can('asset-type_view')
+                        <a class="nav-link" href="{{route('assetTypes.index')}}">Type</a>
+                    @endcan
+                    @can('brand_view')
+                        <a class="nav-link" href="{{route('brands.index')}}">Brands</a>
+                    @endcan
+                    @can('equipment_view')
+                        <a class="nav-link" href="{{route('equipments.index')}}">Equipments</a>
+                    @endcan
+                    @can('asset_view')
+                        <a class="nav-link" href="{{route('assets.index')}}">Assets</a>
+                    @endcan
+                </nav>
+            </div>
+            <!-- /.ASSET MANAGEMENT -->
+
+
             <!-- OPERATION PLAN -->
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOP" aria-expanded="false" aria-controls="collapseHR">
                 <div class="nav-link-icon"><i class="fa fa-clipboard-list"></i></div>Operation Plane (OP)
@@ -104,28 +131,34 @@
             <!-- /.OPERATION PLAN -->
 
 
-            <!-- ASSET MANAGEMENT -->
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAsset" aria-expanded="false" aria-controls="collapseHR">
-                <div class="nav-link-icon"><i class="fa fa-gem"></i></div>Asset
+            <!-- EVENT MANAGEMENT -->
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEvent" aria-expanded="false" aria-controls="collapseHR">
+                <div class="nav-link-icon"><i class="fa fa-calendar"></i></div>Event
                 <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
             </a>
-            <div class="collapse bg-dark" id="collapseAsset" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+            <div class="collapse bg-dark" id="collapseEvent" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                 <nav class="sidenav-menu-nested nav">
-                    @can('asset-type_view')
-                        <a class="nav-link" href="{{route('assetTypes.index')}}">Type</a>
+                    @can('event-category_view')
+                        <a class="nav-link" href="{{route('eventCategories.index')}}">Event Categories</a>
                     @endcan
-                    @can('brand_view')
-                        <a class="nav-link" href="{{route('brands.index')}}">Brands</a>
+                    @can('event_view')
+                        <a class="nav-link" href="{{route('events.index')}}">Events</a>
                     @endcan
-                    @can('equipment_view')
-                        <a class="nav-link" href="{{route('equipments.index')}}">Equipments</a>
+                    @can('participant-role_view')
+                        <a class="nav-link" href="{{route('participantRoles.index')}}">Participant Roles</a>
                     @endcan
-                    @can('asset_view')
-                        <a class="nav-link" href="{{route('assets.index')}}">Assets</a>
+                    @can('participant_view')
+                        <a class="nav-link" href="{{route('participants.index')}}">Event Participants</a>
+                    @endcan
+                    @can('gender-series_view')
+                        <a class="nav-link" href="{{route('genderSeries.index')}}">GDSS</a>
+                    @endcan
+                    @can('participant_view')
+                        <a class="nav-link" href="{{route('genderSeriesParticipants.index')}}">GDSS Participants</a>
                     @endcan
                 </nav>
             </div>
-            <!-- /.ASSET MANAGEMENT -->
+            <!-- /.EVENT MANAGEMENT -->
 
 
             <!-- ORGANIZATION MANAGEMENT -->
