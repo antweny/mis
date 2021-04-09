@@ -1,4 +1,4 @@
-@extends('layouts.templates.setting')
+@extends('layouts.backend')
 @section('title','View User Activity Logs')
 @section('content')
 

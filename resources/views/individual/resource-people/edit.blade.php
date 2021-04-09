@@ -1,4 +1,4 @@
-@extends('layouts.templates.individual')
+@extends('layouts.backend')
 @section('title','Edit Resource Person')
 @section('content')
 

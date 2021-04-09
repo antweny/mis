@@ -1,4 +1,4 @@
-@extends('layouts.templates.location')
+@extends('layouts.backend')
 @section('title','Locations List')
 @section('content')
 

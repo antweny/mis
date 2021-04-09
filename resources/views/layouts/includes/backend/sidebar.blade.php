@@ -59,6 +59,24 @@
             <!-- /.LEAVE MANAGEMENT -->
 
 
+            <!-- PROJECT MANAGE -->
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProject" aria-expanded="false" aria-controls="collapseHR">
+                <div class="nav-link-icon"><i class="fas fa-project-diagram"></i></div>Project Manage
+                <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse bg-dark" id="collapseProject" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                <nav class="sidenav-menu-nested nav">
+                    @can('donor_view')
+                        <a class="nav-link" href="{{route('donors.index')}}">Donors</a>
+                    @endcan
+                    @can('project_view')
+                        <a class="nav-link" href="{{route('projects.index')}}">Projects</a>
+                    @endcan
+                </nav>
+            </div>
+            <!-- /.PROJECT MANAGE -->
+
+
             <!-- OPERATION PLAN -->
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOP" aria-expanded="false" aria-controls="collapseHR">
                 <div class="nav-link-icon"><i class="fa fa-clipboard-list"></i></div>Operation Plane (OP)
@@ -110,22 +128,72 @@
             <!-- /.ASSET MANAGEMENT -->
 
 
-            <!-- ASSET MANAGEMENT -->
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProject" aria-expanded="false" aria-controls="collapseHR">
-                <div class="nav-link-icon"><i class="fas fa-project-diagram"></i></div>Project Manage
+            <!-- ORGANIZATION MANAGEMENT -->
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOrganization" aria-expanded="false" aria-controls="collapseHR">
+                <div class="nav-link-icon"><i class="fa fa-building"></i></div>Organizations/Groups
                 <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
             </a>
-            <div class="collapse bg-dark" id="collapseProject" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+            <div class="collapse bg-dark" id="collapseOrganization" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                 <nav class="sidenav-menu-nested nav">
-                    @can('donor_view')
-                        <a class="nav-link" href="{{route('donors.index')}}">Donors</a>
+                    @can('organization-category_view')
+                        <a class="nav-link" href="{{route('organizationCategories.index')}}">Categories</a>
                     @endcan
-                    @can('project_view')
-                        <a class="nav-link" href="{{route('projects.index')}}">Projects</a>
+                    @can('organization_view')
+                        <a class="nav-link" href="{{route('organizations.index')}}">Organizations</a>
+                    @endcan
+                    @can('organization-group_view')
+                        <a class="nav-link" href="{{route('organizationGroups.index')}}">Groups</a>
+                    @endcan
+                    @can('stakeholder_view')
+                        <a class="nav-link" href="{{route('stakeholders.index')}}">Stakeholders</a>
                     @endcan
                 </nav>
             </div>
-            <!-- /.ASSET MANAGEMENT -->
+            <!-- /.ORGANIZATION MANAGEMENT -->
+
+
+            <!-- KC MANAGEMENT -->
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseKC" aria-expanded="false" aria-controls="collapseHR">
+                <div class="nav-link-icon"><i class="fa fa-people-arrows"></i></div>KC Manage
+                <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse bg-dark" id="collapseKC" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                <nav class="sidenav-menu-nested nav">
+                    @can('organization_view')
+                        <a class="nav-link" href="{{route('knowledgeCenters.index')}}">KC List</a>
+                    @endcan
+                    @can('experience_view')
+                        <a class="nav-link" href="{{route('knowledgeCenters.member')}}">KC Members</a>
+                    @endcan
+                </nav>
+            </div>
+            <!-- /.KC MANAGEMENT -->
+
+
+
+            <!-- INDIVIDUAL MANAGEMENT -->
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseIndividual" aria-expanded="false" aria-controls="collapseHR">
+                <div class="nav-link-icon"><i class="fa fa-users"></i></div>Individuals
+                <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse bg-dark" id="collapseIndividual" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                <nav class="sidenav-menu-nested nav">
+                    @can('individual-group_view')
+                        <a class="nav-link" href="{{route('individualGroups.index')}}">Groups</a>
+                    @endcan
+                    @can('individual_view')
+                        <a class="nav-link" href="{{route('individuals.index')}}">Individuals</a>
+                    @endcan
+                    @can('experience_view')
+                        <a class="nav-link" href="{{route('experiences.index')}}">Experiences</a>
+                    @endcan
+                    @can('resource-people_view')
+                        <a class="nav-link" href="{{route('resourcePeople.index')}}">Resource People</a>
+                    @endcan
+                </nav>
+            </div>
+            <!-- /.INDIVIDUAL MANAGEMENT -->
+
 
 
             <!-- FINANCE -->
@@ -157,22 +225,6 @@
             </div>
             <!-- /.FINANCE -->
 
-            <!-- JOB MANAGE -->
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseJob" aria-expanded="false" aria-controls="collapseHR">
-                <div class="nav-link-icon"><i class="fa fa-briefcase"></i></div>Job
-                <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-            </a>
-            <div class="collapse bg-dark" id="collapseJob" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                <nav class="sidenav-menu-nested nav">
-                    @can('job-type_view')
-                        <a class="nav-link" href="{{route('jobTypes.index')}}">Job Type</a>
-                    @endcan
-                    @can('job-title_view')
-                        <a class="nav-link" href="{{route('jobTitles.index')}}">Job Titles</a>
-                    @endcan
-                </nav>
-            </div>
-            <!-- /.JOB MANAGE -->
 
 
             <!-- JOB MANAGE -->
@@ -191,6 +243,21 @@
                 </nav>
             </div>
             <!-- /.JOB MANAGE -->
+
+
+            <!-- LOCATION MANAGEMENT -->
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLocation" aria-expanded="false" aria-controls="collapseHR">
+                <div class="nav-link-icon"><i class="fa fa-map-marked"></i></div>Locations
+                <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse bg-dark" id="collapseLocation" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                <nav class="sidenav-menu-nested nav">
+                    @can('designation_view')
+                        <a class="nav-link" href="{{route('locations.index')}}">Locations</a>
+                    @endcan
+                </nav>
+            </div>
+            <!-- /.LOCATION MANAGEMENT -->
 
 
             <!-- AUTHENTICATION AND AUTHORIZATION -->
@@ -212,6 +279,26 @@
                 </nav>
             </div>
             <!-- /.AUTHENTICATION AND AUTHORIZATION -->
+
+
+
+            <!-- SETTINGS -->
+            @role('superAdmin')
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSetting" aria-expanded="false" aria-controls="collapseHR">
+                    <div class="nav-link-icon"> <i class="fa fa-cogs"></i></div>Settings
+                    <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
+                <div class="collapse bg-dark" id="collapseSetting" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                    <nav class="sidenav-menu-nested nav">
+
+                            <a class="nav-link" href="{{route('backups.index')}}">Backup</a>
+                            <a class="nav-link" href="{{route('activityLogs.index')}}">User Activity Logs</a>
+                            <a class="nav-link" href="{{route('jobTypes.index')}}">Monitoring</a>
+
+                    </nav>
+                </div>
+            @endrole
+            <!-- /.SETTINGS -->
 
 
 

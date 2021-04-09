@@ -1,4 +1,4 @@
-@extends('layouts.templates.individual')
+@extends('layouts.backend')
 @section('title','Edit Individual Groups')
 @section('content')
     <div class="row justify-content-center">

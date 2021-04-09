@@ -1,4 +1,4 @@
-@extends('layouts.templates.organization')
+@extends('layouts.backend')
 @section('title','Edit Organization Category')
 @section('content')
     <div class="row justify-content-center">

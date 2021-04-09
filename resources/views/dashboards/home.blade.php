@@ -10,62 +10,6 @@
         <div class="col-md-12 dash-menu">
             <div class="row">
 
-                @hasanyrole('Employee|superAdmin')
-                <div class="col-md-2 mb-4">
-                    <a href="{{route('dashboard.op')}}" class="shortcut-icon">
-                        <div>
-                            <i class="fa fa-clipboard-list"></i>
-                            <span>Operation Plan (OP)</span>
-                        </div>
-                    </a>
-                </div>
-                @endhasanyrole
-
-                @hasanyrole('Employee|superAdmin')
-                    <div class="col-md-2 mb-4">
-                        <a href="{{route('dashboard.kc')}}" class="shortcut-icon">
-                            <div>
-                                <i class="fa fa-people-arrows"></i>
-                                <span>KC MANAGE</span>
-                            </div>
-                        </a>
-                    </div>
-                @endhasanyrole
-
-
-                @hasanyrole('Employee|superAdmin')
-                    <div class="col-md-2 mb-4">
-                        <a href="{{route('dashboard.individual')}}" class="shortcut-icon">
-                            <div>
-                                <i class="fa fa-users"></i>
-                                <span>Individuals</span>
-                            </div>
-                        </a>
-                    </div>
-                @endhasanyrole
-
-                @hasanyrole('Employee|superAdmin')
-                    <div class="col-md-2 mb-4">
-                        <a href="{{route('dashboard.organization')}}" class="shortcut-icon">
-                            <div>
-                                <i class="fa fa-building"></i>
-                                <span>Organizations</span>
-                            </div>
-                        </a>
-                    </div>
-                @endhasanyrole
-
-                @hasanyrole('Employee|superAdmin')
-                    <div class="col-md-2 mb-4">
-                        <a href="{{route('dashboard.location')}}" class="shortcut-icon">
-                            <div>
-                                <i class="fa fa-map-marked"></i>
-                                <span>Locations</span>
-                            </div>
-                        </a>
-                    </div>
-                @endhasanyrole
-
                 @hasanyrole('Employee|Event Manager|superAdmin')
                     <div class="col-md-2 mb-4">
                         <a href="{{route('dashboard.event')}}" class="shortcut-icon">
@@ -115,7 +59,7 @@
                 <div class="col-md-2 mb-4">
                     <a href="{{route('dashboard.settings')}}" class="shortcut-icon">
                         <div>
-                            <i class="fa fa-cogs"></i>
+
                             <span>Settings</span>
                         </div>
                     </a>

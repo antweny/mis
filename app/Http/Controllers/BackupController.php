@@ -26,7 +26,7 @@ class BackupController extends AuthController
         catch (\Exception $e) {
             return $this->error();
         }
-        return view('backup.index',compact('backups'));
+        return view('settings.backup.index',compact('backups'));
     }
 
     /**

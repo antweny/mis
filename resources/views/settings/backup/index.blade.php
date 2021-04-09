@@ -1,4 +1,4 @@
-@extends('layouts.templates.setting')
+@extends('layouts.backend')
 @section('title','System Backups')
 @section('content')
 
@@ -11,7 +11,7 @@
     <!-- Start Card -->
     <x-card title="System Backups List">
         <!-- Table Start -->
-        <x-table.listing>
+        <x-table.listing id="table">
             <!-- table headers -->
             <x-slot name="thead" >
                 <th scope="col">Name</th>

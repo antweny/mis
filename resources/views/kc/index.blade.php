@@ -1,4 +1,4 @@
-@extends('layouts.templates.kc')
+@extends('layouts.backend')
 @section('title','Knowledge Centers List')
 @section('content')
 

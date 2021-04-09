@@ -1,4 +1,4 @@
-@extends('layouts.templates.organization')
+@extends('layouts.backend')
 @section('title','Organizations List')
 @section('content')
 

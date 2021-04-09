@@ -31,7 +31,7 @@ class OutputController extends AuthController
 
         try {
             $outputs = $this->interface->get();  //Get all outputs
-            return view('outputs.index',compact('outputs'));
+            return view('op.outputs.index',compact('outputs'));
         }
         catch (Exception $e) {
             return $this->error();
@@ -47,7 +47,7 @@ class OutputController extends AuthController
 
         try {
             $output = $this->interface->model();  //Get all employees
-            return view('outputs.create',compact('output'));
+            return view('op.outputs.create',compact('output'));
         }
         catch (Exception $e) {
             return $this->error();
@@ -79,7 +79,7 @@ class OutputController extends AuthController
 
         try {
             $output = $this->interface->find($id);
-            return view('outputs.edit',compact('output'));
+            return view('op.outputs.edit',compact('output'));
         }
         catch (Exception $e) {
             return $this->error();

@@ -1,4 +1,4 @@
-@extends('layouts.templates.location')
+@extends('layouts.backend')
 @section('title','Edit Locations')
 @section('content')
     <div class="row justify-content-center">

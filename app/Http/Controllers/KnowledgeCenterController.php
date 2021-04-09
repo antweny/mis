@@ -32,7 +32,7 @@ class KnowledgeCenterController extends AuthController
         $this->canView($this->organization->model());
         try {
             $organizations = $this->organization->getOrganisationListByCategory('Knowledge Center');  //Get all organizations
-            return view('organization.kc.index',compact('organizations'));
+            return view('kc.index',compact('organizations'));
         }
         catch (Exception $e) {
             return $this->error();
@@ -47,10 +47,9 @@ class KnowledgeCenterController extends AuthController
         $this->canView($this->organization->model());
         try {
             $experiences = $this->experience->organizationMembersList('Knowledge Center');  //Get all experiences
-            return view('organization.kc.member',compact('experiences'));
+            return view('kc.member',compact('experiences'));
         }
         catch (Exception $e) {
-            dd($e->getMessage());
             return $this->error();
         }
     }

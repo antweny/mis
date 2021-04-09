@@ -1,4 +1,4 @@
-@extends('layouts.templates.individual')
+@extends('layouts.backend')
 @section('title','New Individual Experience')
 
 @section('content')

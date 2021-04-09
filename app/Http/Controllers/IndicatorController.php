@@ -31,7 +31,7 @@ class IndicatorController extends AuthController
 
         try {
             $indicators = $this->interface->get();  //Get all indicators
-            return view('indicators.index',compact('indicators'));
+            return view('op.indicators.index',compact('indicators'));
         }
         catch (Exception $e) {
             return $this->error();
@@ -63,7 +63,7 @@ class IndicatorController extends AuthController
 
         try {
             $indicator = $this->interface->find($id);
-            return view('indicators.edit',compact('indicator'));
+            return view('op.indicators.edit',compact('indicator'));
         }
         catch (Exception $e) {
             return $this->error();

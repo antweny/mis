@@ -31,7 +31,7 @@ class ActivityController extends AuthController
 
         try {
             $activities = $this->interface->get();  //Get all activities
-            return view('activities.index',compact('activities'));
+            return view('op.activities.index',compact('activities'));
         }
         catch (Exception $e) {
             return $this->error();
@@ -47,7 +47,7 @@ class ActivityController extends AuthController
 
         try {
             $activity = $this->interface->model();  //Get all employees
-            return view('activities.create',compact('activity'));
+            return view('op.activities.create',compact('activity'));
         }
         catch (Exception $e) {
             return $this->error();
@@ -79,7 +79,7 @@ class ActivityController extends AuthController
 
         try {
             $activity = $this->interface->find($id);
-            return view('activities.edit',compact('activity'));
+            return view('op.activities.edit',compact('activity'));
         }
         catch (Exception $e) {
             return $this->error();
