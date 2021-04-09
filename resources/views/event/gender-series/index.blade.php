@@ -1,4 +1,4 @@
-@extends('layouts.templates.gender')
+@extends('layouts.backend')
 @section('title','Gender Series List')
 @section('content')
 
@@ -11,7 +11,7 @@
     <!-- Start Card -->
     <x-card title="Gender Series List">
         <!-- Table Start -->
-        <x-table.listing>
+        <x-table.listing id="table">
 
             <!-- table headers -->
             <x-slot name="thead" >

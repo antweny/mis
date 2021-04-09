@@ -67,6 +67,7 @@ class InterfaceRepositoryServiceProvider extends ServiceProvider
         $this->app->bind('App\Repository\Interfaces\EventRepositoryInterface','App\Repository\EventRepository');
         $this->app->bind('App\Repository\Interfaces\ParticipantRoleRepositoryInterface','App\Repository\ParticipantRoleRepository');
         $this->app->bind('App\Repository\Interfaces\ParticipantRepositoryInterface','App\Repository\ParticipantRepository');
+        $this->app->bind('App\Repository\Interfaces\GenderSeriesRepositoryInterface','App\Repository\GenderSeriesRepository');
 
 
         /*

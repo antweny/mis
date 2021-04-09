@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\GenderSeriesRequest;
+use App\Repository\Interfaces\GenderSeriesRepositoryInterface;
 use App\Services\GenderSeriesService;
 use Illuminate\Http\Request;
 use Exception;
@@ -11,7 +12,7 @@ class GenderSeriesController extends AuthController
 {
     private $gender;
 
-    public function __construct(GenderSeriesService $gender)
+    public function __construct(GenderSeriesRepositoryInterface $gender)
     {
         parent::__construct();
         $this->gender = $gender;
@@ -26,12 +27,11 @@ class GenderSeriesController extends AuthController
 
         try {
             $genders = $this->gender->get();  //Get all holidays
-            return view('gender-series.index',compact('genders'));
+            return view('event.gender-series.index',compact('genders'));
         }
         catch (Exception $e) {
             return $this->error();
         }
-
     }
 
     /**
@@ -42,7 +42,7 @@ class GenderSeriesController extends AuthController
         $this->canCreate($this->gender->model());
         try {
             $genderSeries = $this->gender->model();  //Get all holidays
-            return view('gender-series.create',compact('genderSeries'));
+            return view('event.gender-series.create',compact('genderSeries'));
         }
         catch (Exception $e) {
             return $this->error();
@@ -80,7 +80,7 @@ class GenderSeriesController extends AuthController
         $this->canUpdate($this->gender->model());
         try {
             $genderSeries = $this->gender->find($id);  //Get all holidays
-            return view('gender-series.edit',compact('genderSeries'));
+            return view('event.gender-series.edit',compact('genderSeries'));
         }
         catch (Exception $e) {
             return $this->error();
@@ -94,7 +94,7 @@ class GenderSeriesController extends AuthController
     {
         $this->canUpdate($this->gender->model());
         try {
-            $this->gender->update($id,$request->validated());  //Get all holidays
+            $this->gender->updating($id,$request->validated());  //Get all holidays
             return $this->successRoute('genderSeries.index');
         }
         catch (Exception $e) {

@@ -151,7 +151,7 @@
                         <a class="nav-link" href="{{route('participants.index')}}">Event Participants</a>
                     @endcan
                     @can('gender-series_view')
-                        <a class="nav-link" href="{{route('genderSeries.index')}}">GDSS</a>
+                        <a class="nav-link" href="{{route('genderSeries.index')}}">Gender Series (GDSS)</a>
                     @endcan
                     @can('participant_view')
                         <a class="nav-link" href="{{route('genderSeriesParticipants.index')}}">GDSS Participants</a>

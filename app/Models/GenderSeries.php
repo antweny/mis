@@ -12,16 +12,12 @@ class GenderSeries extends BaseModel
      */
     protected static $logName = 'gender series';
 
+
     /* -----------------------------------------
     * The attributes that are mass assignable.
     * -----------------------------------------*/
-    protected $fillable = [
-        'topic',
-        'employee_id',
-        'date',
-        'status',
-        'desc',
-    ];
+    protected $fillable = ['topic', 'employee_id', 'date', 'status', 'desc',];
+
 
     /**
      * --------------------
@@ -44,6 +40,7 @@ class GenderSeries extends BaseModel
             return null;
         }
     }
+
 
     /**
      *
@@ -81,6 +78,8 @@ class GenderSeries extends BaseModel
     {
         return$this->belongsTo(Employee::class)->withDefault();
     }
+
+
 
 
 
