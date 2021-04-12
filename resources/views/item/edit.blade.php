@@ -1,4 +1,4 @@
-@extends('layouts.templates.store')
+@extends('layouts.backend')
 @section('title','Edit Item')
 @section('content')
 

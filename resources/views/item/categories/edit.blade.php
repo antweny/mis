@@ -1,4 +1,4 @@
-@extends('layouts.templates.store')
+@extends('layouts.backend')
 @section('title','Edit Item Category')
 @section('content')
     <div class="row justify-content-center">
@@ -8,22 +8,25 @@
                 {{ Form::model($itemCategory, array('route' => array('itemCategories.update',$itemCategory), 'method' => 'PUT')) }}
                     @csrf
                     <div class="form-group">
-                        <x-form.elements.input label="Name: <span class='star'>*</span>" name="name" id="name" for="name" req="required" :model="$itemCategory"  />
+                        <x-form.label name="Name: <span class='star'>*</span>" />
+                        <x-form.input name="name" id="name" for="name" req="required" :model="$itemCategory"  />
                     </div>
                     <div class="form-group">
-                        <x-form.elements.input label="Sort" type="number" name="sort" id="sort" for="sort" :model="$itemCategory"/>
+                        <x-form.label name="Sort: <span class='star'>*</span>" />
+                        <x-form.input type="number" name="sort" id="sort" for="sort" :model="$itemCategory"/>
                     </div>
                     <div class="form-group">
-                        <x-form.elements.textarea label="Descriptions" name="desc" id="desc" :model="$itemCategory"/>
+                        <x-form.label name="Description" />
+                        <textarea name="desc" id="desc" class="form-control @error('desc') is-invalid @enderror">{{$itemCategory->desc}}</textarea>
+                        @error('desc') <span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong> </span> @enderror
                     </div>
-
                     <div class="form-group row">
                         <div class="col">
                             <div class="float-left">
-                                <x-button.back> {{route('itemCategories.index')}} </x-button.back>
+                                <x-button.back />
                             </div>
                             <div class="float-right">
-                                <x-button label="Update"/>
+                                <x-button.submit label="Update"/>
                             </div>
                         </div>
                     </div>

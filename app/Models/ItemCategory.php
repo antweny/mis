@@ -16,9 +16,5 @@ class ItemCategory extends BaseModel
     /**
      * The attributes that are mass assignable.
      */
-    protected $fillable = [
-        'name',
-        'sort',
-        'desc'
-    ];
+    protected $fillable = ['name', 'sort', 'desc'];
 }

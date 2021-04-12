@@ -1,11 +1,11 @@
-@extends('layouts.templates.store')
+@extends('layouts.backend')
 @section('title','Items List')
 @section('content')
 
     <x-row>
         <x-slot name="left">
             <x-button.create label="Add Item"> {{route('items.create')}} </x-button.create>
-            <x-button.general label="Import" icon="fas fa-file-upload" modal="modal" class="btn btn-dark"> #import </x-button.general>
+{{--            <x-button.general label="Import" icon="fas fa-file-upload" modal="modal" class="btn btn-dark"> #import </x-button.general>--}}
         </x-slot>
     </x-row>
 
@@ -37,18 +37,10 @@
                     <td  class="text-center">
                         <div class="btn-group btn-group-sm">
                             @can('item_update')
-                                <a href="{{route('items.edit',$item)}}" class="btn mr-2 btn-edit" data-toggle="tooltip" data-placement="top" title="Edit item" >
-                                    <i class="fa fa-edit"></i>
-                                </a>
+                                <x-button.edit>{{route('items.edit',$item)}}</x-button.edit>
                             @endcan
                             @can('item_delete')
-                                <form method="POST" action="{{route('items.destroy',$item)}}" class="form-horizontal" role="form" autocomplete="off">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-sm btn-delete" onclick="return confirm('Confirm to delete?')" data-toggle="tooltip" data-placement="top" title="Delete">
-                                        <i class="fa fa-times"></i>
-                                    </button>
-                                </form>
+                                <x-button.delete>{{route('items.destroy',$item)}}</x-button.delete>
                             @endcan
                         </div>
                     </td>
@@ -63,11 +55,11 @@
         <!-- Start form -->
         <x-form.post action="items.import">
             <div class="form-group">
-                <x-form.elements.label name="Import File <span class='star'>*</span>" for="imported_file" />
-                <x-form.elements.input type="file" name="imported_file" id="imported_file" required="required"/>
+                <x-form.label name="Import File <span class='star'>*</span>" for="imported_file" />
+                <x-form.input type="file" name="imported_file" id="imported_file" required="required"/>
             </div>
             <div class="form-group text-right">
-                <x-button />
+                <x-button.submit />
             </div>
         </x-form.post>
         <!-- end form -->

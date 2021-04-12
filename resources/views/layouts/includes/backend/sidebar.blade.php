@@ -278,6 +278,37 @@
             <!-- /.JOB MANAGE -->
 
 
+
+            <!-- STORE MANAGE -->
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseStore" aria-expanded="false" aria-controls="collapseHR">
+                <div class="nav-link-icon"><i class="fa fa-warehouse"></i></div>Store
+                <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse bg-dark" id="collapseStore" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                <nav class="sidenav-menu-nested nav">
+                    @can('item-category_view')
+                        <a class="nav-link" href="{{route('itemCategories.index')}}">Item Categories</a>
+                    @endcan
+                    @can('item-unit_view')
+                        <a class="nav-link" href="{{route('itemUnits.index')}}"> Item Units</a>
+                    @endcan
+                    @can('item_view')
+                        <a class="nav-link" href="{{route('items.index')}}">Items</a>
+                    @endcan
+                    @can('item-in_view')
+                        <a class="nav-link" href="{{route('itemIn.index')}}">Item In</a>
+                    @endcan
+                    @can('item-request_view')
+                        <a class="nav-link" href="{{route('itemRequests.index')}}">My Requests</a>
+                    @endcan
+                    @can('item-issue_view')
+                        <a class="nav-link" href="{{route('itemIssues.index')}}">Requests to Issue</a>
+                    @endcan
+                </nav>
+            </div>
+            <!-- /.STORE MANAGE -->
+
+
             <!-- LOCATION MANAGEMENT -->
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLocation" aria-expanded="false" aria-controls="collapseHR">
                 <div class="nav-link-icon"><i class="fa fa-map-marked"></i></div>Locations
@@ -323,11 +354,9 @@
                 </a>
                 <div class="collapse bg-dark" id="collapseSetting" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                     <nav class="sidenav-menu-nested nav">
-
-                            <a class="nav-link" href="{{route('backups.index')}}">Backup</a>
-                            <a class="nav-link" href="{{route('activityLogs.index')}}">User Activity Logs</a>
-                            <a class="nav-link" href="{{route('jobTypes.index')}}">Monitoring</a>
-
+                        <a class="nav-link" href="{{route('backups.index')}}">Backup</a>
+                        <a class="nav-link" href="{{route('activityLogs.index')}}">User Activity Logs</a>
+                        <a class="nav-link" href="{{route('jobTypes.index')}}">Monitoring</a>
                     </nav>
                 </div>
             @endrole

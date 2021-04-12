@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\ItemCategoryService;
+use App\Repository\Interfaces\ItemCategoryRepositoryInterface;
 use App\Http\Requests\ItemCategoryRequest;
 use Exception;
 
@@ -16,7 +16,7 @@ class ItemCategoryController extends AuthController
     /**
      * Item CategoryController constructor.
      */
-    public function __construct(ItemCategoryService $itemCategory)
+    public function __construct(ItemCategoryRepositoryInterface $itemCategory)
     {
         parent::__construct();
         $this->middleware('employee');
@@ -30,7 +30,7 @@ class ItemCategoryController extends AuthController
     {
         try {
             $itemCategories = $this->itemCategory->get();  //Get all itemCategories
-            return view('item-categories.index',compact('itemCategories'));
+            return view('item.categories.index',compact('itemCategories'));
         }
         catch (Exception $e) {
             return $this->error();
@@ -58,7 +58,7 @@ class ItemCategoryController extends AuthController
     {
         try {
             $itemCategory = $this->itemCategory->find($id);
-            return view('item-categories.edit',compact('itemCategory'));
+            return view('item.categories.edit',compact('itemCategory'));
         }
         catch (Exception $e) {
             return $this->error();

@@ -72,9 +72,18 @@ class InterfaceRepositoryServiceProvider extends ServiceProvider
 
 
         /*
+        * Store Bindings
+        */
+        $this->app->bind('App\Repository\Interfaces\ItemCategoryRepositoryInterface','App\Repository\ItemCategoryRepository');
+        $this->app->bind('App\Repository\Interfaces\ItemUnitRepositoryInterface','App\Repository\ItemUnitRepository');
+        $this->app->bind('App\Repository\Interfaces\ItemRepositoryInterface','App\Repository\ItemRepository');
+
+
+        /*
         * Location Bindings
         */
         $this->app->bind('App\Repository\Interfaces\LocationRepositoryInterface','App\Repository\LocationRepository');
+
 
 
         /*
@@ -82,6 +91,7 @@ class InterfaceRepositoryServiceProvider extends ServiceProvider
         */
         $this->app->bind('App\Repository\Interfaces\JobTypeRepositoryInterface','App\Repository\JobTypeRepository');
         $this->app->bind('App\Repository\Interfaces\JobTitleRepositoryInterface','App\Repository\JobTitleRepository');
+
 
 
         /*

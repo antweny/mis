@@ -1,4 +1,4 @@
-@extends('layouts.templates.store')
+@extends('layouts.backend')
 @section('title','New Item')
 
 @section('content')

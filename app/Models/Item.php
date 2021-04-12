@@ -13,15 +13,7 @@ class Item extends BaseModel
     /**
      * The attributes that are mass assignable.
      */
-    protected $fillable = [
-        'name',
-        'item_category_id',
-        'item_unit_id',
-        'unit_quantity',
-        'order_level',
-        'quantity',
-        'desc',
-    ];
+    protected $fillable = ['name', 'item_category_id', 'item_unit_id', 'unit_quantity', 'order_level', 'quantity', 'desc'];
 
     /**
      * --------------------

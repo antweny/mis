@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ItemUnitRequest;
+use App\Repository\Interfaces\ItemUnitRepositoryInterface;
 use App\Services\ItemUnitService;
 use Exception;
 
@@ -16,7 +17,7 @@ class ItemUnitController extends AuthController
     /**
      * Item Unit Controller constructor.
      */
-    public function __construct(ItemUnitService $itemUnit)
+    public function __construct(ItemUnitRepositoryInterface $itemUnit)
     {
         parent::__construct();
         $this->middleware('employee');
@@ -30,7 +31,7 @@ class ItemUnitController extends AuthController
     {
         try {
             $itemUnits = $this->itemUnit->get();  //Get all titles
-            return view('item-units.index',compact('itemUnits'));
+            return view('item.units.index',compact('itemUnits'));
         }
         catch (Exception $e) {
             return $this->error();
@@ -58,7 +59,7 @@ class ItemUnitController extends AuthController
     {
         try {
             $itemUnit = $this->itemUnit->find($id);
-            return view('item-units.edit',compact('itemUnit'));
+            return view('item.units.edit',compact('itemUnit'));
         }
         catch (Exception $e) {
             return $this->error();

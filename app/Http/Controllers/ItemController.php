@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ImportFileRequest;
 use App\Http\Requests\ItemRequest;
 use App\Imports\ItemImport;
+use App\Repository\Interfaces\ItemRepositoryInterface;
 use App\Services\ItemService;
 use Maatwebsite\Excel\Facades\Excel;
 use Exception;
@@ -19,7 +20,7 @@ class ItemController extends AuthController
     /**
      * ItemController constructor.
      */
-    public function __construct(ItemService $item)
+    public function __construct(ItemRepositoryInterface $item)
     {
         parent::__construct();
         $this->middleware('employee');

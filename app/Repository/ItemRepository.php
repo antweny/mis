@@ -1,17 +1,19 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repository;
 
 use App\Models\Item;
-use function Matrix\multiply;
+use App\Repository\Interfaces\ItemRepositoryInterface;
 
-class ItemRepository extends BaseRepository
+class ItemRepository extends BaseRepository implements ItemRepositoryInterface
 {
 
     public function __construct(Item $model)
     {
         parent::__construct($model);
     }
+
+
 
     /**
      * Get Item Where Quantity is greater than zero
