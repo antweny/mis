@@ -15,14 +15,7 @@ class GenderSeriesParticipant extends BaseModel
      * The attributes that are mass assignable.
      * -----------------------------------------
      */
-    protected $fillable = [
-        'individual_id',
-        'organization_id',
-        'location_id',
-        'gender_series_id',
-        'participant_role_id',
-        'individual_group_id'
-    ];
+    protected $fillable = ['individual_id', 'organization_id', 'location_id', 'gender_series_id', 'participant_role_id', 'individual_group_id'];
 
 
     /**

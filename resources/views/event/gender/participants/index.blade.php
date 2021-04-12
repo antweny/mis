@@ -1,4 +1,4 @@
-@extends('layouts.templates.gender')
+@extends('layouts.backend')
 @section('title','Gender Series List')
 @section('content')
 

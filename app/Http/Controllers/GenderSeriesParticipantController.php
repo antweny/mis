@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\GenderSeriesParticipantRequest;
+use App\Repository\Interfaces\GenderSeriesParticipantRepositoryInterface;
 use App\Services\GenderSeriesParticipantService;
 use Illuminate\Http\Request;
 use Exception;
@@ -11,7 +12,7 @@ class GenderSeriesParticipantController extends AuthController
 {
     private $genderParticipant;
 
-    public function __construct(GenderSeriesParticipantService $genderParticipant)
+    public function __construct(GenderSeriesParticipantRepositoryInterface $genderParticipant)
     {
         parent::__construct();
         $this->genderParticipant = $genderParticipant;
@@ -26,7 +27,7 @@ class GenderSeriesParticipantController extends AuthController
 
         try {
             $genderParticipants = $this->genderParticipant->get();  //Get all holidays
-            return view('gender-series-participant.index',compact('genderParticipants'));
+            return view('event.gender.participants.index',compact('genderParticipants'));
         }
         catch (Exception $e) {
             return $this->error();
@@ -42,7 +43,7 @@ class GenderSeriesParticipantController extends AuthController
         $this->canCreate($this->genderParticipant->model());
         try {
             $genderSeriesParticipant = $this->genderParticipant->model();  //Get all holidays
-            return view('gender-series-participant.create',compact('genderSeriesParticipant'));
+            return view('event.gender.participants.create',compact('genderSeriesParticipant'));
         }
         catch (Exception $e) {
             return $this->error();
@@ -74,7 +75,7 @@ class GenderSeriesParticipantController extends AuthController
         $this->canUpdate($this->genderParticipant->model());
         try {
             $genderSeriesParticipant = $this->genderParticipant->find($id);  //Get all holidays
-            return view('gender-series-participant.edit',compact('genderSeriesParticipant'));
+            return view('event.gender.participants.edit',compact('genderSeriesParticipant'));
         }
         catch (Exception $e) {
             return $this->error();

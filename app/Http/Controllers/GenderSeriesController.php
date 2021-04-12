@@ -27,7 +27,7 @@ class GenderSeriesController extends AuthController
 
         try {
             $genders = $this->gender->get();  //Get all holidays
-            return view('event.gender-series.index',compact('genders'));
+            return view('event.gender.series.index',compact('genders'));
         }
         catch (Exception $e) {
             return $this->error();
@@ -42,7 +42,7 @@ class GenderSeriesController extends AuthController
         $this->canCreate($this->gender->model());
         try {
             $genderSeries = $this->gender->model();  //Get all holidays
-            return view('event.gender-series.create',compact('genderSeries'));
+            return view('event.gender.series.create',compact('genderSeries'));
         }
         catch (Exception $e) {
             return $this->error();
@@ -80,7 +80,7 @@ class GenderSeriesController extends AuthController
         $this->canUpdate($this->gender->model());
         try {
             $genderSeries = $this->gender->find($id);  //Get all holidays
-            return view('event.gender-series.edit',compact('genderSeries'));
+            return view('event.gender.series.edit',compact('genderSeries'));
         }
         catch (Exception $e) {
             return $this->error();

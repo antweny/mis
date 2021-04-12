@@ -1,4 +1,4 @@
-@extends('layouts.templates.event')
+@extends('layouts.backend')
 @section('title','Edit GDSS Participant')
 @section('content')
 
@@ -9,7 +9,7 @@
                 <!-- Start form -->
                 {{ Form::model($genderSeriesParticipant, array('route' => array('genderSeriesParticipants.update',$genderSeriesParticipant), 'method' => 'PUT')) }}
                     @csrf
-                    @include('gender-series-participant._form',['buttonText'=>'Update'])
+                    @include('event.gender.participants._form',['buttonText'=>'Update'])
                 {{ Form::close() }}
 
             </x-card>

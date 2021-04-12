@@ -9,7 +9,7 @@
 
                 <!-- Start form -->
                 <x-form.post action="genderSeries.store">
-                    @include('event.gender-series._form',['buttonText'=>'Create'])
+                    @include('event.gender.series._form',['buttonText'=>'Create'])
                 </x-form.post>
                 <!-- end form -->
 

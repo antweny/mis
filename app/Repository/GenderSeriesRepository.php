@@ -16,11 +16,19 @@ class GenderSeriesRepository extends BaseRepository implements GenderSeriesRepos
         parent::__construct($model);
     }
 
+    /*
+     *
+     */
+    public function get()
+    {
+       return $this->relationshipWith(['facilitator','employee']);
+    }
+
     public function create($request)
     {
         DB::beginTransaction();
         try {
-            $gender = $this->create($request);
+            $gender = $this->model->create($request);
             $this->facilitator($gender,$request['facilitators']);
             DB::commit();
             return true;

@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repository;
 
 use App\Models\GenderSeriesParticipant;
+use App\Repository\Interfaces\GenderSeriesParticipantRepositoryInterface;
 
-class GenderSeriesParticipantRepository extends BaseRepository
+class GenderSeriesParticipantRepository extends BaseRepository implements GenderSeriesParticipantRepositoryInterface
 {
 
     public function __construct(GenderSeriesParticipant $model)

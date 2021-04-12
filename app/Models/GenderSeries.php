@@ -82,6 +82,15 @@ class GenderSeries extends BaseModel
 
 
 
+    /**
+     * --------------------
+     *  MODEL RELATIONSHIP
+     * ---------------------
+     */
+    public function genderList()
+    {
+        return $this->select('id','topic','date')->orderBy('date','asc')->get();
+    }
 
 
 
