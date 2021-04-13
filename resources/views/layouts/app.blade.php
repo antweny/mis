@@ -13,9 +13,24 @@
 
 </head>
 <body>
+<!-- Top bar -->
+<div class="container-fluid bg-primary">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 pt-3 pb-3">
+                fdsafsaf
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.Top bar -->
 
+<!-- Top bar -->
 
-@include('layouts.includes.frontend.topNav')
+    @include('layouts.includes.frontend.topNav')
+
+<!-- /.Top bar -->
+
 
 <div class="container">
 
