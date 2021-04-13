@@ -1,4 +1,4 @@
-<nav class="sidenav accordion" id="sidenavAccordion" style="padding-bottom: 100px;">
+<nav class="sidenav accordion" id="sidenavAccordion" >
     <div class="sidenav-menu sb-sidenav-menu" >
         <div class="nav">
 
