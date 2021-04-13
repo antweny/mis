@@ -15,11 +15,7 @@ class ExcelTemplate extends BaseModel
     /**
      * The attributes that are mass assignable.
      */
-    protected $fillable = [
-        'name',
-        'path',
-        'desc'
-    ];
+    protected $fillable = ['name', 'path', 'desc'];
 
 
 

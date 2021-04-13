@@ -1,6 +1,6 @@
 <?php
 
-namespace App\RepositorY;
+namespace App\Repository;
 
 use App\Models\Indicator;
 use App\Repository\Interfaces\IndicatorRepositoryInterface;
