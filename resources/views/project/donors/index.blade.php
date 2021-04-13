@@ -17,7 +17,6 @@
                 <th>Donor</th>
                 <th>From</th>
                 <th>To</th>
-                <th>Status</th>
                 <th>Description</th>
             </x-slot>
             <!-- end table head -->
@@ -28,7 +27,6 @@
                     <td class="text-center">{{$loop->iteration}}</td>
                     <td class="text-left">{!! $donor->organization->name_click  !!} </td>
                     <td class="text-center">{{$donor->start}}</td>
-                    <td class="text-center">{{$donor->end}}</td>
                     <td class="text-center">{!! $donor->end !!}</td>
                     <td class="text-center">{{$donor->desc}}</td>
                     <td  class="text-center">
