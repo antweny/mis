@@ -29,7 +29,7 @@
                     <td class="text-left">{!! $stakeholder->organization->name_click  !!} </td>
                     <td class="text-center">{{$stakeholder->organization_group->name}}</td>
                     <td class="text-center">{{$stakeholder->start}}</td>
-                    <td class="text-center">{{$stakeholder->end}}</td>
+                    <td class="text-center">{!! $stakeholder->end !!}</td>
                     <td class="text-center">{{$stakeholder->desc}}</td>
                     <td  class="text-center">
                         <div class="btn-group btn-group-sm">
