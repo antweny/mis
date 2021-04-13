@@ -7,7 +7,7 @@
             <x-card title="New Project">
                 <!-- Start form -->
                 <x-form.post action="projects.store">
-                    @include('projects._form',['buttonText'=>'Create'])
+                    @include('project._form',['buttonText'=>'Create'])
                 </x-form.post>
                 <!-- end form -->
             </x-card>

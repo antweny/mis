@@ -8,7 +8,7 @@
                 <!-- Start form -->
                 {{ Form::model($project, array('route' => array('projects.update',$project), 'method' => 'PUT')) }}
                     @csrf
-                    @include('projects._form',['buttonText'=>'Update'])
+                    @include('project._form',['buttonText'=>'Update'])
                 {{ Form::close() }}
             </x-card>
         </div>
