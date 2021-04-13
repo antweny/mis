@@ -54,7 +54,7 @@ class ItemOutController extends AuthController
     public function issue(ItemOutRequest $request,$id)
     {
         try {
-            $this->itemIssue->update($id,$request->validated());
+            $this->itemIssue->issue($id,$request->validated());
             return $this->successRoute('itemOut.index','Item Issued Successful');
         }
         catch (Exception $e) {
@@ -69,7 +69,7 @@ class ItemOutController extends AuthController
     {
         try {
             $this->itemIssue->reject($id);
-            return $this->successRoute('itemIssues.index','Request has been rejected');
+            return $this->successRoute('itemOut.index','Request has been rejected');
         }
         catch (Exception $e) {
             return $this->error();

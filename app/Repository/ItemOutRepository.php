@@ -2,16 +2,19 @@
 
 namespace App\Repository;
 
+use App\Models\Item;
 use App\Models\ItemOut;
 use App\Repository\Interfaces\ItemOutRepositoryInterface;
+use Illuminate\Support\Facades\DB;
 
 class ItemOutRepository extends BaseRepository implements ItemOutRepositoryInterface
 {
     protected $item;
 
-    public function __construct(ItemOut $model)
+    public function __construct(ItemOut $model, Item $item)
     {
         parent::__construct($model);
+        $this->item = $item;
     }
 
     /**
@@ -28,11 +31,46 @@ class ItemOutRepository extends BaseRepository implements ItemOutRepositoryInter
      */
     public function reject($id)
     {
-        $itemIssue = $this->find($id);
-        $itemIssue->status = 'R';
-        $itemIssue->quantity_out = 0;
-        $itemIssue->save();
-        return $itemIssue;
+        DB::beginTransaction();
+        try {
+            $request['status'] = "R";
+            $itemOut = $this->find($this->decode($id));
+            //Reduce item quantity
+            $this->item->incrementQuantity($itemOut->item_id,$itemOut->quantity_out); //Get the resource
+            //Set to null quantity out
+            $request['quantity_out'] = null;
+            //
+            $this->update($id,$request);
+            DB::commit();
+            return true;
+        }
+        catch (\Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
     }
+
+    /*
+     * Issue and Item
+     */
+    public function issue($id, $request)
+    {
+        DB::beginTransaction();
+        try {
+            $request['status'] = "I";
+            $itemOut = $this->find($this->decode($id)); //Get the resource
+            //Reduce item quantity
+            $this->item->decrementQuantity($itemOut->item_id,$request['quantity_out']);
+            $this->update($id,$request);
+            DB::commit();
+            return true;
+        }
+        catch (\Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
+    }
+
+
 
 }
