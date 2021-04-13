@@ -7,13 +7,8 @@
             <x-alert />
         </div>
 
-        <div class="col-md-12 dash-menu">
-            <div class="row">
-
-
-
-            </div>
-
+        <div class="col-md-12 text-center">
+            @livewire('counter')
         </div>
 
     </div>
