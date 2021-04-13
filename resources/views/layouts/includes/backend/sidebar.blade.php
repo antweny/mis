@@ -106,7 +106,7 @@
 
             <!-- OPERATION PLAN -->
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOP" aria-expanded="false" aria-controls="collapseHR">
-                <div class="nav-link-icon"><i class="fa fa-clipboard-list"></i></div>Operation Plane (OP)
+                <div class="nav-link-icon"><i class="fa fa-clipboard-list"></i></div>Operation Plan (OP)
                 <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
             </a>
             <div class="collapse bg-dark" id="collapseOP" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
