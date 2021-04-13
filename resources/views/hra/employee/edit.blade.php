@@ -1,4 +1,4 @@
-@extends('layouts.templates.hr')
+@extends('layouts.backend')
 @section('title','Edit Employee')
 @section('content')
 
@@ -8,7 +8,7 @@
                 <!-- Start form -->
                 {{ Form::model($employee, array('route' => array('employees.update',$employee), 'method' => 'PUT')) }}
                     @csrf
-                    @include('employee._form',['buttonText'=>'Update'])
+                    @include('hra.employee._form',['buttonText'=>'Update'])
                 {{ Form::close() }}
             </x-card>
         </div>

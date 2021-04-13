@@ -32,7 +32,7 @@ class RoomController extends AuthController
 
         try {
             $rooms = $this->roomService->get();  //Get all rooms
-            return view('room.index',compact('rooms'));
+            return view('hra.room.index',compact('rooms'));
         }
         catch (Exception $e) {
             return $this->error();
@@ -64,7 +64,7 @@ class RoomController extends AuthController
 
         try {
             $room = $this->roomService->find($id);
-            return view('room.edit',compact('room'));
+            return view('hra.room.edit',compact('room'));
         }
         catch (Exception $e) {
             return $this->error();

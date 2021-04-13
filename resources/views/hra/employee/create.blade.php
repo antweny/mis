@@ -1,4 +1,4 @@
-@extends('layouts.templates.hr')
+@extends('layouts.backend')
 @section('title','New Employee')
 @section('content')
 
@@ -7,7 +7,7 @@
             <x-card title="New Employee">
                 <!-- Start form -->
                 <x-form.post action="employees.store">
-                    @include('employee._form',['buttonText'=>'Save'])
+                    @include('hra.employee._form',['buttonText'=>'Save'])
                 </x-form.post>
                 <!-- end form -->
             </x-card>

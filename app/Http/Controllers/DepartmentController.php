@@ -31,7 +31,7 @@ class DepartmentController extends AuthController
 
         try {
             $departments = $this->interface->get();  //Get all departments
-            return view('departments.index',compact('departments'));
+            return view('hra.departments.index',compact('departments'));
         }
         catch (Exception $e) {
             return $this->error();
@@ -63,7 +63,7 @@ class DepartmentController extends AuthController
 
         try {
             $department = $this->interface->find($id);
-            return view('departments.edit',compact('department'));
+            return view('hra.departments.edit',compact('department'));
         }
         catch (Exception $e) {
             return $this->error();

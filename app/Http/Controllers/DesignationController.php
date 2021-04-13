@@ -31,7 +31,7 @@ class DesignationController extends AuthController
 
         try {
             $designations = $this->interface->paginate();  //Get all designations
-            return view('designations.index',compact('designations'));
+            return view('hra.designations.index',compact('designations'));
         }
         catch (Exception $e) {
             return $this->error();
@@ -63,7 +63,7 @@ class DesignationController extends AuthController
 
         try {
             $designation = $this->interface->find($id);
-            return view('designations.edit',compact('designation'));
+            return view('hra.designations.edit',compact('designation'));
         }
         catch (Exception $e) {
             return $this->error();

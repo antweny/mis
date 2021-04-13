@@ -31,7 +31,7 @@ class EmployeeController extends AuthController
 
         try {
             $employees = $this->employeeService->getWith();  //Get all employees
-            return view('employee.index',compact('employees'));
+            return view('hra.employee.index',compact('employees'));
         }
         catch (Exception $e) {
             return $this->error();
@@ -47,7 +47,7 @@ class EmployeeController extends AuthController
 
         try {
             $employee = $this->employeeService->model();  //Get all employees
-            return view('employee.create',compact('employee'));
+            return view('hra.employee.create',compact('employee'));
         }
         catch (Exception $e) {
             return $this->error();
@@ -79,7 +79,7 @@ class EmployeeController extends AuthController
 
         try {
             $employee = $this->employeeService->find($id);
-            return view('employee.show',compact('employee'));
+            return view('hra.employee.show',compact('employee'));
         }
         catch (Exception $e) {
             return $this->error();
@@ -95,7 +95,7 @@ class EmployeeController extends AuthController
 
         try {
             $employee = $this->employeeService->find($id);
-            return view('employee.edit',compact('employee'));
+            return view('hra.employee.edit',compact('employee'));
         }
         catch (Exception $e) {
             return $this->error();

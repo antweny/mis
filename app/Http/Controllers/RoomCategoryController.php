@@ -30,7 +30,7 @@ class RoomCategoryController extends AuthController
     {
         try {
             $roomCategories = $this->roomCategory->get();  //Get all roomCategories
-            return view('room.categories.index',compact('roomCategories'));
+            return view('hra.room.categories.index',compact('roomCategories'));
         }
         catch (Exception $e) {
             return $this->error();
@@ -58,7 +58,7 @@ class RoomCategoryController extends AuthController
     {
         try {
             $roomCategory = $this->roomCategory->find($id);
-            return view('room.categories.edit',compact('roomCategory'));
+            return view('hra.room.categories.edit',compact('roomCategory'));
         }
         catch (Exception $e) {
             return $this->error();

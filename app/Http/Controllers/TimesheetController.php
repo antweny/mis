@@ -31,7 +31,7 @@ class TimesheetController extends AuthController
     {
         try {
             $timesheets = $this->timesheetService->groupByDate($this->userEmployeeId());  //Get all timesheets
-            return view('timesheets.index',compact('timesheets'));
+            return view('hra.timesheets.index',compact('timesheets'));
         }
         catch (Exception $e) {
             return $this->error();
@@ -59,7 +59,7 @@ class TimesheetController extends AuthController
     {
         try {
             $timesheet = $this->timesheetService->find($id);
-            return view('timesheets.edit',compact('timesheet'));
+            return view('hra.timesheets.edit',compact('timesheet'));
         }
         catch (Exception $e) {
             return $this->error();
