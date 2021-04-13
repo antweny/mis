@@ -366,11 +366,11 @@ Route::prefix('store/item')->group(function () {
     });
 
     //Items Out List
-    Route::prefix('issue/')->name('itemIssues.')->group(function () {
-        Route::get('/', 'ItemIssueController@index')->name('index');
-        Route::get('issue/{itemIssue}', 'ItemIssueController@issue')->name('edit');
-        Route::put('update/{itemIssue}', 'ItemIssueController@update')->name('update');
-        Route::get('delete/{itemIssue}', 'ItemIssueController@reject')->name('reject');
+    Route::prefix('out/')->name('itemOut.')->group(function () {
+        Route::get('/', 'ItemOutController@index')->name('index');
+        Route::get('issue/form/{itemOut}', 'ItemOutController@issueForm')->name('edit');
+        Route::put('update/{itemOut}', 'ItemOutController@issue')->name('issue');
+        Route::get('delete/{itemOut}', 'ItemOutController@reject')->name('reject');
     });
 
 });

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ItemInRequest;
+use App\Repository\Interfaces\ItemInRepositoryInterface;
 use App\Services\ItemInService;
 use Exception;
 
@@ -13,7 +14,7 @@ class ItemInController extends AuthController
     /**
      * ItemIn Controller constructor.
      */
-    public function __construct(ItemInService $itemIn)
+    public function __construct(ItemInRepositoryInterface $itemIn)
     {
         parent::__construct();
         $this->middleware('employee');
@@ -27,7 +28,7 @@ class ItemInController extends AuthController
     {
         try {
             $itemIns = $this->itemIn->get();
-            return view('item-in.index',compact('itemIns'));
+            return view('item.in.index',compact('itemIns'));
         }
         catch (Exception $e) {
             return $this->error();
@@ -40,7 +41,7 @@ class ItemInController extends AuthController
     {
         try {
             $itemIn = $this->itemIn->model();
-            return view('item-in.create',compact('itemIn'));
+            return view('item.in.create',compact('itemIn'));
         }
         catch (Exception $e) {
             return $this->error();
@@ -54,7 +55,7 @@ class ItemInController extends AuthController
     {
         try {
             $this->itemIn->create($request->validated());
-            return $this->success('Item received');
+            return $this->successRoute('itemIn.index','Item Received');
         }
         catch (Exception $e) {
             return $this->errorWithInput($request);
@@ -69,7 +70,7 @@ class ItemInController extends AuthController
         $state = 'update';
         try {
             $itemIn = $this->itemIn->find($id);
-            return view('item-in.edit',compact('itemIn','state'));
+            return view('item.in.edit',compact('itemIn','state'));
         }
         catch (Exception $e) {
             return $this->error();
@@ -82,10 +83,11 @@ class ItemInController extends AuthController
     public function update(ItemInRequest $request,$id)
     {
         try {
-            $this->itemIn->update($id,$request->validated());
+            $this->itemIn->updating($id,$request->validated());
             return $this->successRoute('itemIn.index','Item Received Updated');
         }
         catch (Exception $e) {
+            dd($e->getMessage());
             return $this->errorWithInput($request);
         }
     }

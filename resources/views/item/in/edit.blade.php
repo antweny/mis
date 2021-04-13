@@ -1,4 +1,4 @@
-@extends('layouts.templates.store')
+@extends('layouts.backend')
 @section('title','Edit Received Item')
 @section('content')
 
@@ -8,7 +8,7 @@
                 <!-- Start form -->
                 {{ Form::model($itemIn, array('route' => array('itemIn.update',$itemIn), 'method' => 'PUT')) }}
                     @csrf
-                    @include('item-in._form',['buttonText'=>'Update'])
+                    @include('item.in._form',['buttonText'=>'Update'])
                 {{ Form::close() }}
             </x-card>
         </div>

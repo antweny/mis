@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repository;
 
 use App\Models\ItemOut;
+use App\Repository\Interfaces\ItemRequestRepositoryInterface;
 
-class ItemRequestRepository extends BaseRepository
+class ItemRequestRepository extends BaseRepository implements ItemRequestRepositoryInterface
 {
     public function __construct(ItemOut $model)
     {
@@ -14,7 +15,7 @@ class ItemRequestRepository extends BaseRepository
     /**
      * Get all authenticated user items requests
      */
-    public function getUserData($id)
+    public function get($id = null)
     {
         return $this->model->where('employee_id',$id)->get();
     }

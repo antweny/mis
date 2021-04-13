@@ -77,6 +77,9 @@ class InterfaceRepositoryServiceProvider extends ServiceProvider
         $this->app->bind('App\Repository\Interfaces\ItemCategoryRepositoryInterface','App\Repository\ItemCategoryRepository');
         $this->app->bind('App\Repository\Interfaces\ItemUnitRepositoryInterface','App\Repository\ItemUnitRepository');
         $this->app->bind('App\Repository\Interfaces\ItemRepositoryInterface','App\Repository\ItemRepository');
+        $this->app->bind('App\Repository\Interfaces\ItemInRepositoryInterface','App\Repository\ItemInRepository');
+        $this->app->bind('App\Repository\Interfaces\ItemRequestRepositoryInterface','App\Repository\ItemRequestRepository');
+        $this->app->bind('App\Repository\Interfaces\ItemOutRepositoryInterface', 'App\Repository\ItemOutRepository');
 
 
         /*

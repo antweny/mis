@@ -1,11 +1,11 @@
-@extends('layouts.templates.store')
+@extends('layouts.backend')
 @section('title','Requests to Issue List')
 @section('content')
 
     <!-- Start Card -->
     <x-card title="Requests to Issue List">
         <!-- Table Start -->
-        <x-table.listing>
+        <x-table.listing id="table">
             <!-- table headers -->
             <x-slot name="thead" >
                 <th>Request At</th>
@@ -32,13 +32,13 @@
                     <td  class="text-center">
                         @can('item-issue_update')
                             @if($itemIssue->status == 'O')
-                                <a href="{{route('itemIssues.edit',$itemIssue)}}" class="btn btn-edit btn-sm mr-3" data-toggle="tooltip" data-placement="top" title="Issue Item" >
+                                <a href="{{route('itemOut.edit',$itemIssue)}}" class="btn btn-edit btn-sm mr-3" data-toggle="tooltip" data-placement="top" title="Issue Item" >
                                     <i class="fa fa-upload"></i>
                                 </a>
                             @endif
 
                             @if($itemIssue->status == 'I')
-                                <a href="{{route('itemIssues.reject',$itemIssue)}}" onclick="return confirm('Reject Request?')" class="btn btn-delete btn-sm" data-toggle="tooltip" data-placement="top" title="Reject Request" >
+                                <a href="{{route('itemOut.reject',$itemIssue)}}" onclick="return confirm('Reject Request?')" class="btn btn-delete btn-sm" data-toggle="tooltip" data-placement="top" title="Reject Request" >
                                     <i class="far fa-window-close"></i>
                                 </a>
                             @endif

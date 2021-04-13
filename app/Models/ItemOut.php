@@ -18,17 +18,7 @@ class ItemOut extends BaseModel
     /**
      * The attributes that are mass assignable.
      */
-    protected $fillable = [
-        'item_id',
-        'status',
-        'req_quantity',
-        'quantity_out',
-        'issued_at',
-        'request_by',
-        'remarks',
-        'desc',
-    ];
-
+    protected $fillable = ['item_id', 'status', 'req_quantity', 'quantity_out', 'issued_at', 'request_by', 'remarks', 'desc',];
 
     /**
      * ------------------
@@ -58,6 +48,7 @@ class ItemOut extends BaseModel
         }
     }
 
+
     /**
      * ------------------
      *  MODEL RELATIONSHIP
@@ -71,4 +62,9 @@ class ItemOut extends BaseModel
     {
         return $this->belongsTo(Employee::class)->withDefault();
     }
+
+
+
+
+
 }

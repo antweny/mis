@@ -1,17 +1,17 @@
-@extends('layouts.templates.store')
+@extends('layouts.backend')
 @section('title','My Item Requests')
 @section('content')
 
     <x-row>
         <x-slot name="left">
-            <x-button.create label="Request Item"> {{route('itemRequests.create')}} </x-button.create>
+            <x-button.create label="New Request Item"> {{route('itemRequests.create')}} </x-button.create>
         </x-slot>
     </x-row>
 
     <!-- Start Card -->
     <x-card title="Requests List">
         <!-- Table Start -->
-        <x-table.listing>
+        <x-table.listing id="table">
             <!-- table headers -->
             <x-slot name="thead" >
                 <th>Request At</th>

@@ -302,7 +302,7 @@
                         <a class="nav-link" href="{{route('itemRequests.index')}}">My Requests</a>
                     @endcan
                     @can('item-issue_view')
-                        <a class="nav-link" href="{{route('itemIssues.index')}}">Requests to Issue</a>
+                        <a class="nav-link" href="{{route('itemOut.index')}}">Requests to Issue</a>
                     @endcan
                 </nav>
             </div>

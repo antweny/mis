@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Item;
 
 use App\Http\Controllers\AuthController;
-use App\Http\Requests\Item\ItemOutRequest;
-use App\Repositories\Item\ItemOutRepository;
+use App\Http\Requests\ItemOutRequest;
+use App\Repository\Interfaces\ItemOutRepositoryInterface;
 use Exception;
 
 class ItemOutController extends AuthController
@@ -14,7 +14,7 @@ class ItemOutController extends AuthController
     /**
      * ItemOut Controller constructor.
      */
-    public function __construct(ItemOutRepository $itemOut)
+    public function __construct(ItemOutRepositoryInterface $itemOut)
     {
         parent::__construct();
         $this->middleware('employee');
@@ -27,11 +27,10 @@ class ItemOutController extends AuthController
     public function index()
     {
         try {
-            $itemOuts = $this->itemOut->relationWith();
+            $itemOuts = $this->itemOut->get();
             return view('item.out.index',compact('itemOuts'));
         }
         catch (Exception $e) {
-            dd($e->getMessage());
             return $this->error();
         }
     }

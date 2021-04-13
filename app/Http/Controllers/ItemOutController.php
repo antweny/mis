@@ -2,19 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\AuthController;
 use App\Http\Requests\ItemOutRequest;
-use App\Services\ItemIssueService;
+use App\Repository\Interfaces\ItemOutRepositoryInterface;
 use Exception;
 
-class ItemIssueController extends AuthController
+class ItemOutController extends AuthController
 {
     protected $itemIssue;
 
     /**
      * ItemOut Controller constructor.
      */
-    public function __construct(ItemIssueService $itemIssue)
+    public function __construct(ItemOutRepositoryInterface $itemIssue)
     {
         parent::__construct();
         $this->middleware('employee');
@@ -28,7 +27,7 @@ class ItemIssueController extends AuthController
     {
         try {
             $itemIssues = $this->itemIssue->get();
-            return view('item-issues.index',compact('itemIssues'));
+            return view('item.out.index',compact('itemIssues'));
         }
         catch (Exception $e) {
             return $this->error();
@@ -38,11 +37,11 @@ class ItemIssueController extends AuthController
     /**
      * Show the form for editing the specified resource.
      */
-    public function issue($id)
+    public function issueForm($id)
     {
         try {
-            $itemIssue = $this->itemIssue->find($id);
-            return view('item-issues.edit',compact('itemIssue'));
+            $itemOut = $this->itemIssue->find($id);
+            return view('item.out.edit',compact('itemOut'));
         }
         catch (Exception $e) {
             return $this->error();
@@ -52,11 +51,11 @@ class ItemIssueController extends AuthController
     /**
      * Update the specified resource in storage.
      */
-    public function update(ItemOutRequest $request,$id)
+    public function issue(ItemOutRequest $request,$id)
     {
         try {
             $this->itemIssue->update($id,$request->validated());
-            return $this->successRoute('itemIssues.index','Item Issued Successful');
+            return $this->successRoute('itemOut.index','Item Issued Successful');
         }
         catch (Exception $e) {
             return $this->errorWithInput($request);

@@ -37,6 +37,7 @@ class Item extends BaseModel
         }
     }
 
+
     /**
      * --------------------
      *  MODEL RELATIONSHIP
@@ -49,6 +50,34 @@ class Item extends BaseModel
     public function item_unit()
     {
         return $this->belongsTo(ItemUnit::class)->withDefault();
+    }
+
+
+    /**
+     * --------------------
+     *  MODEL function
+     * ---------------------
+     */
+    //Increment Quantity
+    public function incrementQuantity($id, $quantity)
+    {
+        $item = $this->find($id);
+        $item->quantity = $item->quantity + $quantity;
+        $item->save();
+    }
+
+    // Decrement Quantity
+    public function decrementQuantity($id, $quantity)
+    {
+        $item = $this->find($id);
+        $item->quantity = $item->quantity - $quantity;
+        $item->save();
+    }
+
+    //Get quantity greater than zero
+    public function quantityGreaterThanZero()
+    {
+        return $this->select('id','name')->where('quantity','>',0)->get();
     }
 
 

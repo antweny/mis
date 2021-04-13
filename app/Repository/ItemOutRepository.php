@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repository;
 
 use App\Models\ItemOut;
+use App\Repository\Interfaces\ItemOutRepositoryInterface;
 
-class ItemIssueRepository extends BaseRepository
+class ItemOutRepository extends BaseRepository implements ItemOutRepositoryInterface
 {
     protected $item;
 
@@ -18,8 +19,9 @@ class ItemIssueRepository extends BaseRepository
      */
     public function get()
     {
-        return $this->model->with(['item','employee'])->get();
+        return $this->relationshipWithPagination(['item','employee']);
     }
+
 
     /**
      * Reject Request

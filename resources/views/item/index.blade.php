@@ -12,7 +12,7 @@
     <!-- Start Card -->
     <x-card title="Items List">
         <!-- Table Start -->
-        <x-table.listing>
+        <x-table.listing id="table">
             <!-- table headers -->
             <x-slot name="thead" >
                 <th>Name</th>

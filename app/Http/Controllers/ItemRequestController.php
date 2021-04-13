@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RequestItemRequest;
-use App\Services\ItemRequestService;
+use App\Repository\Interfaces\ItemRequestRepositoryInterface;
 use Exception;
 
 class ItemRequestController extends AuthController
@@ -13,7 +13,7 @@ class ItemRequestController extends AuthController
     /**
      * ItemOut Controller constructor.
      */
-    public function __construct(ItemRequestService $itemRequest)
+    public function __construct(ItemRequestRepositoryInterface $itemRequest)
     {
         parent::__construct();
         $this->middleware('employee');
@@ -27,7 +27,7 @@ class ItemRequestController extends AuthController
     {
         try {
             $itemRequests = $this->itemRequest->get($this->userEmployeeId());
-            return view('item-requests.index',compact('itemRequests'));
+            return view('item.requests.index',compact('itemRequests'));
         }
         catch (Exception $e) {
             return $this->error();
@@ -41,7 +41,7 @@ class ItemRequestController extends AuthController
     {
         try {
             $itemRequest = $this->itemRequest->model();
-            return view('item-requests.create',compact('itemRequest'));
+            return view('item.requests.create',compact('itemRequest'));
         }
         catch (Exception $e) {
             return $this->error();
@@ -55,7 +55,7 @@ class ItemRequestController extends AuthController
     {
         try {
             $this->itemRequest->create($request->validated());
-            return $this->success('Item Request Sent');
+            return $this->successRoute('itemRequests.index','Item Request Sent');
         }
         catch (Exception $e) {
             return $this->errorWithInput($request);
@@ -69,7 +69,7 @@ class ItemRequestController extends AuthController
     {
         try {
             $itemRequest = $this->itemRequest->find($id);
-            return view('item-requests.edit',compact('itemRequest'));
+            return view('item.requests.edit',compact('itemRequest'));
         }
         catch (Exception $e) {
             return $this->error();

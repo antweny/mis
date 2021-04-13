@@ -1,18 +1,17 @@
-@extends('layouts.templates.store')
-@section('title','Items In List')
+@extends('layouts.backend')
+@section('title','Items Received List')
 @section('content')
 
     <x-row>
         <x-slot name="left">
-            <x-button.create label="Add Items In "> {{route('itemIn.create')}} </x-button.create>
-            <x-button.general label="Import" icon="fas fa-file-upload" modal="modal" class="btn btn-dark"> #import </x-button.general>
+            <x-button.create label="Receive New Item "> {{route('itemIn.create')}} </x-button.create>
         </x-slot>
     </x-row>
 
     <!-- Start Card -->
-    <x-card title="Items In List">
+    <x-card title="Items Received List">
         <!-- Table Start -->
-        <x-table.listing>
+        <x-table.listing :collection="$itemIns">
             <!-- table headers -->
             <x-slot name="thead" >
                 <th>Received at</th>
@@ -56,23 +55,5 @@
             @endforeach
         </x-table.listing>
     </x-card>
-
-
-{{--    <!-- Start Modal -->--}}
-{{--    <x-modal id="import" title="Import Item">--}}
-{{--        <!-- Start form -->--}}
-{{--        <x-form.post action="items.import">--}}
-{{--            <div class="form-group">--}}
-{{--                <x-form.elements.label name="Import File <span class='star'>*</span>" for="imported_file" />--}}
-{{--                <x-form.elements.input type="file" name="imported_file" id="imported_file" required="required"/>--}}
-{{--            </div>--}}
-{{--            <div class="form-group text-right">--}}
-{{--                <x-button />--}}
-{{--            </div>--}}
-{{--        </x-form.post>--}}
-{{--        <!-- end form -->--}}
-{{--    </x-modal>--}}
-{{--    <!-- end modal -->--}}
-
 
 @endsection

@@ -13,14 +13,7 @@ class ItemIn extends BaseModel
     /**
      * The attributes that are mass assignable.
      */
-    protected $fillable = [
-        'received_at',
-        'item_id',
-        'unit_rate',
-        'quantity_in',
-        'remarks',
-        'desc'
-    ];
+    protected $fillable = ['received_at', 'item_id', 'unit_rate', 'quantity_in', 'remarks', 'desc'];
 
 
     /**
@@ -43,7 +36,6 @@ class ItemIn extends BaseModel
     {
         return number_format($value,2);
     }
-
 
     /**
      * --------------------
