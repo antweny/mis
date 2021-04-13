@@ -29,7 +29,7 @@
                     <td class="text-left">{!! $donor->organization->name_click  !!} </td>
                     <td class="text-center">{{$donor->start}}</td>
                     <td class="text-center">{{$donor->end}}</td>
-                    <td class="text-center">{{$donor->end}}</td>
+                    <td class="text-center">{!! $donor->end !!}</td>
                     <td class="text-center">{{$donor->desc}}</td>
                     <td  class="text-center">
                         <div class="btn-group btn-group-sm">
