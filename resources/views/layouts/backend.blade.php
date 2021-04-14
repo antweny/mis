@@ -24,7 +24,7 @@
         <!-- FullCalendar -->
         <link href="{{ asset('vendor/fullCalendar/fullCalendar.min.css') }}" rel="stylesheet">
         <!-- Livewire Style -->
-        @livewireStyles
+        <livewire:styles />
         <!-- General-->
         <link href="{{ asset('css/general.css') }}" rel="stylesheet">
         <!-- Backend -->
@@ -78,7 +78,7 @@
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}"></script>
         <!-- Livewire Scripts -->
-        @livewireScripts
+        <livewire:scripts />
         <!-- Datatable -->
         <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js" ></script>
         <!-- Datatables  -->

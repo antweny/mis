@@ -8,7 +8,7 @@
         </div>
 
         <div class="col-md-12 text-center">
-            @livewire('counter')
+            <livewire:counter />
         </div>
 
     </div>

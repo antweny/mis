@@ -1,18 +1,9 @@
-@extends('layouts.backend')
-@section('title','Designations List')
-@section('content')
-
-
-    <x-row>
-        <x-slot name="left">
-            @can('designation_create') <x-button.create label="Add Designation" modal="modal"> #new </x-button.create> @endcan
-        </x-slot>
-    </x-row>
-
+<div class="row">
+    <div class="col-md-9">
         <!-- Start Card -->
         <x-card title="Designations List">
             <!-- Table Start -->
-            <x-table.listing :collection="$designations">
+            <x-table.listing >
                 <!-- table headers -->
                 <x-slot name="thead" >
                     <th scope="col">Name</th>
@@ -45,34 +36,10 @@
             <!--end listing of collection -->
         </x-card>
         <!-- end card area -->
-
-    @can('designation_create')
-        <!-- Start Modal -->
-        <x-modal id="new" title="New Designation">
-            <!-- Start form -->
-            <x-form.post action="designations.store">
-                <div class="form-group">
-                    <x-form.label name="Name <span class='star'>*</span>" for="name" />
-                    <x-form.input name="name" id="name" for="name" req="required" />
-                </div>
-                <div class="form-group">
-                    <x-form.label name="Acronym" for="name" />
-                    <x-form.input name="acronym" id="acronym" />
-                </div>
-                <div class="form-group">
-                    <x-form.label name="Description" />
-                    <textarea name="desc" id="desc" class="form-control @error('desc') is-invalid @enderror">{{old('desc')}}</textarea>
-                    @error('desc') <span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong> </span> @enderror
-                </div>
-                <div class="form-group text-right">
-                    <x-button.submit />
-                </div>
-            </x-form.post>
-            <!-- end form -->
-        </x-modal>
-        <!-- end modal -->
-    @endcan
+    </div>
 
 
-
-@endsection
+    <div class="col-md-3">
+        form
+    </div>
+</div>
