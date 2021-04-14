@@ -15,6 +15,13 @@ class InterfaceRepositoryServiceProvider extends ServiceProvider
     public function register()
     {
         /*
+        * Dashboard Bindings
+        */
+        $this->app->bind('App\Repository\Interfaces\DashboardRepositoryInterface','App\Repository\DashboardRepository');
+
+
+
+        /*
          * HR Bindings
          */
         $this->app->bind('App\Repository\Interfaces\DepartmentRepositoryInterface','App\Repository\DepartmentRepository');
