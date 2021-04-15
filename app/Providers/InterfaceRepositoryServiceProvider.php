@@ -32,6 +32,7 @@ class InterfaceRepositoryServiceProvider extends ServiceProvider
         $this->app->bind('App\Repository\Interfaces\RoomCategoryRepositoryInterface','App\Repository\RoomCategoryRepository');
         $this->app->bind('App\Repository\Interfaces\RoomRepositoryInterface','App\Repository\RoomRepository');
         $this->app->bind('App\Repository\Interfaces\TimesheetRepositoryInterface','App\Repository\TimesheetRepository');
+        $this->app->bind('App\Repository\Interfaces\AttendanceRepositoryInterface','App\Repository\AttendanceRepository');
         //Leave Bindings
         $this->app->bind('App\Repository\Interfaces\LeaveApplicationRepositoryInterface','App\Repository\LeaveApplicationRepository');
         $this->app->bind('App\Repository\Interfaces\LeaveApproveRepositoryInterface','App\Repository\LeaveApproveRepository');

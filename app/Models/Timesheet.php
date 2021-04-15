@@ -7,6 +7,7 @@ use Illuminate\Support\Carbon;
 
 class Timesheet extends BaseModel
 {
+
     use EmployeeId;
 
     /** --------
@@ -19,7 +20,7 @@ class Timesheet extends BaseModel
     /**
      * The attributes that are mass assignable.
      */
-    protected $fillable = ['date', 'time_from', 'time_to', 'activity_id', 'desc', 'comments',];
+    protected $fillable = ['date', 'time_from', 'time_to', 'activity_id', 'desc', 'comments','employee_id'];
 
     /**
      * ----------------------

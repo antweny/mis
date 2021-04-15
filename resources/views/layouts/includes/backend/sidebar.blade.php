@@ -27,6 +27,9 @@
                         <a class="nav-link" href="{{route('visitors.index')}}">Visitors</a>
                     @endcan
                     <a class="nav-link" href="{{route('timesheets.index')}}">Timesheets</a>
+                    @can('attendance_view')
+                        <a class="nav-link" href="{{route('attendances.index')}}">Attendance</a>
+                    @endcan
                     @can('room-category-view')
                         <a class="nav-link" href="{{route('roomCategories.index')}}">Room Categories</a>
                     @endcan
@@ -36,6 +39,8 @@
                 </nav>
             </div>
             <!-- /.HUMAN RESOURCE -->
+
+
 
 
 

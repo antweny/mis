@@ -11,12 +11,13 @@
     <!-- Start Card -->
     <x-card title="Departments List" >
         <!-- Table Start -->
-        <x-table.listing :collection="$departments">
+        <x-table.listing id="table">
             <!-- table headers -->
             <x-slot name="thead" >
                 <th scope="col">Name</th>
                 <th scope="col">Acronym</th>
                 <th scope="col">Manager</th>
+                <th scope="col">Employees</th>
                 <th scope="col">Descriptions</th>
             </x-slot>
             <!-- end table head -->
@@ -28,6 +29,7 @@
                     <td class="text-left">{{$department->name}}</td>
                     <td class="text-center">{{$department->acronym}}</td>
                     <td class="text-center">{{ $department->employee->name }}</td>
+                    <td class="text-center">{{ $department->employee_count }}</td>
                     <td  class="text-left">{{$department->desc}}</td>
                     <td  class="text-center">
                         <div class="btn-group btn-group-sm">

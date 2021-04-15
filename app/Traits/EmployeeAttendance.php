@@ -4,8 +4,7 @@ namespace App\Traits;
 
 use Illuminate\Database\Eloquent\Model;
 
-
-trait EmployeeId
+trait EmployeeAttendance
 {
 
     protected static function boot()
@@ -14,13 +13,9 @@ trait EmployeeId
 
         static::creating(function (Model $model) {
             if (!is_null(auth()->user()->employee)) {
-                if (!isset(auth()->user()->employee->id)) {
-                    return null;
-                }
-            $model->employee_id = auth()->user()->employee->id;
+                $model->employee_id = auth()->user()->employee->id;
             }
+            $model->present = true;
         });
     }
-
-
 }

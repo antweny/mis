@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Redirect;
 
 class ActiveUser
 {
@@ -17,7 +18,7 @@ class ActiveUser
     {
         if (auth()->user()->active != 1) {
             auth()->logout();
-            return back();
+            return back()->withErrors('Account is not active!'); //is this actually OK?
         }
         return $next($request);
     }

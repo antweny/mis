@@ -489,6 +489,17 @@ Route::prefix('hr/')->group(function () {
             Route::delete('delete/{employee}', 'EmployeeController@destroy')->name('destroy');
             Route::post('import', 'EmployeeController@import')->name('import');
         });
+
+        //Employee Attendance
+        Route::prefix('attendances')->name('attendances.')->group(function () {
+            Route::get('index', 'AttendanceController@index')->name('index');
+            Route::post('store', 'AttendanceController@store')->name('store');
+            Route::get('edit/{timesheet}', 'AttendanceController@edit')->name('edit');
+            Route::put('update/{timesheet}', 'AttendanceController@update')->name('update');
+            Route::delete('delete/{timesheet}', 'AttendanceController@destroy')->name('destroy');
+            Route::get('checkIn', 'AttendanceController@destroy')->name('checkIn');
+            Route::put('checkOut', 'AttendanceController@destroy')->name('checkOut');
+        });
     });
 
 

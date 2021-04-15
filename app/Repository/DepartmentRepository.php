@@ -23,4 +23,12 @@ class DepartmentRepository extends BaseRepository implements DepartmentRepositor
        return $this->relationshipWithPagination(['employee']);
     }
 
+
+    /*
+    * Get number of employees per department
+    */
+    public function numberOfEmployeePerDepartment()
+    {
+       return $this->model->with('employee')->withCount('employee')->get();
+    }
 }

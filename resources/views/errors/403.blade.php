@@ -1,6 +1,6 @@
 @extends('layouts.backend')
 @section('title','403 Forbidden')
-@section('body')
+@section('content')
 
     <div class="row justify-content-center" style="padding: 80px 30px 0 30px;">
 

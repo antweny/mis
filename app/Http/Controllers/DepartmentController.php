@@ -30,7 +30,7 @@ class DepartmentController extends AuthController
         $this->canView($this->interface->model());
 
         try {
-            $departments = $this->interface->get();  //Get all departments
+            $departments = $this->interface->numberOfEmployeePerDepartment();  //Get all departments
             return view('hra.departments.index',compact('departments'));
         }
         catch (Exception $e) {

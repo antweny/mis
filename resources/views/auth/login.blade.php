@@ -2,6 +2,7 @@
 @section('title','Please Login')
 @section('content')
 
+    <x-alert />
     <x-form.post action="login">
         <div class="form-group">
             <x-form.label name="Email <span class='star'>*</span>"  />
