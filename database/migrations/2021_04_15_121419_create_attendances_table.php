@@ -21,7 +21,7 @@ class CreateAttendancesTable extends Migration
             $table->date('date');
             $table->time('time_in');
             $table->time('time_out')->nullable();
-            $table->time('total_hours')->nullable();
+            $table->decimal('total_hours',5,2)->nullable();
 //            $table->enum('status',['ONL'])->nullable();
             $table->timestamps();
         });

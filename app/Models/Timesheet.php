@@ -48,5 +48,9 @@ class Timesheet extends BaseModel
     {
         return $this->belongsTo(Activity::class)->withDefault();
     }
+    public function employee()
+    {
+        return $this->belongsTo(Employee::class)->withDefault();
+    }
 
 }

@@ -477,6 +477,7 @@ Route::prefix('hr/')->group(function () {
             Route::get('edit/{timesheet}', 'TimesheetController@edit')->name('edit');
             Route::put('update/{timesheet}', 'TimesheetController@update')->name('update');
             Route::delete('delete/{timesheet}', 'TimesheetController@destroy')->name('destroy');
+            Route::get('all', 'TimesheetController@employeeTimesheet')->name('all');
         });
 
         Route::name('employees.')->group(function () {
@@ -497,8 +498,8 @@ Route::prefix('hr/')->group(function () {
             Route::get('edit/{timesheet}', 'AttendanceController@edit')->name('edit');
             Route::put('update/{timesheet}', 'AttendanceController@update')->name('update');
             Route::delete('delete/{timesheet}', 'AttendanceController@destroy')->name('destroy');
-            Route::get('checkIn', 'AttendanceController@destroy')->name('checkIn');
-            Route::put('checkOut', 'AttendanceController@destroy')->name('checkOut');
+            Route::get('checkIn', 'AttendanceController@checkIn')->name('checkIn');
+            Route::get('checkOut', 'AttendanceController@checkOut')->name('checkOut');
         });
     });
 

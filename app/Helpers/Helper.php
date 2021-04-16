@@ -1,9 +1,9 @@
 <?php
-use Vinkla\Hashids\Facades\Hashids;
+//use Vinkla\Hashids\Facades\Hashids;
 use Carbon\Carbon;
 
 function encodeId($id) {
-    return Hashids::encode($id,20,15,1,3);
+    return (new Vinkla\Hashids\Facades\Hashids)->encode($id,20,15,1,3);
 }
 
 //Change date to human readable
@@ -11,6 +11,7 @@ function humanDate($date) {
     if(!is_null($date)) {
         return date('d M, Y', strtotime($date));
     }
+    return null;
 }
 
 /*
@@ -21,6 +22,7 @@ function date_to_mysql($date)
     if(!is_null($date)) {
         return Carbon::parse($date)->format('Y-m-d H:i:s');
     }
+    return null;
 }
 
 //Change date to human readable
@@ -29,23 +31,33 @@ function humanDateTime($date) {
     if(!is_null($date)) {
         return date('d M, y : H:i ',strtotime($date));
     }
+    return null;
 }
 
 /**
  * Calculate total hours between two times
+ * @param $time1
+ * @param $time2
+ * @return false|float
  */
 function totalHours($time1,$time2) {
 
     $time1 = strtotime($time1);
     $time2 = strtotime($time2);
 
-    $timeDiff = $time2 - $time1;
+    $interval = round(abs($time2 - $time1)/3600,2);
 
-    return date('H:i',$timeDiff);
+    $hours = floor($interval);
+
+    $minutes = round(($interval - $hours)*60);
+
+    return $hours.'.'.$minutes;
 }
 
 /**
  * Format time
+ * @param $time
+ * @return false|string
  */
 function timeFormat($time) {
     return date('H:i', strtotime($time));
@@ -53,6 +65,8 @@ function timeFormat($time) {
 
 /**
  * Convert time to human readable
+ * @param $timestamp
+ * @return string
  */
 function age($timestamp){
     //date_default_timezone_set("Asia/Kolkata");
@@ -126,6 +140,9 @@ function age($timestamp){
 
 /**
  * Convert file size to human readable
+ * @param $size
+ * @param int $decimals
+ * @return string
  */
 function humanFilesize($size, $decimals = 2){
     $units = array('B','KB','MB','GB','TB','PB','EB','ZB','YB');
@@ -140,7 +157,9 @@ function humanFilesize($size, $decimals = 2){
 
 
 /**
- *
+ * Get date only from datetime value
+ * @param $date
+ * @return Carbon|false
  */
 function formatDate ($date)
 {

@@ -19,8 +19,8 @@ class AttendanceController extends AuthController
     public function __construct(AttendanceRepositoryInterface $attendance)
     {
         parent::__construct();
-//        $this->middleware('role:superAdmin')->only(['checkIn','checkOut']);
-        $this->middleware('role:superAdmin')->except(['checkIn','checkOut']);
+        $this->middleware('superAdmin')->only('index','delete','store','edit','update','delete');
+        $this->middleware('employee')->only('checkIn','checkOut');
         $this->attendance = $attendance;
     }
 
@@ -29,6 +29,8 @@ class AttendanceController extends AuthController
      */
     public function index()
     {
+        $this->canView($this->attendance->model());
+
         try {
             $attendances = $this->attendance->get();  //Get all attendances
             return view('hra.attendance.index',compact('attendances'));
@@ -43,12 +45,13 @@ class AttendanceController extends AuthController
      */
     public function store(AttendanceRequest $request)
     {
+        $this->canView($this->attendance->model());
+
         try {
             $this->attendance->create($request->validated());
             return $this->success('Attendance created');
         }
         catch (Exception $e) {
-            dd($e->getMessage());
             return $this->errorWithInput($request);
         }
     }
@@ -58,9 +61,11 @@ class AttendanceController extends AuthController
      */
     public function edit($id)
     {
+        $this->canView($this->attendance->model());
+
         try {
             $attendance = $this->attendance->find($id);
-            return view('hra.attendances.edit',compact('attendance'));
+            return view('hra.attendance.edit',compact('attendance'));
         }
         catch (Exception $e) {
             return $this->error();
@@ -72,8 +77,10 @@ class AttendanceController extends AuthController
      */
     public function update(AttendanceRequest $request, $id)
     {
+        $this->canView($this->attendance->model());
+
         try {
-            $this->attendance->update($id,$request->validated());
+            $this->attendance->updating($id,$request->validated());
             return $this->successRoute('attendances.index','Attendance updated');
         }
         catch (Exception $e) {
@@ -86,6 +93,8 @@ class AttendanceController extends AuthController
      */
     public function destroy($id)
     {
+        $this->canView($this->attendance->model());
+
         try {
             $this->attendance->delete($id);
             return $this->success('Attendance deleted');
@@ -93,5 +102,37 @@ class AttendanceController extends AuthController
         catch (Exception $e) {
             return $this->error();
         }
+    }
+
+
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function checkIn()
+    {
+        try {
+            $this->attendance->checkIn($this->userEmployeeId());
+            return back()->withSuccess('Welcome Back!');
+        }
+        catch (Exception $e) {
+            return $this->error();
+        }
+    }
+
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function checkOut()
+    {
+        try {
+            $attendance = $this->attendance->checkOut($this->userEmployeeId());
+            return back()->withSuccess('You have checked out, total time of working is '.$attendance->total_hours);
+        }
+        catch (Exception $e) {
+            return $this->error();
+        }
+
     }
 }

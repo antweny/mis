@@ -13,6 +13,11 @@ class TimesheetRepository extends BaseRepository implements TimesheetRepositoryI
         parent::__construct($model);
     }
 
+    public function get()
+    {
+        return $this->relationshipWith(['employee','activity']);
+    }
+
     /**
      * Group timesheet daily
      */

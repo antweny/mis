@@ -6,8 +6,8 @@ namespace App\Repository\Interfaces;
 interface AttendanceRepositoryInterface extends BaseRepositoryInterface
 {
 
-    public function checkIn();
+    public function checkIn($id);
 
 
-    public function checkOut();
+    public function checkOut($id);
 }

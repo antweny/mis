@@ -83,6 +83,14 @@ class Employee extends BaseModel
     {
         return $this->belongsTo(Location::class)->withDefault();
     }
+    public function timesheet()
+    {
+        return $this->hasMany(Timesheet::class);
+    }
+    public function attendance()
+    {
+        return $this->hasMany(Attendance::class);
+    }
 
 
 }

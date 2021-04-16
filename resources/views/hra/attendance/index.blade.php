@@ -29,9 +29,9 @@
                     <td class="text-center">{{$loop->iteration}}</td>
                     <td class="text-left">{{$attendance->employee->name}}</td>
                     <td class="text-left">{{humanDate($attendance->date)}}</td>
-                    <td class="text-center">{{timeFormat($attendance->time_in) }}</td>
-                    <td class="text-center">{{ timeFormat($attendance->time_out) }}</td>
-                    <td class="text-center">{{ $attendance->total_hours }}</td>
+                    <td class="text-center">{{$attendance->time_in }}</td>
+                    <td class="text-center">{!! $attendance->time_out !!}</td>
+                    <td class="text-center">{!! $attendance->total_hours !!}</td>
                     <td class="text-center">{!! $attendance->status !!} </td>
                     <td  class="text-center">
                         <div class="btn-group btn-group-sm">

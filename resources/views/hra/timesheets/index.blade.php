@@ -4,7 +4,7 @@
 
     <x-row>
         <x-slot name="left">
-            @can('timesheet_create')<x-button.create label="Add Timesheet" modal="modal"> #new </x-button.create>@endcan
+            <x-button.create label="Add Timesheet" modal="modal"> #new </x-button.create>
         </x-slot>
     </x-row>
 

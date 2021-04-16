@@ -19,7 +19,8 @@ class TimesheetController extends AuthController
     public function __construct(TimesheetRepositoryInterface $timesheetService)
     {
         parent::__construct();
-        $this->middleware('employee');
+        $this->middleware('employee')->only('index','delete','store','edit','update','delete');
+        $this->middleware('superAdmin')->only('employeeTimesheet');
         $this->timesheetService = $timesheetService;
     }
 
@@ -87,6 +88,20 @@ class TimesheetController extends AuthController
         try {
             $this->timesheetService->delete($id);
             return $this->success('Timesheet deleted');
+        }
+        catch (Exception $e) {
+            return $this->error();
+        }
+    }
+
+    /*
+     * Get Employee Timesheets
+     */
+    public function employeeTimesheet()
+    {
+        try {
+            $timesheets = $this->timesheetService->get();  //Get all timesheets
+            return view('hra.timesheets.employee-timesheets',compact('timesheets'));
         }
         catch (Exception $e) {
             return $this->error();

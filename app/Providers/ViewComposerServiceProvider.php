@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\View\Composers\ActivityComposer;
 use App\View\Composers\AssetTypeComposer;
+use App\View\Composers\AttendanceStatusComposer;
 use App\View\Composers\DonorComposer;
 use App\View\Composers\PermissionComposer;
 use App\View\Composers\ProjectMultipleComposer;
@@ -81,15 +82,9 @@ class ViewComposerServiceProvider extends ServiceProvider
          */
         View::composer(['components.dropdown.event'],EventComposer::class);
         View::composer(['components.dropdown.event-category'],EventCategoryComposer::class);
+        View::composer(['components.dropdown.gender-series'],GenderSeriesComposer::class);
 
-        /**
-         * -------------------------
-         * EMPLOYEE COMPOSERS
-         * -------------------------
-         */
-        View::composer(['components.dropdown.coordinator'], CoordinatorComposer::class);
-        View::composer(['components.dropdown.manager'],EmployeeComposer::class);
-        View::composer(['components.dropdown.employee'],EmployeeComposer::class);
+
 
         /**
          * -------------------------
@@ -99,6 +94,14 @@ class ViewComposerServiceProvider extends ServiceProvider
         View::composer(['components.dropdown.department'],DepartmentComposer::class);
         View::composer(['components.dropdown.designation'],DesignationComposer::class);
         View::composer(['components.dropdown.room-category'],RoomCategoryComposer::class);
+        View::composer(['components.dropdown.leave-type'],LeaveTypeComposer::class);
+        // Employee Composers
+        View::composer(['components.dropdown.coordinator'], CoordinatorComposer::class);
+        View::composer(['components.dropdown.manager'],EmployeeComposer::class);
+        View::composer(['components.dropdown.employee'],EmployeeComposer::class);
+        // Employee Attendance
+        View::composer(['components.attendance-status'],AttendanceStatusComposer::class);
+
 
         /**
          * -------------------------
@@ -120,6 +123,7 @@ class ViewComposerServiceProvider extends ServiceProvider
         View::composer(['components.dropdown.item'],ItemComposer::class);
         View::composer(['components.dropdown.item-request-list'],ItemRequestListComposer::class);
 
+
         /**
          * -------------------------
          * JOB COMPOSERS
@@ -127,6 +131,7 @@ class ViewComposerServiceProvider extends ServiceProvider
          */
         View::composer(['components.dropdown.job-type'],JobTypeComposer::class);
         View::composer(['components.dropdown.job-title'],JobTitleComposer::class);
+
 
         /**
          * -------------------------
@@ -168,14 +173,6 @@ class ViewComposerServiceProvider extends ServiceProvider
 
         /**
          * -------------------------
-         * LEAVE COMPOSERS
-         * -------------------------
-         */
-        View::composer(['components.dropdown.leave-type'],LeaveTypeComposer::class);
-
-
-        /**
-         * -------------------------
          * OPERATION PLAN COMPOSERS
          * -------------------------
          */
@@ -205,11 +202,6 @@ class ViewComposerServiceProvider extends ServiceProvider
         View::composer(['components.dropdown.brand'],BrandComposer::class);
         View::composer(['components.dropdown.asset-type'],AssetTypeComposer::class);
         View::composer(['components.dropdown.equipment'],EquipmentComposer::class);
-
-
-
-        View::composer(['components.dropdown.gender-series'],GenderSeriesComposer::class);
-
 
         /**
          *

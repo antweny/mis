@@ -26,7 +26,13 @@
                     @can('visitor_view')
                         <a class="nav-link" href="{{route('visitors.index')}}">Visitors</a>
                     @endcan
-                    <a class="nav-link" href="{{route('timesheets.index')}}">Timesheets</a>
+                    @role('Employee')
+                        <a class="nav-link" href="{{route('timesheets.index')}}">Timesheets</a>
+                        <a class="nav-link" href="{{route('timesheets.index')}}">Attendance</a>
+                    @endrole
+                    @can('timesheet_view')
+                        <a class="nav-link" href="{{route('timesheets.all')}}">Employee Timesheets</a>
+                    @endcan
                     @can('attendance_view')
                         <a class="nav-link" href="{{route('attendances.index')}}">Attendance</a>
                     @endcan
