@@ -106,9 +106,7 @@ class AttendanceController extends AuthController
 
 
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    /* Employee check in */
     public function checkIn()
     {
         try {
@@ -121,9 +119,7 @@ class AttendanceController extends AuthController
     }
 
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    /* Employee check out */
     public function checkOut()
     {
         try {
