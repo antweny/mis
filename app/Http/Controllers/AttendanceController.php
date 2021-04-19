@@ -13,9 +13,8 @@ class AttendanceController extends AuthController
      */
     private $attendance;
 
-    /**
-     * AttendanceController constructor.
-     */
+
+    /* AttendanceController constructor. */
     public function __construct(AttendanceRepositoryInterface $attendance)
     {
         parent::__construct();
@@ -24,9 +23,7 @@ class AttendanceController extends AuthController
         $this->attendance = $attendance;
     }
 
-    /**
-     * Display a listing of the resource.
-     */
+    /* Display a listing of the resource */
     public function index()
     {
         $this->canView($this->attendance->model());
@@ -40,9 +37,7 @@ class AttendanceController extends AuthController
         }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    /* Store a newly created resource in storage. */
     public function store(AttendanceRequest $request)
     {
         $this->canView($this->attendance->model());
@@ -56,9 +51,7 @@ class AttendanceController extends AuthController
         }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    /* Show the form for editing the specified resource. */
     public function edit($id)
     {
         $this->canView($this->attendance->model());
@@ -72,9 +65,7 @@ class AttendanceController extends AuthController
         }
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    /* Update the specified resource in storage. */
     public function update(AttendanceRequest $request, $id)
     {
         $this->canView($this->attendance->model());
@@ -88,9 +79,7 @@ class AttendanceController extends AuthController
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    /* Remove the specified resource from storage. */
     public function destroy($id)
     {
         $this->canView($this->attendance->model());
@@ -104,8 +93,7 @@ class AttendanceController extends AuthController
         }
     }
 
-
-
+    
     /* Employee check in */
     public function checkIn()
     {
@@ -118,7 +106,6 @@ class AttendanceController extends AuthController
         }
     }
 
-
     /* Employee check out */
     public function checkOut()
     {
@@ -129,6 +116,11 @@ class AttendanceController extends AuthController
         catch (Exception $e) {
             return $this->error();
         }
-
     }
+
+
+
+
+
+
 }
