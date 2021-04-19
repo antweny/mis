@@ -34,6 +34,7 @@ class DepartmentController extends AuthController
             return view('hra.departments.index',compact('departments'));
         }
         catch (Exception $e) {
+            dd($e->getMessage());
             return $this->error();
         }
     }
