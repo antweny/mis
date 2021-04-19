@@ -29,6 +29,6 @@ class DepartmentRepository extends BaseRepository implements DepartmentRepositor
     */
     public function numberOfEmployeePerDepartment()
     {
-       return $this->model->with('employee')->withCount('employee')->get();
+       return $this->model->withCount('employee')->get();
     }
 }
