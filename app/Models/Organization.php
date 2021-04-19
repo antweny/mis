@@ -34,7 +34,7 @@ class Organization extends BaseModel
     public function getOrgNameAttribute()
     {
         if($this->acronym != null) {
-            return $this->name.'('.$this->acronym.')';
+            return $this->name.' ('.$this->acronym.')';
         }
         else{
             return $this->name;
