@@ -24,9 +24,9 @@
                 <tr>
                     <td class="text-center">{{$loop->iteration}}</td>
                     <td class="text-left">{{$output->name}}</td>
-                    <td  class="text-center">{{$output->desc}}</td>
+                    <td  class="text-left">{{$output->desc}}</td>
                     <td  class="text-center">{{$output->year}}</td>
-                    <td  class="text-center">{!! $output->outcome->outcome_name !!}</td>
+                    <td  class="text-left">{!! $output->outcome->outcome_name !!}</td>
                     <td  class="text-center">
                         <div class="btn-group btn-group-sm">
                             @can('output_update')
