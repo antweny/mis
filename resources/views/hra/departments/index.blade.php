@@ -10,6 +10,8 @@
 
     <!-- Start Card -->
     <x-card title="Departments List" >
+
+        {{$departments}}
         <!-- Table Start -->
         <x-table.listing id="table">
             <!-- table headers -->
@@ -28,7 +30,7 @@
                     <td class="text-center">{{$loop->iteration}}</td>
                     <td class="text-left">{{$department->name}}</td>
                     <td class="text-center">{{$department->acronym}}</td>
-                    <td class="text-center">{{ $department->employee->name }}</td>
+                    <td class="text-center">{{ $department->manager }}</td>
                     <td class="text-center">{{ $department->employee_count }}</td>
                     <td  class="text-left">{{$department->desc}}</td>
                     <td  class="text-center">

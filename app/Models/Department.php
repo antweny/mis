@@ -22,7 +22,12 @@ class Department extends BaseModel
      */
     public function employee()
     {
-        return $this->belongsTo(Employee::class,'manager')->select('name','id')->withDefault();
+        return $this->hasMany(Employee::class)->select('id','name');
+    }
+
+    public function manager()
+    {
+        return $this->belongsTo(Employee::class,'manager','id')->select('id','name')->withDefault();
     }
 
 

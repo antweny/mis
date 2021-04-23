@@ -67,6 +67,12 @@ class Employee extends BaseModel
     {
         return $this->belongsTo(Department::class)->withDefault();
     }
+
+//    public function manager()
+//    {
+//        return $this->hasOne(Department::class)->withDefault();
+//    }
+
     public function designation()
     {
         return $this->belongsTo(Designation::class)->withDefault();
