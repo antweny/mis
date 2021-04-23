@@ -30,7 +30,7 @@ class OutputController extends AuthController
         $this->canView($this->interface->model());
 
         try {
-            $outputs = $this->interface->get();  //Get all outputs
+            $outputs = $this->interface->groupByOutcome();  //Get all outputs
             return view('op.outputs.index',compact('outputs'));
         }
         catch (Exception $e) {

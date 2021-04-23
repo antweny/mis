@@ -26,6 +26,13 @@ class OutputRepository extends BaseRepository implements OutputRepositoryInterfa
         return $this->relationshipWith(['outcome','indicator']);
     }
 
+    /* Group outputs by Outcome */
+    public function groupByOutcome()
+    {
+        return $this->model->with('outcome')->get()->groupBy('outcome.name');
+    }
+
+    /* Create new record */
     public function create($request)
     {
         DB::beginTransaction();
@@ -41,9 +48,7 @@ class OutputRepository extends BaseRepository implements OutputRepositoryInterfa
         }
     }
 
-    /**
-     * Updating the Output
-     */
+    /* update existing record */
     public function updating($id, $request)
     {
         DB::beginTransaction();

@@ -16,9 +16,7 @@ class ActivityRepository extends BaseRepository implements ActivityRepositoryInt
         parent::__construct($model);
     }
 
-    /*
-     * Get list of Activities
-     */
+    /*  Get list of Activities */
     public function get()
     {
         return $this->relationshipWith([
@@ -30,16 +28,20 @@ class ActivityRepository extends BaseRepository implements ActivityRepositoryInt
         ]);
     }
 
-//=> function($query) {
-//    $query->with([
-//        'stakeholder' => function ($query2) {
-//            $query2->with('organization')->get();
-//        }
-//    ])->get();
-//}
-    /*
-    * Create new Outcome
-    */
+    /* Group Activity By Output */
+    public function groupByOutput()
+    {
+        return $this->model->with([
+            'employee',
+            'output',
+            'project.stakeholder'
+            ])
+            ->orderBy('name','asc')
+            ->get()
+            ->groupBy(['output.name']);
+    }
+
+    /* Create new record */
     public function create($request)
     {
         DB::beginTransaction();
@@ -55,9 +57,7 @@ class ActivityRepository extends BaseRepository implements ActivityRepositoryInt
         }
     }
 
-    /**
-     * Updating the Outcome
-     */
+    /* update existing record */
     public function updating($id, $request)
     {
         DB::beginTransaction();
@@ -75,9 +75,7 @@ class ActivityRepository extends BaseRepository implements ActivityRepositoryInt
     }
 
 
-    /**
-     * Manage activity project
-     */
+    /* Manage activity project */
     private function addProject($activity, $request) : void
     {
         $activity->project()->attach($request);
@@ -87,5 +85,7 @@ class ActivityRepository extends BaseRepository implements ActivityRepositoryInt
     {
         $activity->project()->sync($request);
     }
+
+
 
 }

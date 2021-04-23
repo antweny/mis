@@ -30,7 +30,8 @@ class ActivityController extends AuthController
         $this->canView($this->interface->model());
 
         try {
-            $activities = $this->interface->get();  //Get all activities
+            $activities = $this->interface->groupByOutput();  //Get all activities
+            //dd($activities);
             return view('op.activities.index',compact('activities'));
         }
         catch (Exception $e) {
