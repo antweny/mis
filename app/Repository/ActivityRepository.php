@@ -74,18 +74,28 @@ class ActivityRepository extends BaseRepository implements ActivityRepositoryInt
         }
     }
 
-
-    /* Manage activity project */
+    /* create activity belongs to project  */
     private function addProject($activity, $request) : void
     {
         $activity->project()->attach($request);
     }
 
+    /* update activity belongs to project */
     private function updateProject($activity, $request) : void
     {
         $activity->project()->sync($request);
     }
 
-
-
+    /* Group activities by status */
+    public function groupByStatus()
+    {
+        return $this->model->with([
+            'employee',
+            'output',
+            'project.stakeholder'
+            ])
+            ->orderBy('name','asc')
+            ->get()
+            ->groupBy(['status']);
+    }
 }

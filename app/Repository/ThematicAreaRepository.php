@@ -13,6 +13,12 @@ class ThematicAreaRepository extends BaseRepository implements ThematicAreaRepos
         parent::__construct($model);
     }
 
+    /* Get Thematic Areas and Fields List with parent */
+    public function get()
+    {
+        return $this->relationshipWith(['parent']);
+    }
+
     /**
      * Get Parents Only
      */

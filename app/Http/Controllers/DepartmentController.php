@@ -28,7 +28,6 @@ class DepartmentController extends AuthController
     public function index()
     {
         $this->canView($this->interface->model());
-
         try {
             $departments = $this->interface->numberOfEmployeePerDepartment();  //Get all departments
             return view('hra.departments.index',compact('departments'));

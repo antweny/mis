@@ -8,30 +8,8 @@
         </x-slot>
     </x-row>
 
-    <!-- Start Card -->
-    <x-card title="Activities List">
-        <!-- Table Start -->
-        <x-table.listing id="table">
-            <!-- table headers -->
-            <x-slot name="thead" >
-                <th scope="col">Name</th>
-                <th scope="col">Description</th>
-                <th scope="col">Donor</th>
-                <th scope="col">Staff</th>
-                <th scope="col">Start</th>
-                <th scope="col">Due</th>
-                <th scope="col">Status</th>
-            </x-slot>
-            <!-- table body -->
+    <!-- Group by Output -->
+    @include('op.activities.groupBy-output')
 
-            <!-- Group by Output -->
-            @include('op.activities.groupBy-output')
-
-
-            <!-- end table body -->
-        </x-table.listing>
-        <!--end listing of collection -->
-    </x-card>
-    <!-- end card area -->
 
 @endsection
