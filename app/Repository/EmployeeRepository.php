@@ -30,9 +30,7 @@ class EmployeeRepository extends BaseRepository implements EmployeeRepositoryInt
     public function getWith()
     {
         return $this->relationshipWith([
-            'department' => function($query) {
-                $query->with('employee');
-            },
+            'department.employee',
             'designation',
             'job_type',
             'user',

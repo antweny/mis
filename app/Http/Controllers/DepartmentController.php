@@ -31,12 +31,9 @@ class DepartmentController extends AuthController
 
         try {
             $departments = $this->interface->numberOfEmployeePerDepartment();  //Get all departments
-
-            //dd($departments);
             return view('hra.departments.index',compact('departments'));
         }
         catch (Exception $e) {
-            dd($e->getMessage());
             return $this->error();
         }
     }

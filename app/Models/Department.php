@@ -20,12 +20,12 @@ class Department extends BaseModel
      *  MODEL RELATIONSHIP
      * ---------------------
      */
-    public function employee()
+    public function employee_number()
     {
         return $this->hasMany(Employee::class)->select('id','name');
     }
 
-    public function manager()
+    public function employee()
     {
         return $this->belongsTo(Employee::class,'manager','id')->select('id','name')->withDefault();
     }
