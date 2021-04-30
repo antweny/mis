@@ -6,20 +6,14 @@
         <x-slot name="left">
             @can('experience_create')
                 <x-button.create label="Add Experience"> {{route('experiences.create')}} </x-button.create>
-{{--                <x-button.general label="Import" icon="fas fa-file-upload" modal="modal" class="btn btn-dark"> #import </x-button.general>--}}
-            @endcan
+         @endcan
         </x-slot>
-{{--        <x-slot name="right">--}}
-{{--            @can('organization_view')--}}
-{{--                <x-button.general label="Organizations List" class="btn btn-primary"> {{route('organizations.index')}} </x-button.general>--}}
-{{--            @endcan--}}
-{{--        </x-slot>--}}
     </x-row>
 
     <!-- Start Card -->
     <x-card title="Experiences List">
         <!-- Table Start -->
-        <x-table.listing id="$experiences">
+        <x-table.listing id="table">
             <!-- table headers -->
             <x-slot name="thead" >
                 <th scope="col">Full Name</th>
