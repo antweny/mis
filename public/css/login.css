@@ -1,38 +1,18 @@
 
-/* ---------- GENERAL ---------- */
-
-* {
-    box-sizing: border-box;
-    margin: 0px auto;
+.login {
+    margin-top: 50px;
+}
+.login .btn {
+    font-size: 16px !important;
+}
+.login .left {
+    border-radius:10px 0 0 10px;
+    vertical-align: middle;
+}
+.login .left h4 {
+    color: #04519b;
 }
 
-a {
-    color: #eee;
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-.container {
-    left: 50%;
-    position: fixed;
-    top: 50%;
-    transform: translate(-50%, -50%);
-}
-
-/* ---------- LOGIN ---------- */
-
-#login form{
-    width: 100%;
-}
-
-#login{
-    border-right:1px solid #c6c8ca;
-    padding: 0 20px 0 0;
-    width: 59%;
-}
 .logo{
     color:#fff;
     font-size:50px;
@@ -42,17 +22,4 @@ a:hover {
 .logo img {
     width:180px;
     height: 200px;
-}
-
-
-#login > p {
-    text-align: center;
-}
-
-#login > p span {
-    padding-left: 5px;
-}
-.middle {
-    display: flex;
-    width: 600px;
 }

@@ -2,31 +2,31 @@
 @section('title','Individuals List')
 @section('content')
 
-    <x-row>
-        <x-slot name="left">
-            @can('individual_create') <x-button.create label="Add Individual"> {{route('individuals.create')}} </x-button.create> @endcan
-{{--            <x-button.general label="Import" icon="fas fa-file-upload" modal="modal" class="btn btn-dark"> #import </x-button.general> @endcan--}}
-        </x-slot>
-        <x-slot name="right">
-            <ul class="navbar-nav ml-auto ml-md-0">
-                <li class="nav-item dropdown">
-                    <a class="dropdown-toggle btn btn-outline-black" id="export" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-download"></i> Export
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="export">
-                        <a class="dropdown-item" href="{{route('individuals.export')}}"><i class="fa fa-file-excel"></i> Excel</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{{route('individuals.export','csv')}}"> <i class="fa fa-file-csv"></i> CSV </a>
-                    </div>
-                </li>
-            </ul>
-         </x-slot>
-    </x-row>
+{{--    <x-row>--}}
+{{--      --}}
+{{--        <x-slot name="right">--}}
+{{--            <ul class="navbar-nav ml-auto ml-md-0">--}}
+{{--                <li class="nav-item dropdown">--}}
+{{--                    <a class="dropdown-toggle btn btn-outline-black" id="export" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--}}
+{{--                        <i class="fa fa-download"></i> Export--}}
+{{--                    </a>--}}
+{{--                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="export">--}}
+{{--                        <a class="dropdown-item" href="{{route('individuals.export')}}"><i class="fa fa-file-excel"></i> Excel</a>--}}
+{{--                        <div class="dropdown-divider"></div>--}}
+{{--                        <a class="dropdown-item" href="{{route('individuals.export','csv')}}"> <i class="fa fa-file-csv"></i> CSV </a>--}}
+{{--                    </div>--}}
+{{--                </li>--}}
+{{--            </ul>--}}
+{{--         </x-slot>--}}
+{{--    </x-row>--}}
 
     <!-- Start Card -->
     <x-card title="Individuals List">
+        <x-slot name="cardButton">
+            @can('individual_create') <x-button.create label="Add Individual"> {{route('individuals.create')}} </x-button.create> @endcan
+        </x-slot>
         <!-- Table Start -->
-        <x-table.listing :model="$individuals">
+        <x-table.listing id="table">
             <!-- table headers -->
             <x-slot name="thead" >
                 <th>Name</th>
@@ -60,18 +60,10 @@
                     <td  class="text-center">
                         <div class="btn-group btn-group-sm">
                             @can('individual_update')
-                                <a href="{{route('individuals.edit',$individual)}} " class="btn btn-edit mr-2" data-toggle="tooltip" data-placement="top" title="Edit item" >
-                                    <i class="fa fa-edit"></i>
-                                </a>
+                                <x-button.edit>{{route('individuals.edit',$individual)}}</x-button.edit>
                             @endcan
                             @can('individual_delete')
-                                <form method="POST" action="{{route('individuals.destroy',$individual)}}" class="form-horizontal" role="form" autocomplete="off">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-delete btn-sm" onclick="return confirm('Confirm to delete?')" data-toggle="tooltip" data-placement="top" title="Delete">
-                                        <i class="fa fa-times"></i>
-                                    </button>
-                                </form>
+                                <x-button.delete>{{route('individuals.destroy',$individual)}}</x-button.delete>
                             @endcan
                         </div>
                     </td>

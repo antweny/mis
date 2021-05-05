@@ -1,5 +1,8 @@
 
-/*------- TOP NAVIGATION --------*/
+/* --------------------
+ * TOP NAVIGATION
+ * --------------------
+ */
 .topnav {
     position: fixed;
     top: 0;
@@ -8,7 +11,9 @@
     z-index: 1039;
     padding-left: 0;
     height: 56px;
-    box-shadow: 0 5px 21px -5px #cdd1e1;
+}
+.topnav a {
+    color: #fff;
 }
 .topnav .dropdown-item {
     color: #000;
@@ -21,13 +26,16 @@
     margin: 0;
     height: 56px;
     text-align: center;
-    background-color: #fff;
+    background-color: #033769;
 }
 .topnav #sidebarToggle {
-    color: #000;
+    color: rgba(255, 255, 255, 0.5);
 }
 
-/*------ Sidebar---------*/
+/** -----------------
+ * Sidebar Section
+ * -------------------
+ */
 .sidebar {
     position: fixed;
     top: 0;
@@ -40,23 +48,24 @@
     transform: translateX(-225px);
     width: 225px;
     height: 100vh;
-    background: #fff;
-    padding: 8px 0 8px 8px ;
 }
 .nav-header {
     font-size: 10px;
     text-transform: uppercase;
     padding: .8rem;
     letter-spacing: 1px;
+    color: #a6a6a6;
     font-weight: 500;
 }
-
-/*---------- Sidebar Navigation ---------------*/
+/**
+ * SIDE NAVIGATION
+ */
 .sidenav {
     display: flex;
     flex-direction: column;
     height: 100%;
     flex-wrap: nowrap;
+    background: #04519b;
 }
 .sidenav-toggled .sidebar {
     transform: translateX(0);
@@ -74,14 +83,8 @@
     opacity: 0.5;
     transition: opacity 0.3s ease-in-out;
 }
-.nav-link:hover,
-.sidenav .nav-link.active {
-    color: white;
-    background:#04519b;
-    border-radius: 0;
-}
 .sidenav-menu {
-    padding-top:80px;
+    padding-top: 56px;
     overflow-y: auto;
 }
 .sidenav-menu {
@@ -94,13 +97,14 @@
 .sidenav .nav-link {
     display: flex;
     align-items: center;
-    padding-top: .8rem;
+    padding-top: .7rem;
     padding-left: 15px;
-    padding-bottom: .8rem;
+    padding-bottom: .7rem;
     position: relative;
+    color: #f8f9fa;
     width: 100%;
     font-size: 14px;
-    margin-top: 5px;
+    border-bottom:1px solid #a6a6a6;
 }
 .sidenav-menu-nested .nav-link {
     border-bottom:0;
@@ -108,10 +112,14 @@
 .sidenav .collapsed {
     border-top:0;
 }
+.nav-link:hover, .sidenav .nav-link.active {
+    color: white;
+}
 .nav-link-icon {
-    margin-right:10px;
+    margin-right:12px;
     font-size: 16px;
     text-align: center;
+    color: #f8f9fa;
 }
 /* end sub menu style*/
 .sidenav .sidenav-menu .nav .nav-link .sidenav-collapse-arrow {
@@ -126,10 +134,13 @@
 /* Sub navigation */
 .sidenav-menu-nested {
     padding-left: 30px;
-    background:#04519b;
+    background: #1c1f22;
 }
 .sidenav-menu-nested a {
-    color: #fff;
+    border-left: 1px solid rgba(59, 70, 72, 0.5);
+    padding-left: 20px;
+    line-height: 35px;
+    color: #a6a6a6;
 }
 .sidenav-menu-nested a::before {
     left: 0;
@@ -138,15 +149,14 @@
     content: ' ';
     position: absolute;
     display: inline-block;
+    border: 1px solid rgba(59, 70, 72, 0.5);
 }
 .sidenav-menu-nested .nav-link {
-    padding: 0.7rem 1rem;
-    margin-top: 0;
+    padding-bottom: .6rem;
 }
 .sidenav-menu-nested a:hover{
     background: none;
     color: #fff;
-    background:#04519b;
 }
 
 @media (min-width: 992px) {
@@ -182,20 +192,108 @@
     margin-left: -225px;
     padding-left: 225px;
     top: 56px;
-    background: #F5F7FF;
+}
+.breadcrumb {
+    font-size: 22px;
+    padding: 0.2rem 0.5rem;
+    margin-bottom: 1rem;
+}
+.breadcrumb span {
+    line-height: 3rem;
+
+}
+.breadcrumb i {
+    line-height: 3rem;
+    margin-right: 10px;
+}
+    /*
+     * Footer
+     */
+.footer {
+    padding: 0.8rem;
+    flex-shrink: 0;
+    background: #000;
+}
+footer {
+    border-top:1px solid white;
+    margin-top: 20px;
 }
 
+/**
+ * MAIN DASHBOARD
+ */
 
-/*------------ Company Profile ----------------*/
-.company span {
-    display: block;
+.shortcut-icon {
+    height: 145px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    border: 1px solid #0866C6;
+    color: #0866C6;
     padding-top: 10px;
 }
-.company .title {
-    color: #04519b;
-    font-weight: bold;
-    font-size: 16px;
+.shortcut-icon:hover {
+    color: white;
+    background-color: #0866C6;
 }
-.company .cnt {
+.shortcut-icon > div {
+    text-align: center;
+}
+.shortcut-icon i {
+    line-height: 0;
+    font-size: 64px;
+}
+.shortcut-icon span {
+    display: block;
+    margin-top: 5px;
+}
+
+/**
+ * ERROR PAGES
+ */
+.error-div {
+    min-height: 500px;
+}
+.error-page {
+    width: 100%;
+    min-width: 100%;
+    background-color: #fff;
+    background-clip: border-box;
+    border-radius: 0;
+    border: 1px solid #ebedf2;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    padding-top: 100px;
+    padding-bottom: 150px;
+}
+.error-page h1 {
+    font-size: 120px;
+    color:orangered;
+}
+.error-page h3 {
+    font-size: 24px;
+    font-weight: normal;
+    font-family: "Arial Narrow";
+    margin-bottom: 15px;
     font-style: italic;
+}
+.error-page h5 {
+    font-size: 18px;
+    font-weight: normal;
+    font-family: "Nunito", sans-serif;
+    margin-bottom: 15px;
+}
+.error-page h6 {
+    font-size: 16px;
+    font-weight: bold;
+    font-family: "Nunito", sans-serif;
+    margin-bottom: 10px;
+    color: #0866C6;
+}
+
+/**
+ * VOUCHER
+ */
+.voucher {
+
 }

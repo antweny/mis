@@ -30,7 +30,7 @@ class IndividualRepository extends BaseRepository implements IndividualRepositor
      */
     public function get()
     {
-        return $this->model->with(['location','individual_group'])->withCount('participant')->paginate();
+        return $this->model->with(['location','individual_group'])->withCount('participant')->paginate(500);
     }
 
     /*

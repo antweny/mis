@@ -2,14 +2,13 @@
 @section('title','Rooms List')
 @section('content')
 
-    <x-row>
-        <x-slot name="left">
-            @can('room_create')<x-button.create label="Add Room" modal="modal"> #new </x-button.create>@endcan
-        </x-slot>
-    </x-row>
-
     <!-- Start Card -->
     <x-card title="Rooms List">
+
+        <x-slot name="cardButton">
+            @can('room_create')<x-button.create label="Add Room" modal="modal"> #new </x-button.create>@endcan
+        </x-slot>
+
         <!-- Table Start -->
         <x-table.listing id="table">
             <!-- table headers -->

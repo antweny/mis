@@ -2,7 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () { return view('index'); });
+Route::get('/', function () {
+    return redirect()->route('login');
+});
 
 Route::get('mail', function () {
     return new \App\Mail\Leave\LeaveApproveMail();

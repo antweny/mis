@@ -1,6 +1,6 @@
 <div class="table-responsive">
 {{--    <table class="table table-striped {{$class}} btn-sm" id="{{$id}}">--}}
-    <table class="table table-striped" id="{{$id}}">
+    <table class="table" id="{{$id}}">
         <thead class="text-center">
             <tr>
                 <th class="numCol">#</th>

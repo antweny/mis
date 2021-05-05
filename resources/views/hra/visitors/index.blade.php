@@ -2,14 +2,13 @@
 @section('title','Visitors List')
 @section('content')
 
-    <x-row>
-        <x-slot name="left">
-            @can('visitor_create') <x-button.create label="New Visitor" > {{route('visitors.create')}}</x-button.create> @endcan
-        </x-slot>
-    </x-row>
-
     <!-- Start Card -->
     <x-card title="Visitors">
+
+        <x-slot name="cardButton">
+            @can('visitor_create') <x-button.create label="New Visitor" > {{route('visitors.create')}}</x-button.create> @endcan
+        </x-slot>
+
         <!-- Table Start -->
         <x-table.listing :collection="$visitors">
 

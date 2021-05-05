@@ -2,20 +2,20 @@
 @section('title','Please Login')
 @section('content')
 
-    <x-alert />
-    <x-form.post action="login">
-        <div class="form-group">
-            <x-form.label name="Email <span class='star'>*</span>"  />
-            <x-form.input name="email" required="required" />
-        </div>
-        <div class="form-group">
-            <x-form.label name="Password <span class='star'>*</span>" />
-            <x-form.input type="password" name="password" required="required" />
-        </div>
-        <div class="form-group text-center">
-            <x-button.submit class="btn-block" label="Login"/>
-        </div>
-    </x-form.post>
-    <!-- end form -->
+        <x-form.post action="login">
+            <div class="form-group">
+                <x-form.label name="Email <span class='star'>*</span>"  />
+                <x-form.input name="email" req="required" />
+            </div>
+            <div class="form-group">
+                <x-form.label name="Password <span class='star'>*</span>" />
+                <x-form.input type="password" name="password" req="required" />
+            </div>
+            <div class="form-group text-center">
+                <button type="submit" class="btn btn-primary btn-block text-white">
+                    Login
+                </button>
+            </div>
+        </x-form.post>
 
 @endsection

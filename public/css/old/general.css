@@ -1,44 +1,26 @@
-@import url('https://fonts.googleapis.com/css?family=Rubik&display=swap');
-
-/* General Settings */
 html,body {
     position: relative; /* Allows the footer to notice content height */
     min-height: 100vh;
     margin: 0;
     font-size: 14px;
     font-weight: 400;
-    font-family: 'Rubik', sans-serif;
-    background: #F5F7FF;
-    color: #6C7383;
-}
-a { color: #010101; }
-p { font-size: 14px !important; }
-
-/* Form Styles */
-.star {
-    color: red;
-}
-/* FORM STYLES */
-input {
-    padding: 6px 12px 6px 12px;
-    border: 1px solid lightgrey;
-    border-radius: 4px;
-    margin-bottom: 15px;
-    margin-top: 2px;
-    width: 100%;
-    box-sizing: border-box;
-    color: #2C3E50;
-    font-size: 14px;
-    letter-spacing: 1px;
-    background-color: #ECEFF1
+    line-height: 1.6;
+    color: #161c2d;
+    text-align: left;
+    background-color: #fff;
 }
 
-input:focus {
-    -moz-box-shadow: none !important;
-    -webkit-box-shadow: none !important;
-    box-shadow: none !important;
-    border: 1px solid #304FFE;
-    outline-width: 0
+/**
+ * FORM STYLES
+ */
+.star { color: red; }
+.form-control {
+    border-radius: 0;
+    border-bottom: 1px solid #0a0302;
+}
+.form-control:focus {
+    box-shadow: none;
+    border:1px solid black;
 }
 .checkmark {
     position: absolute;
@@ -117,6 +99,7 @@ input:focus {
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
 }
+
 /*Custom Dropdown menu*/
 .select2-container {
     box-sizing: border-box;
@@ -159,27 +142,28 @@ input:focus {
 }
 
 
-
-/*------------ CARD STYLES --------*/
+/* ------------------
+ * CARD STYLES
+ * -------------------
+ */
 .card{
     width: 100%;
     min-width: 100%;
     background-color: #fff;
-    border-radius:20px;
-    padding: 30px;
-    border:0;
+    background-clip: border-box;
+    /*border: 0;*/
+    border-radius: 0;
+    /*box-shadow: none;*/
+    border: 1px solid #ebedf2;
+    /*border: 1px solid #c8c8d3;*/
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
-.card-header  {
-    background: #fff;
-    border:0;
-    font-weight: bold;
-}
-.card-header h4  {
-    font-weight: bold;
-    color: #04519b;
+.card-header {
+    border-radius: 0;
+    background-color: #04519b;
 }
 .card-header:first-child {
-    border-radius:20px;
+    border-radius: 0;
 }
 .card-body {
     padding: 1.25rem 1.437rem;
@@ -195,24 +179,74 @@ input:focus {
     font-weight:bold;
 }
 
-/*------------ TABLE STYLES  --------------*/
+/* ------------------
+ * TABLE STYLES
+ * -------------------
+ */
 .table thead th {
-    border-bottom:1px solid #CED4DA;
-    border-top:0;
+    font-size: .875rem;
+    border-bottom: 1px solid #dee2e6;
+}
+.table .numCol {
+    width: 1rem;
+}
+.table .actCol {
+    width: 10%;
+}
+.status {
+    padding: 0 7px 3px 7px;
+    border-radius: 2px;
+    font-weight: bold;
+    top: 0;
+}
+table .del{
+    display: block;
+    width: 100%;
+    padding: 0.25rem 0;
+    clear: both;
+    font-weight: 400;
+    color: #212529;
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
 }
 
 
+/**
+ * BUTTON STYLES
+ */
 
-
-/*--------- BUTTON STYLES ------------*/
-.btn:focus,.btn:active{
-    box-shadow: none;
-}
+.btn { line-height: 1.6; border-radius: 0; }
+.btn:focus,.btn:active{ box-shadow: none; }
 .btn-group > .btn:not(:last-child):not(.dropdown-toggle), .btn-group > .btn-group:not(:last-child) > .btn {
     border-radius: 0;
 }
 .btn-group > .btn:not(:first-child), .btn-group > .btn-group:not(:first-child) > .btn {
     border-radius: 0;
+}
+
+/* Table Buttons */
+.btn-edit {
+    background: #04519b;
+    border: 1px solid #04519b;
+    border-radius: 0;
+}
+.btn-edit i { color: #fff; }
+.btn-edit:hover {
+    background: #0866C6;
+    border: 1px solid #0866C6;
+}
+
+.btn-delete {
+    background: #dc3545;
+    border: 1px solid #dc3545;
+    border-radius: 0;
+}
+.btn-delete i { color: #fff; }
+.btn-delete:hover {
+    background: #dc3545;
+    border: 1px solid #dc3545;
 }
 
 
@@ -233,8 +267,10 @@ input:focus {
 .btn-outline-success:hover { background:#23BF08; }
 
 
-/*--------- BACKGROUND COLORS ------------*/
-.bg-primary{background:#04519b !important; color: white;}
+/**
+ * BACKGROUND COLORS
+ */
+.bg-primary{background: #04519b; color: white;}
 .bg-olive{border-color:#808000; background:#808000;}
 .bg-blue { background: #044687;color:white; }
 .bg-red {border-color:red; background:red; }
@@ -252,5 +288,4 @@ input:focus {
 .bg-slateblue{border-color:#6A5ACD; background:#6A5ACD; }
 .bg-olive{border-color:#808000; background:#808000; }
 .bg-steelblue{border-color:#4682B4; background:#4682B4; }
-
 

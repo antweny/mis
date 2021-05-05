@@ -2,14 +2,13 @@
 @section('title','Employees List')
 @section('content')
 
-    <x-row>
-        <x-slot name="left">
-            @can('employee_create') <x-button.create label="New Employee" > {{route('employees.create')}}</x-button.create> @endcan
-        </x-slot>
-    </x-row>
-
     <!-- Start Card -->
     <x-card title="Employees">
+
+        <x-slot name="cardButton">
+            @can('employee_create') <x-button.create label="New Employee" > {{route('employees.create')}}</x-button.create> @endcan
+        </x-slot>
+
         <!-- Table Start -->
         <x-table.listing id="table">
             <!-- table headers -->

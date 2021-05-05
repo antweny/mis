@@ -2,15 +2,11 @@
 @section('title','Designations List')
 @section('content')
 
-
-    <x-row>
-        <x-slot name="left">
-            @can('designation_create') <x-button.create label="Add Designation" modal="modal"> #new </x-button.create> @endcan
-        </x-slot>
-    </x-row>
-
         <!-- Start Card -->
         <x-card title="Designations List">
+            <x-slot name="cardButton">
+                @can('designation_create') <x-button.create label="Add Designation" modal="modal"> #new </x-button.create> @endcan
+            </x-slot>
             <!-- Table Start -->
             <x-table.listing :collection="$designations">
                 <!-- table headers -->

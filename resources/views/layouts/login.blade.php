@@ -22,36 +22,42 @@
     <!-- Login Styles -->
     <link href="{{ asset('css/login.css') }}" rel="stylesheet">
 
-
 </head>
 <body>
-    <div class="main">
-
-        <div class="container">
-            <div class="middle">
-
-                <div id="login">
-                    @yield('content')
-                </div>
-
-                <div class="logo">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <a href="{{url('/')}}">
+    <main>
+        <div class="row justify-content-center ">
+            <div class="col-md-3">
+                <div class="card mt-5">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-md-12 text-center logo">
                                 <img src="{{asset('images/logo.png')}}">
-                            </a>
+                            </div>
+                            <div class="col-md-12 text-center">
+                                <h4>User Login</h4>
+                            </div>
                         </div>
                     </div>
-                    <div class="clearfix"></div>
+                    <div class="card-body">
+                        <x-alert />
+                        <div class="row">
+                            <div class="col-md-12">
+                                @yield('content')
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
             </div>
-
         </div>
+    </main>
+{{--    <div class="main">--}}
+{{--        <div class="container">--}}
+{{--
 
-    </div>
+{{--        </div>--}}
+{{--    </div>--}}
 
-    @include('layouts.includes.frontend.js')
+    @include('layouts.common.js')
 
 </body>
 </html>

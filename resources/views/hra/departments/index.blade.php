@@ -2,14 +2,11 @@
 @section('title','Departments List')
 @section('content')
 
-    <x-row>
-        <x-slot name="left">
-            @can('department_create') <x-button.create label="Add Department" modal="modal"> #new </x-button.create> @endcan
-        </x-slot>
-    </x-row>
-
     <!-- Start Card -->
     <x-card title="Departments List" >
+        <x-slot name="cardButton">
+            @can('department_create') <x-button.create label="Add Department" modal="modal"> #new </x-button.create> @endcan
+        </x-slot>
         <!-- Table Start -->
         <x-table.listing id="table">
             <!-- table headers -->

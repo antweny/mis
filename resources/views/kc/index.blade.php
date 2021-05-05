@@ -2,14 +2,11 @@
 @section('title','Knowledge Centers List')
 @section('content')
 
-    <x-row>
-        <x-slot name="left">
-            @can('organization_create') <x-button.create label="Add KC"> {{route('organizations.create')}} </x-button.create> @endcan
-        </x-slot>
-    </x-row>
-
     <!-- Start Card -->
     <x-card title="KC List">
+        <x-slot name="cardButton">
+            @can('organization_create') <x-button.create label="Add KC"> {{route('organizations.create')}} </x-button.create> @endcan
+        </x-slot>
         <!-- Table Start -->
         <x-table.listing id="table">
             <!-- table headers -->
