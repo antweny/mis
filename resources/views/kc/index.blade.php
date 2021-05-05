@@ -33,18 +33,10 @@
                     <td  class="text-center">
                         <div class="btn-group btn-group-sm">
                             @can('organization_update')
-                                <a href="{{route('organizations.edit',$organization)}} " class="btn btn-edit mr-2" data-toggle="tooltip" data-placement="top" title="Edit item" >
-                                    <i class="fa fa-edit"></i>
-                                </a>
+                                <x-button.edit>{{route('organizations.edit',$organization)}}</x-button.edit>
                             @endcan
                             @can('organization_delete')
-                                <form method="POST" action="{{route('organizations.destroy',$organization)}}" class="form-horizontal" role="form" autocomplete="off">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-delete btn-sm" onclick="return confirm('Confirm to delete?')" data-toggle="tooltip" data-placement="top" title="Delete">
-                                        <i class="fa fa-times"></i>
-                                    </button>
-                                </form>
+                                <x-button.delete>{{route('organizations.destroy',$organization)}}</x-button.delete>
                             @endcan
                         </div>
                     </td>
