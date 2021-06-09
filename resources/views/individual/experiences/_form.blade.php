@@ -12,7 +12,7 @@
 <div class="row  form-group">
     <div class="col-md-6">
         <x-form.label name="Title: <span class='star'>*</span>" />
-        <x-dropdown.job-title :model="$employee" req="required" :model="$experience"/>
+        <x-dropdown.job-title req="required" :model="$experience"/>
     </div>
     <div class="col-md-6">
         <x-form.label name="Where: <span class='star'>*</span>" />

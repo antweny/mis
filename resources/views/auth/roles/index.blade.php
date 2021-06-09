@@ -63,7 +63,6 @@
                     <textarea name="desc" id="desc" class="form-control @error('desc') is-invalid @enderror">{{old('desc')}}</textarea>
                     @error('desc') <span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong> </span> @enderror
                 </div>
-                <div class="form-group row">
                     <div class="col-md-12">
                         <x-form.label name="AssignPermission" />
                     </div>

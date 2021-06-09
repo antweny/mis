@@ -78,8 +78,8 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
     }
 
     /*
-     * Create Random Password
-     */
+    * Create Random Password
+    */
     private function passwordGenerator()
     {
         return Str::random(10);
