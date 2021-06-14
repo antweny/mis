@@ -27,12 +27,12 @@ class Attendance extends BaseModel
      * ----------------------
      */
 
-    public function getTimeInAttribute($value)
+    public function getTInTimeAttribute($value)
     {
         return $value ? date("H:i", strtotime( $value )) : null;
     }
 
-    public function getTimeOutAttribute($value)
+    public function getOutTimeAttribute($value)
     {
         return $value ? date("H:i", strtotime( $value )) : '<span class="status bg-success text-white"> active </span>';
     }
