@@ -5,11 +5,11 @@
     <div class="col-md-9">
         <div class="row">
             <div class="col-md-4">
-                <x-form.label name="Employee No <span class='star'>*</span>" />
+                <x-form.label name="Employee No" star="true" />
                 <x-form.input name="employee_no" id="employee_no" req="required" :model="$employee"  />
             </div>
             <div class="col-md-8">
-                <x-form.label name="Full Name: <span class='star'>*</span>" />
+                <x-form.label name="Full Name" star="true"/>
                 <x-form.input name="name" id="name" for="name" req="required" :model="$employee"  />
             </div>
         </div>
@@ -36,27 +36,27 @@
             <div class="tab-pane fade show active" id="wi" role="tabpanel" aria-labelledby="wi-tab">
                 <div class="form-group row">
                     <div class="col-md-6">
-                        <x-form.label name="Location: <span class='star'>*</span>" />
+                        <x-form.label name="Location" star="true" />
                         <x-dropdown.location req="required" :model="$employee"/>
                     </div>
                     <div class="col-md-6">
-                        <x-form.label name="Email: <span class='star'>*</span>" />
+                        <x-form.label name="Email" star="true" />
                         <x-form.input type="email" name="email" id="email" req="required" for="email" :model="$employee"  />
                     </div>
                 </div>
                 <div class="form-group row">
                     <div class="col-md-6">
-                        <x-form.label name="Mobile <span class='star'>*</span>" />
+                        <x-form.label name="Mobile" star="true" />
                         <x-form.input name="mobile" id="mobile" for="mobile" req="required" :model="$employee"  />
                     </div>
                 </div>
                 <div class="form-group row">
                     <div class="col-md-6">
-                        <x-form.label name="Department <span class='star'>*</span>" />
+                        <x-form.label name="Department" star="true" />
                         <x-dropdown.department req="required" :model="$employee"/>
                     </div>
                     <div class="col-md-6">
-                        <x-form.label name="Designation <span class='star'>*</span>" />
+                        <x-form.label name="Designation" star="true" />
                         <x-dropdown.designation req="required" :model="$employee"/>
                     </div>
                 </div>
@@ -67,7 +67,7 @@
             <div class="tab-pane fade" id="pi" role="tabpanel" aria-labelledby="pi-tab">
                 <div class="form-group row">
                     <div class="col-md-6">
-                        <x-form.label name="Sex <span class='star'>*</span>" for="sex" />
+                        <x-form.label name="Sex" star="true" />
                         <select class="form-control @error('sex') is-invalid @enderror single-select" name="sex" required>
                             <option value="">--</option>
                             <option value="Male" {{old('sex',$employee->sex) == 'Male' ? 'selected' : ''}}>Male</option>
@@ -75,7 +75,7 @@
                         </select>
                     </div>
                     <div class="col-md-6">
-                        <x-form.label name="Date of Birth <span class='star'>*</span>" />
+                        <x-form.label name="Date of Birth" star="true" />
                         <x-form.input label="" type="date" name="dob" id="dob" for="dob" :model="$employee" req="required"/>
                     </div>
                 </div>
@@ -103,7 +103,7 @@
                         <x-dropdown.user :model="$employee" />
                     </div>
                     <div class="col-md-6">
-                        <x-form.label name="Active: <span class='star'>*</span>" for="active" />
+                        <x-form.label name="Active" star="true" for="active" />
                         <select class="form-control @error('active') is-invalid @enderror single-select" name="active" required>
                             <option value="1" {{old('active',$employee->active) == '1' ? 'selected' : ''}}>Yes</option>
                             <option value="0" {{old('active',$employee->active) == '0' ? 'selected' : ''}}>No</option>
@@ -122,7 +122,7 @@
             <x-button.back />
         </div>
         <div class="float-right">
-            <x-button.submit label="{{$buttonText}}"/>
+            <x-button label="{{$buttonText}}"/>
         </div>
     </div>
 </div>

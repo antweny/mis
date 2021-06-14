@@ -8,9 +8,9 @@
             <x-card title="New Visitor">
 
                 <!-- Start form -->
-                    <x-form.post action="visitors.store">
+                    <x-form action="{{route('visitors.store')}}">
                         @include('hra.visitors._form',['buttonText'=>'Save'])
-                    </x-form.post>
+                    </x-form>
                 <!-- end form -->
 
             </x-card>

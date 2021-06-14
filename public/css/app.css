@@ -11054,6 +11054,10 @@ body {
   border-top: 0;
 }
 
+.status {
+  padding: 5px;
+}
+
 /*--------- BUTTON STYLES ------------*/
 
 .btn {

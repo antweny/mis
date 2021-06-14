@@ -39,17 +39,12 @@
                         <td class="text-center">{{ $timesheet->activity->name }}</td>
                         <td  class="text-left">{{$timesheet->desc}}</td>
                         <td  class="text-center">
-                            <div class="btn-group btn-group-sm">
-                                <a href="{{route('timesheets.edit',$timesheet)}}" class="btn mr-2 btn-edit" data-toggle="tooltip" data-placement="top" title="Edit item" >
-                                    <i class="fa fa-edit"></i>
-                                </a>
-                                <form method="POST" action="{{route('timesheets.destroy',$timesheet)}}" class="form-horizontal" role="form" autocomplete="off">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-sm btn-delete" onclick="return confirm('Confirm to delete?')" data-toggle="tooltip" data-placement="top" title="Delete">
-                                        <i class="fa fa-times"></i>
-                                    </button>
-                                </form>
+                            <div class="dropleft">
+                                <button type="button" class="btn btn-light" data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i> </button>
+                                <div class="dropdown-menu">
+                                    <x-button.edit>{{route('timesheets.edit',$timesheet)}}</x-button.edit>
+                                    <x-button.delete>{{route('timesheets.destroy',$timesheet)}}</x-button.delete>
+                                </div>
                             </div>
                         </td>
                     </tr>
@@ -64,8 +59,7 @@
         <!-- Start Modal -->
         <x-modal id="new" title="New Timesheet" class="modal-xl">
             <!-- Start form -->
-            <x-form.post action="timesheets.store" >
-
+            <x-form action="{{route('timesheets.store')}}" >
                 <div class="form-group">
                     <x-form.label name="Date <span class='star'>*</span>" />
                     <input type="date" name="date" value="{{date('Y-m-d')}}" class="form-control @error('date') is-invalid @enderror" required />
@@ -75,27 +69,25 @@
                     <x-form.label name="Activity" />
                     <x-dropdown.activity />
                 </div>
-
                 <div class="row">
                     <div class="col-md-6 form-group ">
                         <x-form.label name="Time From <span class='star'>*</span>" />
                         <x-form.input name="time_from" id="time_from" for="time_from" req="required" />
                     </div>
                     <div class="col-md-6 form-group ">
-                        <x-form.label name="Time To <span class='star'>*</span>" />
+                        <x-form.label name="Time To <span class='star'>*</span>" star="true" />
                         <x-form.input name="time_to" id="time_to" for="time_to" req="required" />
                     </div>
                 </div>
-
                 <div class="form-group">
                     <x-form.label name="Descriptions <span class='star'>*</span>" />
                     <textarea name="desc" class="form-control @error('desc') is-invalid @enderror" id="desc" rows="4" >{{old('desc')}}</textarea>
                     @error('desc') <span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong> </span> @enderror
                 </div>
                 <div class="form-group text-right">
-                    <x-button.submit />
+                    <x-button />
                 </div>
-            </x-form.post>
+            </x-form>
             <!-- end form -->
         </x-modal>
         <!-- end modal -->

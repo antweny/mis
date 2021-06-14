@@ -34,16 +34,23 @@
                     <td  class="text-center">{!! $employee->status !!}</td>
                     <td class="text-center">{{$employee->department->employee->name}}</td>
                     <td  class="text-center">
-                        @can('employee_update')
-                            <a href="{{route('employees.edit',$employee)}}" class="btn btn-edit btn-sm mr-2" data-toggle="tooltip" data-placement="top" title="Edit" >
-                                <i class="fa fa-edit"></i>
-                            </a>
-                        @endcan
-                        @can('employee_read')
-                            <a href="{{route('employees.show',$employee)}}" class="btn btn-secondary btn-sm" data-toggle="tooltip" data-placement="top" title="View" >
-                                <i class="fa fa-eye"></i>
-                            </a>
-                        @endcan
+                        <div class="dropleft">
+                            <button type="button" class="btn btn-light" data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i> </button>
+                            <div class="dropdown-menu">
+                                @can('employee_view')
+                                    <a href="{{route('employees.show',$employee)}}" class="dropdown-item" data-toggle="tooltip" data-placement="top" title="View" >
+                                        <i class="fa fa-eye"></i> View
+                                    </a>
+                                    <div class="dropdown-divider"></div>
+                                @endcan
+                                @can('employee_update')
+                                    <x-button.edit>{{route('employees.edit',$employee)}}</x-button.edit>
+                                @endcan
+                                @can('employee_delete')
+                                    <x-button.delete>{{route('employees.destroy',$employee)}}</x-button.delete>
+                                @endcan
+                            </div>
+                        </div>
                     </td>
                 </tr>
             @endforeach

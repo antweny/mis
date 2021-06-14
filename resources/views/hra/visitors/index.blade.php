@@ -38,21 +38,16 @@
                     <td  class="text-center">{{$visitor->check_in}}</td>
                     <td  class="text-center">{{$visitor->check_out}}</td>
                     <td  class="text-center">
-                        <div class="btn-group btn-group-sm">
-                            @can('visitor_update')
-                                <a href="{{route('visitors.edit',$visitor)}}" class="btn btn-edit btn-sm mr-2" data-toggle="tooltip" data-placement="top" title="Edit" >
-                                    <i class="fa fa-edit"></i>
-                                </a>
-                            @endcan
-                            @can('visitor_delete')
-                                <form method="POST" action="{{route('visitors.destroy',$visitor)}}" class="form-horizontal" role="form" autocomplete="off">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-delete btn-sm" onclick="return confirm('Confirm to delete?')" data-toggle="tooltip" data-placement="top" title="Delete">
-                                        <i class="fa fa-times"></i>
-                                    </button>
-                                </form>
-                            @endcan
+                        <div class="dropleft">
+                            <button type="button" class="btn btn-light" data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i> </button>
+                            <div class="dropdown-menu">
+                                @can('visitor_update')
+                                    <x-button.edit>{{route('visitors.edit',$visitor)}}</x-button.edit>
+                                @endcan
+                                @can('visitor_delete')
+                                    <x-button.delete>{{route('visitors.destroy',$visitor)}}</x-button.delete>
+                                @endcan
+                            </div>
                         </div>
                     </td>
                 </tr>

@@ -36,7 +36,6 @@
                                     <x-button.edit>{{route('departments.edit',$department)}}</x-button.edit>
                                 @endcan
                                 @can('department_delete')
-                                    <div class="dropdown-divider"></div>
                                     <x-button.delete>{{route('departments.destroy',$department)}}</x-button.delete>
                                 @endcan
                             </div>

@@ -6,9 +6,9 @@
         <div class="col-md-7">
             <x-card title="New Employee">
                 <!-- Start form -->
-                <x-form.post action="employees.store">
+                <x-form action="{{route('employees.store')}}">
                     @include('hra.employee._form',['buttonText'=>'Save'])
-                </x-form.post>
+                </x-form>
                 <!-- end form -->
             </x-card>
         </div>
