@@ -22,13 +22,16 @@
                     <td class="text-left">{{$roomCategory->name}}</td>
                     <td  class="text-left">{{$roomCategory->desc}}</td>
                     <td  class="text-center">
-                        <div class="btn-group btn-group-sm">
-                            @can('room-category_update')
-                                <x-button.edit>{{route('roomCategories.edit',$roomCategory)}}</x-button.edit>
-                            @endcan
-                            @can('room-category_delete')
-                                <x-button.delete>{{route('roomCategories.destroy',$roomCategory)}}</x-button.delete>
-                            @endcan
+                        <div class="dropleft">
+                            <button type="button" class="btn btn-light" data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i> </button>
+                            <div class="dropdown-menu">
+                                @can('room-category_update')
+                                    <x-button.edit>{{route('roomCategories.edit',$roomCategory)}}</x-button.edit>
+                                @endcan
+                                @can('room-category_delete')
+                                    <x-button.delete>{{route('roomCategories.destroy',$roomCategory)}}</x-button.delete>
+                                @endcan
+                            </div>
                         </div>
                     </td>
                 </tr>
@@ -39,9 +42,9 @@
     <!-- Start Modal -->
     <x-modal id="new" title="New Room Category">
         <!-- Start form -->
-        <x-form.post action="roomCategories.store">
+        <x-form action="{{route('roomCategories.store')}}">
             <div class="form-group">
-                <x-form.label name="Name: <span class='star'>*</span>"/>
+                <x-form.label name="Name" star="true"/>
                 <x-form.input name="name" id="name" for="name" req="required"   />
             </div>
             <div class="form-group">
@@ -50,9 +53,9 @@
                 @error('desc') <span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong> </span> @enderror
             </div>
             <div class="form-group text-right">
-                <x-button.submit />
+                <x-button/>
             </div>
-        </x-form.post>
+        </x-form>
         <!-- end form -->
     </x-modal>
     <!-- end modal -->

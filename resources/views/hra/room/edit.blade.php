@@ -9,12 +9,12 @@
                     @csrf
 
                     <div class="form-group">
-                        <x-form.label name="Room Wing: <span class='star'>*</span>" />
+                        <x-form.label name="Room Wing" star="true" />
                         <x-dropdown.room-category req="required" :model="$room" />
                     </div>
                     <div class="form-group row">
                         <div class="col-md-6">
-                            <x-form.label name="Name" />
+                            <x-form.label name="Name" star="true" />
                             <x-form.input name="name" id="name" for="name" :model="$room"   />
                         </div>
                         <div class="col-md-6">
@@ -29,7 +29,7 @@
                                 <x-button.back />
                             </div>
                             <div class="float-right">
-                                <x-button.submit label="Update"/>
+                                <x-button label="Update"/>
                             </div>
                         </div>
                     </div>

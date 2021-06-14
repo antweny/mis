@@ -25,13 +25,16 @@
                     <td class="text-left">{{$room->name}}</td>
                     <td class="text-center">{{$room->number}}</td>
                     <td  class="text-center">
-                        <div class="btn-group btn-group-sm">
-                            @can('room_update')
-                                <x-button.edit>{{route('rooms.edit',$room)}}</x-button.edit>
-                            @endcan
-                            @can('room_delete')
-                                <x-button.delete>{{route('rooms.destroy',$room)}}</x-button.delete>
-                            @endcan
+                        <div class="dropleft">
+                            <button type="button" class="btn btn-light" data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i> </button>
+                            <div class="dropdown-menu">
+                                @can('room_update')
+                                    <x-button.edit>{{route('rooms.edit',$room)}}</x-button.edit>
+                                @endcan
+                                @can('room_delete')
+                                    <x-button.delete>{{route('rooms.destroy',$room)}}</x-button.delete>
+                                @endcan
+                            </div>
                         </div>
                     </td>
                 </tr>
@@ -44,25 +47,25 @@
         <!-- Start Modal -->
         <x-modal id="new" title="New Room">
             <!-- Start form -->
-            <x-form.post action="rooms.store">
+            <x-form action="{{route('rooms.store')}}">
                 <div class="form-group">
-                    <x-form.label name="Room Wing: <span class='star'>*</span>" />
+                    <x-form.label name="Room Wing" star="true" />
                     <x-dropdown.room-category req="required" />
                 </div>
                 <div class="form-group row">
                     <div class="col-md-6">
-                        <x-form.label name="Name: <span class='star'>*</span>" />
+                        <x-form.label name="Name" star="true" />
                         <x-form.input name="name" id="name" for="name"   />
                     </div>
                     <div class="col-md-6">
-                        <x-form.label name="Room No." />
+                        <x-form.label name="Room No" />
                         <x-form.input type="number" name="number" id="number" for="number"   />
                     </div>
                 </div>
                 <div class="form-group text-right">
-                    <x-button.submit />
+                    <x-button />
                 </div>
-            </x-form.post>
+            </x-form>
             <!-- end form -->
         </x-modal>
         <!-- end modal -->
