@@ -29,13 +29,17 @@
                     <td class="text-center">{{ $department->employee_number_count }}</td>
                     <td  class="text-left">{{$department->desc}}</td>
                     <td  class="text-center">
-                        <div class="btn-group btn-group-sm">
-                            @can('department_update')
-                                <x-button.edit>{{route('departments.edit',$department)}}</x-button.edit>
-                            @endcan
-                            @can('department_delete')
-                                <x-button.delete>{{route('departments.destroy',$department)}}</x-button.delete>
-                            @endcan
+                        <div class="dropleft">
+                            <button type="button" class="btn btn-light" data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i> </button>
+                            <div class="dropdown-menu">
+                                @can('department_update')
+                                    <x-button.edit>{{route('departments.edit',$department)}}</x-button.edit>
+                                @endcan
+                                @can('department_delete')
+                                    <div class="dropdown-divider"></div>
+                                    <x-button.delete>{{route('departments.destroy',$department)}}</x-button.delete>
+                                @endcan
+                            </div>
                         </div>
                     </td>
                 </tr>
@@ -50,9 +54,9 @@
         <!-- Start Modal -->
         <x-modal id="new" title="New Department">
             <!-- Start form -->
-            <x-form.post action="departments.store">
+            <x-form action="{{route('departments.store')}}">
                 <div class="form-group">
-                    <x-form.label name="Name <span class='star'>*</span>" for="name" />
+                    <x-form.label name="Name" for="name" star="true" />
                     <x-form.input name="name" id="name" for="name" req="required" />
                 </div>
                 <div class="form-group row">
@@ -71,9 +75,9 @@
                     @error('desc') <span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong> </span> @enderror
                 </div>
                 <div class="form-group text-right">
-                    <x-button.submit />
+                    <x-button />
                 </div>
-            </x-form.post>
+            </x-form>
             <!-- end form -->
         </x-modal>
         <!-- end modal -->

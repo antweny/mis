@@ -21,7 +21,7 @@
     <!-- /.Header -->
 
     <!-- Main -->
-    <main class="content">
+    <main class="mainContent">
         <div class="container">
             @yield('content')
         </div>

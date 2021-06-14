@@ -10967,7 +10967,7 @@ body {
 
 /*-------------- MAIN NAVIGATION -----------*/
 
-.content {
+.mainContent {
   min-height: 100vh;
 }
 
@@ -11070,21 +11070,15 @@ body {
   border: 1px solid;
 }
 
-.btn-group > .btn:not(:last-child):not(.dropdown-toggle),
-.btn-group > .btn-group:not(:last-child) > .btn {
-  border-radius: 0;
-}
-
-.btn-group > .btn:not(:first-child),
-.btn-group > .btn-group:not(:first-child) > .btn {
-  border-radius: 0;
-}
-
 .btn-del {
   display: block;
   padding: 0 0 0 21px;
   border: 0;
   text-align: left;
+}
+
+.btn-del:hover {
+  border: 0;
 }
 
 .btn-del:hover {
@@ -11298,7 +11292,7 @@ body {
   width: 225px;
   padding-left: 0;
   padding-right: 0;
-  padding-top: 1rem;
+  padding-top: 0;
   margin: 0;
   height: 56px;
   text-align: center;
@@ -11373,6 +11367,7 @@ body {
   font-size: 14px;
   margin-top: 5px;
   color: #374151;
+  font-weight: 600;
 }
 
 .sidenav .nav-link:hover,
@@ -11443,14 +11438,9 @@ body {
   display: inline-block;
 }
 
-.sidenav-menu-nested .nav-link {
-  padding: 0.7rem 1rem;
-  margin-top: 0;
-}
-
-.sidenav-menu-nested a:hover,
+.sidenav-menu-nested .nav-link:hover,
 .sidenav-menu-nested .nav-link.active {
-  background: transparent;
+  background: white;
   color: #04519b;
 }
 

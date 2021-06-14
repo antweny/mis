@@ -22,10 +22,8 @@
 @include('layouts.nav.topBack')
 <!-- /.Header -->
 
-
 <!-- Main Container Section -->
 <div class="mainContainer" >
-
     <!-- Sidebar section-->
     <div class="sidebar">
         @include('layouts.nav.sidebar')
@@ -38,7 +36,6 @@
                 @yield('content')
             </div>
         </main>
-
         <!-- footer section -->
         <footer class="py-4 mt-auto">
             <div class="container-fluid">

@@ -26,7 +26,7 @@
                             <i class="fas fa-user fa-fw"></i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                            <a class="dropdown-item" href="{{route('profile')}}"> <i class="fa fa-user"></i> Profile</a>
+                            <a class="dropdown-item" href="{{url('/dashboard')}}"> <i class="fa fa-user"></i> Dashboard</a>
                             <div class="dropdown-divider"></div>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;"> @csrf</form>
                             <a class="dropdown-item logout" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
