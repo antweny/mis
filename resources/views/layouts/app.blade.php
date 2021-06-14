@@ -9,36 +9,32 @@
 
     <title>@yield('title', 'MIS')</title>
 
-    @include('layouts.includes.frontend.style')
+    <!-- Styles -->
+    @include('layouts.general.css')
 
 </head>
 <body>
-<!-- Top bar -->
-<div class="container-fluid bg-primary">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 pt-3 pb-3">
-                fdsafsaf
-            </div>
+    <!-- Header -->
+    <header class="site-navbar sticky-top">
+        @include('layouts.nav.top')
+    </header>
+    <!-- /.Header -->
+
+    <!-- Main -->
+    <main class="content">
+        <div class="container">
+            @yield('content')
         </div>
-    </div>
-</div>
-<!-- /.Top bar -->
+    </main>
+    <!-- /.Main -->
 
-<!-- Top bar -->
-
-    @include('layouts.includes.frontend.topNav')
-
-<!-- /.Top bar -->
-
-
-<div class="container">
-
-    @yield('content')
-
-</div>
+    <footer class="footer bg-dark-gray">
+        <div class="container-fluid">
+            footer
+        </div>
+    </footer>
 
 
-@include('layouts.includes.frontend.js')
+    @include('layouts.general.js')
 </body>
 </html>

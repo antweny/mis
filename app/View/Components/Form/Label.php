@@ -8,14 +8,16 @@ class Label extends Component
 {
     public $for;
     public $name;
+    public $star;
 
     /**
      * Create a new component instance.
      */
-    public function __construct($name, $for = null)
+    public function __construct($name, $for = null, $star=false)
     {
         $this->name = $name;
         $this->for = $for;
+        $this->star = $star;
     }
 
     /**
