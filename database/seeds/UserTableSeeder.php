@@ -17,7 +17,7 @@ class UserTableSeeder extends Seeder
             'name' => 'Super Admin',
             'email' => 'it@tgnp.or.tz',
             'email_verified_at' => now(),
-            'password' => Hash::make('Password1'),
+            'password' => Hash::make('P@ssw0rd1'),
         ]);
 
         $user->assignRole('superAdmin');
