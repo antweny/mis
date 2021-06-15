@@ -6,18 +6,16 @@
         <td  class="text-center">{{$output->year}}</td>
         <td  class="text-left">{!! $output->outcome->outcome_name !!}</td>
         <td  class="text-center">
-            <div class="btn-group btn-group-sm">
-                @can('output_update')
-                    <x-button.edit>{{route('outputs.edit',$output)}}</x-button.edit>
-                @endcan
-                @can('output_read')
-{{--                    <a href="{{route('outputs.destroy',$output)}}" class="btn btn-secondary btn-sm mr-1" data-toggle="tooltip" data-placement="top" title="View" >--}}
-{{--                        <i class="fa fa-eye"></i>--}}
-{{--                    </a>--}}
-                @endcan
-                @can('output_delete')
-                    <x-button.delete>{{route('outputs.destroy',$output)}}</x-button.delete>
-                @endcan
+            <div class="dropleft">
+                <button type="button" class="btn btn-light" data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i> </button>
+                <div class="dropdown-menu">
+                    @can('output_update')
+                        <x-button.edit>{{route('outputs.edit',$output)}}</x-button.edit>
+                    @endcan
+                    @can('output_delete')
+                        <x-button.delete>{{route('outputs.destroy',$output)}}</x-button.delete>
+                    @endcan
+                </div>
             </div>
         </td>
     </tr>

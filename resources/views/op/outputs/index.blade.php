@@ -2,14 +2,12 @@
 @section('title','Outputs List')
 @section('content')
 
-    <x-row>
-        <x-slot name="left">
-            @can('output_create') <x-button.create label="Add Output" > {{route('outputs.create')}} </x-button.create> @endcan
-        </x-slot>
-    </x-row>
-
     <!-- Start Card -->
     <x-card title="Outputs List">
+
+        <x-slot name="cardButton">
+            @can('output_create') <x-button.create label="Add Output" > {{route('outputs.create')}} </x-button.create> @endcan
+        </x-slot>
 
         <!-- Table Start -->
         <x-table.listing id="table">

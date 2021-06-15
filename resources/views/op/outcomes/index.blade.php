@@ -2,14 +2,13 @@
 @section('title','Outcomes List')
 @section('content')
 
-    <x-row>
-        <x-slot name="left">
-            @can('outcome_create') <x-button.create label="Add Outcome"> {{route('outcomes.create')}} </x-button.create> @endcan
-        </x-slot>
-    </x-row>
-
     <!-- Start Card -->
     <x-card title="Outcomes List">
+
+        <x-slot name="cardButton">
+            @can('outcome_create') <x-button.create label="Add Outcome"> {{route('outcomes.create')}} </x-button.create> @endcan
+        </x-slot>
+
         <!-- Table Start -->
         <x-table.listing id="table">
             <!-- table headers -->
@@ -28,18 +27,16 @@
                     <td  class="text-center">{{$outcome->year}}</td>
                     <td  class="text-center">{{$outcome->department->name}}</td>
                     <td  class="text-center">
-                        <div class="btn-group btn-group-sm">
-                            @can('outcome_update')
-                                <x-button.edit>{{route('outcomes.edit',$outcome)}}</x-button.edit>
-                            @endcan
-{{--                            @can('outcome_read')--}}
-{{--                                <a href="{{route('outcomes.destroy',$outcome)}}" class="btn btn-secondary btn-sm" data-toggle="tooltip" data-placement="top" title="View" >--}}
-{{--                                    <i class="fa fa-eye"></i>--}}
-{{--                                </a>--}}
-{{--                            @endcan--}}
-                            @can('outcome_delete')
-                                <x-button.delete>{{route('outcomes.destroy',$outcome)}}</x-button.delete>
-                            @endcan
+                        <div class="dropleft">
+                            <button type="button" class="btn btn-light" data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i> </button>
+                            <div class="dropdown-menu">
+                                @can('outcome_update')
+                                    <x-button.edit>{{route('outcomes.edit',$outcome)}}</x-button.edit>
+                                @endcan
+                                @can('outcome_delete')
+                                    <x-button.delete>{{route('outcomes.destroy',$outcome)}}</x-button.delete>
+                                @endcan
+                            </div>
                         </div>
                     </td>
                 </tr>

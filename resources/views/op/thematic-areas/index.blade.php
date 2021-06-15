@@ -2,14 +2,14 @@
 @section('title','Thematic Areas List')
 @section('content')
 
-    <x-row>
-        <x-slot name="left">
-           @can('thematic-area_create') <x-button.create label="Add Thematic Area" modal="modal"> #new </x-button.create> @endcan
-        </x-slot>
-    </x-row>
-
     <!-- Start Card -->
     <x-card title="Thematic Areas List">
+
+        <x-slot name="cardButton">
+            @can('thematic-area_create') <x-button.create label="Add Thematic Area" modal="modal"> #new </x-button.create> @endcan
+        </x-slot>
+
+
         <!-- Table Start -->
         <x-table.listing id="table">
             <!-- table headers -->
@@ -27,13 +27,16 @@
                     <td  class="text-center">{{$thematicArea->parent->name}}</td>
                     <td  class="text-left">{{$thematicArea->desc}}</td>
                     <td  class="text-center">
-                        <div class="btn-group btn-group-sm">
-                            @can('thematic-area_update')
-                                <x-button.edit>{{route('thematicAreas.edit',$thematicArea)}}</x-button.edit>
-                            @endcan
-                            @can('thematic-area_delete')
-                                <x-button.delete>{{route('thematicAreas.destroy',$thematicArea)}}</x-button.delete>
-                            @endcan
+                        <div class="dropleft">
+                            <button type="button" class="btn btn-light" data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i> </button>
+                            <div class="dropdown-menu">
+                                @can('thematic-area_update')
+                                    <x-button.edit>{{route('thematicAreas.edit',$thematicArea)}}</x-button.edit>
+                                @endcan
+                                @can('thematic-area_delete')
+                                    <x-button.delete>{{route('thematicAreas.destroy',$thematicArea)}}</x-button.delete>
+                                @endcan
+                            </div>
                         </div>
                     </td>
                 </tr>
@@ -45,9 +48,9 @@
         <!-- Start Modal -->
         <x-modal id="new" title="New Thematic Area">
             <!-- Start form -->
-                <x-form.post action="thematicAreas.store">
+                <x-form action="{{route('thematicAreas.store')}}">
                     <div class="form-group">
-                        <x-form.label name="Name: <span class='star'>*</span>" />
+                        <x-form.label name="Name" star="true" />
                         <x-form.input name="name" id="name" for="name" req="required"   />
                     </div>
                     <div class="form-group">
@@ -60,9 +63,9 @@
                         @error('desc') <span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong> </span> @enderror
                     </div>
                     <div class="form-group text-right">
-                        <x-button.submit />
+                        <x-button />
                     </div>
-                </x-form.post>
+                </x-form>
             <!-- end form -->
         </x-modal>
         <!-- end modal -->

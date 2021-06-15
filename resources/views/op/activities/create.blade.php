@@ -6,9 +6,9 @@
         <div class="col-md-10">
             <x-card title="New Activity">
                 <!-- Start form -->
-                <x-form.post action="activities.store">
+                <x-form action="{{route('activities.store')}}">
                     @include('op.activities._form',['buttonText'=>'Save'])
-                </x-form.post>
+                </x-form>
                 <!-- end form -->
             </x-card>
         </div>

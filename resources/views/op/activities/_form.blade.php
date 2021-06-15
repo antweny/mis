@@ -1,10 +1,10 @@
 <div class="form-group row">
     <div class="col-md-9">
-        <x-form.label name="Name: <span class='star'>*</span>" for="sex" />
+        <x-form.label name="Name" star="true" />
         <x-form.input name="name" id="name" for="name" req="required" :model="$activity" />
     </div>
     <div class="col-md-3">
-        <x-form.label name="Activity Status: <span class='star'>*</span>" for="sex" />
+        <x-form.label name="Activity Status" star="true" />
         <select class="form-control @error('status') is-invalid @enderror single-select" name="status" required>
             <option value="">--</option>
             <option value="NS" {{old('status',$activity->status) == 'NS' ? 'selected' : ''}}>Not Started</option>
@@ -20,7 +20,7 @@
         <x-dropdown.activity name="parent_id" :model="$activity"/>
     </div>
     <div class="col-md-6">
-        <x-form.label name="Project <span class='star'>*</span>" for="sex" />
+        <x-form.label name="Project" star="true" />
         <x-dropdown.project-multiple :model="$activity"/>
     </div>
 
@@ -29,27 +29,27 @@
 
 <div class="form-group row">
     <div class="col-md-6">
-        <x-form.label name="Output <span class='star'>*</span>" />
+        <x-form.label name="Output" star="true" />
         <x-dropdown.output :model="$activity" req="required"/>
     </div>
     <div class="col-md-6">
-        <x-form.label name="Employee <span class='star'>*</span>" />
+        <x-form.label name="Employee" star="true" />
         <x-dropdown.employee label="Responsible Staff: <span class='star'>*</span>" :model="$activity" req="required" />
     </div>
 </div>
 
 <div class="form-group row">
     <div class="col-md-9">
-        <x-form.label name="Descriptions: <span class='star'>*</span>" />
+        <x-form.label name="Descriptions" star="true" />
         <textarea name="desc" class="form-control @error('desc') is-invalid @enderror" id="desc" rows="5" required>{{old('desc',$activity->desc)}}</textarea>
     </div>
     <div class="col-md-3">
         <div class="form-group">
-            <x-form.label name="Start Date: <span class='star'>*</span>" />
+            <x-form.label name="Start Date" star="true" />
             <x-form.input type="date" name="start_date" id="start_date" for="start_date" req="required" :model="$activity" />
         </div>
         <div class="form-group">
-            <x-form.label name="Due Date: <span class='star'>*</span>" />
+            <x-form.label name="Due Date" star="true" />
             <x-form.input type="date" name="due_date" id="due_date" for="due_date" req="required" :model="$activity" />
         </div>
     </div>
@@ -61,7 +61,7 @@
             <x-button.back />
         </div>
         <div class="float-right">
-            <x-button.submit label="{{$buttonText}}"/>
+            <x-button label="{{$buttonText}}"/>
         </div>
     </div>
 </div>
