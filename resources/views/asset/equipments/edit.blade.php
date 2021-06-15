@@ -10,17 +10,17 @@
                 @csrf
                 <div class="form-group row">
                     <div class="col-md-6">
-                        <x-form.label name="Brand <span class='star'>*</span>" />
+                        <x-form.label name="Brand" star="true" />
                         <x-dropdown.brand req="required" :model="$equipment"/>
                     </div>
                     <div class="col-md-6">
-                        <x-form.label name="Model: <span class='star'>*</span>" />
+                        <x-form.label name="Model" star="true" />
                         <x-form.input name="model" id="model" for="model" req="required" :model="$equipment"  />
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <x-form.label name="Type <span class='star'>*</span>" />
+                    <x-form.label name="Type" star="true" />
                     <x-dropdown.asset-type req="required" :model="$equipment" />
                 </div>
 
@@ -36,7 +36,7 @@
                             <x-button.back />
                         </div>
                         <div class="float-right">
-                            <x-button.submit label="Update"/>
+                            <x-button label="Update"/>
                         </div>
                     </div>
                 </div>

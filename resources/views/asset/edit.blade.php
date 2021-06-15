@@ -11,11 +11,11 @@
 
                     <div class="form-group row">
                         <div class="col-md-6">
-                            <x-form.label name="Equipment <span class='star'>*</span>" />
+                            <x-form.label name="Equipment" star="true" />
                             <x-dropdown.equipment  req="required" :model="$asset" />
                         </div>
                         <div class="col-md-6">
-                            <x-form.label name="Serial No. <span class='star'>*</span>" />
+                            <x-form.label name="Serial No" star="true" />
                             <x-form.input name="serial_no" id="serial_no" for="serial_no" :model="$asset" />
                         </div>
                     </div>
@@ -47,7 +47,7 @@
                                 <x-button.back />
                             </div>
                             <div class="float-right">
-                                <x-button.submit label="Update"/>
+                                <x-button label="Update"/>
                             </div>
                         </div>
                     </div>

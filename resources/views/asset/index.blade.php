@@ -1,15 +1,14 @@
 @extends('layouts.backend')
 @section('title','Assets List')
 @section('content')
-
-    <x-row>
-        <x-slot name="left">
-            @can('asset_create')<x-button.create label="New Asset" modal="modal"> #new </x-button.create>@endcan
-        </x-slot>
-    </x-row>
-
     <!-- Start Card -->
     <x-card title="Assets List">
+
+        <x-slot name="cardButton">
+            @can('asset_create')<x-button.create label="New Asset" modal="modal"> #new </x-button.create>@endcan
+        </x-slot>
+
+
         <!-- Table Start -->
         <x-table.listing id="table">
             <!-- table headers -->
@@ -38,13 +37,16 @@
                     <td  class="text-center">{{humanDate($asset->date)}}</td>
                     <td  class="text-left">{{$asset->remarks}}</td>
                     <td  class="text-center">
-                        <div class="btn-group btn-group-sm">
-                            @can('asset_update')
-                                <x-button.edit>{{route('assets.edit',$asset)}}</x-button.edit>
-                            @endcan
-                            @can('asset_delete')
-                                <x-button.delete>{{route('assets.destroy',$asset)}}</x-button.delete>
-                            @endcan
+                        <div class="dropleft">
+                            <button type="button" class="btn btn-light" data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i> </button>
+                            <div class="dropdown-menu">
+                                @can('asset_update')
+                                    <x-button.edit>{{route('assets.edit',$asset)}}</x-button.edit>
+                                @endcan
+                                @can('asset_delete')
+                                    <x-button.delete>{{route('assets.destroy',$asset)}}</x-button.delete>
+                                @endcan
+                            </div>
                         </div>
                     </td>
                 </tr>
@@ -60,15 +62,15 @@
     <x-modal id="new" title="New Asset">
 
         <!-- Start form -->
-        <x-form.post action="assets.store">
+        <x-form action="{{route('assets.store')}}">
 
             <div class="form-group row">
                 <div class="col-md-6">
-                    <x-form.label name="Equipment <span class='star'>*</span>" />
+                    <x-form.label name="Equipment" star="true" />
                     <x-dropdown.equipment  req="required"/>
                 </div>
                 <div class="col-md-6">
-                    <x-form.label name="Serial No. <span class='star'>*</span>" />
+                    <x-form.label name="Serial No" star="true" />
                     <x-form.input name="serial_no" id="serial_no" for="serial_no" />
                 </div>
             </div>
@@ -92,9 +94,9 @@
                 @error('remarks') <span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong> </span> @enderror
             </div>
             <div class="form-group text-right">
-                <x-button.submit />
+                <x-button />
             </div>
-        </x-form.post>
+        </x-form>
         <!-- end form -->
 
     </x-modal>
