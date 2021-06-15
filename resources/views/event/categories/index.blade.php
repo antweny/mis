@@ -27,13 +27,16 @@
                     <td  class="text-center">{{$eventCategory->sort}}</td>
                     <td  class="text-left">{{$eventCategory->desc}}</td>
                     <td  class="text-center">
-                        <div class="btn-group btn-group-sm">
-                            @can('event-category_update')
-                                <x-button.edit>{{route('eventCategories.edit',$eventCategory)}}</x-button.edit>
-                            @endcan
-                            @can('event-category_delete')
-                                <x-button.delete>{{route('eventCategories.destroy',$eventCategory)}}</x-button.delete>
-                            @endcan
+                        <div class="dropleft">
+                            <button type="button" class="btn btn-light" data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i> </button>
+                            <div class="dropdown-menu">
+                                @can('event-category_update')
+                                    <x-button.edit>{{route('eventCategories.edit',$eventCategory)}}</x-button.edit>
+                                @endcan
+                                @can('event-category_delete')
+                                    <x-button.delete>{{route('eventCategories.destroy',$eventCategory)}}</x-button.delete>
+                                @endcan
+                            </div>
                         </div>
                     </td>
                 </tr>
