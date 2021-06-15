@@ -2,14 +2,13 @@
 @section('title','Holidays List')
 @section('content')
 
-    <x-row>
-        <x-slot name="left">
-            @can('holiday_create') <x-button.create label="Add Holiday" modal="modal"> #new </x-button.create> @endcan
-        </x-slot>
-    </x-row>
-
     <!-- Start Card -->
     <x-card title="Public Holidays List">
+
+        <x-slot name="cardButton">
+            @can('holiday_create') <x-button.create label="Add Holiday" modal="modal"> #new </x-button.create> @endcan
+        </x-slot>
+
         <!-- Table Start -->
         <x-table.listing :collection="$holidays">
             <!-- table headers -->
@@ -31,13 +30,16 @@
                     <td  class="text-center">{!! $holiday->is_active !!}</td>
                     <td  class="text-left">{{$holiday->desc}}</td>
                     <td  class="text-center">
-                        <div class="btn-group btn-group-sm">
-                            @can('holiday_update')
-                                <x-button.edit>{{route('holidays.edit',$holiday)}}</x-button.edit>
-                            @endcan
-                            @can('holiday_delete')
-                                <x-button.delete>{{route('holidays.destroy',$holiday)}}</x-button.delete>
-                            @endcan
+                        <div class="dropleft">
+                            <button type="button" class="btn btn-light" data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i> </button>
+                            <div class="dropdown-menu">
+                                @can('holiday_update')
+                                    <x-button.edit>{{route('holidays.edit',$holiday)}}</x-button.edit>
+                                @endcan
+                                @can('holiday_delete')
+                                    <x-button.delete>{{route('holidays.destroy',$holiday)}}</x-button.delete>
+                                @endcan
+                            </div>
                         </div>
                     </td>
                 </tr>
@@ -51,14 +53,14 @@
         <!-- Start Modal -->
         <x-modal id="new" title="New Holiday">
             <!-- Start form -->
-            <x-form.post action="holidays.store">
+            <x-form action="{{route('holidays.store')}}">
                 <div class="form-group">
-                    <x-form.label name="Name <span class='star'>*</span>" for="name" />
+                    <x-form.label name="Name" star="true"  />
                     <x-form.input name="name" id="name" for="name" req="required" />
                 </div>
                 <div class="form-group row">
                     <div class="col-md-6">
-                        <x-form.label name="Date <span class='star'>*</span>" for="date" />
+                        <x-form.label name="Date" star="true"  />
                         <x-form.input type="date" name="date" id="date" req="required" />
                     </div>
                     <div class="col-md-6">
@@ -75,9 +77,9 @@
                     @error('desc') <span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong> </span> @enderror
                 </div>
                 <div class="form-group text-right">
-                    <x-button.submit />
+                    <x-button />
                 </div>
-            </x-form.post>
+            </x-form>
             <!-- end form -->
         </x-modal>
         <!-- end modal -->

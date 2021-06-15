@@ -29,12 +29,15 @@
                     <td class="text-center">{{$leaveApprove->leave_type->name}}</td>
                     <td class="text-center">{!! $leaveApprove->leave_status !!}</td>
                     <td  class="text-center">
-                        <div class="btn-group btn-group-sm">
-                            @can('approve-leave')
-                                <a href="{{route('leaveApproves.show',$leaveApprove)}}" class="btn btn-edit btn-sm mr-2" data-toggle="tooltip" data-placement="top" title="Review" >
-                                    <i class="fa fa-info-circle"></i>
-                                </a>
-                            @endcan
+                        <div class="dropleft">
+                            <button type="button" class="btn btn-light" data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i> </button>
+                            <div class="dropdown-menu">
+                                @can('approve-leave')
+                                    <a href="{{route('leaveApproves.show',$leaveApprove)}}" class="dropdown-item" >
+                                        <i class="fa fa-info-circle"></i>
+                                    </a>
+                                @endcan
+                            </div>
                         </div>
                     </td>
                 </tr>

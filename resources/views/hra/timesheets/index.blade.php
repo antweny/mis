@@ -2,14 +2,13 @@
 @section('title','Timesheets List')
 @section('content')
 
-    <x-row>
-        <x-slot name="left">
-            <x-button.create label="Add Timesheet" modal="modal"> #new </x-button.create>
-        </x-slot>
-    </x-row>
-
     <!-- Start Card -->
     <x-card title="My Timesheets">
+
+        <x-slot name="cardButton">
+            <x-button.create label="Add Timesheet" modal="modal"> #new </x-button.create>
+        </x-slot>
+
         <!-- Table Start -->
         <x-table.listing>
             <!-- table headers -->

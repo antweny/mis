@@ -2,16 +2,15 @@
 @section('title','Projects List')
 @section('content')
 
-    <x-row>
-        <x-slot name="left">
-            @can('project_create')
-                <x-button.create label="Add Project"> {{route('projects.create')}} </x-button.create>
-            @endcan
-        </x-slot>
-    </x-row>
 
     <!-- Start Card -->
     <x-card title="Projects List">
+
+        <x-slot name="cardButton">
+            @can('project_create')
+            <x-button.create label="Add Project"> {{route('projects.create')}} </x-button.create>
+            @endcan
+        </x-slot>
         <!-- Table Start -->
         <x-table.listing id="table">
             <!-- table headers -->
@@ -37,13 +36,16 @@
                     <td  class="text-left">{{humanDate($project->end)}}</td>
                     <td  class="text-center">{{$project->report_period}}</td>
                     <td  class="text-center">
-                        <div class="btn-group btn-group-sm">
-                            @can('project_update')
-                                <x-button.edit>{{route('projects.edit',$project)}}</x-button.edit>
-                            @endcan
-                            @can('project_delete')
-                                <x-button.delete>{{route('projects.destroy',$project)}}</x-button.delete>
-                            @endcan
+                        <div class="dropleft">
+                            <button type="button" class="btn btn-light" data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i> </button>
+                            <div class="dropdown-menu">
+                                @can('project_update')
+                                    <x-button.edit>{{route('projects.edit',$project)}}</x-button.edit>
+                                @endcan
+                                @can('project_delete')
+                                    <x-button.delete>{{route('projects.destroy',$project)}}</x-button.delete>
+                                @endcan
+                            </div>
                         </div>
                     </td>
                 </tr>
