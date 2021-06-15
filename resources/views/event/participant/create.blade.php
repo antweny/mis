@@ -7,11 +7,13 @@
         <div class="col-md-8">
             <x-card title="New Event Participant">
 
+
                 <!-- Start form -->
-                <x-form.post action="participants.store">
+                <x-form action="{{route('participants.store')}}">
                     @include('event.participant._form',['buttonText'=>'Create'])
-                </x-form.post>
+                </x-form>
                 <!-- end form -->
+
 
             </x-card>
         </div>

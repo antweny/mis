@@ -2,15 +2,14 @@
 @section('title','Participants List')
 @section('content')
 
-    <x-row>
-        <x-slot name="left">
-            <x-button.create label="Add Event Participant"> {{route('participants.create')}} </x-button.create>
-{{--            <x-button.general label="Import" icon="fas fa-file-upload" modal="modal" class="btn btn-dark"> #import </x-button.general>--}}
-        </x-slot>
-    </x-row>
-
     <!-- Start Card -->
     <x-card title="Participants List">
+
+        <x-slot name="cardButton">
+            <x-button.create label="Add Event Participant"> {{route('participants.create')}} </x-button.create>
+            {{--            <x-button.general label="Import" icon="fas fa-file-upload" modal="modal" class="btn btn-dark"> #import </x-button.general>--}}
+        </x-slot>
+
         <!-- Table Start -->
         <x-table.listing id="$participants">
             <!-- table headers -->
@@ -42,17 +41,25 @@
                         <td class="text-center">{{ $participant->location->name }}</td>
                         <td class="text-center">{{ $participant->participant_role->name }}</td>
                         <td  class="text-center">
-                            <div class="btn-group btn-group-sm">
-                                <a href="{{route('participants.edit',$participant)}}" class="btn btn-edit mr-2" data-toggle="tooltip" data-placement="top" title="Edit item" >
-                                    <i class="fa fa-edit"></i>
-                                </a>
-                                <form method="POST" action="{{route('participants.destroy',$participant)}}" class="form-horizontal" role="form" autocomplete="off">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-delete btn-sm" onclick="return confirm('Confirm to delete?')" data-toggle="tooltip" data-placement="top" title="Delete">
-                                        <i class="fa fa-times"></i>
-                                    </button>
-                                </form>
+                            <div class="dropleft">
+                                <button type="button" class="btn btn-light" data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i> </button>
+                                <div class="dropdown-menu">
+                                    @can('participant_update')
+                                        <a href="{{route('participants.edit',$participant)}}" class="dropdown-item" data-toggle="tooltip" data-placement="top" title="Edit item" >
+                                            <i class="fa fa-edit"></i> Edit
+                                        </a>
+                                        <div class="dropdown-divider"></div>
+                                    @endcan
+                                    @can('participant_delete')
+                                        <form method="POST" action="{{route('participants.destroy',$participant)}}" class="form-horizontal" role="form" autocomplete="off">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="btn btn-block btn-del" onclick="return confirm('Confirm to delete?')" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                <i class="fa fa-times"></i> Delete
+                                            </button>
+                                        </form>
+                                    @endcan
+                                </div>
                             </div>
                         </td>
                     </tr>
@@ -63,15 +70,15 @@
     <!-- Start Modal -->
     <x-modal id="import" title="Import Participant">
         <!-- Start form -->
-        <x-form.post action="participants.import">
+        <x-form action="{{route('participants.import')}}">
             <div class="form-group">
-                <x-form.label name="Import File <span class='star'>*</span>" for="imported_file" />
+                <x-form.label name="Import File" star="true" />
                 <x-form.input type="file" name="imported_file" id="imported_file" required="required"/>
             </div>
             <div class="form-group text-right">
-                <x-button.submit />
+                <x-button />
             </div>
-        </x-form.post>
+        </x-form>
         <!-- end form -->
     </x-modal>
     <!-- end modal -->

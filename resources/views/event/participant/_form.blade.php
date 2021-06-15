@@ -1,10 +1,10 @@
 <div class="row form-group">
     <div class="col-md-6">
-        <x-form.label name="Event: <span class='star'>*</span>" />
+        <x-form.label name="Event" star="true" />
         <x-dropdown.event  :model="$participant" />
     </div>
     <div class="col-md-6">
-        <x-form.label name="Participant: <span class='star'>*</span>" />
+        <x-form.label name="Participant" star="true" />
         <x-dropdown.individual  req="required" :model="$participant" />
     </div>
 </div>
@@ -12,7 +12,7 @@
 
 <div class="row form-group">
     <div class="col-md-6">
-        <x-form.label name="Engage Date: <span class='star'>*</span>"/>
+        <x-form.label name="Engage Date" star="true"/>
         <x-form.input type="date" name="date" id="date" for="date" :model="$participant" />
     </div>
     <div class="col-md-6">
@@ -56,7 +56,7 @@
             <x-button.back />
         </div>
         <div class="float-right">
-            <x-button.submit label="{{$buttonText}}"/>
+            <x-button label="{{$buttonText}}"/>
         </div>
     </div>
 </div>

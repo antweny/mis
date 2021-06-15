@@ -1,21 +1,21 @@
 <div class="form-group row">
     <div class="col-md-6">
-        <x-form.label name="Topic: <span class='star'>*</span>"/>
+        <x-form.label name="Topic" star="true"/>
         <x-form.input name="topic" id="topic" for="topic" req="required" :model="$genderSeries"  />
     </div>
     <div class="col-md-6">
-        <x-form.label name="Coordinator: <span class='star'>*</span>" />
+        <x-form.label name="Coordinator" star="true" />
         <x-dropdown.employee req="required" :model="$genderSeries"/>
     </div>
 </div>
 
 <div class=" form-group row">
     <div class="col-md-6">
-        <x-form.label name="Facilitators <span class='star'>*</span>" />
+        <x-form.label name="Facilitators" star="true" />
         <x-dropdown.facilitator req="multiple" :model="$genderSeries" req="required"/>
     </div>
     <div class="col-md-3">
-        <x-form.label name="Date <span class='star'>*</span>" />
+        <x-form.label name="Date" star="true" />
         <x-form.input type="date" name="date" id="date" for="date" :model="$genderSeries" req="required" />
     </div>
     <div class="col-md-3">
@@ -41,10 +41,10 @@
 <div class="form-group row">
     <div class="col">
         <div class="float-left">
-            <x-button.back />
+            <x-button.back> {{route('genderSeries.index')}} </x-button.back>
         </div>
         <div class="float-right">
-            <x-button.submit label="{{$buttonText}}"/>
+            <x-button label="{{$buttonText}}"/>
         </div>
     </div>
 </div>

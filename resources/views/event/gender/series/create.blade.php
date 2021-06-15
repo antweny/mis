@@ -8,9 +8,9 @@
             <x-card title="New Gender Series">
 
                 <!-- Start form -->
-                <x-form.post action="genderSeries.store">
+                <x-form action="{{route('genderSeries.store')}}">
                     @include('event.gender.series._form',['buttonText'=>'Create'])
-                </x-form.post>
+                </x-form>
                 <!-- end form -->
 
             </x-card>

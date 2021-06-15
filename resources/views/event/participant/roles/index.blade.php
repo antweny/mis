@@ -1,15 +1,15 @@
 @extends('layouts.backend')
 @section('title','Participant Roles List')
 @section('content')
-
-    <x-row>
-        <x-slot name="left">
-            <x-button.create label="Add Participant Role" modal="modal"> #new </x-button.create>
-        </x-slot>
-    </x-row>
-
     <!-- Start Card -->
     <x-card title="Participant Roles List">
+
+        <x-slot name="cardButton">
+            @can('participant-role_create')
+                <x-button.create label="Add Participant Role" modal="modal"> #new </x-button.create>
+            @endcan
+        </x-slot>
+
         <!-- Table Start -->
         <x-table.listing id="table">
             <!-- table headers -->
@@ -26,13 +26,16 @@
                     <td class="text-left">{{$participantRole->name}}</td>
                     <td  class="text-left">{{$participantRole->desc}}</td>
                     <td  class="text-center">
-                        <div class="btn-group btn-group-sm">
-                            @can('participant-role_update')
-                                <x-button.edit>{{route('participantRoles.edit',$participantRole)}}</x-button.edit>
-                            @endcan
-                            @can('participant-role_delete')
-                                <x-button.delete>{{route('participantRoles.destroy',$participantRole)}}</x-button.delete>
-                            @endcan
+                        <div class="dropleft">
+                            <button type="button" class="btn btn-light" data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i> </button>
+                            <div class="dropdown-menu">
+                                @can('participant-role_update')
+                                    <x-button.edit>{{route('participantRoles.edit',$participantRole)}}</x-button.edit>
+                                @endcan
+                                @can('participant-role_delete')
+                                    <x-button.delete>{{route('participantRoles.destroy',$participantRole)}}</x-button.delete>
+                                @endcan
+                            </div>
                         </div>
                     </td>
                 </tr>
@@ -46,9 +49,9 @@
     <!-- Start Modal -->
     <x-modal id="new" title="New Participant Role">
         <!-- Start form -->
-        <x-form.post action="participantRoles.store">
+        <x-form action="{{route('participantRoles.store')}}">
             <div class="form-group">
-                <x-form.label name="Name <span class='star'>*</span>" for="name" />
+                <x-form.label name="Name" star="true" />
                 <x-form.input name="name" id="name" for="name" req="required"   />
             </div>
             <div class="form-group">
@@ -57,9 +60,9 @@
                 @error('desc') <span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong> </span> @enderror
             </div>
             <div class="form-group text-right">
-                <x-button.submit />
+                <x-button />
             </div>
-        </x-form.post>
+        </x-form>
         <!-- end form -->
     </x-modal>
     <!-- end modal -->
