@@ -1,10 +1,10 @@
 <div class="form-group row">
     <div class="col-md-9">
-        <x-form.label name="Event Name: <span class='star'>*</span>" />
+        <x-form.label name="Event Name" star="true" />
         <x-form.input name="name" id="name" for="name" req="required" :model="$event"  />
     </div>
     <div class="col-md-3">
-        <x-form.label name="Category <span class='star'>*</span>" />
+        <x-form.label name="Category" star="true" />
         <x-dropdown.event-category req="required" :model="$event" />
     </div>
 </div>
@@ -16,7 +16,7 @@
         <x-dropdown.event name="parent_id" :model="$event" />
     </div>
     <div class="col-md-6">
-        <x-form.label name="Coordinators <span class='star'>*</span>" />
+        <x-form.label name="Coordinators" star="true" />
         <x-dropdown.coordinator req="multiple" :model="$event" />
     </div>
 </div>
@@ -24,11 +24,11 @@
 
 <div class="form-group row">
     <div class="col-md-6">
-        <x-form.label name="Organiser <span class='star'>*</span>" />
+        <x-form.label name="Organiser" star="true" />
         <x-dropdown.organiser req="multiple" :model="$event" />
     </div>
     <div class="col-md-6">
-        <x-form.label name="Facilitators <span class='star'>*</span>" />
+        <x-form.label name="Facilitators" star="true" />
         <x-dropdown.facilitator req="multiple" :model="$event" />
     </div>
 </div>
@@ -40,7 +40,7 @@
 
     </div>
     <div class="col-md-3">
-        <x-form.label name="Start Date <span class='star'>*</span>" />
+        <x-form.label name="Start Date" star="true" />
         <x-form.input type="date" name="start_date" id="start_date" for="start_date" :model="$event" />
     </div>
     <div class="col-md-3">
@@ -63,7 +63,7 @@
             <x-button.back />
         </div>
         <div class="float-right">
-            <x-button.submit label="{{$buttonText}}"/>
+            <x-button label="{{$buttonText}}"/>
         </div>
     </div>
 </div>

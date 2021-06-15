@@ -2,14 +2,15 @@
 @section('title','Events List')
 @section('content')
 
-    <x-row>
-        <x-slot name="left">
-            @can('event_update') <x-button.create label="Add Event"> {{route('events.create')}} </x-button.create> @endcan
-        </x-slot>
-    </x-row>
-
     <!-- Start Card -->
     <x-card title="Events List">
+
+        <x-slot name="cardButton">
+            @can('event_update')
+                <x-button.create label="Add Event"> {{route('events.create')}} </x-button.create>
+            @endcan
+        </x-slot>
+
         <!-- Table Start -->
         <x-table.listing id="table">
             <!-- table headers -->
@@ -37,21 +38,16 @@
                     <td  class="text-left">{!! $event->status  !!}</td>
                     <td  class="text-center"><a href="{{route('participants.index',$event)}}">{!! $event->participant_count  !!}</a> </td>
                     <td  class="text-center">
-                        <div class="btn-group btn-group-sm">
-                            @can('event_update')
-                                <a href="{{route('events.edit',$event)}}" class="btn mr-2 btn-edit" data-toggle="tooltip" data-placement="top" title="Edit item" >
-                                    <i class="fa fa-edit"></i>
-                                </a>
-                            @endcan
-                            @can('event_delete')
-                                <form method="POST" action="{{route('events.destroy',$event)}}" class="form-horizontal" role="form" autocomplete="off">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-sm btn-delete" onclick="return confirm('Confirm to delete?')" data-toggle="tooltip" data-placement="top" title="Delete">
-                                        <i class="fa fa-times"></i>
-                                    </button>
-                                </form>
-                            @endcan
+                        <div class="dropleft">
+                            <button type="button" class="btn btn-light" data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i> </button>
+                            <div class="dropdown-menu">
+                                @can('event_update')
+                                    <x-button.edit>{{route('events.edit',$event)}}</x-button.edit>
+                                @endcan
+                                @can('event_delete')
+                                    <x-button.delete>{{route('events.destroy',$event)}}</x-button.delete>
+                                @endcan
+                            </div>
                         </div>
                     </td>
                 </tr>

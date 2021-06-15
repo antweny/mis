@@ -2,14 +2,15 @@
 @section('title','Event Categories List')
 @section('content')
 
-    <x-row>
-        <x-slot name="left">
-            @can('event_category') <x-button.create label="Add Event Category" modal="modal"> #new </x-button.create> @endcan
-        </x-slot>
-    </x-row>
-
     <!-- Start Card -->
     <x-card title="Event Categories List">
+
+        <x-slot name="cardButton">
+            @can('event_category')
+                <x-button.create label="Add Event Category" modal="modal"> #new </x-button.create>
+            @endcan
+        </x-slot>
+
         <!-- Table Start -->
         <x-table.listing id="table">
             <!-- table headers -->
@@ -43,9 +44,9 @@
     <!-- Start Modal -->
     <x-modal id="new" title="New Event Category">
         <!-- Start form -->
-        <x-form.post action="eventCategories.store">
+        <x-form action="{{route('eventCategories.store')}}">
             <div class="form-group">
-                <x-form.label name="Name: <span class='star'>*</span>" />
+                <x-form.label name="Name" star="true" />
                 <x-form.input name="name" id="name" for="name" req="required"   />
             </div>
             <div class="form-group">
@@ -58,9 +59,9 @@
                 @error('desc') <span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong> </span> @enderror
             </div>
             <div class="form-group text-right">
-                <x-button.submit />
+                <x-button />
             </div>
-        </x-form.post>
+        </x-form>
         <!-- end form -->
     </x-modal>
     <!-- end modal -->

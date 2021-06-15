@@ -7,8 +7,8 @@
             <x-card title="Edit Event">
                 <!-- Start form -->
                 {{ Form::model($event, array('route' => array('events.update',$event), 'method' => 'PUT')) }}
-                @csrf
-                @include('event._form',['buttonText'=>'Update'])
+                    @csrf
+                    @include('event._form',['buttonText'=>'Update'])
                 {{ Form::close() }}
             </x-card>
         </div>

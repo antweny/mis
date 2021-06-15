@@ -19,7 +19,6 @@ class ItemCategoryController extends AuthController
     public function __construct(ItemCategoryRepositoryInterface $itemCategory)
     {
         parent::__construct();
-        $this->middleware('employee');
         $this->itemCategory = $itemCategory;
     }
 

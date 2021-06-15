@@ -8,9 +8,9 @@
             <x-card title="New Event">
 
                 <!-- Start form -->
-                <x-form.post action="events.store">
+                <x-form action="{{route('events.store')}}">
                     @include('event._form',['buttonText'=>'Create'])
-                </x-form.post>
+                </x-form>
                 <!-- end form -->
 
             </x-card>
