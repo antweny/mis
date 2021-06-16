@@ -8,29 +8,22 @@ use Exception;
 
 class UserController extends AuthController
 {
-    /**
-     * @var
-     */
-    protected $interface;
+    /* @var  */
+    protected $user;
 
-    /**
-     * UserController constructor.
-     */
-    public function __construct(UserRepositoryInterface $interface)
+    /* UserController constructor. */
+    public function __construct(UserRepositoryInterface $user)
     {
         parent::__construct();
-        $this->interface = $interface;
+        $this->user = $user;
     }
 
-    /**
-     * Display a listing of the resource.
-     */
+    /* Display a listing of the resource. */
     public function index()
     {
-        $this->canView($this->interface->model()); //Check user permission
-
+        $this->canView($this->user->model()); //Check user permission
         try {
-            $users = $this->interface->get();
+            $users = $this->user->get();
             return view('users.index',compact('users'));
         }
         catch (Exception $e) {
@@ -38,15 +31,12 @@ class UserController extends AuthController
         }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    /* Store a newly created resource in storage. */
     public function store(UserRequest $request)
     {
-        $this->canCreate($this->interface->model()); //Check user permission
-
+        $this->canCreate($this->user->model()); //Check user permission
         try {
-            $this->interface->create($request->validated());
+            $this->user->create($request->validated());
             return $this->success('User created');
         }
         catch (Exception $e) {
@@ -54,15 +44,12 @@ class UserController extends AuthController
         }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    /* Show the form for editing the specified resource. */
     public function edit($id)
     {
-        $this->canUpdate($this->interface->model()); //Check user permission
-
+        $this->canUpdate($this->user->model()); //Check user permission
         try {
-            $user = $this->interface->find($id);
+            $user = $this->user->find($id);
             return view('users.edit',compact('user'));
         }
         catch (Exception $e) {
@@ -70,15 +57,12 @@ class UserController extends AuthController
         }
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    /*  Update the specified resource in storage. */
     public function update(UserRequest $request,$id)
     {
-        $this->canUpdate($this->interface->model()); //Check user permission
-
+        $this->canUpdate($this->user->model()); //Check user permission
         try {
-            $this->interface->updating($id, $request->validated());
+            $this->user->updating($id, $request->validated());
             return $this->successRoute('users.index','User updated!');
         }
         catch (Exception $e) {
@@ -86,15 +70,12 @@ class UserController extends AuthController
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    /* Remove the specified resource from storage. */
     public function destroy($id)
     {
-        $this->canView($this->interface->model());  //Check user permission
-
+        $this->canView($this->user->model());  //Check user permission
         try {
-            $this->interface->delete($id);
+            $this->user->delete($id);
             return $this->success('User has been deleted!');
         }
         catch (Exception $e) {
@@ -102,18 +83,16 @@ class UserController extends AuthController
         }
     }
 
-    /**
-     * Send logins to user
-     */
-    public function sendLogin($id)
+    /*  Permanent delete resource. */
+    public function sendNewPassword($id)
     {
-        $this->canUpdate($this->interface->model()); //Check user permission
-
+        $this->canUpdate($this->user->model());
         try {
-            $this->interface->sendlogin($id);
-            return $this->success('User credentials has been sent successful');
+            $this->user->sendNewPassword($id);
+            return $this->success('Password Sent Successful');
         }
-        catch (Exception $e) {
+        catch (\Exception $e) {
+            dd($e->getMessage());
             return $this->error();
         }
     }

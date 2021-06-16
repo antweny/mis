@@ -2,26 +2,29 @@
 
 namespace App\Notifications\User;
 
+use App\Mail\User\NewPasswordMail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class CreateNewUserNotification extends Notification
+class NewPasswordNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    private $user;
+
+    //Get new generated password
+    private $password;
 
     /**
      * Create a new notification instance.
-     *
      * @return void
      */
-    public function __construct($user)
+    public function __construct($password)
     {
-        $this->user = $user;
+       $this->password = $password;
     }
+
 
     /**
      * Get the notification's delivery channels.
@@ -36,16 +39,18 @@ class CreateNewUserNotification extends Notification
 
     /**
      * Get the mail representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return \Illuminate\Notifications\Messages\MailMessage
      */
+//    public function toMail($notifiable)
+//    {
+//        $data = [ 'name'=>$notifiable->name, 'password'=>$this->password ];
+//
+//        return (new NewPasswordMail($data))->to($notifiable->email);
+//    }
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                ->subject('New Password')
+                ->markdown('emails.user.new-password', ['name' => $notifiable->name,'password'=>$this->password]);;
     }
 
     /**

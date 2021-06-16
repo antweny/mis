@@ -104,12 +104,7 @@ Route::prefix('user')->name('users.')->group(function () {
     Route::put('update/{user}', 'UserController@update')->name('update');
     Route::delete('delete/{user}', 'UserController@destroy')->name('destroy');
     Route::get('send/login/{user}', 'UserController@sendLogin')->name('sendLogin');
-});
-
-//Change Password
-Route::namespace('User')->prefix('password')->name('changePassword.')->group(function () {
-    Route::get('change', 'ChangePasswordController@showPasswordChangeForm')->name('form');
-    Route::put('change/submit/{user}', 'ChangePasswordController@changePassword')->name('submit');
+    Route::get('new/password/{user}', 'UserController@sendNewPassword')->name('newPassword');
 });
 
 

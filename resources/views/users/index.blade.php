@@ -36,12 +36,8 @@
                             <div class="dropdown-menu">
                                 @can('user_update')
                                     <x-button.edit>{{route('users.edit',$user)}}</x-button.edit>
-                                    <a href="{{route('passwordReset.form',$user)}}" class="dropdown-item" data-toggle="tooltip" data-placement="top" title="Reset Password" >
-                                        <i class="fa fa-key"></i> Reset Password
-                                    </a>
-                                    <div class="dropdown-divider"></div>
-                                    <a href="{{route('users.sendLogin',$user)}}" class="dropdown-item" data-toggle="tooltip" data-placement="top" title="Send Login" >
-                                        <i class="fa fa-user-lock"></i> Send Login
+                                    <a href="{{route('users.newPassword',$user)}}" class="dropdown-item" data-toggle="tooltip" data-placement="top" title="Send Login" >
+                                        <i class="fa fa-key"></i> Send Password
                                     </a>
                                     <div class="dropdown-divider"></div>
                                 @endcan
