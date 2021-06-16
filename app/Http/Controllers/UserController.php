@@ -40,7 +40,6 @@ class UserController extends AuthController
             return $this->success('User created');
         }
         catch (Exception $e) {
-            dd($e->getMessage());
             return $this->errorWithInput($request);
         }
     }

@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\DB;
 use Exception;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
-use Spatie\DbDumper\DbDumper;
 
 class UserRepository extends BaseRepository implements UserRepositoryInterface
 {
