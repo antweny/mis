@@ -2,16 +2,15 @@
 @section('title','View User Activity Logs')
 @section('content')
 
-    <x-row>
-        <x-slot name="right">
-            <x-button.create label="Go Back"> {{url()->previous()}} </x-button.create>
-        </x-slot>
-    </x-row>
-
     <div class="row justify-content-center">
         <div class="col-md-7">
             <!-- Start Card -->
             <x-card title="User Activity Logs">
+
+                <x-slot name="cardButton">
+                    <x-button.create label="Go Back"> {{url()->previous()}} </x-button.create>
+                </x-slot>
+
                 <table class="table table-bordered">
                     <tbody>
                     <tr>
