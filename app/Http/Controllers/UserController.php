@@ -40,6 +40,7 @@ class UserController extends AuthController
             return $this->success('User created');
         }
         catch (Exception $e) {
+            dd($e->getMessage());
             return $this->errorWithInput($request);
         }
     }
@@ -92,7 +93,6 @@ class UserController extends AuthController
             return $this->success('Password Sent Successful');
         }
         catch (\Exception $e) {
-            dd($e->getMessage());
             return $this->error();
         }
     }

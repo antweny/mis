@@ -2,14 +2,15 @@
 
 namespace App\Repository;
 
-use App\Events\User\NewUserEvent;
 use App\Models\User;
+use App\Notifications\User\CreateNewUserNotification;
 use App\Notifications\User\NewPasswordNotification;
 use App\Repository\Interfaces\UserRepositoryInterface;
 use Illuminate\Support\Facades\DB;
 use Exception;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Spatie\DbDumper\DbDumper;
 
 class UserRepository extends BaseRepository implements UserRepositoryInterface
 {
@@ -32,14 +33,14 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
         try {
             $data  = $this->data($request);
             //Generate Random Password and send to a user
-            $request['password'] = $this->encryptPassword($data['password']);
+            $request['password'] = $this->encryptPassword($data['plain_password']);
             //user creation
             $user = $this->model->create($request);
             //Assign roles to user
             isset($request['roles']) && $this->assignRoles($user, $request['roles']);
             DB::commit();
             //Send email notification
-            event(new NewUserEvent($data));
+            $user->notify(new CreateNewUserNotification($data['plain_password']));
             return $user;
         }
         catch (Exception $e) {
@@ -95,8 +96,8 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
     private function data($data)
     {
         return [
-            'name' => $data->name,
-            'email' => $data->email,
+            'name' =>$data['name'],
+            'email' => $data['email'],
             'plain_password' => $this->randomString(),
         ];
     }
@@ -113,12 +114,12 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
     {
         $request['roles'] = array('employee');  //Default role of employee
         $user = $this->model->uniqueEmail($request['email']); //Check if user email already exists
-        if(is_null($user)) {
-            return $this->create($request);
+        if(!is_null($user)) {
+            return $this->sendNewPassword($user->id);
+            //return $user;
         }
         else {
-            $this->sendLogin($user->id);
-            return $user;
+            return $this->create($request);
         }
     }
 

@@ -12,7 +12,6 @@ class NewPasswordNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
-
     //Get new generated password
     private $password;
 
@@ -40,17 +39,11 @@ class NewPasswordNotification extends Notification implements ShouldQueue
     /**
      * Get the mail representation of the notification.
      */
-//    public function toMail($notifiable)
-//    {
-//        $data = [ 'name'=>$notifiable->name, 'password'=>$this->password ];
-//
-//        return (new NewPasswordMail($data))->to($notifiable->email);
-//    }
     public function toMail($notifiable)
     {
         return (new MailMessage)
                 ->subject('New Password')
-                ->markdown('emails.user.new-password', ['name' => $notifiable->name,'password'=>$this->password]);;
+                ->markdown('emails.user.new-password', ['name' => $notifiable->name,'password'=>$this->password]);
     }
 
     /**
