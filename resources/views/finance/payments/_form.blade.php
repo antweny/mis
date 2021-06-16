@@ -3,7 +3,7 @@
         <!-- Date -->
         <div class="row mb-3">
             <div class="col-md-5">
-                <x-form.label name="Date: <span class='star'>*</span>" for="date" />
+                <x-form.label name="Date" star="true" for="date" />
             </div>
             <div class="col-md-7">
                 <x-form.input type="date" name="date" id="date" for="date" req="required" :model="$payment" />
@@ -12,7 +12,7 @@
         <!-- Payee -->
         <div class="row mb-3">
             <div class="col-md-5">
-                <x-form.label name="Payee: <span class='star'>*</span>" for="payee" />
+                <x-form.label name="Payee" star="true" for="payee" />
             </div>
             <div class="col-md-7">
                 <x-dropdown.payee :model="$payment" />
@@ -21,7 +21,7 @@
         <!-- Bank Account -->
         <div class="row mb-3">
             <div class="col-md-5">
-                <x-form.label name="Bank Account: <span class='star'>*</span>" for="bank_account" />
+                <x-form.label name="Bank Account" star="true" for="bank_account" />
             </div>
             <div class="col-md-7">
                 <x-dropdown.bank-account :model="$payment"/>
@@ -33,7 +33,7 @@
         <!-- Voucher No -->
         <div class="row mb-3">
             <div class="col-md-5">
-                <x-form.label name="Payment No: <span class='star'>*</span>" for="payment_no" />
+                <x-form.label name="Payment No" star="true" for="payment_no" />
             </div>
             <div class="col-md-7">
                 <x-form.input type="number" name="payment_no" id="payment_no" for="payment_no" :model="$payment" req="required"/>
@@ -55,7 +55,7 @@
         <!-- Currency -->
         <div class="row mb-3">
             <div class="col-md-5">
-                <x-form.label name="Amount: <span class='star'>*</span>" for="amount" />
+                <x-form.label name="Amount" star="true" for="amount" />
             </div>
             <div class="col-md-7">
                 <x-form.input type="number" name="amount" id="amount" for="amount" :model="$payment" req="required" />
@@ -65,7 +65,7 @@
 </div>
 
 <div class="form-group">
-    <x-form.label name="Amount in Words: <span class='star'>*</span>" />
+    <x-form.label name="Amount in Words" star="true" />
     <textarea name="amount_words" class="form-control @error('amount_words') is-invalid @enderror" id="amount_words" required>{{old('amount_words',$payment->amount_words)}}</textarea>
     @error('address') <span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong> </span> @enderror
 </div>
@@ -76,7 +76,7 @@
             <x-button.back />
         </div>
         <div class="float-right">
-            <x-button.submit label="{{$buttonText}}"/>
+            <x-button label="{{$buttonText}}"/>
         </div>
     </div>
 </div>

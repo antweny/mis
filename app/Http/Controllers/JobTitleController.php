@@ -30,7 +30,7 @@ class JobTitleController extends AuthController
         $this->canView($this->interface->model());
 
         try {
-            $jobTitles = $this->interface->paginate();  //Get all jobTitles
+            $jobTitles = $this->interface->get();  //Get all jobTitles
             return view('job.titles.index',compact('jobTitles'));
         }
         catch (Exception $e) {

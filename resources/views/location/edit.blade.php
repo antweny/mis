@@ -8,7 +8,7 @@
                 {{ Form::model($location, array('route' => array('locations.update',$location), 'method' => 'PUT')) }}
                     @csrf
                     <div class="form-group">
-                        <x-form.label name="Name <span class='star'>*</span>" for="name" />
+                        <x-form.label name="Name" star="true" for="name" />
                         <x-form.input name="name" id="name" for="name" req="required" :model="$location" />
                     </div>
                     <div class="form-group">
@@ -26,7 +26,7 @@
                                 <x-button.back />
                             </div>
                             <div class="float-right">
-                                <x-button.submit label="Update"/>
+                                <x-button label="Update"/>
                             </div>
                         </div>
                     </div>

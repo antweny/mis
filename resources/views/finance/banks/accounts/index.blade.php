@@ -2,14 +2,15 @@
 @section('title','Bank Accounts List')
 @section('content')
 
-    <x-row>
-        <x-slot name="left">
-            @can('bank-account_create') <x-button.create label="Add Bank Account" modal="modal"> #new </x-button.create> @endcan
-        </x-slot>
-    </x-row>
-
     <!-- Start Card -->
     <x-card title="Bank Accounts List">
+
+        <x-slot name="cardButton">
+            @can('bank-account_create')
+                <x-button.create label="Add Bank Account" modal="modal"> #new </x-button.create>
+            @endcan
+        </x-slot>
+
         <!-- Table Start -->
         <x-table.listing id="table">
             <!-- table headers -->
@@ -38,13 +39,16 @@
                     <td class="text-center">{!! $bankAccount->status !!}</td>
                     <td class="text-center">{{$bankAccount->desc}}</td>
                     <td  class="text-center">
-                        <div class="btn-group btn-group-sm">
-                            @can('bank-account_update')
-                                <x-button.edit>{{route('bankAccounts.edit',$bankAccount)}}</x-button.edit>
-                            @endcan
-                            @can('bank-account_delete')
-                                <x-button.delete>{{route('bankAccounts.destroy',$bankAccount)}}</x-button.delete>
-                            @endcan
+                        <div class="dropleft">
+                            <button type="button" class="btn btn-light" data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i> </button>
+                            <div class="dropdown-menu">
+                                @can('bank-account_update')
+                                    <x-button.edit>{{route('bankAccounts.edit',$bankAccount)}}</x-button.edit>
+                                @endcan
+                                @can('bank-account_delete')
+                                    <x-button.delete>{{route('bankAccounts.destroy',$bankAccount)}}</x-button.delete>
+                                @endcan
+                            </div>
                         </div>
                     </td>
                 </tr>
@@ -59,19 +63,19 @@
         <!-- Start Modal -->
         <x-modal id="new" title="New Bank Account">
             <!-- Start form -->
-            <x-form.post action="bankAccounts.store">
+            <x-form action="{{route('bankAccounts.store')}}">
                 <div class="form-group">
-                    <x-form.label name="Name: <span class='star'>*</span>" />
+                    <x-form.label name="Name" star="true" />
                     <x-form.input name="name" id="name" for="name" req="required"   />
                 </div>
 
                 <div class="form-group">
-                    <x-form.label name="Bank: <span class='star'>*</span>" />
+                    <x-form.label name="Bank" star="true" />
                     <x-dropdown.bank req="required"/>
                 </div>
 
                 <div class="form-group">
-                    <x-form.label name="Account Number: <span class='star'>*</span>" />
+                    <x-form.label name="Account Number" star="true" />
                     <x-form.input name="number" id="number" for="number" req="required" />
                 </div>
 
@@ -82,7 +86,7 @@
 
                 <div class="row form-group">
                     <div class="col-md-6">
-                        <x-form.label name="Currency: <span class='star'>*</span>" />
+                        <x-form.label name="Currency" star="true" />
                         <x-dropdown.currency />
                     </div>
                     <div class="col-md-6">
@@ -98,10 +102,10 @@
                 </div>
 
                 <div class="form-group text-right">
-                    <x-button.submit />
+                    <x-button />
                 </div>
 
-            </x-form.post>
+            </x-form>
             <!-- end form -->
         </x-modal>
         <!-- end modal -->

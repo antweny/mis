@@ -2,14 +2,16 @@
 @section('title','Payees List')
 @section('content')
 
-    <x-row>
-        <x-slot name="left">
-            @can('payee_create') <x-button.create label="Add Payee" modal="modal"> #new </x-button.create> @endcan
-        </x-slot>
-    </x-row>
-
     <!-- Start Card -->
     <x-card title="Payees List">
+
+        <x-slot name="cardButton">
+            @can('payee_create')
+                <x-button.create label="Add Payee" modal="modal"> #new </x-button.create>
+            @endcan
+        </x-slot>
+
+
         <!-- Table Start -->
         <x-table.listing id="table">
             <!-- table headers -->
@@ -32,13 +34,16 @@
                     <td class="text-center">{{$payee->email}}</td>
                     <td class="text-center">{{$payee->group}}</td>
                     <td  class="text-center">
-                        <div class="btn-group btn-group-sm">
-                            @can('payee_update')
-                                <x-button.edit>{{route('payees.edit',$payee)}}</x-button.edit>
-                            @endcan
-                            @can('payee_delete')
-                                <x-button.delete>{{route('payees.destroy',$payee)}}</x-button.delete>
-                            @endcan
+                        <div class="dropleft">
+                            <button type="button" class="btn btn-light" data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i> </button>
+                            <div class="dropdown-menu">
+                                @can('payee_update')
+                                    <x-button.edit>{{route('payees.edit',$payee)}}</x-button.edit>
+                                @endcan
+                                @can('payee_delete')
+                                    <x-button.delete>{{route('payees.destroy',$payee)}}</x-button.delete>
+                                @endcan
+                            </div>
                         </div>
                     </td>
                 </tr>
@@ -53,13 +58,13 @@
         <!-- Start Modal -->
         <x-modal id="new" title="New Payee">
             <!-- Start form -->
-            <x-form.post action="payees.store">
+            <x-form action="{{route('payees.store')}}">
                 <div class="form-group">
-                    <x-form.label name="Name: <span class='star'>*</span>"  />
+                    <x-form.label name="Name" star="true"  />
                     <x-form.input name="name" id="name" for="name" req="required"  />
                 </div>
                 <div class="form-group">
-                    <x-form.label name="Mobile: <span class='star'>*</span>"  />
+                    <x-form.label name="Mobile" star="true"  />
                     <x-form.input type="number" name="mobile" id="mobile" for="mobile" req="required" />
                 </div>
                 <div class="form-group">
@@ -81,10 +86,10 @@
                 </div>
 
                 <div class="form-group text-right">
-                    <x-button.submit />
+                    <x-button />
                 </div>
 
-            </x-form.post>
+            </x-form>
             <!-- end form -->
         </x-modal>
         <!-- end modal -->

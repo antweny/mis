@@ -31,7 +31,7 @@ class JobTypeController extends AuthController
         $this->canView($this->jobType->model());
 
         try {
-            $jobTypes = $this->jobType->paginate();  //Get all jobTypes
+            $jobTypes = $this->jobType->get();  //Get all jobTypes
             return view('job.types.index',compact('jobTypes'));
         }
         catch (Exception $e) {

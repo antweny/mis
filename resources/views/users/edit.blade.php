@@ -8,11 +8,11 @@
                 @csrf
                     <div class="form-group row">
                         <div class="col-md-8">
-                            <x-form.label name="Name: <span class='star'>*</span>" for="name" />
+                            <x-form.label name="Name" star="true" for="name" />
                             <x-form.input name="name" id="name" required="required" :model="$user"/>
                         </div>
                         <div class="col-md-4">
-                            <x-form.label name="Active: <span class='star'>*</span>" for="active" />
+                            <x-form.label name="Active" star="true" for="active" />
                             <select class="form-control @error('active') is-invalid @enderror single-select" name="active" required>
                                 <option value="1" {{old('active',$user->active) == '1' ? 'selected' : ''}}>Yes</option>
                                 <option value="0" {{old('active',$user->active) == '0' ? 'selected' : ''}}>No</option>
@@ -20,7 +20,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <x-form.label name="Email: <span class='star'>*</span>" for="email" />
+                        <x-form.label name="Email" star="true" for="email" />
                         <x-form.input name="email" id="email" required="required" :model="$user"/>
                     </div>
                     <div class="form-group row">
@@ -35,7 +35,7 @@
                                 <x-button.back />
                             </div>
                             <div class="float-right">
-                                <x-button.submit label="Update"/>
+                                <x-button label="Update"/>
                             </div>
                         </div>
                     </div>

@@ -2,14 +2,15 @@
 @section('title','Vouchers List')
 @section('content')
 
-    <x-row>
-        <x-slot name="left">
-            @can('voucher_create') <x-button.create label="Add Voucher"> {{route('vouchers.create')}} </x-button.create> @endcan
-        </x-slot>
-    </x-row>
-
     <!-- Start Card -->
     <x-card title="Vouchers List">
+
+        <x-slot name="cardButton">
+            @can('voucher_create')
+                <x-button.create label="Add Voucher"> {{route('vouchers.create')}} </x-button.create>
+            @endcan
+        </x-slot>
+
         <!-- Table Start -->
         <x-table.listing id="table">
             <!-- table headers -->
@@ -36,30 +37,21 @@
                     <td class="text-center">{{$voucher->payment->amount}}</td>
                     <td class="text-center">{{$voucher->employee->name}}</td>
                     <td  class="text-center">
-                        <!-- Default dropstart button -->
-                        <div class="btn-group dropleft">
-                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"></button>
+                        <div class="dropleft">
+                            <button type="button" class="btn btn-light" data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i> </button>
                             <div class="dropdown-menu">
                                 <a href="{{route('vouchers.show',$voucher)}}" class="dropdown-item" data-toggle="tooltip" data-placement="top" title="Edit" >
                                     <i class="fa fa-info-circle"></i> view
                                 </a>
+                                <div class="dropdown-divider"></div>
                                 <a href="{{route('vouchers.edit',$voucher)}}" class="dropdown-item" data-toggle="tooltip" data-placement="top" title="Edit" >
                                     <i class="fa fa-print"></i> print
                                 </a>
                                 @can('voucher_update')
-                                    <a href="{{route('vouchers.edit',$voucher)}}" class="dropdown-item" data-toggle="tooltip" data-placement="top" title="Edit" >
-                                        <i class="fa fa-edit"></i> edit
-                                    </a>
+                                    <x-button.edit>{{route('vouchers.edit',$voucher)}}</x-button.edit>
                                 @endcan
-                                <div class="dropdown-divider"></div>
                                 @can('voucher_delete')
-                                    <form method="POST" action="{{route('vouchers.destroy',$voucher)}}" class="form-horizontal dropdown-item" role="form" autocomplete="off">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn del" onclick="return confirm('Confirm Deletion')">
-                                            <i class="fa fa-trash-alt"></i> Delete
-                                        </button>
-                                    </form>
+                                    <x-button.delete>{{route('vouchers.destroy',$voucher)}}</x-button.delete>
                                 @endcan
                             </div>
                         </div>

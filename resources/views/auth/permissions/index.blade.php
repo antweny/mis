@@ -2,14 +2,16 @@
 @section('title','Roles Permissions')
 @section('content')
 
-    <x-row>
-        <x-slot name="left">
-            @can('permission_create') <x-button.create label="Add Permission" modal="modal"> #new </x-button.create> @endcan
-        </x-slot>
-    </x-row>
-
     <!-- Start Card -->
     <x-card title="Roles Permissions List">
+
+        <x-slot name="cardButton">
+            @can('permission_create')
+                <x-button.create label="Add Permission" modal="modal"> #new </x-button.create>
+            @endcan
+        </x-slot>
+
+
         <!-- Table Start -->
         <x-table.listing :collection="$permissions">
             <!-- table headers -->
@@ -26,28 +28,19 @@
                     <td class="text-left">{{$permission->name}}</td>
                     <td  class="text-center">{{$permission->guard_name}}</td>
                     <td  class="text-left">{{$permission->desc}}</td>
-                    <td class="text-center">
-                        @foreach($permission->role as $role)
-                            {{$role->name}}
-                        @endforeach
-                    </td>
+                    <td class="text-center"> @foreach($permission->role as $role) {{$role->name}} @endforeach </td>
                     <td  class="text-center">
-                        <div class="btn-group btn-group-sm">
-                            @can('permission_update')
-                                <a href="{{route('permissions.edit',$permission)}}" class="btn mr-2 btn-edit" data-toggle="tooltip" data-placement="top" title="Edit item" >
-                                    <i class="fa fa-edit"></i>
-                                </a>
-                            @endcan
-                            @can('permission_delete')
-                                <form method="POST" action="{{route('permissions.destroy',$permission)}}" class="form-horizontal" permission="form" autocomplete="off">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-sm btn-delete" onclick="return confirm('Confirm to delete?')" data-toggle="tooltip" data-placement="top" title="Delete">
-                                        <i class="fa fa-times"></i>
-                                    </button>
-                                </form>
-                            @endcan
-                         </div>
+                        <div class="dropleft">
+                            <button type="button" class="btn btn-light" data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i> </button>
+                            <div class="dropdown-menu">
+                                @can('permission_update')
+                                    <x-button.edit>{{route('permissions.edit',$permission)}}</x-button.edit>
+                                @endcan
+                                    @can('permission_delete')
+                                    <x-button.delete>{{route('permissions.destroy',$permission)}}</x-button.delete>
+                                @endcan
+                            </div>
+                        </div>
                     </td>
                 </tr>
             @endforeach
@@ -60,7 +53,7 @@
             <!-- Start form -->
             <x-form.post action="permissions.store">
                 <div class="form-group">
-                    <x-form.label name="Name: <span class='star'>*</span>" for="name" />
+                    <x-form.label name="Name" star="true" for="name" />
                     <x-form.input name="name" id="name" required="required"/>
                 </div>
                 <div class="form-group">
@@ -75,7 +68,7 @@
                     <x-dropdown.role />
                 </div>
                 <div class="form-group text-right">
-                    <x-button.submit />
+                    <x-button />
                 </div>
             </x-form.post>
             <!-- end form -->

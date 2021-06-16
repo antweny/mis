@@ -32,13 +32,16 @@
                     <td class="text-center">{!! $currency->status !!}</td>
                     <td class="text-left">{{$currency->desc}}</td>
                     <td  class="text-center">
-                        <div class="btn-group btn-group-sm">
-                            @can('currency_update')
-                                <x-button.edit>{{route('currencies.edit',$currency)}}</x-button.edit>
-                            @endcan
-                            @can('currency_delete')
-                                <x-button.delete>{{route('currencies.destroy',$currency)}}</x-button.delete>
-                            @endcan
+                        <div class="dropleft">
+                            <button type="button" class="btn btn-light" data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i> </button>
+                            <div class="dropdown-menu">
+                                @can('currency_update')
+                                    <x-button.edit>{{route('currencies.edit',$currency)}}</x-button.edit>
+                                @endcan
+                                @can('currency_delete')
+                                    <x-button.delete>{{route('currencies.destroy',$currency)}}</x-button.delete>
+                                @endcan
+                            </div>
                         </div>
                     </td>
                 </tr>
@@ -53,14 +56,15 @@
         <!-- Start Modal -->
         <x-modal id="new" title="New Currency">
             <!-- Start form -->
-            <x-form.post action="currencies.store">
+            <x-form action="{{route('currencies.store')}}">
+
                 <div class="form-group row">
                     <div class="col-md-6">
-                        <x-form.label name="Name: <span class='star'>*</span>"  />
+                        <x-form.label name="Name" star="true"  />
                         <x-form.input name="name" id="name" for="name" req="required"  />
                     </div>
                     <div class="col-md-6">
-                        <x-form.label name="Acronym: <span class='star'>*</span>"  />
+                        <x-form.label name="Acronym" star="true"  />
                         <x-form.input name="acronym" id="acronym" for="acronym" req="required"  />
                     </div>
                 </div>
@@ -70,7 +74,7 @@
                         <x-form.input name="symbol" id="symbol" for="symbol"  />
                     </div>
                     <div class="col-md-6">
-                        <x-form.label name="Main Currency: <span class='star'>*</span>" for="main" />
+                        <x-form.label name="Main Currency" star="true" for="main" />
                         <select class="form-control @error('main') is-invalid @enderror single-select" name="main" required>
                             <option value="0" {{old('main') == '0' ? 'selected' : ''}}>No</option>
                             <option value="1" {{old('main') == '1' ? 'selected' : ''}}>Yes</option>
@@ -82,11 +86,11 @@
                     <textarea name="desc" id="desc" class="form-control @error('desc') is-invalid @enderror">{{old('desc')}}</textarea>
                     @error('desc') <span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong> </span> @enderror
                 </div>
-
                 <div class="form-group text-right">
-                    <x-button.submit />
+                    <x-button />
                 </div>
-            </x-form.post>
+
+            </x-form>
             <!-- end form -->
         </x-modal>
         <!-- end modal -->

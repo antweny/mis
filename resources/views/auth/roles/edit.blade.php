@@ -8,7 +8,7 @@
                 {{ Form::model($role, array('route' => array('roles.update',$role), 'method' => 'PUT')) }}
                     @csrf
                     <div class="form-group">
-                        <x-form.label name="Name: <span class='star'>*</span>" for="name" />
+                        <x-form.label name="Name" star="true" for="name" />
                         <x-form.input name="name" id="name" required="required" :model="$role"/>
                     </div>
                     <div class="form-group">
@@ -28,7 +28,7 @@
                                 <x-button.back />
                             </div>
                             <div class="float-right">
-                                <x-button.submit label="Update"/>
+                                <x-button label="Update"/>
                             </div>
                         </div>
                     </div>
@@ -36,7 +36,6 @@
             </x-card>
         </div>
     </div>
-
 
 
 @endsection

@@ -6,9 +6,9 @@
         <div class="col-md-8">
             <x-card title="New Payment">
                 <!-- Start form -->
-                <x-form.post action="payments.store">
+                <x-form action="{{route('payments.store')}}">
                     @include('finance.payments._form',['buttonText'=>'Save'])
-                </x-form.post>
+                </x-form>
                 <!-- end form -->
             </x-card>
         </div>
