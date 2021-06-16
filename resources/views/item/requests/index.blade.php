@@ -2,14 +2,12 @@
 @section('title','My Item Requests')
 @section('content')
 
-    <x-row>
-        <x-slot name="left">
-            <x-button.create label="New Request Item"> {{route('itemRequests.create')}} </x-button.create>
-        </x-slot>
-    </x-row>
-
     <!-- Start Card -->
     <x-card title="Requests List">
+
+        <x-slot name="cardButton">
+            <x-button.create label="New Request Item"> {{route('itemRequests.create')}} </x-button.create>
+        </x-slot>
         <!-- Table Start -->
         <x-table.listing id="table">
             <!-- table headers -->
@@ -34,24 +32,21 @@
                     <td class="text-center">{{$itemRequest->issued}}</td>
                     <td class="text-center">{{$itemRequest->remarks}}</td>
                     <td  class="text-center">
-                        <div class="btn-group btn-group-sm">
-                            @if($itemRequest->status == 'O')
-                                <a href="{{route('itemRequests.edit',$itemRequest)}}" class="btn mr-2 btn-edit" data-toggle="tooltip" data-placement="top" title="Edit item" >
-                                    <i class="fa fa-edit"></i>
-                                </a>
-                                <form method="POST" action="{{route('itemRequests.destroy',$itemRequest)}}" class="form-horizontal" role="form" autocomplete="off">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-sm btn-delete" onclick="return confirm('Confirm to delete?')" data-toggle="tooltip" data-placement="top" title="Delete">
-                                        <i class="fa fa-times"></i>
-                                    </button>
-                                </form>
-                            @endif
-                            @if($itemRequest->status == 'I')
-                                <a href="{{route('itemIssues.reject',$itemRequest)}}" onclick="return confirm('Have you Collected your Items?')" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="Items Collected" >
-                                    <i class="fas fa-check"></i>
-                                </a>
-                            @endif
+                        <div class="dropleft">
+                            <button type="button" class="btn btn-light" data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i> </button>
+                            <div class="dropdown-menu">
+                                @if($itemRequest->status == 'I')
+                                    <a href="{{route('itemIssues.reject',$itemRequest)}}" onclick="return confirm('Have you Collected your Items?')" class="dropdown-item" >
+                                        <i class="fas fa-check"></i>
+                                    </a>
+                                @endif
+                                @if($itemRequest->status == 'O')
+                                    <a href="{{route('itemRequests.edit',$itemRequest)}}" class="btn mr-2 btn-edit" data-toggle="tooltip" data-placement="top" title="Edit item" >
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                    <x-button.delete>{{route('itemRequests.destroy',$itemRequest)}}</x-button.delete>
+                                @endif
+                            </div>
                         </div>
                     </td>
                 </tr>

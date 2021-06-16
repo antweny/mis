@@ -1,10 +1,10 @@
 <div class="form-group row">
     <div class="col-md-6">
-        <x-form.label name="Items List: <span class='star'>*</span>" />
+        <x-form.label name="Items List" star="true" />
         <x-dropdown.item-request-list req="required" :model="$itemRequest"/>
     </div>
     <div class="col-md-6">
-        <x-form.label name="Required Quantity: <span class='star'>*</span>" />
+        <x-form.label name="Required Quantity" star="true" />
         <x-form.input type="number" name="req_quantity" id="req_quantity" for="req_quantity" req="required" :model="$itemRequest"   />
     </div>
 </div>
@@ -23,7 +23,7 @@
             <x-button.back />
         </div>
         <div class="float-right">
-            <x-button.submit label="{{$buttonText}}"/>
+            <x-button label="{{$buttonText}}"/>
         </div>
     </div>
 </div>

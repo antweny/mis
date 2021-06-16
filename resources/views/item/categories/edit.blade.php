@@ -8,11 +8,11 @@
                 {{ Form::model($itemCategory, array('route' => array('itemCategories.update',$itemCategory), 'method' => 'PUT')) }}
                     @csrf
                     <div class="form-group">
-                        <x-form.label name="Name: <span class='star'>*</span>" />
+                        <x-form.label name="Name" star="true" />
                         <x-form.input name="name" id="name" for="name" req="required" :model="$itemCategory"  />
                     </div>
                     <div class="form-group">
-                        <x-form.label name="Sort: <span class='star'>*</span>" />
+                        <x-form.label name="Sort" star="true" />
                         <x-form.input type="number" name="sort" id="sort" for="sort" :model="$itemCategory"/>
                     </div>
                     <div class="form-group">
@@ -26,7 +26,7 @@
                                 <x-button.back />
                             </div>
                             <div class="float-right">
-                                <x-button.submit label="Update"/>
+                                <x-button label="Update"/>
                             </div>
                         </div>
                     </div>

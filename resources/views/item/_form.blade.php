@@ -1,15 +1,15 @@
 <div class="form-group">
-    <x-form.label name="Name: <span class='star'>*</span>" />
+    <x-form.label name="Name" star="true" />
     <x-form.input name="name" id="name" for="name" req="required" :model="$item"   />
 </div>
 
 <div class="row form-group">
     <div class="col-md-6">
-        <x-form.label name="Category: <span class='star'>*</span>" />
+        <x-form.label name="Category" star="true" />
         <x-dropdown.item-category req="required" :model="$item" />
     </div>
     <div class="col-md-6">
-        <x-form.label name="Unit: <span class='star'>*</span>" />
+        <x-form.label name="Unit" star="true" />
         <x-dropdown.item-unit req="required" :model="$item" />
     </div>
 </div>
@@ -17,11 +17,11 @@
 
 <div class="row form-group">
     <div class="col-md-6">
-        <x-form.label name="Re-Order Level: <span class='star'>*</span>" />
+        <x-form.label name="Re-Order Level" star="true" />
         <x-form.input type="number" name="order_level" id="order_level" for="order_level" req="required" :model="$item"   />
     </div>
     <div class="col-md-6">
-        <x-form.label name="Quantity: <span class='star'>*</span>" />
+        <x-form.label name="Quantity" star="true" />
         <x-form.input type="number" name="quantity" id="quantity" for="quantity" req="required" :model="$item"   />
     </div>
 </div>
@@ -40,7 +40,7 @@
             <x-button.back />
         </div>
         <div class="float-right">
-            <x-button.submit label="{{$buttonText}}"/>
+            <x-button label="{{$buttonText}}"/>
         </div>
     </div>
 </div>

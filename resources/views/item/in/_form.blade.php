@@ -1,11 +1,11 @@
 
 <div class="form-group row">
     <div class="col-md-6">
-        <x-form.label name="Received at: <span class='star'>*</span>" />
+        <x-form.label name="Received at" star="true" />
         <x-form.input type="date" name="received_at" id="date" for="received_at" req="required" :model="$itemIn" />
     </div>
     <div class="col-md-6">
-        <x-form.label name="Item <span class='star'>*</span>" />
+        <x-form.label name="Item" star="true" />
         @if(isset($state) && $state== 'update')
             <input type="text" class="form-control" value="{{$itemIn->item->name}}" readonly/>
             <x-form.input type="number" name="item_id" for="received_at" req="required readonly hidden" :model="$itemIn" />
@@ -25,11 +25,11 @@
 
 <div class="row form-group">
     <div class="col-md-6">
-        <x-form.label name="Quantity In <span class='star'>*</span>" />
+        <x-form.label name="Quantity In" star="true" />
         <x-form.input type="number" name="quantity_in" id="quantity_in" for="quantity_in" req="required" :model="$itemIn"   />
     </div>
     <div class="col-md-6">
-        <x-form.label name="Unit Rate <span class='star'>*</span>" />
+        <x-form.label name="Unit Rate" star="true" />
         <x-form.input type="number" name="unit_rate" id="unit_rate" for="unit_rate" req="required" :model="$itemIn"   />
     </div>
 </div>
@@ -48,7 +48,7 @@
             <x-button.back />
         </div>
         <div class="float-right">
-            <x-button.submit label="{{$buttonText}}"/>
+            <x-button label="{{$buttonText}}"/>
         </div>
     </div>
 </div>

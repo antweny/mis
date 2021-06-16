@@ -30,19 +30,21 @@
                     <td class="text-center">{{humanDate($itemIssue->updated_at)}}</td>
                     <td class="text-center">{{$itemIssue->remarks}}</td>
                     <td  class="text-center">
-                        @can('item-issue_update')
-                            @if($itemIssue->status == 'O')
-                                <a href="{{route('itemOut.edit',$itemIssue)}}" class="btn btn-edit btn-sm mr-3" data-toggle="tooltip" data-placement="top" title="Issue Item" >
-                                    <i class="fa fa-upload"></i>
-                                </a>
-                            @endif
-
-                            @if($itemIssue->status == 'I')
-                                <a href="{{route('itemOut.reject',$itemIssue)}}" onclick="return confirm('Reject Request?')" class="btn btn-delete btn-sm" data-toggle="tooltip" data-placement="top" title="Reject Request" >
-                                    <i class="far fa-window-close"></i>
-                                </a>
-                            @endif
-                        @endcan
+                        <div class="dropleft">
+                            <button type="button" class="btn btn-light" data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i> </button>
+                            <div class="dropdown-menu">
+                                @can('item-issue_update')
+                                    @if($itemIssue->status == 'O')
+                                        <x-button.edit>{{route('itemOut.edit',$itemIssue)}}</x-button.edit>
+                                    @endif
+                                @endcan
+                                @if($itemIssue->status == 'I')
+                                    <a href="{{route('itemOut.reject',$itemIssue)}}" onclick="return confirm('Reject Request?')" class="dropdown-item" data-toggle="tooltip" data-placement="top" title="Reject Request" >
+                                        <i class="far fa-window-close"></i>
+                                    </a>
+                                @endif
+                            </div>
+                        </div>
                     </td>
                 </tr>
             @endforeach
