@@ -11,6 +11,7 @@
 
         <!-- Table Start -->
         <x-table.listing id="table">
+
             <!-- table headers -->
             <x-slot name="thead" >
                 <th scope="col">Name</th>
@@ -19,6 +20,7 @@
                 <th scope="col">Age</th>
             </x-slot>
             <!-- end table head -->
+
             <!-- start table head -->
                 @foreach($backups as $backup)
                     <tr>
