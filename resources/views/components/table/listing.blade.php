@@ -5,7 +5,7 @@
             <tr>
                 <th class="numCol">#</th>
                 {{$thead}}
-                <th class="actCol">Actions</th>
+                <th class="actCol"><i class="fas fa-cogs"></i></th>
             </tr>
         </thead>
 
