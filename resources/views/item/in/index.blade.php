@@ -1,15 +1,14 @@
 @extends('layouts.backend')
 @section('title','Items Received List')
 @section('content')
-
-    <x-row>
-        <x-slot name="left">
-            <x-button.create label="Receive New Item "> {{route('itemIn.create')}} </x-button.create>
-        </x-slot>
-    </x-row>
-
     <!-- Start Card -->
     <x-card title="Items Received List">
+
+        <x-slot name="cardButton">
+            <x-button.create label="Receive New Item "> {{route('itemIn.create')}} </x-button.create>
+        </x-slot>
+
+
         <!-- Table Start -->
         <x-table.listing :collection="$itemIns">
             <!-- table headers -->
@@ -34,21 +33,16 @@
                     <td class="text-center">{{$itemIn->amount}}</td>
                     <td class="text-center">{{$itemIn->remarks}}</td>
                     <td  class="text-center">
-                        <div class="btn-group btn-group-sm">
-                            @can('item-in_update')
-                                <a href="{{route('itemIn.edit',$itemIn)}}" class="btn mr-2 btn-edit" data-toggle="tooltip" data-placement="top" title="Edit item" >
-                                    <i class="fa fa-edit"></i>
-                                </a>
-                            @endcan
-                            @can('item-in_delete')
-                                <form method="POST" action="{{route('itemIn.destroy',$itemIn)}}" class="form-horizontal" role="form" autocomplete="off">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-sm btn-delete" onclick="return confirm('Confirm to delete?')" data-toggle="tooltip" data-placement="top" title="Delete">
-                                        <i class="fa fa-times"></i>
-                                    </button>
-                                </form>
-                            @endcan
+                        <div class="dropleft">
+                            <button type="button" class="btn btn-light" data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i> </button>
+                            <div class="dropdown-menu">
+                                @can('item-in_update')
+                                    <x-button.edit>{{route('itemIn.edit',$itemIn)}}</x-button.edit>
+                                @endcan
+                                @can('item-in_delete')
+                                    <x-button.delete>{{route('itemIn.destroy',$itemIn)}}</x-button.delete>
+                                @endcan
+                            </div>
                         </div>
                     </td>
                 </tr>
