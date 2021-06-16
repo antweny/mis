@@ -8,11 +8,11 @@
 
                     @csrf
                     <div class="form-group">
-                        <x-form.label Name="Name: <span class='star'>*</span>" />
+                        <x-form.label name="Name" star="true" />
                         <x-form.input  name="name" id="name" for="name" req="required" :model="$organizationGroup"  />
                     </div>
                     <div class="form-group">
-                        <x-form.label Name="Name: <span class='star'>*</span>" />
+                        <x-form.label name="Descriptions" />
                         <textarea name="desc" id="desc" class="form-control @error('desc') is-invalid @enderror">{{$organizationGroup->desc}}</textarea>
                         @error('desc') <span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong> </span> @enderror
                     </div>
@@ -22,7 +22,7 @@
                                 <x-button.back />
                             </div>
                             <div class="float-right">
-                                <x-button.submit label="Update"/>
+                                <x-button label="Update"/>
                             </div>
                         </div>
                     </div>

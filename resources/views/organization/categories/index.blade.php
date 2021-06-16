@@ -2,14 +2,15 @@
 @section('title','Organization Categories List')
 @section('content')
 
-    <x-row>
-        <x-slot name="left">
-            @can('organization-category_create') <x-button.create label="Add Organization Category" modal="modal"> #new </x-button.create> @endcan
-        </x-slot>
-    </x-row>
-
     <!-- Start Card -->
     <x-card title="Organization Categories List">
+
+        <x-slot name="cardButton">
+            @can('organization-category_create')
+                <x-button.create label="Add Organization Category" modal="modal"> #new </x-button.create>
+            @endcan
+        </x-slot>
+
         <!-- Table Start -->
         <x-table.listing id="table">
             <!-- table headers -->
@@ -26,13 +27,16 @@
                     <td  class="text-center">{{$organizationCategory->sort}}</td>
                     <td  class="text-left">{{$organizationCategory->desc}}</td>
                     <td  class="text-center">
-                        <div class="btn-group btn-group-sm">
-                            @can('organization-category_update')
-                                <x-button.edit>{{route('organizationCategories.edit',$organizationCategory)}}</x-button.edit>
-                            @endcan
-                            @can('organization-category_delete')
-                                <x-button.delete>{{route('organizationCategories.destroy',$organizationCategory)}}</x-button.delete>
-                            @endcan
+                        <div class="dropleft">
+                            <button type="button" class="btn btn-light" data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i> </button>
+                            <div class="dropdown-menu">
+                                @can('organization-category_update')
+                                    <x-button.edit>{{route('organizationCategories.edit',$organizationCategory)}}</x-button.edit>
+                                @endcan
+                                @can('organization-category_delete')
+                                    <x-button.delete>{{route('organizationCategories.destroy',$organizationCategory)}}</x-button.delete>
+                                @endcan
+                            </div>
                         </div>
                     </td>
                 </tr>
@@ -44,13 +48,13 @@
         <!-- Start Modal -->
         <x-modal id="new" title="New Organization Category">
             <!-- Start form -->
-            <x-form.post action="organizationCategories.store">
+            <x-form action="{{route('organizationCategories.store')}}">
                 <div class="form-group">
-                    <x-form.label Name="Name: <span class='star'>*</span>" />
+                    <x-form.label Name="Name" star="true" />
                     <x-form.input name="name" id="name" for="name" req="required"   />
                 </div>
                 <div class="form-group">
-                    <x-form.label Name="Sort" />
+                    <x-form.label name="Sort" />
                     <x-form.input type="number" name="sort" id="sort" for="sort" />
                 </div>
                 <div class="form-group">
@@ -59,9 +63,9 @@
                     @error('desc') <span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong> </span> @enderror
                 </div>
                 <div class="form-group text-right">
-                    <x-button.submit />
+                    <x-button />
                 </div>
-            </x-form.post>
+            </x-form>
             <!-- end form -->
         </x-modal>
         <!-- end modal -->

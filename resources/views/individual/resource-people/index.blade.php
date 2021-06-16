@@ -2,15 +2,18 @@
 @section('title','Resource Persons List')
 @section('content')
 
-    <x-row>
-        <x-slot name="left">
-            @can('resource-people_create') <x-button.create label="Add Resource Person"> {{route('resourcePeople.create')}} </x-button.create> @endcan
-{{--            <x-button.general label="Import" icon="fas fa-file-upload" modal="modal" class="btn btn-dark"> #import </x-button.general> @endcan--}}
-        </x-slot>
-    </x-row>
-
     <!-- Start Card -->
     <x-card title="Resource People List">
+
+        <x-slot name="cardButton">
+            @can('resource-people_create')
+                <x-button.create label="Add Resource Person"> {{route('resourcePeople.create')}}
+                </x-button.create>
+            @endcan
+            {{--            <x-button.general label="Import" icon="fas fa-file-upload" modal="modal" class="btn btn-dark"> #import </x-button.general> @endcan--}}
+        </x-slot>
+
+
         <!-- Table Start -->
         <x-table.listing id="table">
             <!-- table headers -->
@@ -33,13 +36,16 @@
                     <td class="text-center">{{ $resourcePerson->start }}</td>
                     <td class="text-center">{!!  $resourcePerson->end !!} </td>
                     <td  class="text-center">
-                        <div class="btn-group btn-group-sm">
-                            @can('resource-people_update')
-                                <x-button.edit>{{route('resourcePeople.edit',$resourcePerson)}}</x-button.edit>
-                            @endcan
-                            @can('resource-people_delete')
-                                <x-button.delete>{{route('resourcePeople.destroy',$resourcePerson)}}</x-button.delete>
-                            @endcan
+                        <div class="dropleft">
+                            <button type="button" class="btn btn-light" data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i> </button>
+                            <div class="dropdown-menu">
+                                @can('resource-people_update')
+                                    <x-button.edit>{{route('resourcePeople.edit',$resourcePerson)}}</x-button.edit>
+                                @endcan
+                                @can('resource-people_delete')
+                                    <x-button.delete>{{route('resourcePeople.destroy',$resourcePerson)}}</x-button.delete>
+                                @endcan
+                            </div>
                         </div>
                     </td>
                 </tr>
@@ -53,15 +59,15 @@
         <!-- Start Modal -->
         <x-modal id="import" title="Import Resource Person">
             <!-- Start form -->
-            <x-form.post action="resourcePeople.import">
+            <x-form action="{{route('resourcePeople.import')}}">
                 <div class="form-group">
-                    <x-form.label name="Import File <span class='star'>*</span>" />
+                    <x-form.label name="Import File" star="true" />
                     <x-form.input type="file" name="imported_file" id="imported_file" required="required"/>
                 </div>
                 <div class="form-group text-right">
-                    <x-button.submit />
+                    <x-button />
                 </div>
-            </x-form.post>
+            </x-form>
             <!-- end form -->
         </x-modal>
         <!-- end modal -->

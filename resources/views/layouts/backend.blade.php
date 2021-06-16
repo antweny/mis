@@ -13,7 +13,7 @@
     <!-- CSS Style -->
     @include('layouts.general.css')
 
-{{--    <link href="{{ asset('css/backend.css') }}" rel="stylesheet">--}}
+    <link href="{{ asset('css/backend.css') }}" rel="stylesheet">
 
 </head>
 <body>
@@ -55,6 +55,7 @@
 
 <!-- JS Section -->
 @include('layouts.general.js')
+
 <script src="{{ asset('js/backend.js') }}" ></script>
 
 </body>

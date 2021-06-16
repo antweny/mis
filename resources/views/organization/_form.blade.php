@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col form-group">
-        <x-form.label name="Name: <span class='star'>*</span>" />
+        <x-form.label name="Name" star="true" />
         <x-form.input name="name" id="name" for="name" req="required" :model="$organization"  />
     </div>
     <div class="col form-group">
@@ -14,7 +14,7 @@
         <x-form.input name="founded" id="founded" for="founded" :model="$organization" />
     </div>
     <div class="col form-group">
-        <x-form.label name="Category: <span class='star'>*</span>" />
+        <x-form.label name="Category" star="true" />
         <x-dropdown.organization-category req="required" :model="$organization"/>
     </div>
 </div>
@@ -64,7 +64,7 @@
             <x-button.back />
         </div>
         <div class="float-right">
-            <x-button.submit label="{{$buttonText}}"/>
+            <x-button label="{{$buttonText}}"/>
         </div>
     </div>
 </div>

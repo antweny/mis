@@ -7,9 +7,9 @@
         <div class="col-md-8">
             <x-card title="New Individual Experience">
                 <!-- Start form -->
-                <x-form.post action="experiences.store">
+                <x-form action="{{route('experiences.store')}}">
                     @include('individual.experiences._form',['buttonText'=>'Create'])
-                </x-form.post>
+                </x-form>
                 <!-- end form -->
             </x-card>
         </div>

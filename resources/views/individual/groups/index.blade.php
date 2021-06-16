@@ -1,15 +1,16 @@
 @extends('layouts.backend')
 @section('title','Individual Groups List')
 @section('content')
-
-    <x-row>
-        <x-slot name="left">
-            @can('individual-group_create') <x-button.create label="Add Individual Group" modal="modal"> #new </x-button.create> @endcan
-        </x-slot>
-    </x-row>
-
     <!-- Start Card -->
     <x-card title="Individual Groups List">
+
+        <x-slot name="cardButton">
+            @can('individual-group_create')
+                <x-button.create label="Add Individual Group" modal="modal"> #new </x-button.create>
+            @endcan
+        </x-slot>
+
+
         <!-- Table Start -->
         <x-table.listing id="table">
             <!-- table headers -->
@@ -26,13 +27,16 @@
                     <td class="text-left">{{$individualGroup->name}}</td>
                     <td  class="text-left">{{$individualGroup->desc}}</td>
                     <td  class="text-center">
-                        <div class="btn-group btn-group-sm">
-                            @can('individual-group_update')
-                                <x-button.edit>{{route('individualGroups.edit',$individualGroup)}}</x-button.edit>
-                            @endcan
-                            @can('individual-group_delete')
-                                <x-button.delete>{{route('individualGroups.destroy',$individualGroup)}}</x-button.delete>
-                            @endcan
+                        <div class="dropleft">
+                            <button type="button" class="btn btn-light" data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i> </button>
+                            <div class="dropdown-menu">
+                                @can('individual-group_update')
+                                    <x-button.edit>{{route('individualGroups.edit',$individualGroup)}}</x-button.edit>
+                                @endcan
+                                @can('individual-group_delete')
+                                    <x-button.delete>{{route('individualGroups.destroy',$individualGroup)}}</x-button.delete>
+                                @endcan
+                            </div>
                         </div>
                     </td>
                 </tr>
@@ -47,9 +51,9 @@
         <!-- Start Modal -->
         <x-modal id="new" title="New Individual Group">
             <!-- Start form -->
-            <x-form.post action="individualGroups.store">
+            <x-form action="{{route('individualGroups.store')}}">
                 <div class="form-group">
-                    <x-form.label name="Name: <span class='star'>*</span>" />
+                    <x-form.label name="Name" star="true" />
                     <x-form.input name="name" id="name" for="name" req="required"   />
                 </div>
                 <div class="form-group">
@@ -58,9 +62,9 @@
                     @error('desc') <span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong> </span> @enderror
                 </div>
                 <div class="form-group text-right">
-                    <x-button.submit />
+                    <x-button />
                 </div>
-            </x-form.post>
+            </x-form>
             <!-- end form -->
         </x-modal>
         <!-- end modal -->

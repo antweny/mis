@@ -23,7 +23,9 @@
     <!-- Start Card -->
     <x-card title="Individuals List">
         <x-slot name="cardButton">
-            @can('individual_create') <x-button.create label="Add Individual"> {{route('individuals.create')}} </x-button.create> @endcan
+            @can('individual_create')
+                <x-button.create label="Add Individual"> {{route('individuals.create')}} </x-button.create>
+            @endcan
         </x-slot>
         <!-- Table Start -->
         <x-table.listing id="table">
@@ -58,13 +60,16 @@
                         <a href="{{route('participants.engagement',$individual)}}"> {{$individual->participant_count}} </a>
                     </td>
                     <td  class="text-center">
-                        <div class="btn-group btn-group-sm">
-                            @can('individual_update')
-                                <x-button.edit>{{route('individuals.edit',$individual)}}</x-button.edit>
-                            @endcan
-                            @can('individual_delete')
-                                <x-button.delete>{{route('individuals.destroy',$individual)}}</x-button.delete>
-                            @endcan
+                        <div class="dropleft">
+                            <button type="button" class="btn btn-light" data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i> </button>
+                            <div class="dropdown-menu">
+                                @can('individual_update')
+                                    <x-button.edit>{{route('individuals.edit',$individual)}}</x-button.edit>
+                                @endcan
+                                @can('individual_delete')
+                                    <x-button.delete>{{route('individuals.destroy',$individual)}}</x-button.delete>
+                                @endcan
+                            </div>
                         </div>
                     </td>
                 </tr>
@@ -75,15 +80,15 @@
     @can('individual_create')
         <x-modal id="import" title="Import Individual">
             <!-- Start form -->
-            <x-form.post action="individuals.import">
+            <x-form action="{{route('individuals.import')}}">
                 <div class="form-group">
-                    <x-form.label name="Import File <span class='star'>*</span>" for="imported_file" />
+                    <x-form.label name="Import File" star="true" for="imported_file" />
                     <x-form.input type="file" name="imported_file" id="imported_file" required="required"/>
                 </div>
                 <div class="form-group text-right">
-                    <x-button.submit />
+                    <x-button />
                 </div>
-            </x-form.post>
+            </x-form>
         </x-modal>
     @endcan
 

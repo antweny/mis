@@ -1,21 +1,21 @@
 <div class=" row form-group">
     <div class="col-md-6">
-        <x-form.label name="Individual: <span class='star'>*</span>" />
+        <x-form.label name="Individual" star="true" />
         <x-dropdown.individual req="required" :model="$experience" />
     </div>
     <div class="col-md-6">
-        <x-form.label name="Organization: <span class='star'>*</span>" />
+        <x-form.label name="Organization" star="true" />
         <x-dropdown.organization req="required" :model="$experience"/>
     </div>
 </div>
 
 <div class="row  form-group">
     <div class="col-md-6">
-        <x-form.label name="Title: <span class='star'>*</span>" />
+        <x-form.label name="Title" star="true" />
         <x-dropdown.job-title req="required" :model="$experience"/>
     </div>
     <div class="col-md-6">
-        <x-form.label name="Where: <span class='star'>*</span>" />
+        <x-form.label name="Where" star="true" />
         <x-dropdown.location :model="$experience" />
     </div>
 </div>
@@ -43,7 +43,7 @@
             <x-button.back />
         </div>
         <div class="float-right">
-            <x-button.submit label="{{$buttonText}}"/>
+            <x-button label="{{$buttonText}}"/>
         </div>
     </div>
 </div>

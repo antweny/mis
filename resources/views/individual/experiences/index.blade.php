@@ -2,16 +2,16 @@
 @section('title','Experiences List')
 @section('content')
 
-    <x-row>
-        <x-slot name="left">
-            @can('experience_create')
-                <x-button.create label="Add Experience"> {{route('experiences.create')}} </x-button.create>
-         @endcan
-        </x-slot>
-    </x-row>
-
     <!-- Start Card -->
     <x-card title="Experiences List">
+
+        <x-slot name="cardButton">
+            @can('experience_create')
+                <x-button.create label="Add Experience"> {{route('experiences.create')}} </x-button.create>
+            @endcan
+        </x-slot>
+
+
         <!-- Table Start -->
         <x-table.listing id="table">
             <!-- table headers -->
@@ -35,21 +35,16 @@
                     <td class="text-center">{{ $experience->job_title->name }}</td>
                     <td class="text-center">{!! $experience->organization->name_click !!} </td>
                     <td  class="text-center">
-                        <div class="btn-group btn-group-sm">
-                            @can('experience_create')
-                                <a href="{{route('experiences.edit',$experience)}} " class="btn btn-edit mr-2" data-toggle="tooltip" data-placement="top" title="Edit item" >
-                                    <i class="fa fa-edit"></i>
-                                </a>
-                            @endcan
-                            @can('experience_create')
-                                <form method="POST" action="{{route('experiences.destroy',$experience)}}" class="form-horizontal" role="form" autocomplete="off">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-delete btn-sm" onclick="return confirm('Confirm to delete?')" data-toggle="tooltip" data-placement="top" title="Delete">
-                                        <i class="fa fa-times"></i>
-                                    </button>
-                                </form>
-                            @endcan
+                        <div class="dropleft">
+                            <button type="button" class="btn btn-light" data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i> </button>
+                            <div class="dropdown-menu">
+                                @can('experience_create')
+                                    <x-button.edit>{{route('experiences.edit',$experience)}}</x-button.edit>
+                                @endcan
+                                @can('experience_create')
+                                    <x-button.delete>{{route('experiences.destroy',$experience)}}</x-button.delete>
+                                @endcan
+                            </div>
                         </div>
                     </td>
                 </tr>

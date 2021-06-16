@@ -8,15 +8,15 @@
                 {{ Form::model($organizationCategory, array('route' => array('organizationCategories.update',$organizationCategory), 'method' => 'PUT')) }}
                     @csrf
                     <div class="form-group">
-                        <x-form.label Name="Name: <span class='star'>*</span>" />
+                        <x-form.label name="Name" star="true" />
                         <x-form.input  name="name" id="name" for="name" req="required" :model="$organizationCategory"  />
                     </div>
                     <div class="form-group">
-                        <x-form.label Name="Sort" />
+                        <x-form.label name="Sort" />
                         <x-form.input  type="number" name="sort" id="sort" for="sort" :model="$organizationCategory"/>
                     </div>
                     <div class="form-group">
-                        <x-form.label Name="Name: <span class='star'>*</span>" />
+                        <x-form.label name="Descriptions" />
                         <textarea name="desc" id="desc" class="form-control @error('desc') is-invalid @enderror">{{$organizationCategory->desc}}</textarea>
                         @error('desc') <span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong> </span> @enderror
                     </div>
@@ -26,7 +26,7 @@
                                 <x-button.back />
                             </div>
                             <div class="float-right">
-                                <x-button.submit label="Update"/>
+                                <x-button label="Update"/>
                             </div>
                         </div>
                     </div>

@@ -31,13 +31,16 @@
                     <td class="text-center">{{$organization->mobile}}</td>
                     <td class="text-center"><a href="{{route('experiences.organization',$organization)}}">{{$organization->experience_count }}</a></td>
                     <td  class="text-center">
-                        <div class="btn-group btn-group-sm">
-                            @can('organization_update')
-                                <x-button.edit>{{route('organizations.edit',$organization)}}</x-button.edit>
-                            @endcan
-                            @can('organization_delete')
-                                <x-button.delete>{{route('organizations.destroy',$organization)}}</x-button.delete>
-                            @endcan
+                        <div class="dropleft">
+                            <button type="button" class="btn btn-light" data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i> </button>
+                            <div class="dropdown-menu">
+                                @can('organization_update')
+                                    <x-button.edit>{{route('organizations.edit',$organization)}}</x-button.edit>
+                                @endcan
+                                @can('organization_delete')
+                                    <x-button.delete>{{route('organizations.destroy',$organization)}}</x-button.delete>
+                                @endcan
+                            </div>
                         </div>
                     </td>
                 </tr>

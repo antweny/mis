@@ -7,16 +7,16 @@
                 {{ Form::model($bank, array('route' => array('banks.update',$bank), 'method' => 'PUT')) }}
                 @csrf
                 <div class="form-group">
-                    <x-form.label name="Organization: <span class='star'>*</span>" />
+                    <x-form.label name="Organization" star="true" />
                     <x-dropdown.organization req="required" :model="$bank"/>
                 </div>
                 <div class="form-group">
-                    <x-form.label name="Organization Group: <span class='star'>*</span>" />
+                    <x-form.label name="Organization Group" star="true" />
                     <x-dropdown.organization-group req="required" filter="Bank" :model="$bank"/>
                 </div>
                 <div class="row form-group">
                     <div class="col">
-                        <x-form.label name="Start Date: <span class='star'>*</span>" />
+                        <x-form.label name="Start Date" star="true" />
                         <x-form.input type="date" name="start_date" id="start_date" for="start_date" req="required"  :model="$bank"/>
                     </div>
                     <div class="col">
@@ -35,7 +35,7 @@
                             <x-button.back />
                         </div>
                         <div class="float-right">
-                            <x-button.submit label="Update"/>
+                            <x-button label="Update"/>
                         </div>
                     </div>
                 </div>

@@ -1,10 +1,10 @@
 <div class="form-group">
-    <x-form.label name="Individual: <span class='star'>*</span>" />
+    <x-form.label name="Individual" star="true" />
     <x-dropdown.individual req="required" :model="$resourcePeople" />
 </div>
 
 <div class="form-group">
-    <x-form.label name="Group: <span class='star'>*</span>" />
+    <x-form.label name="Group" star="true" />
     <x-dropdown.individual-group req="required" :model="$resourcePeople" />
 </div>
 
@@ -31,7 +31,7 @@
             <x-button.back />
         </div>
         <div class="float-right">
-            <x-button.submit label="Update"/>
+            <x-button label="Update"/>
         </div>
     </div>
 </div>

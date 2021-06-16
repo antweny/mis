@@ -1,6 +1,6 @@
 <div class="form-group row">
     <div class="col-md-4">
-        <x-form.label name="Name: <span class='star'>*</span>" for="name" />
+        <x-form.label name="Name" star="true" for="name" />
         <x-form.input name="name" id="name" for="name" req="required" :model="$individual"  />
     </div>
     <div class="col-md-4">
@@ -61,7 +61,7 @@
             <x-button.back />
         </div>
         <div class="float-right">
-            <x-button.submit label="{{$buttonText}}"/>
+            <x-button label="{{$buttonText}}"/>
         </div>
     </div>
 </div>

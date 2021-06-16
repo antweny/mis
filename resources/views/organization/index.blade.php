@@ -2,18 +2,18 @@
 @section('title','Organizations List')
 @section('content')
 
-    <x-row>
-        <x-slot name="left">
+    <!-- Start Card -->
+    <x-card title="Organizations List">
+
+        <x-slot name="cardButton">
             @can('organization_create')
                 <x-button.create label="Add Organization"> {{route('organizations.create')}} </x-button.create>
                 <x-button.create label="Import" modal="modal"> #import </x-button.create>
-{{--            <x-button.general label="Import" icon="fas fa-file-upload" modal="modal" class="btn btn-dark"> #import </x-button.general>  --}}
+                {{--            <x-button.general label="Import" icon="fas fa-file-upload" modal="modal" class="btn btn-dark"> #import </x-button.general>  --}}
             @endcan
         </x-slot>
-    </x-row>
 
-    <!-- Start Card -->
-    <x-card title="Organizations List">
+
         <!-- Table Start -->
         <x-table.listing :collection="$organizations">
             <!-- table headers -->
@@ -38,21 +38,16 @@
                     <td class="text-center">{{$organization->mobile}}</td>
                     <td class="text-center"><a href="{{route('experiences.organization',$organization)}}">{{$organization->experience_count }}</a></td>
                     <td  class="text-center">
-                        <div class="btn-group btn-group-sm">
-                            @can('organization_update')
-                                <a href="{{route('organizations.edit',$organization)}} " class="btn btn-edit mr-2" data-toggle="tooltip" data-placement="top" title="Edit item" >
-                                    <i class="fa fa-edit"></i>
-                                </a>
-                            @endcan
-                            @can('organization_delete')
-                                <form method="POST" action="{{route('organizations.destroy',$organization)}}" class="form-horizontal" role="form" autocomplete="off">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-delete btn-sm" onclick="return confirm('Confirm to delete?')" data-toggle="tooltip" data-placement="top" title="Delete">
-                                        <i class="fa fa-times"></i>
-                                    </button>
-                                </form>
-                            @endcan
+                        <div class="dropleft">
+                            <button type="button" class="btn btn-light" data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i> </button>
+                            <div class="dropdown-menu">
+                                @can('organization_update')
+                                    <x-button.edit>{{route('organizations.edit',$organization)}}</x-button.edit>
+                                @endcan
+                                    @can('organization_delete')
+                                    <x-button.delete>{{route('organizations.destroy',$organization)}}</x-button.delete>
+                                @endcan
+                            </div>
                         </div>
                     </td>
                 </tr>
