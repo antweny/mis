@@ -13,7 +13,7 @@
 
 
         <!-- Table Start -->
-        <x-table.listing :collection="$locations">
+        <x-table.listing id="table">
             <!-- table headers -->
             <x-slot name="thead" >
                 <th scope="col">Name</th>

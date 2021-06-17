@@ -17,7 +17,7 @@ use Maatwebsite\Excel\Concerns\WithValidation;
 use Maatwebsite\Excel\Events\AfterImport;
 use Maatwebsite\Excel\Validators\Failure;
 
-class BaseImport implements
+class  BaseImport implements
     ToModel ,
     WithHeadingRow,
     SkipsOnError,

@@ -20,7 +20,7 @@ class LocationRepository extends BaseRepository implements LocationRepositoryInt
      */
     public function get()
     {
-        return $this->relationshipWithPagination(['parent']);
+        return $this->relationshipWith(['parent']);
     }
 
 //    /**

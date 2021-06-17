@@ -100,13 +100,13 @@ class Individual extends BaseModel
     // Get Record ID if not exist Create new Record
     public function duplicateIndividual($name, $mobile)
     {
-        $object = $this->where('name',$name)->where('mobile',$mobile)->first();
-        if(isset($object)) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return $this->select('name','mobile')->where('name',$name)->where('mobile',$mobile)->first();
+    }
+
+    // Get Record ID if not exist Create new Record
+    public static function uniqueIndividual($name, $mobile)
+    {
+        return self::select('name','mobile')->where('name',$name)->where('mobile',$mobile)->first();
     }
 
     /**

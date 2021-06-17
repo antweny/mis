@@ -145,7 +145,7 @@ Route::prefix('individuals/')->group(function () {
         Route::put('update/{individual}', 'IndividualController@update')->name('update');
         Route::delete('delete/{individual}', 'IndividualController@destroy')->name('destroy');
         Route::post('import', 'IndividualController@import')->name('import');
-        Route::get('export', 'IndividualController@export')->name('export');
+        Route::get('export/{format?}', 'IndividualController@export')->name('export');
     });
 
     //Experiences

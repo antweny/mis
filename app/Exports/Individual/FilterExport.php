@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Exports;
+namespace App\Exports\Individual;
 
-use App\Models\Individual;
+use App\Individual;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
-class IndividualsExport implements FromCollection
+class FilterExport implements FromCollection
 {
     /**
     * @return \Illuminate\Support\Collection

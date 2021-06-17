@@ -21,14 +21,14 @@ class ImportFileRequest extends FormRequest
     public function rules()
     {
         return [
-            'imported_file' => ['required','file'],
+            'import_file' => ['required','file'],
         ];
     }
 
     public function messages()
     {
         return [
-            'imported_file.mimes' => 'File must be an xls, xlsx or csv File',
+            'import_file.mimes' => 'File must be an xls, xlsx or csv File',
         ];
     }
 }

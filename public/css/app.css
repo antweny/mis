@@ -11082,6 +11082,10 @@ body {
   font-weight: bold;
 }
 
+.card .card-header .btns {
+  display: inline-block;
+}
+
 /*------------ CARD STYLES --------*/
 
 .modal-header {

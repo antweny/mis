@@ -2,7 +2,8 @@
 
 namespace App\Repository;
 
-use App\Exports\IndividualsExport;
+use App\Exports\Individual\IndividualsExport;
+use App\Imports\IndividualImport;
 use App\Models\Individual;
 use App\Repository\Interfaces\IndividualRepositoryInterface;
 use Illuminate\Support\Facades\DB;
@@ -72,47 +73,34 @@ class IndividualRepository extends BaseRepository implements IndividualRepositor
     }
 
 
-//    /**
-//     * Get Model Collection with relationship
-//     */
-//    public function relationWith()
-//    {
-//        return $this->model->with(['location','individual_group'])->get()->sortBy('name');
-//    }
-//
-//    /**
-//     * Get event with relation and total participants
-//     */
-//    public function engagement()
-//    {
-//        return $this->withCountRelation(['location','individual_group'],['participant']);
-//    }
-//
-//
 
     /* Export Data */
-    public function export()
+    public function export($format)
     {
-        return Excel::download(new IndividualsExport(),'individuals.xlsx');
+        $extension = strtolower($format);
+
+        if (in_array($format,['Mpdf','Dompdf','Tcpdf'])) $extension = 'pdf';
+
+        return Excel::download(new IndividualsExport(),'individuals.'.$extension,$format);
     }
 
-//    /**
-//     * Import Organization List
-//     */
-//    public function import($request)
-//    {
+    /* Import Organization List  */
+    public function import($request)
+    {
+        return Excel::import(new IndividualImport(),$request->file('import_file'));
+
 //        $file = $request->file('imported_file')->store('import/individual'); //Store Imported file to storage
 //        $import = new IndividualImport; //Instance of Individual Import
 //        $import->import($file);
 //
-//        if($import->failures()->isNotEmpty()) {
+//        if($import->failures()->isNotEmpty())
 //            return $import->failures();
 //        }
 //        if($import->errors()->isNotEmpty()) {
 //            return $import->errors();
 //        }
 //        return $import;
-//    }
+    }
 
 
 
