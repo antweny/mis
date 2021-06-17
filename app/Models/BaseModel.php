@@ -108,17 +108,28 @@ class BaseModel extends Model
      */
     public function findOrCreate($data)
     {
-        $object = $this->where('name',$data)->orWhere('id',$data)->first();
+        if(!is_null($data)) {
+            $object = $this->where('name',$data)->orWhere('id',$data)->first();
 
-        if(isset($object) && !is_null($object)){
-           return $object->id;
-        }
-        else {
-            if (is_null($object) && !is_null($data)) {
+            if(!is_null($object)){
+                return $object->id;
+            }
+            else {
                 $object = $this->create(['name'=>$data]);
                 return $object->id;
             }
         }
+//        $object = $this->where('name',$data)->orWhere('id',$data)->first();
+//
+//        if(isset($object) && !is_null($object)){
+//           return $object->id;
+//        }
+//        else {
+//            if (is_null($object) && !is_null($data)) {
+//                $object = $this->create(['name'=>$data]);
+//                return $object->id;
+//            }
+//        }
     }
 
     /**
