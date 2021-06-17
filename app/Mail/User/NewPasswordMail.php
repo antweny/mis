@@ -15,21 +15,13 @@ class NewPasswordMail extends Mailable
     /* Get user Pas*/
     public $data;
 
-    /**
-     * Create a new message instance.
-     *
-     * @return void
-     */
+    /* Create a new message instance. */
     public function __construct($data)
     {
         $this->data = $data;
     }
 
-    /**
-     * Build the message.
-     *
-     * @return $this
-     */
+    /* Build the message */
     public function build()
     {
         return $this->markdown('emails.user.new-password')

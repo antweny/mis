@@ -2,9 +2,9 @@
 
 namespace App\Notifications\User;
 
+use App\Mail\User\CreateNewUserMail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
 class CreateNewUserNotification extends Notification implements ShouldQueue
@@ -39,13 +39,9 @@ class CreateNewUserNotification extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
-            ->subject('Account Created')
-            ->markdown('emails.user.new-user', [
-                'name' => $notifiable->name,
-                'password'=>$this->password,
-                'email'=>$notifiable->email
-            ]);
+        $data = $this->data($notifiable,$this->password);
+
+        return (new CreateNewUserMail($data))->to($notifiable->email);
     }
 
     /**
@@ -58,6 +54,16 @@ class CreateNewUserNotification extends Notification implements ShouldQueue
     {
         return [
             //
+        ];
+    }
+
+    /* Assign data to one variable */
+    private function data($notifiable,$password)
+    {
+        return [
+            'name' => $notifiable->name,
+            'email' => $notifiable->email,
+            'password' => $password
         ];
     }
 }

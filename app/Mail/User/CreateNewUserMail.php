@@ -11,23 +11,24 @@ class CreateNewUserMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    /**
-     * Create a new message instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    /* Get user Pas*/
+    public $data;
+
+    /* Create a new message instance. */
+    public function __construct($data)
     {
-        //
+        $this->data = $data;
     }
 
-    /**
-     * Build the message.
-     *
-     * @return $this
-     */
+    /* Build the message */
     public function build()
     {
-        return $this->view('view.name');
+        return $this->markdown('emails.user.new-user')
+            ->with([
+                'name' => $this->data['name'],
+                'email' => $this->data['email'],
+                'password' =>$this->data['password'],
+            ])
+            ->subject('User Registered');
     }
 }

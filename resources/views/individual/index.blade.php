@@ -25,6 +25,7 @@
         <x-slot name="cardButton">
             @can('individual_create')
                 <x-button.create label="Add Individual"> {{route('individuals.create')}} </x-button.create>
+                <x-button.general label="Export" class="btn-primary"> {{route('individuals.export')}} </x-button.general>
             @endcan
         </x-slot>
         <!-- Table Start -->

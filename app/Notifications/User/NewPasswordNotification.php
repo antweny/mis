@@ -41,9 +41,8 @@ class NewPasswordNotification extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
-                ->subject('New Password')
-                ->markdown('emails.user.new-password', ['name' => $notifiable->name,'password'=>$this->password]);
+        $data = $this->data($notifiable->name,$this->password);
+        return (new NewPasswordMail($data))->to($notifiable->email);
     }
 
     /**
@@ -56,6 +55,15 @@ class NewPasswordNotification extends Notification implements ShouldQueue
     {
         return [
             //
+        ];
+    }
+
+    /* Assign data to one variable */
+    private function data($name,$password)
+    {
+        return [
+            'name' => $name,
+            'password' => $password
         ];
     }
 }

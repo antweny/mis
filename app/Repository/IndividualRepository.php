@@ -2,40 +2,31 @@
 
 namespace App\Repository;
 
+use App\Exports\IndividualsExport;
 use App\Models\Individual;
-use App\Repositories\LocationRepository;
 use App\Repository\Interfaces\IndividualRepositoryInterface;
 use Illuminate\Support\Facades\DB;
 use Exception;
+use Maatwebsite\Excel\Facades\Excel;
 
 class IndividualRepository extends BaseRepository implements IndividualRepositoryInterface
 {
-    /**
-     * @var LocationRepository
-     */
+    /*  Location  */
     protected $location;
-    //private $excel;
 
-    /**
-     * IndividualRepository constructor.
-     */
+    /* IndividualRepository constructor. */
     public function __construct(Individual $model)
     {
         parent::__construct($model);
-        //$this->location = new Location();
     }
 
-    /*
-     * Get
-     */
+    /* Get all individuals with relationship */
     public function get()
     {
         return $this->model->with(['location','individual_group'])->withCount('participant')->paginate(500);
     }
 
-    /*
-     * Create new resource
-     */
+    /* Create new resource */
     public function create($request)
     {
         DB::beginTransaction();
@@ -51,9 +42,7 @@ class IndividualRepository extends BaseRepository implements IndividualRepositor
         }
     }
 
-    /**
-     * Update specified resource
-     */
+    /* Update specified resource */
     public function updating($id,$request)
     {
         $individual = $this->update($id,$request);
@@ -64,25 +53,19 @@ class IndividualRepository extends BaseRepository implements IndividualRepositor
         return $this->detachGroupMember($individual);
     }
 
-    /**
-     * Add Individual to a group(s)
-     */
+    /* Add Individual to a group(s) */
     private function addGroupMember($individual, $members)
     {
         return $individual->individual_group()->attach($members);
     }
 
-    /**
-     * update Individual Group(s)
-     */
+    /*  update Individual Group(s) */
     private function updateGroupMember($individual, $individual_groups)
     {
         return $individual->individual_group()->sync($individual_groups);
     }
 
-    /*
-     * Remove individual members
-     */
+    /*  Remove individual members */
     private function detachGroupMember($individual)
     {
         return $individual->individual_group()->detach();
@@ -107,13 +90,11 @@ class IndividualRepository extends BaseRepository implements IndividualRepositor
 //
 //
 
-//    /**
-//     * Export Data
-//     */
-//    public function export($format)
-//    {
-//        return $this->excel->download(new IndividualExport,'individual.'.$format);
-//    }
+    /* Export Data */
+    public function export()
+    {
+        return Excel::download(new IndividualsExport(),'individuals.xlsx');
+    }
 
 //    /**
 //     * Import Organization List

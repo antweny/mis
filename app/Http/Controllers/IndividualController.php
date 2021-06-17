@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\IndividualsExport;
 use App\Http\Requests\ImportFileRequest;
 use App\Http\Requests\IndividualRequest;
 use App\Repository\Interfaces\IndividualRepositoryInterface;
 use App\Services\IndividualService;
 use Exception;
+use Maatwebsite\Excel\Facades\Excel;
 
 
 class IndividualController extends AuthController
@@ -41,13 +43,10 @@ class IndividualController extends AuthController
         }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    /*  Show the form for creating a new resource.  */
     public function create()
     {
         $this->canCreate($this->individual->model());
-
         try {
             $individual = $this->individual->model();
             return view('individual.create',compact('individual'));
@@ -57,13 +56,10 @@ class IndividualController extends AuthController
         }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    /* Store a newly created resource in storage. */
     public function store(IndividualRequest $request)
     {
         $this->canCreate($this->individual->model());
-
         try {
             $this->individual->create($request->except('_token'));
             return $this->success('Individual created');
@@ -73,13 +69,10 @@ class IndividualController extends AuthController
         }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    /* Show the form for editing the specified resource. */
     public function edit($id)
     {
         $this->canUpdate($this->individual->model());
-
         try {
             $individual = $this->individual->find($id);
             return view('individual.edit',compact('individual'));
@@ -89,13 +82,10 @@ class IndividualController extends AuthController
         }
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    /* Update the specified resource in storage. */
     public function update(IndividualRequest $request,$id)
     {
         $this->canUpdate($this->individual->model());
-
         try {
             $this->individual->updating($id,$request->except('_token'));
             return $this->successRoute('individuals.index','Individual updated!');
@@ -105,13 +95,10 @@ class IndividualController extends AuthController
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    /*  Remove the specified resource from storage. */
     public function destroy($id)
     {
         $this->canDelete($this->individual->model());
-
         try {
             $this->individual->delete($id);
             return $this->success('Individual deleted!');
@@ -135,17 +122,15 @@ class IndividualController extends AuthController
 //        }
 //    }
 
-//    /**
-//     * Import Batch of file.
-//     */
-//    public function export($val = 'xlsx')
-//    {
-//        try {
-//            $this->individual->export($val);
-//            return $this->success('Individual exported successfully!');
-//        }
-//        catch (\Exception $e) {
-//            return $this->error($e->getMessage());
-//        }
-//    }
+    /* Import Batch of file. */
+    public function export()
+    {
+        //return $this->individual->export();
+        try {
+            return $this->individual->export();
+        }
+        catch (\Exception $e) {
+            return $this->error($e->getMessage());
+        }
+    }
 }

@@ -125,7 +125,7 @@ Route::prefix('location')->name('locations.')->group(function () {
  * INDIVIDUAL ROUTES
  * -------------------------------------
  */
-Route::prefix('individual/')->group(function () {
+Route::prefix('individuals/')->group(function () {
 
     //Individual Groups
     Route::prefix('group')->name('individualGroups.')->group(function () {
@@ -138,14 +138,14 @@ Route::prefix('individual/')->group(function () {
 
     //Individuals
     Route::name('individuals.')->group(function () {
-        Route::get('/', 'IndividualController@index')->name('index');
+        Route::get('index', 'IndividualController@index')->name('index');
         Route::get('create', 'IndividualController@create')->name('create');
         Route::post('store', 'IndividualController@store')->name('store');
         Route::get('edit/{individual}', 'IndividualController@edit')->name('edit');
         Route::put('update/{individual}', 'IndividualController@update')->name('update');
         Route::delete('delete/{individual}', 'IndividualController@destroy')->name('destroy');
         Route::post('import', 'IndividualController@import')->name('import');
-        Route::get('export/{string?}', 'IndividualController@export')->name('export');
+        Route::get('export', 'IndividualController@export')->name('export');
     });
 
     //Experiences
