@@ -1,15 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Exports\IndividualsExport;
 use App\Http\Requests\ImportFileRequest;
 use App\Http\Requests\IndividualRequest;
 use App\Repository\Interfaces\IndividualRepositoryInterface;
-use App\Services\IndividualService;
 use Exception;
-use Maatwebsite\Excel\Facades\Excel;
-
 
 class IndividualController extends AuthController
 {
@@ -17,9 +12,9 @@ class IndividualController extends AuthController
      * @var
      */
     protected $individual;
-    /**
-     * IndividualController constructor.
-     */
+
+
+    /* IndividualController constructor. */
     public function __construct(IndividualRepositoryInterface $individualService)
     {
         parent::__construct();
@@ -27,15 +22,12 @@ class IndividualController extends AuthController
 
     }
 
-    /**
-     * Display a listing of the resource.
-     */
+    /* Display a listing of the resource. */
     public function index()
     {
         $this->canView($this->individual->model());
-
         try {
-            $individuals = $this->individual->paginate(100);  //Get all individual
+            $individuals = $this->individual->paginate(50);  //Get all individual
             return view('individual.index',compact('individuals'));
         }
         catch (Exception $e) {
