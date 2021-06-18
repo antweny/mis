@@ -35,7 +35,7 @@ class IndividualController extends AuthController
         $this->canView($this->individual->model());
 
         try {
-            $individuals = $this->individual->get();  //Get all individual
+            $individuals = $this->individual->paginate(100);  //Get all individual
             return view('individual.index',compact('individuals'));
         }
         catch (Exception $e) {

@@ -1,5 +1,5 @@
 <!-- Table Start -->
-<x-table.listing id="table">
+<x-table.listing :collection="$individuals">
     <!-- table headers -->
     <x-slot name="thead" >
         <th>Name</th>

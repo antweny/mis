@@ -5,25 +5,20 @@ namespace App\Imports;
 use App\Models\Individual;
 use App\Models\Location;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Maatwebsite\Excel\Concerns\ToModel;
-use Maatwebsite\Excel\Concerns\WithBatchInserts;
-use Maatwebsite\Excel\Concerns\WithChunkReading;
-use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class IndividualImport implements ToModel, WithBatchInserts, WithChunkReading, WithHeadingRow, ShouldQueue
+
+class IndividualImport extends BaseImport implements ShouldQueue
 {
+
     private $location;
 
-    private $individual;
-
+    /* Individual Import constructor.  */
     public function __construct()
     {
         $this->location = new Location();
     }
 
-    /**
-     * @param array $row
-     */
+    /* Insert to model collection */
     public function model(array $row)
     {
         if(is_null($this->uniqueIndividual($row['name'],$row['mobile']))) {
@@ -39,15 +34,13 @@ class IndividualImport implements ToModel, WithBatchInserts, WithChunkReading, W
         }
     }
 
+    /* Check uniqueness of the Individual */
     private function uniqueIndividual($name,$mobile)
     {
         return Individual::uniqueIndividual($name,$mobile);
     }
 
-   /*
-    * Sometimes you might want to validate each row before it's inserted into the database.
-    * By implementing the WithValidation concern, you can indicate the rules that each row need to adhere to.
-    */
+   /* Validate Excel Column values */
 //    public function rules(): array
 //    {
 //        return [
@@ -59,17 +52,25 @@ class IndividualImport implements ToModel, WithBatchInserts, WithChunkReading, W
 //        ];
 //    }
 
-    /*  */
-    public function batchSize(): int
-    {
-        return 500;
-    }
-
+    /*  Chuck the data  */
     public function chunkSize(): int
     {
-        return 500;
+        return 1000;
     }
 
+    /*  Insert to batches */
+    public function batchSize(): int
+    {
+        return 1000;
+    }
+
+
+
+//    /*  */
+//    public function registerEvents(): array
+//    {
+//        // TODO: Implement registerEvents() method.
+//    }
 
 
 }

@@ -24,7 +24,12 @@ class IndividualRepository extends BaseRepository implements IndividualRepositor
     /* Get all individuals with relationship */
     public function get()
     {
-        return $this->model->with(['location','individual_group'])->withCount('participant')->paginate(500);
+        return $this->model->with(['location','individual_group'])->withCount('participant')->get();
+    }
+
+    public function paginate($int = 25)
+    {
+        return $this->model->with(['location','individual_group'])->withCount('participant')->paginate($int);
     }
 
     /* Create new resource */
@@ -87,7 +92,19 @@ class IndividualRepository extends BaseRepository implements IndividualRepositor
     /* Import Organization List  */
     public function import($request)
     {
-        return Excel::import(new IndividualImport(),$request->file('import_file'));
+        try {
+            $file = $request->file('import_file')->store('imports/individuals');
+            return Excel::import(new IndividualImport(),$file);
+        } catch (\InvalidArgumentException $e) {
+            throw  $e;
+        } catch (Exception $e) {
+            throw  $e;
+        } catch (\Error $e) {
+            throw  $e;
+        }
+//        $file = $request->file('import_file')->store('imports/individuals');
+//
+//        $imports = Excel::import(new IndividualImport(),$file);
 
 //        $file = $request->file('imported_file')->store('import/individual'); //Store Imported file to storage
 //        $import = new IndividualImport; //Instance of Individual Import
