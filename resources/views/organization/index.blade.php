@@ -8,52 +8,12 @@
         <x-slot name="cardButton">
             @can('organization_create')
                 <x-button.create label="Add Organization"> {{route('organizations.create')}} </x-button.create>
-                <x-button.create label="Import" modal="modal"> #import </x-button.create>
-                {{--            <x-button.general label="Import" icon="fas fa-file-upload" modal="modal" class="btn btn-dark"> #import </x-button.general>  --}}
+                <x-button.import> #import </x-button.import>
+                <x-button.export route="organizations.export"/>
             @endcan
         </x-slot>
 
-
-        <!-- Table Start -->
-        <x-table.listing :collection="$organizations">
-            <!-- table headers -->
-            <x-slot name="thead" >
-                <th scope="col">Name</th>
-                <th scope="col">Category</th>
-                <th scope="col">Location</th>
-                <th scope="col">Website</th>
-                <th scope="col">Mobile</th>
-                <th scope="col">Members</th>
-            </x-slot>
-            <!-- end table head -->
-
-            <!-- table body -->
-            @foreach ($organizations as $organization)
-                <tr>
-                    <td class="text-center">{{$loop->iteration}}</td>
-                    <td class="text-left">{!! $organization->name_click !!}</td>
-                    <td class="text-center">{{$organization->organization_category->name}}</td>
-                    <td class="text-center">{{$organization->location->name}}</td>
-                    <td class="text-center">{{$organization->website}}</td>
-                    <td class="text-center">{{$organization->mobile}}</td>
-                    <td class="text-center"><a href="{{route('experiences.organization',$organization)}}">{{$organization->experience_count }}</a></td>
-                    <td  class="text-center">
-                        <div class="dropleft">
-                            <button type="button" class="btn btn-light" data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i> </button>
-                            <div class="dropdown-menu">
-                                @can('organization_update')
-                                    <x-button.edit>{{route('organizations.edit',$organization)}}</x-button.edit>
-                                @endcan
-                                    @can('organization_delete')
-                                    <x-button.delete>{{route('organizations.destroy',$organization)}}</x-button.delete>
-                                @endcan
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-        @endforeach
-        <!-- end table body -->
-        </x-table.listing>
+        @include('organization.components.table',$organizations)
         <!--end listing of collection -->
     </x-card>
 
@@ -63,11 +23,11 @@
             <!-- Start form -->
             <x-form.post action="organizations.import">
                 <div class="form-group">
-                    <x-form.label name="Import File <span class='star'>*</span>" for="imported_file" />
-                    <x-form.input type="file" name="imported_file" id="imported_file" required="required"/>
+                    <x-form.label name="Import File" star="true" />
+                    <x-form.input type="file" name="import_file" id="import_file" required="required"/>
                 </div>
                 <div class="form-group text-right">
-                    <x-button.submit />
+                    <x-button />
                 </div>
             </x-form.post>
             <!-- end form -->

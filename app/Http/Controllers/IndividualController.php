@@ -11,7 +11,7 @@ class IndividualController extends AuthController
     /**
      * @var
      */
-    protected $individual;
+    private $individual;
 
 
     /* IndividualController constructor. */

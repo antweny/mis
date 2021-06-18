@@ -9,28 +9,22 @@ use Exception;
 
 class OrganizationController extends AuthController
 {
-    /**
-     * @var
-     */
-    protected $interface;
+    /* @var */
+    private $organization;
 
-    /**
-     * OrganizationController constructor.
-     */
-    public function __construct(OrganizationRepositoryInterface $interface)
+    /* OrganizationController constructor. */
+    public function __construct(OrganizationRepositoryInterface $organization)
     {
         parent::__construct();
-        $this->interface = $interface;
+        $this->organization = $organization;
     }
 
-    /**
-     * Display a listing of the resource.
-     */
+    /* Display a listing of the resource. */
     public function index()
     {
-        $this->canView($this->interface->model());
+        $this->canView($this->organization->model());
         try {
-            $organizations = $this->interface->get();  //Get all organizations
+            $organizations = $this->organization->paginate(50);  //Get all organizations
             return view('organization.index',compact('organizations'));
         }
         catch (Exception $e) {
@@ -38,15 +32,13 @@ class OrganizationController extends AuthController
         }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    /* Show the form for creating a new resource. */
     public function create()
     {
-        $this->canCreate($this->interface->model());
+        $this->canCreate($this->organization->model());
 
         try {
-            $organization = $this->interface->model();
+            $organization = $this->organization->model();
             return view('organization.create',compact('organization'));
         }
         catch (Exception $e) {
@@ -54,15 +46,12 @@ class OrganizationController extends AuthController
         }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    /* Store a newly created resource in storage. */
     public function store(OrganizationRequest $request)
     {
-        $this->canCreate($this->interface->model());
-
+        $this->canCreate($this->organization->model());
         try {
-            $this->interface->create($request->validated());
+            $this->organization->create($request->validated());
             return $this->success('Organization created');
         }
         catch (Exception $e) {
@@ -70,15 +59,12 @@ class OrganizationController extends AuthController
         }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    /* Show the form for editing the specified resource. */
     public function edit($id)
     {
-        $this->canUpdate($this->interface->model());
-
+        $this->canUpdate($this->organization->model());
         try {
-            $organization = $this->interface->find($id);
+            $organization = $this->organization->find($id);
             return view('organization.edit',compact('organization'));
         }
         catch (Exception $e) {
@@ -86,15 +72,12 @@ class OrganizationController extends AuthController
         }
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    /* Update the specified resource in storage */
     public function update(OrganizationRequest $request,$id)
     {
-        $this->canUpdate($this->interface->model());
-
+        $this->canUpdate($this->organization->model());
         try {
-            $this->interface->update($id,$request->except('_token'));
+            $this->organization->update($id,$request->except('_token'));
            return $this->successRoute('organizations.index','Organization updated!');
         }
         catch (Exception $e) {
@@ -102,51 +85,66 @@ class OrganizationController extends AuthController
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    /* Remove the specified resource from storage. */
     public function destroy($id)
     {
-        $this->canDelete($this->interface->model());
-
+        $this->canDelete($this->organization->model());
         try {
-            $this->interface->delete($id);
+            $this->organization->delete($id);
             return $this->success('Organization deleted!');
         }
         catch (Exception $e) {
             return $this->error();
         }
     }
+//
+//    /* Import Batch of file. */
+//    public function import(ImportFileRequest $request)
+//    {
+//        $this->canCreate($this->organization->model());
+//        try {
+//            $this->organization->import($request);
+//            return $this->success('Individual imported successfully!');
+//        }
+//        catch (Exception $e) {
+//            return $this->error($e->getMessage());
+//        }
+//    }
 
-    /**
-     * Import Batch of file.
-     */
-    public function import(ImportFileRequest $request)
-    {
-        $this->canCreate($this->interface->model());
-
-        try {
-            $this->interface->import($request);
-            return $this->success('Individual imported successfully!');
-        }
-        catch (Exception $e) {
-            return $this->error($e->getMessage());
-        }
-    }
-
-
-    /**
-     * Display a listing of the resource.
-     */
+    /* Display a listing of the resource. */
     public function category($category)
     {
-        $this->canView($this->interface->model());
+        $this->canView($this->organization->model());
         try {
-            $organizations = $this->interface->category($category);  //Get all organizations
+            $organizations = $this->organization->category($category);  //Get all organizations
             return view('organization.index',compact('organizations'));
         }
         catch (Exception $e) {
             return $this->error();
+        }
+    }
+
+    /* Import Batch of file. */
+    public function import(ImportFileRequest $request)
+    {
+        try {
+            $this->organization->import($request);
+            dd($this->organization->import($request));
+            return back()->with('success','Import in Queue, we will send notification after import finished');
+        }
+        catch (\Exception $e) {
+            return $this->error($e->getMessage());
+        }
+    }
+
+    /* Import Batch of file. */
+    public function export($format = 'Xlsx')
+    {
+        try {
+            return $this->organization->export($format);
+        }
+        catch (\Exception $e) {
+            return $this->error($e->getMessage());
         }
     }
 

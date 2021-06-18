@@ -5,11 +5,10 @@ namespace App\Imports;
 use App\Models\Individual;
 use App\Models\Location;
 use Illuminate\Contracts\Queue\ShouldQueue;
-
+use Maatwebsite\Excel\Events\AfterImport;
 
 class IndividualImport extends BaseImport implements ShouldQueue
 {
-
     private $location;
 
     /* Individual Import constructor.  */
@@ -52,25 +51,8 @@ class IndividualImport extends BaseImport implements ShouldQueue
 //        ];
 //    }
 
-    /*  Chuck the data  */
-    public function chunkSize(): int
+    public static function afterImport(AfterImport $afterImport)
     {
-        return 1000;
+        dd('succed');
     }
-
-    /*  Insert to batches */
-    public function batchSize(): int
-    {
-        return 1000;
-    }
-
-
-
-//    /*  */
-//    public function registerEvents(): array
-//    {
-//        // TODO: Implement registerEvents() method.
-//    }
-
-
 }

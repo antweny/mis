@@ -4,7 +4,7 @@ namespace App\Repository\Interfaces;
 
 interface IndividualRepositoryInterface extends BaseRepositoryInterface
 {
-    //Export Individuals
+    //Export file
     public function export($format);
 
 

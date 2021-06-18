@@ -109,7 +109,7 @@ class BaseModel extends Model
     public function findOrCreate($data)
     {
         if(!is_null($data)) {
-            $object = $this->where('name',$data)->orWhere('id',$data)->first();
+            $object = $this->where('name','like','%'.$data.'%')->orWhere('id',$data)->first();
 
             if(!is_null($object)){
                 return $object->id;

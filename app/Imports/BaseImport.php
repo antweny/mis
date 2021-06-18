@@ -2,14 +2,22 @@
 
 namespace App\Imports;
 
-
+use Maatwebsite\Excel\Concerns\Importable;
+use Maatwebsite\Excel\Concerns\SkipsEmptyRows;
+use Maatwebsite\Excel\Concerns\SkipsErrors;
+use Maatwebsite\Excel\Concerns\SkipsFailures;
+use Maatwebsite\Excel\Concerns\SkipsOnError;
+use Maatwebsite\Excel\Concerns\SkipsOnFailure;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithBatchInserts;
 use Maatwebsite\Excel\Concerns\WithChunkReading;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\Validators\Failure;
+use Throwable;
 
-class  BaseImport  implements ToModel, WithChunkReading, WithBatchInserts,  WithHeadingRow
+class  BaseImport  implements ToModel, WithChunkReading, WithBatchInserts,  WithHeadingRow, SkipsOnFailure, SkipsEmptyRows, SkipsOnError
 {
+    use Importable, SkipsFailures, SkipsErrors;
 
     public function model(array $row)
     {
@@ -19,14 +27,21 @@ class  BaseImport  implements ToModel, WithChunkReading, WithBatchInserts,  With
     /*  Chuck the data  */
     public function chunkSize(): int
     {
-        return 1000;
+        return 250;
     }
 
     /*  Insert to batches */
     public function batchSize(): int
     {
-        return 1000;
+        return 250;
     }
+
+//    /* Failure[] $failures */
+//   public function onFailure(Failure ...$failures)
+//   {
+//       // TODO: Implement onFailure() method.
+//   }
+
 
 }
 

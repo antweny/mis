@@ -27,6 +27,7 @@ class IndividualRepository extends BaseRepository implements IndividualRepositor
         return $this->model->with(['location','individual_group'])->withCount('participant')->get();
     }
 
+    /* Get Collection with pagination */
     public function paginate($int = 25)
     {
         return $this->model->with(['location','individual_group'])->withCount('participant')->paginate($int);
@@ -77,8 +78,6 @@ class IndividualRepository extends BaseRepository implements IndividualRepositor
         return $individual->individual_group()->detach();
     }
 
-
-
     /* Export Data */
     public function export($format)
     {
@@ -102,25 +101,6 @@ class IndividualRepository extends BaseRepository implements IndividualRepositor
         } catch (\Error $e) {
             throw  $e;
         }
-//        $file = $request->file('import_file')->store('imports/individuals');
-//
-//        $imports = Excel::import(new IndividualImport(),$file);
-
-//        $file = $request->file('imported_file')->store('import/individual'); //Store Imported file to storage
-//        $import = new IndividualImport; //Instance of Individual Import
-//        $import->import($file);
-//
-//        if($import->failures()->isNotEmpty())
-//            return $import->failures();
-//        }
-//        if($import->errors()->isNotEmpty()) {
-//            return $import->errors();
-//        }
-//        return $import;
     }
-
-
-
-
 
 }

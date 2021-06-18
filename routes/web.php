@@ -190,6 +190,7 @@ Route::prefix('organization/')->group(function () {
         Route::delete('delete/{organization}', 'OrganizationController@destroy')->name('destroy');
         Route::post('import', 'OrganizationController@import')->name('import');
         Route::get('category/{category}', 'OrganizationController@category')->name('category');
+        Route::get('export/{format?}', 'OrganizationController@export')->name('export');
     });
 
     //Stakeholder
