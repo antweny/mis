@@ -4,6 +4,7 @@ namespace App\Imports;
 
 use App\Models\Individual;
 use App\Models\Location;
+use App\Rules\UniqueIndividualRule;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Maatwebsite\Excel\Events\AfterImport;
 
@@ -40,16 +41,19 @@ class IndividualImport extends BaseImport
     }
 
    /* Validate Excel Column values */
-//    public function rules(): array
-//    {
-//        return [
-//            'name' => ['required','string','max:100'],
-//            'sex' => ['nullable','string'],
-//            'age_group' => ['nullable','string'],
-//            'location'=>['nullable','string'],
-//            'mobile' => ['nullable','numeric'],
-//        ];
-//    }
+    public function rules(): array
+    {
+        return [
+            'name' => ['required','string','max:100',new UniqueIndividualRule],
+            'mobile' => ['nullable','numeric'],
+            'email' => ['nullable','string','max:255','unique:individuals,email'],
+            'sex' => ['nullable','string'],
+            'age_group' => ['nullable','string'],
+            'occupation' => ['nullable','string'],
+            'location'=>['nullable','string'],
+            'group'=>['nullable','string'],
+        ];
+    }
 
 
 }
