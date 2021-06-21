@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Exports\Individual\IndividualsExport;
 use App\Imports\IndividualImport;
+use App\Imports\OrganizationImport;
 use App\Models\Individual;
 use App\Repository\Interfaces\IndividualRepositoryInterface;
 use Illuminate\Support\Facades\DB;
@@ -88,19 +89,13 @@ class IndividualRepository extends BaseRepository implements IndividualRepositor
         return Excel::download(new IndividualsExport(),'individuals.'.$extension,$format);
     }
 
-    /* Import Organization List  */
+    /* Import Data  */
     public function import($request)
     {
-        try {
-            $file = $request->file('import_file')->store('imports/individuals');
-            return Excel::import(new IndividualImport(),$file);
-        } catch (\InvalidArgumentException $e) {
-            throw  $e;
-        } catch (Exception $e) {
-            throw  $e;
-        } catch (\Error $e) {
-            throw  $e;
-        }
+        $file = $request->file('import_file')->store('imports/individuals');
+        $import = new IndividualImport();
+        $import->import($file);
+        return $import;
     }
 
 }

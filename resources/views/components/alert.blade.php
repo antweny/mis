@@ -40,6 +40,5 @@
                     <td>{{ $failure->values() [$failure->attribute()] }}</td>
                 </tr>
             @endforeach
-
     </table>
 @endif

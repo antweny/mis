@@ -103,13 +103,11 @@ class IndividualController extends AuthController
     /* Import Batch of file. */
     public function import(ImportFileRequest $request)
     {
-        try {
-            $this->individual->import($request);
-            return back()->with('success','Import in Queue, we will send notification after import finished');
+        $import = $this->individual->import($request);
+        if($import->failures()->isNotEmpty()) {
+            return back()->withFailures($import->failures());
         }
-        catch (\Exception $e) {
-            return $this->error($e->getMessage());
-        }
+        return $this->success('Import Successful');
     }
 
     /* Import Batch of file. */

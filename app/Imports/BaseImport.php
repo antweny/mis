@@ -12,86 +12,34 @@ use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithBatchInserts;
 use Maatwebsite\Excel\Concerns\WithChunkReading;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
-use Maatwebsite\Excel\Validators\Failure;
-use Throwable;
+use Maatwebsite\Excel\Concerns\WithValidation;
 
-class  BaseImport  implements ToModel, WithChunkReading, WithBatchInserts,  WithHeadingRow, SkipsOnFailure, SkipsEmptyRows, SkipsOnError
+class  BaseImport  implements
+    ToModel,
+    WithHeadingRow,
+    SkipsOnError,
+    WithValidation,
+    SkipsOnFailure,
+    WithChunkReading,
+    SkipsEmptyRows
 {
-    use Importable, SkipsFailures, SkipsErrors;
+    use Importable,SkipsErrors, SkipsFailures;
 
-    public function model(array $row)
-    {
+    public function model(array $row) {}
 
-    }
+    /* With validation */
+    public function rules(): array { }
 
     /*  Chuck the data  */
     public function chunkSize(): int
     {
-        return 250;
+        return 100;
     }
 
-    /*  Insert to batches */
-    public function batchSize(): int
-    {
-        return 250;
-    }
-
-//    /* Failure[] $failures */
-//   public function onFailure(Failure ...$failures)
-//   {
-//       // TODO: Implement onFailure() method.
-//   }
-
+//    /*  Insert to batches */
+//    public function batchSize(): int
+//    {
+//        return 500;
+//    }
 
 }
-
-//class  BaseImport implements
-//    SkipsOnError,
-//    WithValidation,
-//    SkipsOnFailure,
-//    WithChunkReading,
-//    ShouldQueue,
-//    WithEvents
-//{
-//    use Importable, SkipsErrors, SkipsFailures, RegistersEventListeners;
-//
-//    /**
-//     * @param
-//     */
-//    public function model(array $row)
-//    {
-//        //
-//    }
-//
-//   /*
-//    * Sometimes you might want to validate each row before it's inserted into the database.
-//    * By implementing the WithValidation concern, you can indicate the rules that each row need to adhere to.
-//    */
-//    public function rules(): array
-//    {
-//
-//    }
-//
-//    /*
-//     * Importing a large file can have a huge impact on the memory usage, as the library will try to load the entire sheet into memory.
-//     */
-//    public function chunkSize(): int
-//    {
-//        return 50;
-//    }
-//
-//    public static function afterImport(AfterImport $event)
-//    {
-//
-//    }
-//
-//    public function onFailure(Failure ...$failure)
-//    {
-//
-//    }
-//
-//
-//
-//
-//
-//}

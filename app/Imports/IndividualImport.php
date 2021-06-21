@@ -51,8 +51,5 @@ class IndividualImport extends BaseImport implements ShouldQueue
 //        ];
 //    }
 
-    public static function afterImport(AfterImport $afterImport)
-    {
-        dd('succed');
-    }
+
 }

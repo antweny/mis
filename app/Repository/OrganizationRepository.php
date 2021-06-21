@@ -8,6 +8,7 @@ use App\Models\Experience;
 use App\Models\Organization;
 use App\Models\OrganizationCategory;
 use App\Repository\Interfaces\OrganizationRepositoryInterface;
+use Illuminate\Database\QueryException;
 use Maatwebsite\Excel\Facades\Excel;
 
 class OrganizationRepository extends BaseRepository implements OrganizationRepositoryInterface
@@ -57,44 +58,13 @@ class OrganizationRepository extends BaseRepository implements OrganizationRepos
         return Excel::download(new OrganizationsExport(),'organizations.'.$extension,$format);
     }
 
-    /* Import Organization List  */
+    /* Import Data */
     public function import($request)
     {
         $file = $request->file('import_file')->store('imports/organizations');
         $import = new OrganizationImport();
         $import->import($file);
-
-        if($import->failures()->isNotEmpty()) {
-            return $import->failures();
-        }
-        if($import->errors()->isNotEmpty()) {
-            return $import->errors();
-        }
         return $import;
-
-//        foreach ($import->failures() as $failure) {
-//            $failure->row(); // row that went wrong
-//            $failure->attribute(); // either heading key (if using heading row concern) or column index
-//            $failure->errors(); // Actual error messages from Laravel validator
-//            $failure->values(); // The values of the row that has failed.
-//        }
-
-
-
-//        try {
-//            $file = $request->file('import_file')->store('imports/organizations');
-//            $import = new OrganizationImport();
-//            $import->import($file);
-//            return Excel::import(new OrganizationImport(),$file);
-//        } catch (\InvalidArgumentException $e) {
-//            throw  $e;
-//        } catch (\Exception $e) {
-//            throw  $e;
-//        } catch (\Error $e) {
-//            throw  $e;
-//        }
-
     }
-
 
 }

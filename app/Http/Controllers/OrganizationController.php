@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ImportFileRequest;
 use App\Http\Requests\OrganizationRequest;
+use App\Imports\OrganizationImport;
 use App\Repository\Interfaces\OrganizationRepositoryInterface;
 use Exception;
 
@@ -97,19 +98,6 @@ class OrganizationController extends AuthController
             return $this->error();
         }
     }
-//
-//    /* Import Batch of file. */
-//    public function import(ImportFileRequest $request)
-//    {
-//        $this->canCreate($this->organization->model());
-//        try {
-//            $this->organization->import($request);
-//            return $this->success('Individual imported successfully!');
-//        }
-//        catch (Exception $e) {
-//            return $this->error($e->getMessage());
-//        }
-//    }
 
     /* Display a listing of the resource. */
     public function category($category)
@@ -127,14 +115,12 @@ class OrganizationController extends AuthController
     /* Import Batch of file. */
     public function import(ImportFileRequest $request)
     {
-        try {
-            $this->organization->import($request);
-            dd($this->organization->import($request));
-            return back()->with('success','Import in Queue, we will send notification after import finished');
+        $import = $this->organization->import($request);
+
+        if($import->failures()->isNotEmpty()) {
+            return back()->withFailures($import->failures());
         }
-        catch (\Exception $e) {
-            return $this->error($e->getMessage());
-        }
+        return $this->success('Import Successful');
     }
 
     /* Import Batch of file. */
