@@ -7,7 +7,7 @@ use App\Models\Location;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Maatwebsite\Excel\Events\AfterImport;
 
-class IndividualImport extends BaseImport implements ShouldQueue
+class IndividualImport extends BaseImport
 {
     private $location;
 
