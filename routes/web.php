@@ -158,6 +158,7 @@ Route::prefix('individuals/')->group(function () {
         Route::delete('delete/{experience}', 'IndividualExperienceController@destroy')->name('destroy');
         Route::post('import', 'IndividualExperienceController@import')->name('import');
         Route::get('organization/member/{organization}', 'IndividualExperienceController@membersByOrganization')->name('organization');
+        Route::get('export/{format?}', 'IndividualExperienceController@export')->name('export');
     });
 
     //Resource Peoples

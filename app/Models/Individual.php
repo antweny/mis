@@ -106,7 +106,8 @@ class Individual extends BaseModel
     // Get Record ID if not exist Create new Record
     public static function uniqueIndividual($name, $mobile)
     {
-        return self::select('name','mobile')->where('name',$name)->where('mobile',$mobile)->first();
+        $data = self::select('id','name','mobile')->where('name',$name)->where('mobile',$mobile)->first();
+        return $data->id;
     }
 
     /**

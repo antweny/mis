@@ -42,3 +42,7 @@
             @endforeach
     </table>
 @endif
+
+@if(session('importErrors'))
+    {{'errors'}}
+@endif
