@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ImportFileRequest;
 use App\Http\Requests\IndividualExperienceRequest;
 use App\Repository\Interfaces\IndividualExperienceRepositoryInterface;
+use Doctrine\DBAL\Query\QueryException;
 use Exception;
 
 class IndividualExperienceController extends AuthController
@@ -54,7 +55,7 @@ class IndividualExperienceController extends AuthController
             return $this->success('Individual experience created');
         }
         catch (Exception $e) {
-            return $this->errorWithInput($request);
+            return $this->errorWithInput($request,'Duplicate entry');
         }
     }
 
@@ -129,9 +130,6 @@ class IndividualExperienceController extends AuthController
 
         if($import->failures()->isNotEmpty()) {
             return back()->withFailures($import->failures());
-        }
-        if($import->errors()->isNotEmpty()) {
-            return back()->with('importErrors',$import->errors());
         }
         return $this->success('Import Successful');
     }

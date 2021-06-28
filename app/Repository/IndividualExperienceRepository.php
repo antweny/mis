@@ -79,9 +79,6 @@ class IndividualExperienceRepository extends BaseRepository implements Individua
         $file = $request->file('import_file')->store('imports/individuals/experiences');
         $import = new IndividualExperienceImport();
         $import->import($file);
-
-        dd($import->errors());
-
         return $import;
     }
 }

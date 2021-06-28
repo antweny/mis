@@ -21,13 +21,21 @@
 </div>
 
 <div class="row form-group">
-    <div class="col-md-6">
-        <x-form.label name="Start Date" />
+    <div class="col-md-4">
+        <x-form.label name="Start Date" star="true" />
         <x-form.input type="date" name="start_date" id="start_date" for="start_date" :model="$experience" />
     </div>
-    <div class="col-md-6">
+    <div class="col-md-4">
         <x-form.label name="End Date" />
         <x-form.input type="date" name="end_date" id="end_date" for="end_date"  :model="$experience" />
+    </div>
+    <div class="col-md-4">
+        <x-form.label name="Is Active?" star="true" />
+        <select class="form-control @error('active') is-invalid @enderror single-select" name="active" required>
+            <option value="">----</option>
+            <option value="1" {{old('active',$experience->active) == '1' ? 'selected' : ''}}>Yes</option>
+            <option value="0" {{old('active',$experience->active) == '0' ? 'selected' : ''}}>No</option>
+        </select>
     </div>
 </div>
 
