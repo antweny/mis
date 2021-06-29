@@ -14,9 +14,8 @@ class AddActiveAndUniqueKeyToExperiences extends Migration
     public function up()
     {
         Schema::table('experiences', function (Blueprint $table) {
-
             $table->boolean('active')->default(true)->after('desc');
-            $table->unique(['individual_id','organization_id','active']);
+            //$table->unique(['individual_id','organization_id','active']);
         });
     }
 
@@ -30,7 +29,7 @@ class AddActiveAndUniqueKeyToExperiences extends Migration
         Schema::disableForeignKeyConstraints();
 
         Schema::table('experiences', function (Blueprint $table) {
-            $table->dropUnique(['individual_id','organization_id','active']);
+            //$table->dropUnique(['individual_id','organization_id','active']);
             $table->dropColumn('active');
         });
 
